@@ -1,0 +1,22 @@
+<div class="header_wrap">
+  <a class="header_logo" routerLink="/">
+    <svg-icon class="header_logo_icon" src="../../assets/icons/logo.svg"></svg-icon>
+  </a>
+  <div class="header_navigation_wrap">
+    <div class="header_navigation_item" *ngFor="let item of navigationItems">
+      <a class="header_navigation_item_link"
+         [ngClass]="{'disabled': !item.available}"
+         [routerLink]="item.link"
+         routerLinkActive="active"
+         *ngIf="item.visible">{{item.value}}</a>
+    </div>
+    <div class="header_navigation_item">
+      <a class="header_navigation_item_link"
+         routerLink="settings"
+         routerLinkActive="active">Settings</a>
+    </div>
+    <div class="header_navigation_item">
+      <div class="header_navigation_item_link" (click)="logout()">Exit</div>
+    </div>
+  </div>
+</div>

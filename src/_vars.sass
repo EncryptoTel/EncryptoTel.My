@@ -1,0 +1,10 @@
+// Global variables
+$primary: #444
+$accent: #5acad1
+$success: #50cca1
+
+$browser-context: 14
+
+// Global functions
+@function rem($pixels, $context: $browser-context)
+  @return #{$pixels/$context}rem

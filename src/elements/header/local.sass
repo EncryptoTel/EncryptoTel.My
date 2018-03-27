@@ -1,0 +1,31 @@
+@import '../../vars'
+
+.header
+  &_wrap
+    flex-direction: row
+    flex: 1 0 auto
+    align-items: center
+    height: rem(64)
+  &_logo
+    margin: 0 auto 0 rem(40)
+    padding: rem(8)
+    &_icon
+      height: rem(32)
+      width: rem(32)
+  &_navigation
+    &_wrap
+      flex-direction: row
+    &_item
+      &:last-child > &_link
+        margin: 0 rem(32)
+      &_link
+        padding: 0 rem(16)
+        line-height: rem(32)
+        font-size: rem(14)
+        cursor: pointer
+        transition: all linear 150ms
+        &:hover
+          color: $accent
+        &.disabled
+          color: rgba($primary, .5)
+          pointer-events: none
