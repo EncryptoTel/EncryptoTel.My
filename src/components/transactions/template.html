@@ -1,1 +1,20 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
+<div class="transactions">
+  <div class="transactions_filters">
+    <div class="transactions_filters_items active">
+      <span>All</span>
+    </div>
+    <div class="transactions_filters_items">
+      <span>Sent</span>
+    </div>
+    <div class="transactions_filters_items">
+      <span>Received</span>
+    </div>
+  </div>
+  <div class="transactions_items_wrapper" *ngIf="transactions">
+    <div class="transactions_item" *ngFor="let transaction of transactions.transactions">
+      <transaction-element [transaction]="transaction"></transaction-element>
+    </div>
+  </div>
+</div>
+

@@ -11,6 +11,7 @@ import {StorageServices} from '../services/storage.services';
 import {RequestServices} from '../services/request.services';
 
 import {MainViewComponent} from '../components/main-view.component';
+import {TransactionsService} from '../services/transactions.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MainViewComponent} from '../components/main-view.component';
     LoggerServices,
     StorageServices,
     {provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptor, multi: true},
-    RequestServices
+    RequestServices,
+    TransactionsService
   ],
   bootstrap: [MainViewComponent]
 })

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'transaction-element',
@@ -6,4 +6,6 @@ import {Component} from '@angular/core';
   styleUrls: ['./local.sass']
 })
 
-export class TransactionElement {}
+export class TransactionElement {
+  @Input() transaction: Transaction;
+}

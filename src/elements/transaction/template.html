@@ -1,0 +1,25 @@
+<div class="transaction">
+  <div class="transaction_icon_wrapper">
+    <svg-icon src="../../../assets/icons/logo.svg"></svg-icon>
+  </div>
+  <div class="transaction_currency_wrapper">
+    <div class="transaction_currency_type">
+      <div class="transaction_currency">
+        <p>{{transaction.currency}}</p>
+      </div>
+      <div class="transaction_currency">
+        {{transaction.date | date:'H:m'}}, to address {{transaction.address}}
+      </div>
+    </div>
+    <div class="transaction_currency_value">
+      <div class="transaction_currency">
+        {{transaction.amount}}{{transaction.currency}}
+      </div>
+      <div class="transaction_currency">
+        -6.15 US Dollar
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--{direction: "out", currency: "ETT", address: "3P3FNBRsKWTdyf9jJEdQTzoQuFKzNiijxq4A", amount: 151.0000005, date: "2018-03-27T13:45:15.801Z"}-->

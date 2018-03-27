@@ -1,0 +1,26 @@
+@import '../../vars'
+
+.transaction
+  display: flex
+  flex-flow: row
+  width: 100%
+  padding: 10px 20px
+  &_icon_wrapper
+    margin-right: 20px
+    svg-icon
+      width: 40px
+      height: 40px
+  &_currency
+    &_wrapper
+      display: flex
+      flex-flow: row
+      justify-content: space-between
+      align-items: center
+      flex: 1
+    &_type
+      display: flex
+      flex-flow: column
+    &_value
+      display: flex
+      flex-flow: column
+      text-align: right
