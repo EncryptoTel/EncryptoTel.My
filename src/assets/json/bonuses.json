@@ -1,9 +1,9 @@
 {
   "bonuses": [
-    {"name": "ETT", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be really long", "status": true},
-    {"name": "Waves", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be really long", "status": true},
-    {"name": "wETT", "amount": "100 wETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be really long", "status": true},
-    {"name": "eETT", "amount": "100 eETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be really long", "status": true},
-    {"name": "BTC", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be really long", "status": true}
+    {"name": "ETT", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
+    {"name": "Waves", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
+    {"name": "wETT", "amount": "100 wETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
+    {"name": "eETT", "amount": "100 eETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
+    {"name": "BTC", "estimated": "2018-03-27T13:45:15.801Z", "status": true}
   ]
 }
