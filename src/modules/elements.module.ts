@@ -8,6 +8,7 @@ import {HeaderElement} from '../elements/header/header.element';
 import {MainRouterModule} from './router.module';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {PageInfoElement} from '../elements/page-info/page-info.element';
+import {TransactionElement} from '../elements/transaction/transaction.element';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {PageInfoElement} from '../elements/page-info/page-info.element';
   declarations: [
     ClickOutsideDirective,
     HeaderElement,
-    PageInfoElement
+    PageInfoElement,
+    TransactionElement
   ],
   exports: [
     CommonModule,
@@ -28,7 +30,8 @@ import {PageInfoElement} from '../elements/page-info/page-info.element';
     MainRouterModule,
     ClickOutsideDirective,
     HeaderElement,
-    PageInfoElement
+    PageInfoElement,
+    TransactionElement
   ]
 })
 export class ElementsModule {}
