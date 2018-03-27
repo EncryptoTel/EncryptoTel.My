@@ -5,9 +5,11 @@ import {AuthGuardServices} from '../services/auth-guard.services';
 
 import {PageNotFoundComponent} from '../components/errors/page-not-found/page-not-found.component';
 import {IndexComponent} from '../components/index/index.component';
+import {TransactionsComponent} from '../components/transactions/transactions.component';
 
 const Routes: Routes = [
   {path: '', component: IndexComponent, canActivate: [AuthGuardServices]},
+  {path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuardServices]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

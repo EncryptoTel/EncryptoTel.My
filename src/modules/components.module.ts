@@ -4,6 +4,7 @@ import {ElementsModule} from './elements.module';
 
 import {PageNotFoundComponent} from '../components/errors/page-not-found/page-not-found.component';
 import {IndexComponent} from '../components/index/index.component';
+import {TransactionsComponent} from '../components/transactions/transactions.component';
 
 @NgModule({
   imports: [
@@ -12,12 +13,14 @@ import {IndexComponent} from '../components/index/index.component';
   ],
   declarations: [
     PageNotFoundComponent,
-    IndexComponent
+    IndexComponent,
+    TransactionsComponent
   ],
   exports: [
     ElementsModule,
     PageNotFoundComponent,
-    IndexComponent
+    IndexComponent,
+    TransactionsComponent
   ]
 })
 export class ComponentsModule {}
