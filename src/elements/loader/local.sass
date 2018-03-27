@@ -1,0 +1,20 @@
+@import '../../vars'
+
+.loader_wrap
+  flex-direction: row
+  flex: 1 0 auto
+  justify-content: center
+  align-items: center
+  height: 100%
+  z-index: 1
+  span.loader
+    width: 2px
+    border-radius: 1px
+    background: $accent
+    animation: loader_animation ease-out infinite 700ms
+    &:not(:first-child)
+      margin-left: 8px
+
+@for $i from 1 through 7
+  .loader_wrap > span.loader:nth-child(#{$i})
+    animation-delay: ($i * 100 + ms)
