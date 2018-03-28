@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
     this.pageInfo = {
       title: 'Index page',
       description:
-      `The entire Cardano team is made up of experts around the world, and the core technology team
+      `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     }
   }

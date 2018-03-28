@@ -32,7 +32,7 @@ title, script, head, router-outlet
 
 body
   color: $primary
-  max-width: 100vw
+  width: 100%
   overflow-x: hidden
 
 html
@@ -60,12 +60,13 @@ loader-element
   margin: 0 auto
 
 .table
+  overflow-x: hidden
   &_row
     flex-direction: row
     &:not(:last-child)
       border-bottom: 1px solid rgba($primary, .2)
     &:nth-child(2n - 1)
-      background: rgba($primary, .1)
+      background: rgba($primary, .05)
   &_column
     flex: 1
     justify-content: center
@@ -83,6 +84,28 @@ loader-element
       padding-right: rem(16)
   &_head > &_row
     background: transparent
+    border-bottom: 1px solid rgba($primary, .2)
+    color: rgba($primary, .7)
 
-// ID's styles
+// Responsive
 
+@media (min-width: 1981px)
+  html
+    font-size: 18px
+  .container
+    width: 1440px
+@media (max-width: 1279px)
+  .container
+    width: 1024px
+@media (min-width: 1024px)
+  .hidden_sm_up
+    display: none
+@media (max-width: 1023px)
+  .container
+    width: 768px
+  .hidden_sm_down
+    display: none
+@media (max-width: 767px)
+  .container
+    width: 100%
+    padding: 0 rem(32)

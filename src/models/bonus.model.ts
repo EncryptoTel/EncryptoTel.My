@@ -1,4 +1,4 @@
-export interface Bonuse {
+export interface Bonus {
   name: string;
   amount: string;
   estimated: Date;
