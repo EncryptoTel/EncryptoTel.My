@@ -1,7 +1,7 @@
 @import '../../vars'
 
 .container
-  margin-top: rem(16)
+  margin: rem(16) auto
 
 .table_column
   &:first-child
@@ -9,8 +9,27 @@
   &:nth-child(2)
     flex: 0 0 rem(250)
   &:nth-child(3)
-    flex: 0 0 rem(300)
+    flex: 0 0 rem(220)
     align-items: center
   &:last-child
-    flex: 0 0 rem(100)
-    text-transform: uppercase
+    flex: 0 0 rem(150)
+
+@media (max-width: 1023px)
+  .table
+    &_column
+      &.title
+        flex: 0 0 30%
+        color: rgba($primary, .7)
+      &.value
+        flex: 0 0 70%
+    &_row
+      &.description
+        .table_column
+          line-height: rem(24)
+          &:first-child
+            justify-content: flex-start
+
+@media (max-width: 767px)
+  .table .table_row
+    &.description > .table_column:first-child
+      justify-content: flex-end

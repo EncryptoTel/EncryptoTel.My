@@ -3,7 +3,7 @@
 <div class="container">
   <div class="bonuses_wrap">
     <div class="table_empty" *ngIf="bonusesList.length < 1">Sorry, but you haven't bonuses now</div>
-    <div class="table" *ngIf="bonusesList.length > 0">
+    <div class="table hidden_sm_down" *ngIf="bonusesList.length > 0">
       <div class="table_head">
         <div class="table_row">
           <div class="table_column">Name or ID</div>
@@ -16,10 +16,34 @@
       <div class="table_body">
         <div class="table_row" *ngFor="let bonus of bonusesList">
           <div class="table_column">{{bonus.name}}</div>
-          <div class="table_column">{{bonus.amount || '&nbsp;'}}</div>
+          <div class="table_column">{{bonus.amount}}</div>
           <div class="table_column">{{bonus.estimated | date}}</div>
           <div class="table_column" [title]="bonus.description"><p>{{bonus.description}}</p></div>
-          <div class="table_column">{{bonus.status ? 'paid' : 'await'}}</div>
+          <div class="table_column">{{bonus.status}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="table hidden_sm_up" *ngIf="bonusesList.length > 0">
+      <div class="table_column_wrap" *ngFor="let bonus of bonusesList">
+        <div class="table_row">
+          <div class="table_column title">Name or ID</div>
+          <div class="table_column value">{{bonus.name}}</div>
+        </div>
+        <div class="table_row">
+          <div class="table_column title">Amount</div>
+          <div class="table_column value">{{bonus.amount}}</div>
+        </div>
+        <div class="table_row">
+          <div class="table_column title">Estimate time for distribution</div>
+          <div class="table_column value">{{bonus.estimated | date}}</div>
+        </div>
+        <div class="table_row description" *ngIf="bonus.description">
+          <div class="table_column title">Description</div>
+          <div class="table_column value">{{bonus.description}}</div>
+        </div>
+        <div class="table_row">
+          <div class="table_column title">Status</div>
+          <div class="table_column value">{{bonus.status}}</div>
         </div>
       </div>
     </div>

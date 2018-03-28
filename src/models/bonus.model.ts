@@ -3,5 +3,5 @@ export interface Bonus {
   amount: string;
   estimated: Date;
   description: string;
-  status: boolean;
+  status: string;
 }
