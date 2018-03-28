@@ -1,25 +1,40 @@
 <div class="transaction">
   <div class="transaction_icon_wrapper">
-    <svg-icon src="../../../assets/icons/icon_{{setTypeTransaction(transaction.direction).toLocaleLowerCase()}}.svg"></svg-icon>
+    <svg-icon
+      src="../../../assets/icons/icon_{{setTypeTransaction(transaction.sender).toLocaleLowerCase()}}.svg"></svg-icon>
   </div>
   <div class="transaction_currency_wrapper">
     <div class="transaction_currency_type">
       <div class="transaction_currency">
-        <p>{{setTypeTransaction(transaction.direction)}} {{transaction.currency}}</p>
+        <p>{{setTypeTransaction(transaction.sender)}} ETT</p>
       </div>
       <div class="transaction_currency">
-        {{transaction.date | date:'H:m'}}, to address {{transaction.address}}
+        <p>{{transaction.timestamp | date:'H:m'}},
+          {{type === 'Send'? 'to':'from'}} address {{type === 'Send'?transaction.recipient:transaction.sender}}
+        </p>
       </div>
     </div>
     <div class="transaction_currency_value">
       <div class="transaction_currency">
-        {{transaction.amount}}{{transaction.currency}}
+        <p>{{type === 'Send'? '-': '+'}}{{transaction.amount}} ETT </p>
       </div>
       <div class="transaction_currency">
-        -6.15 US Dollar
+        <p>{{type === 'Send'? '-': '+'}} {{convertToUSD()}} US Dollar</p>
       </div>
     </div>
   </div>
 </div>
 
-<!--{direction: "out", currency: "ETT", address: "3P3FNBRsKWTdyf9jJEdQTzoQuFKzNiijxq4A", amount: 151.0000005, date: "2018-03-27T13:45:15.801Z"}-->
+<!--amount:1-->
+<!--assetId:null-->
+<!--attachment:""-->
+<!--fee:100000-->
+<!--feeAsset:null-->
+<!--height:936552-->
+<!--id:"95bMry5yPngNLsZvP6Nd2HwMM9avhnrivnFqw9BoRJSR"-->
+<!--recipient:"3P7tNYakdeYkR48XQoDRhdvYbmmESznb4WS"-->
+<!--sender:"3PKPcdHa5YRnG1BoME3wenD7UcWELrbV18F"-->
+<!--senderPublicKey:"6WXdBprEBdJAj3HxPp5DovpYhCPHzEq97A9vaCXEaevh"-->
+<!--signature:"3bPiR2GVwcwqre6kffDc5SAWSgg4X3L9g9DBfZSM25hxzJ7XMQV59KXWgc9ZJ2iXhCGhcDUB3T2hTpibT7W3pTHd"-->
+<!--timestamp:1522243059137-->
+<!--type:4-->
