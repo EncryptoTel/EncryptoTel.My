@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {BonusesServices} from '../../services/bonuses.services';
 
 import {PageInfo} from '../../models/page-info.model';
-import {Bonuse} from '../../models/bonuse.model';
+import {Bonus} from '../../models/bonus.model';
 
 @Component({
   selector: 'bonuses-component',
@@ -17,14 +17,14 @@ export class BonusesComponent {
   pageInfo: PageInfo;
   loading: boolean;
 
-  bonusesList: Bonuse[];
+  bonusesList: Bonus[];
 
   constructor(private _services: BonusesServices) {
 
     this.pageInfo = {
       title: 'EncryptoTel Bonuses',
       description:
-      `The entire Cardano team is made up of experts around the world, and the core technology team
+      `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     };
     this.loading = true;

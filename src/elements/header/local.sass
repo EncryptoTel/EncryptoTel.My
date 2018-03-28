@@ -5,10 +5,14 @@
     flex-direction: row
     flex: 1 0 auto
     align-items: center
+    position: relative
     height: rem(64)
+    z-index: 3
   &_logo
     margin: 0 auto 0 rem(40)
     padding: rem(8)
+    /deep/ circle, /deep/ rect
+      fill: $accent
     &_icon
       height: rem(32)
       width: rem(32)
@@ -29,3 +33,99 @@
         &.disabled
           color: rgba($primary, .5)
           pointer-events: none
+
+.mobile
+  &_navigation
+    &_wrap
+      position: absolute
+      top: 100%
+      right: rem(24)
+      height: 0
+      overflow-y: hidden
+      transition: all linear 300ms
+      z-index: -1
+      background: #fff
+      &.visible
+        height: rem(360)
+        box-shadow: 2px 4px 6px rgba($primary, .5)
+    &_icon
+      position: relative
+      width: rem(33)
+      height: rem(21)
+      cursor: pointer
+      margin-right: rem(40)
+      &.active
+        span
+          &:first-child
+            top: 100%
+            opacity: 0
+            animation: first-span linear 300ms
+          &:nth-child(2)
+            top: rem(10)
+            transform: rotate(45deg)
+            animation: second-span linear 300ms
+          &:last-child
+            top: rem(10)
+            transform: rotate(-45deg)
+            animation: last-span linear 300ms
+      span
+        display: block
+        position: absolute
+        left: 0
+        top: rem(10)
+        height: rem(1)
+        width: 100%
+        background: $primary
+        transition: all linear 300ms
+        &:first-child
+          top: 0
+        &:last-child
+          top: 100%
+    &_item
+      flex: 0 0 rem(40)
+      height: rem(40)
+      width: rem(192)
+      &_link
+        width: 100%
+        height: 100%
+        padding: 0 rem(16)
+        justify-content: center
+        background: #fff
+        transition: all linear 150ms
+        &:hover
+          background: rgba($primary, .2)
+        &.active
+          color: $accent
+
+@keyframes first-span
+  from
+    top: rem(10)
+  30%
+    top: 100%
+  50%
+    opacity: 1
+  to
+    opacity: 0
+
+@keyframes second-span
+  from
+    top: 0
+    transform: rotate(0)
+  30%
+    top: 100%
+  70%
+    transform: rotate(0)
+  to
+    top: rem(10)
+    transform: rotate(45deg)
+
+@keyframes last-span
+  from
+    transform: rotate(0)
+  30%
+    top: 100%
+  70%
+    transform: rotate(0)
+  to
+    top: rem(10)
+    transform: rotate(-45deg)

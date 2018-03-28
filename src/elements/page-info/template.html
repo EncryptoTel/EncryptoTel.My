@@ -1,7 +1,7 @@
 <div class="page_info">
-  <div class="page_info_wrap">
+  <div class="container">
     <div class="page_info_title">{{pageInfo.title}}</div>
-    <div class="page_info_description">{{pageInfo.description}}</div>
+    <div class="page_info_description" [innerHTML]="pageInfo.description"></div>
   </div>
   <ng-content></ng-content>
 </div>
