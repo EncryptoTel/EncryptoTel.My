@@ -64,10 +64,10 @@ page-info-element
 
 .table
   overflow-x: hidden
-  overflow-y: auto
   position: relative
   &_row
     flex-direction: row
+    flex: 0 0 auto
     &:not(:last-child)
       border-bottom: 1px solid rgba($primary, .2)
     &:nth-child(2n - 1)
@@ -88,10 +88,14 @@ page-info-element
       padding-left: rem(16)
     &:last-child
       padding-right: rem(16)
-  &_head > &_row
-    background: transparent
-    border-bottom: 1px solid rgba($primary, .2)
-    color: rgba($primary, .7)
+  &_head
+    flex: 0 0 auto
+    & > .table_row
+      background: transparent
+      border-bottom: 1px solid rgba($primary, .2)
+      color: rgba($primary, .7)
+  &_body
+    overflow-y: auto
 
 // Responsive
 
