@@ -55,4 +55,14 @@ export class RequestServices {
       });
   }
 
+  getWaves(uri: string) {
+    return this.http.get(`${_env.waves_api_url}/${uri}`).toPromise()
+      .then(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.resolve(response);
+      }).catch(error => {
+        this.logger.log(error, 'GET-superclass response');
+        return Promise.reject(error);
+      });
+  }
 }

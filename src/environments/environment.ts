@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
   api_url: 'http://api_url',
+  waves_api_url: 'https://nodes.wavesnodes.com/',
   navigation: [
     {link: 'dashboard', value: 'Dashboard', visible: true, available: true},
     {link: 'transactions', value: 'Transactions', visible: true, available: true},
