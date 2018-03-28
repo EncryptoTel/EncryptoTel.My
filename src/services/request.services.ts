@@ -11,8 +11,8 @@ export class RequestServices {
   constructor(private http: HttpClient,
               private logger: LoggerServices) {}
 
-  post(uri: string, data: object) {
-    return this.http.post(`${_env.api_url}/${uri}`, {...data}).toPromise()
+  post(uri: string, data: object, serverReady: boolean = false) {
+    return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}).toPromise()
       .then(response => {
         this.logger.log(response, 'POST-superclass response');
         return Promise.resolve(response);
@@ -22,8 +22,8 @@ export class RequestServices {
       });
   }
 
-  put(uri: string, data: object) {
-    return this.http.put(`${_env.api_url}/${uri}`, {...data}).toPromise()
+  put(uri: string, data: object, serverReady: boolean = false) {
+    return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}).toPromise()
       .then(response => {
         this.logger.log(response, 'PUT-superclass response');
         return Promise.resolve(response);
@@ -33,8 +33,8 @@ export class RequestServices {
       });
   }
 
-  get(uri: string) {
-    return this.http.get(`${_env.api_url}/${uri}`).toPromise()
+  get(uri: string, serverReady: boolean = false) {
+    return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
         this.logger.log(response, 'GET-superclass response');
         return Promise.resolve(response);
@@ -44,8 +44,8 @@ export class RequestServices {
       });
   }
 
-  del(uri: string) {
-    return this.http.delete(`${_env.api_url}/${uri}`).toPromise()
+  del(uri: string, serverReady: boolean = false) {
+    return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
         this.logger.log(response, 'DELETE-superclass response');
         return Promise.resolve(response);

@@ -9,6 +9,7 @@ import {MainRouterModule} from './router.module';
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import {PageInfoElement} from '../elements/page-info/page-info.element';
 import {TransactionElement} from '../elements/transaction/transaction.element';
+import {LoaderElement} from '../elements/loader/loader.element';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {TransactionElement} from '../elements/transaction/transaction.element';
     ClickOutsideDirective,
     HeaderElement,
     PageInfoElement,
+    LoaderElement,
     TransactionElement
   ],
   exports: [
@@ -31,6 +33,7 @@ import {TransactionElement} from '../elements/transaction/transaction.element';
     ClickOutsideDirective,
     HeaderElement,
     PageInfoElement,
+    LoaderElement,
     TransactionElement
   ]
 })

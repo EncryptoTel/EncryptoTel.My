@@ -1,0 +1,27 @@
+<page-info-element [pageInfo]="pageInfo"></page-info-element>
+<loader-element *ngIf="loading"></loader-element>
+<div class="container">
+  <div class="bonuses_wrap">
+    <div class="table_empty" *ngIf="bonusesList.length < 1">Sorry, but you haven't bonuses now</div>
+    <div class="table" *ngIf="bonusesList.length > 0">
+      <div class="table_head">
+        <div class="table_row">
+          <div class="table_column">Name or ID</div>
+          <div class="table_column">Amount</div>
+          <div class="table_column">Estimate time for distribution</div>
+          <div class="table_column">Description</div>
+          <div class="table_column">Status</div>
+        </div>
+      </div>
+      <div class="table_body">
+        <div class="table_row" *ngFor="let bonus of bonusesList">
+          <div class="table_column">{{bonus.name}}</div>
+          <div class="table_column">{{bonus.amount || '&nbsp;'}}</div>
+          <div class="table_column">{{bonus.estimated | date}}</div>
+          <div class="table_column" [title]="bonus.description"><p>{{bonus.description}}</p></div>
+          <div class="table_column">{{bonus.status ? 'paid' : 'await'}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

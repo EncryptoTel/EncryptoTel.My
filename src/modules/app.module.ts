@@ -1,4 +1,3 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
@@ -18,7 +17,6 @@ import {TransactionsServices} from '../services/transactions.services';
     MainViewComponent
   ],
   imports: [
-    BrowserModule,
     HttpClientModule,
     ComponentsModule
   ],
