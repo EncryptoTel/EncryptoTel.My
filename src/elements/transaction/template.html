@@ -1,11 +1,11 @@
 <div class="transaction">
   <div class="transaction_icon_wrapper">
-    <svg-icon src="../../../assets/icons/logo.svg"></svg-icon>
+    <svg-icon src="../../../assets/icons/icon_{{setTypeTransaction(transaction.direction).toLocaleLowerCase()}}.svg"></svg-icon>
   </div>
   <div class="transaction_currency_wrapper">
     <div class="transaction_currency_type">
       <div class="transaction_currency">
-        <p>{{transaction.currency}}</p>
+        <p>{{setTypeTransaction(transaction.direction)}} {{transaction.currency}}</p>
       </div>
       <div class="transaction_currency">
         {{transaction.date | date:'H:m'}}, to address {{transaction.address}}

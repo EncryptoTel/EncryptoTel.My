@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 import {PageInfo} from '../../models/page-info.model';
-import {TransactionsService} from '../../services/transactions.service';
+import {TransactionsServices} from '../../services/transactions.services';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class TransactionsComponent {
   pageInfo: PageInfo;
   transactions: TransactionsModel;
 
-  constructor(private _service: TransactionsService) {
+  constructor(private _service: TransactionsServices) {
     this._service.getTransactions().then((res: TransactionsModel) => {
       this.transactions = res;
       console.log(this.transactions);

@@ -8,4 +8,8 @@ import {Component, Input} from '@angular/core';
 
 export class TransactionElement {
   @Input() transaction: Transaction;
+
+  setTypeTransaction(direction): string {
+    return direction === 'in' ? 'Received' : 'Send';
+  }
 }
