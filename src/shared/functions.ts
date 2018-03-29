@@ -1,6 +1,7 @@
 import {FormGroup} from '@angular/forms';
 import {animate, style, transition, trigger} from '@angular/animations';
 
+// Angular fade animation
 export function  FadeAnimation(time: string) {
   return trigger('Fade', [
     transition(':enter', [
@@ -18,6 +19,7 @@ export function  FadeAnimation(time: string) {
   ]);
 }
 
+// Angular swipe animation
 export function SwipeAnimation(axis: 'x' | 'y', time: string) {
   switch (axis) {
     case 'x': {
@@ -52,6 +54,7 @@ export function SwipeAnimation(axis: 'x' | 'y', time: string) {
   }
 }
 
+// Global method for form validation
 export function validateForm(form: FormGroup): void {
   form.updateValueAndValidity();
   Object.keys(form.controls).forEach(field => {
@@ -60,7 +63,7 @@ export function validateForm(form: FormGroup): void {
   });
 }
 
-
+// Global method for single form control validation
 export function inputValidation(form: FormGroup, name: string, errorType?: string): boolean {
   if (errorType) {
     const field = form.controls[name];

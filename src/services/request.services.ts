@@ -11,6 +11,8 @@ export class RequestServices {
   constructor(private http: HttpClient,
               private logger: LoggerServices) {}
 
+  // Requests superclass method for POST requests
+  // TODO: Basic POST request processing. Especially errors processing.
   post(uri: string, data: object, serverReady: boolean = false): Promise<any> {
     return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}, {responseType: 'json'}).toPromise()
       .then(response => {
@@ -22,6 +24,8 @@ export class RequestServices {
       });
   }
 
+  // Requests superclass method for PUT requests
+  // TODO: Basic PUT request processing. Especially errors processing.
   put(uri: string, data: object, serverReady: boolean = false): Promise<any> {
     return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}, {responseType: 'json'}).toPromise()
       .then(response => {
@@ -33,6 +37,8 @@ export class RequestServices {
       });
   }
 
+  // Requests superclass method for GET requests
+  // TODO: Basic GET request processing. Especially errors processing.
   get(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {
@@ -44,6 +50,8 @@ export class RequestServices {
       });
   }
 
+  // Requests superclass method for DELETE requests
+  // TODO: Basic DELETE request processing. Especially errors processing.
   del(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {
@@ -55,6 +63,8 @@ export class RequestServices {
       });
   }
 
+  // Requests superclass method for wavesAPI requests
+  // TODO: Basic wavesAPI request processing. Especially errors processing.
   getWaves(uri: string, serverReady): Promise<any> {
     return this.http.get(serverReady ? `${_env.waves_api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {

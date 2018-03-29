@@ -8,7 +8,7 @@ export class UserTokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = request.clone({
       setHeaders: {
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       }
     });
     return next.handle(request);
