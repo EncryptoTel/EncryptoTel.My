@@ -1,0 +1,4 @@
+<button class="button" [ngClass]="buttonType" (click)="clicked($event)" [disabled]="loading" #button>
+  <span *ngIf="!loading">{{value}}</span>
+  <loader-element *ngIf="loading"></loader-element>
+</button>

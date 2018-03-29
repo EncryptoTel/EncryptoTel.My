@@ -10,5 +10,6 @@ export const environment = {
     {link: 'bugs', value: 'Bugs', visible: true, available: true},
     {link: 'bonuses', value: 'Bonuses', visible: true, available: true},
     {link: 'roadmap', value: 'Roadmap', visible: true, available: true}
-  ]
+  ],
+  copyright: '© Encrypto Telecom, 2018'
 };

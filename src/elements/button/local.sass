@@ -1,0 +1,20 @@
+@import '../../vars'
+
+.button
+  position: relative
+  justify-content: center
+  align-items: center
+  height: 40px
+  padding: 0 16px
+  cursor: pointer
+  border: none
+  border-radius: 2px
+  outline: none
+  overflow: hidden
+  &.full_width
+    width: 100%
+  &.accent
+    background: $accent
+    color: #fff
+    &:hover
+      background: darken($accent, 3%)
