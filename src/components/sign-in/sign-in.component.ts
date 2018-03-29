@@ -44,7 +44,7 @@ export class SignInComponent {
   }
 
   clearMessage(ev?: KeyboardEvent): void {
-    if (ev && ev.code) {
+    if (ev.keyCode && ev.keyCode !== 13) {
       this._services.clearMessage();
     }
   }
