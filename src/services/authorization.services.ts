@@ -39,8 +39,10 @@ export class AuthorizationServices {
   }
 
   clearMessage(): void {
-    this.formMessage = undefined;
-    this.authSubscription.next();
+    if (this.formMessage) {
+      this.formMessage = undefined;
+      this.authSubscription.next();
+    }
   }
 
   subscribeAuth(): Observable<void> {
