@@ -41,6 +41,11 @@ html
   font-size: 14px
 
 input
+  outline: none
+  transition: all linear 150ms
+  &::placeholder
+    font-weight: 300
+    color: rgba($primary, .3)
   &:-webkit-autofill
     animation: autofill 0s forwards
 
@@ -49,6 +54,8 @@ main-view
   height: 100vh
   > *:not(header-element)
     height: calc(100% - 64px)
+  sign-in-component
+    height: 100%
 
 loader-element
   flex: 1 0 auto
@@ -58,8 +65,22 @@ page-info-element
 
 // Classes styles
 
+.button_overlay
+  position: absolute
+  z-index: 1
+  border-radius: 50%
+  animation: button_animation ease-in 500ms
+  transform: scale(0)
+  pointer-events: none
+  background: rgba(#fff, .3)
+  &.small
+    animation: button_animation ease-in 250ms
+  &.medium
+    animation: button_animation ease-in 350ms
+
 .container
   width: 1280px
+  min-width: 300px
   margin: 0 auto
 
 .table
@@ -96,6 +117,51 @@ page-info-element
       color: rgba($primary, .7)
   &_body
     overflow-y: auto
+
+.authorization
+  &_icon
+    width: rem(90)
+    margin: 15vh 0
+  &_form
+    position: relative
+    width: rem(400)
+    button-element
+      width: 50%
+      margin-left: auto
+      .loader
+        background-color: #fff !important
+    &_error
+      position: absolute
+      bottom: calc(100% + 24px)
+      left: 0
+      width: 100%
+      text-align: center
+      color: $error
+  &_input
+    padding: 0 rem(16)
+    height: rem(40)
+    border: 1px solid rgba($primary, .3)
+    border-radius: rem(2)
+    color: $primary
+    &.ng-invalid.ng-touched,
+    &.ng-invalid.ng-dirty
+      border-color: $error
+      color: $error
+      &::placeholder
+        color: $error
+    &_wrap
+      position: relative
+      margin-bottom: rem(24)
+    &_error
+      &_wrap
+        position: absolute
+        top: calc(100% + 4px)
+        color: $error
+        font-size: rem(12)
+  &_copyright
+    margin: auto 0 rem(32)
+    color: rgba($primary, .5)
+    font-size: rem(12)
 
 // Responsive
 
@@ -148,3 +214,10 @@ page-info-element
         justify-content: flex-end
     &_row
       flex-direction: column
+  .authorization
+    &_form
+      width: 100%
+
+@media (max-height: 440px)
+  .authorization_copyright
+    margin-top: rem(40)
