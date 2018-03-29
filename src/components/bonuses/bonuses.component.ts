@@ -14,9 +14,11 @@ import {Bonus} from '../../models/bonus.model';
 
 export class BonusesComponent {
 
+  // Page data
   pageInfo: PageInfo;
   loading: boolean;
 
+  // Bonuses list
   bonusesList: Bonus[];
 
   constructor(private _services: BonusesServices) {
@@ -28,12 +30,11 @@ export class BonusesComponent {
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     };
     this.loading = true;
-
     this.bonusesList = [];
-
     this.fetchList();
   }
 
+  // Fetch bonuses list
   fetchList(): void {
     this.loading = true;
     this._services.fetchBonuses().then(list => {

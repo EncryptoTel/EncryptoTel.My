@@ -7,6 +7,7 @@ import {Bonus} from '../models/bonus.model';
 export class BonusesServices {
   constructor(private _req: RequestServices) {}
 
+  // Getting bonuses list
   fetchBonuses(): Promise<Bonus[]> {
     return this._req.get('bonuses.json').then(res => {
       return res['bonuses'] || [];
