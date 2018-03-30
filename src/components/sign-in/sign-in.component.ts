@@ -33,7 +33,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   constructor(private _services: AuthorizationServices,
               private router: Router) {
     this.signInForm = new FormGroup({
-      'username': new FormControl('', [
+      'email': new FormControl('', [
         Validators.required,
         Validators.pattern(emailRegExp)
       ]),

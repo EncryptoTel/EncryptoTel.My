@@ -3,10 +3,10 @@
   <form class="authorization_form" (submit)="signIn($event)" [formGroup]="signInForm" (keyup)="clearMessage($event)">
     <div class="authorization_form_error" *ngIf="formMessage" [@Fade]>{{formMessage}}</div>
     <div class="authorization_input_wrap">
-      <input type="text" title="E-mail" placeholder="E-mail" class="authorization_input" formControlName="username">
-      <div class="authorization_input_error_wrap" *ngIf="hasError('username')" [@Fade]>
-        <div class="authorization_input_error" *ngIf="hasError('username', 'required')">Please enter e-mail</div>
-        <div class="authorization_input_error" *ngIf="hasError('username', 'pattern')">Please enter correct e-mail</div>
+      <input type="text" title="E-mail" placeholder="E-mail" class="authorization_input" formControlName="email">
+      <div class="authorization_input_error_wrap" *ngIf="hasError('email')" [@Fade]>
+        <div class="authorization_input_error" *ngIf="hasError('email', 'required')">Please enter e-mail</div>
+        <div class="authorization_input_error" *ngIf="hasError('email', 'pattern')">Please enter correct e-mail</div>
       </div>
     </div>
     <div class="authorization_input_wrap">
