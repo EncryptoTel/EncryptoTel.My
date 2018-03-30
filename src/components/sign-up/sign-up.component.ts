@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -17,7 +17,7 @@ import {environment as _env} from '../../environments/environment';
   animations: [FadeAnimation('150ms')]
 })
 
-export class SignUpComponent implements OnDestroy {
+export class SignUpComponent implements OnInit, OnDestroy {
 
   // Copyright string
   copyright: string;
@@ -124,6 +124,12 @@ export class SignUpComponent implements OnDestroy {
           this._services.setMessage('Invalid wallet address');
           this.loading.button = false;
       })
+    }
+  }
+
+  ngOnInit(): void {
+    if (this._services.fetchAuth()) {
+      this.router.navigateByUrl('dashboard');
     }
   }
 
