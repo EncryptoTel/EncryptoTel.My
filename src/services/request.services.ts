@@ -65,7 +65,7 @@ export class RequestServices {
 
   // Requests superclass method for wavesAPI requests
   // TODO: Basic wavesAPI request processing. Especially errors processing.
-  getWaves(uri: string, serverReady): Promise<any> {
+  getWaves(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.get(serverReady ? `${_env.waves_api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {
         this.logger.log(response, 'GET-superclass response');

@@ -6,8 +6,8 @@ import {Subscription} from 'rxjs/Subscription';
 
 import {AuthorizationServices} from '../../services/authorization.services';
 
-import {emailRegExp} from '../../shared/vars';
 import {validateForm, inputValidation, FadeAnimation} from '../../shared/functions';
+import {emailRegExp} from '../../shared/vars';
 import {environment as _env} from '../../environments/environment';
 
 @Component({
@@ -70,7 +70,10 @@ export class SignInComponent implements OnInit, OnDestroy {
     if (this.signInForm.valid && !this.formMessage) {
       this.loading = true;
       this._services.signIn(this.signInForm.value)
-        .then(() => this.loading = false)
+        .then(() => {
+          this.loading = false;
+          this.router.navigateByUrl('dashboard');
+        })
         .catch(() => this.loading = false)
     }
   }
