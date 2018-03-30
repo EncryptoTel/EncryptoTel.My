@@ -8,6 +8,7 @@ import {SignUpComponent} from '../components/sign-up/sign-up.component';
 import {IndexComponent} from '../components/index/index.component';
 import {TransactionsComponent} from '../components/transactions/transactions.component';
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
+import {SettingsComponent} from '../components/settings/settings.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {BonusesComponent} from '../components/bonuses/bonuses.component';
     SignUpComponent,
     IndexComponent,
     TransactionsComponent,
-    BonusesComponent
+    BonusesComponent,
+    SettingsComponent
   ],
   exports: [
     ElementsModule,
@@ -29,7 +31,8 @@ import {BonusesComponent} from '../components/bonuses/bonuses.component';
     SignUpComponent,
     IndexComponent,
     TransactionsComponent,
-    BonusesComponent
+    BonusesComponent,
+    SettingsComponent
   ]
 })
 export class ComponentsModule {}

@@ -9,12 +9,14 @@ import {TransactionsComponent} from '../components/transactions/transactions.com
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {SignInComponent} from '../components/sign-in/sign-in.component';
 import {SignUpComponent} from '../components/sign-up/sign-up.component';
+import {SettingsComponent} from '../components/settings/settings.component';
 
 const Routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
   {path: 'dashboard', component: IndexComponent, canActivate: [AuthGuardServices]},
   {path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuardServices]},
   {path: 'bonuses', component: BonusesComponent, canActivate: [AuthGuardServices]},
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuardServices]},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-up/:hash', component: SignUpComponent},
