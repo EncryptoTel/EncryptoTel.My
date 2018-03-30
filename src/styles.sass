@@ -60,16 +60,11 @@ main-view
 loader-element
   flex: 1 0 auto
 
+transaction-element
+  border: 1px solid #E1E1E1
+
 page-info-element
   flex: 0 0 auto
-
-transaction-element
-  width: 100%
-  border: 1px solid #B7B7B7
-
-transactions-component
-  align-items: center
-// Classes styles
 
 .button_overlay
   position: absolute
@@ -176,12 +171,15 @@ transactions-component
     font-size: 18px
   .container
     width: 1440px
+
 @media (max-width: 1279px)
   .container
     width: 1024px
+
 @media (min-width: 1024px)
   .hidden_sm_up
     display: none
+
 @media (max-width: 1023px)
   .container
     width: 768px
@@ -202,6 +200,7 @@ transactions-component
       width: 100%
       border-bottom: none !important
       background: transparent !important
+
 @media (max-width: 767px)
   .container
     width: 100%

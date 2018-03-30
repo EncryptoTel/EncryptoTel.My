@@ -23,6 +23,7 @@ export class TransactionsComponent {
   address = '3P7tNYakdeYkR48XQoDRhdvYbmmESznb4WS';
   course: Course = this.storage.readItem('course') || 1;
   filterType = 'all';
+  date: boolean[] = [];
 
   constructor(private _service: TransactionsServices,
               private storage: StorageServices) {
@@ -68,6 +69,9 @@ export class TransactionsComponent {
         this.filteredTransactions = this.transactions[0];
         break;
     }
+    this.date = new Array(this.filteredTransactions.length);
+    this.date.fill(false);
+    this.sortByDate();
   }
 
   private sortingSend(): void {
@@ -86,8 +90,15 @@ export class TransactionsComponent {
     })
   }
 
-  private sortByDate(date: number) {
-    
+  private sortByDate(): void {
+    let day = new Date(this.filteredTransactions[0].timestamp).getDate();
+    this.date[0] = true;
+    for (let i = 0; i < this.filteredTransactions.length; i++) {
+      if (day !== new Date(this.filteredTransactions[i].timestamp).getDate()) {
+        this.date[i] = true;
+        day = new Date(this.filteredTransactions[i].timestamp).getDate();
+      }
+    }
   }
 }
 
