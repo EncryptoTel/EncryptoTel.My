@@ -6,11 +6,14 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 export class UserTokenInterceptor implements HttpInterceptor {
   constructor() {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request = request.clone({
-      setHeaders: {
-        'Content-Type': 'application/json'
-      }
-    });
+    if (!request.url.includes('nodes.wavesnodes.com')) {
+      request = request.clone({
+        setHeaders: {
+          'Content-Type': 'application/json'
+        }
+      });
+      // TODO: token appending
+    }
     return next.handle(request);
   }
 }

@@ -3,6 +3,8 @@ import {Router, NavigationEnd} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
 
+import {AuthorizationServices} from '../../services/authorization.services';
+
 import {environment as _env} from '../../environments/environment';
 
 import {NavigationItem} from '../../models/navigation-item.model';
@@ -20,7 +22,8 @@ export class HeaderElement implements OnDestroy {
 
   routerSubscription: Subscription;
 
-  constructor(private router: Router) {
+  constructor(private _services: AuthorizationServices,
+              private router: Router) {
     this.navigationItems = _env.navigation;
     this.mobileNav = false;
     this.routerSubscription = this.router.events.subscribe(ev => {
@@ -31,7 +34,7 @@ export class HeaderElement implements OnDestroy {
   }
 
   logout = (): void => {
-    console.log('Logout called!');
+    this._services.logout();
   };
 
   toggleNavigation(ev?: MouseEvent): void {

@@ -1,0 +1,44 @@
+<div class="container">
+  <svg-icon src="../../assets/icons/logo_titled.svg" class="authorization_icon"></svg-icon>
+  <loader-element *ngIf="loading.page"></loader-element>
+  <form class="authorization_form" (submit)="signUp($event)" [formGroup]="signUpForm" (keyup)="clearMessage($event)" *ngIf="!loading.page">
+    <div class="authorization_form_error" *ngIf="formMessage" [@Fade]>{{formMessage}}</div>
+    <div class="authorization_input_wrap">
+      <input type="text" title="Name" placeholder="Name" class="authorization_input" formControlName="name">
+      <div class="authorization_input_error_wrap" *ngIf="hasError('name')" [@Fade]>
+        <div class="authorization_input_error" *ngIf="hasError('name', 'required')">Please enter name</div>
+        <div class="authorization_input_error" *ngIf="hasError('name', 'pattern')">Please enter correct name</div>
+      </div>
+    </div>
+    <div class="authorization_input_wrap">
+      <input type="password" title="Password" placeholder="Password" class="authorization_input" formControlName="password">
+      <div class="authorization_input_error_wrap" *ngIf="hasError('password')" [@Fade]>
+        <div class="authorization_input_error" *ngIf="hasError('password', 'required')">Please enter password</div>
+        <div class="authorization_input_error" *ngIf="hasError('password', 'minlength')">Password is too short</div>
+        <div class="authorization_input_error" *ngIf="hasError('password', 'maxlength')">Password is too long</div>
+      </div>
+    </div>
+    <div class="authorization_input_wrap">
+      <input type="password"
+             title="Password confirmation"
+             placeholder="Password confirmation"
+             class="authorization_input"
+             formControlName="password_confirmation">
+      <div class="authorization_input_error_wrap" *ngIf="hasError('password_confirmation')" [@Fade]>
+        <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'required')">Please enter password confirmation</div>
+        <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'minlength')">Password confirmation is too short</div>
+        <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'maxlength')">Password confirmation is too long</div>
+        <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'mismatch')">Password and password confirmation doesn't match</div>
+      </div>
+    </div>
+    <div class="authorization_input_wrap">
+      <input type="text" title="Wallet (Waves 3P)" placeholder="Wallet (Waves 3P)" class="authorization_input" formControlName="wallet">
+      <div class="authorization_input_error_wrap" *ngIf="hasError('wallet')" [@Fade]>
+        <div class="authorization_input_error" *ngIf="hasError('wallet', 'required')">Please enter wallet address</div>
+        <div class="authorization_input_error" *ngIf="hasError('wallet', 'pattern')">Please enter correct wallet address</div>
+      </div>
+    </div>
+    <button-element value="Sign in" [loading]="loading.button" (onClick)="signUp()"></button-element>
+  </form>
+  <div class="authorization_copyright">{{copyright}}</div>
+</div>

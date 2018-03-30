@@ -1,4 +1,4 @@
-import {FormGroup} from '@angular/forms';
+import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {animate, style, transition, trigger} from '@angular/animations';
 
 // Angular fade animation
@@ -72,4 +72,12 @@ export function inputValidation(form: FormGroup, name: string, errorType?: strin
     const field = form.controls[name];
     return field && field.invalid && (field.dirty || field.touched);
   }
+}
+
+export function passwordConfirmation(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: boolean} => {
+      if (control.parent) {
+        return control.parent.get('password').value === control.value ? null : {mismatch: true};
+      }
+    }
 }
