@@ -41,20 +41,27 @@ html
   font-size: 14px
 
 input
+  outline: none
+  transition: all linear 150ms
+  &::placeholder
+    font-weight: 300
+    color: rgba($primary, .3)
   &:-webkit-autofill
-    animation: autofill 0s forwards
+    animation: auto_fill 0ms forwards
 
 main-view
   width: 100vw
   height: 100vh
   > *:not(header-element)
     height: calc(100% - 64px)
+  sign-in-component
+    height: 100%
 
 loader-element
   flex: 1 0 auto
 
 page-info-element
-  width: 100%
+  flex: 0 0 auto
 
 transaction-element
   width: 100%
@@ -64,14 +71,30 @@ transactions-component
   align-items: center
 // Classes styles
 
+.button_overlay
+  position: absolute
+  z-index: 1
+  border-radius: 50%
+  animation: button_animation ease-in 500ms
+  transform: scale(0)
+  pointer-events: none
+  background: rgba($background, .3)
+  &.small
+    animation: button_animation ease-in 250ms
+  &.medium
+    animation: button_animation ease-in 350ms
+
 .container
   width: 1280px
+  min-width: 300px
   margin: 0 auto
 
 .table
   overflow-x: hidden
+  position: relative
   &_row
     flex-direction: row
+    flex: 0 0 auto
     &:not(:last-child)
       border-bottom: 1px solid rgba($primary, .2)
     &:nth-child(2n - 1)
@@ -79,7 +102,8 @@ transactions-component
   &_column
     flex: 1
     justify-content: center
-    line-height: rem(40)
+    min-height: rem(40)
+    line-height: rem(16)
     padding: 0 rem(16)
     min-width: 0
     > p
@@ -91,10 +115,59 @@ transactions-component
       padding-left: rem(16)
     &:last-child
       padding-right: rem(16)
-  &_head > &_row
-    background: transparent
-    border-bottom: 1px solid rgba($primary, .2)
-    color: rgba($primary, .7)
+  &_head
+    flex: 0 0 auto
+    & > .table_row
+      background: transparent
+      border-bottom: 1px solid rgba($primary, .2)
+      color: rgba($primary, .7)
+  &_body
+    overflow-y: auto
+
+.authorization
+  &_icon
+    width: rem(90)
+    margin: 15vh 0
+  &_form
+    position: relative
+    width: rem(400)
+    button-element
+      width: 50%
+      margin-left: auto
+      .loader
+        background-color: $background !important
+    &_error
+      position: absolute
+      bottom: calc(100% + 24px)
+      left: 0
+      width: 100%
+      text-align: center
+      color: $error
+  &_input
+    padding: 0 rem(16)
+    height: rem(40)
+    border: 1px solid rgba($primary, .3)
+    border-radius: rem(2)
+    color: $primary
+    &.ng-invalid.ng-touched,
+    &.ng-invalid.ng-dirty
+      border-color: $error
+      color: $error
+      &::placeholder
+        color: $error
+    &_wrap
+      position: relative
+      margin-bottom: rem(24)
+    &_error
+      &_wrap
+        position: absolute
+        top: calc(100% + 4px)
+        color: $error
+        font-size: rem(12)
+  &_copyright
+    margin: auto 0 rem(32)
+    color: rgba($primary, .5)
+    font-size: rem(12)
 
 // Responsive
 
@@ -114,7 +187,43 @@ transactions-component
     width: 768px
   .hidden_sm_down
     display: none
+  .table
+    overflow-y: auto
+    &_column
+      &_wrap
+        flex: 0 0 auto
+        flex-direction: column
+        &:not(:last-child)
+          border-bottom: 1px solid rgba($primary, .2)
+        &:nth-child(2n - 1)
+          background: rgba($primary, .05)
+    &_row
+      flex: 0 0 auto
+      width: 100%
+      border-bottom: none !important
+      background: transparent !important
 @media (max-width: 767px)
   .container
     width: 100%
     padding: 0 rem(32)
+  .table
+    &_column
+      &_wrap
+        padding-top: rem(8)
+      &.title, &.value
+        flex: 0 0 100%
+      &.title
+        height: initial
+        min-height: 0
+        padding-top: rem(8)
+      &:first-child
+        justify-content: flex-end
+    &_row
+      flex-direction: column
+  .authorization
+    &_form
+      width: 100%
+
+@media (max-height: 440px)
+  .authorization_copyright
+    margin-top: rem(40)

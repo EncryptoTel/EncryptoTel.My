@@ -1,9 +1,9 @@
 {
   "bonuses": [
-    {"name": "ETT", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
-    {"name": "Waves", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
-    {"name": "wETT", "amount": "100 wETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
-    {"name": "eETT", "amount": "100 eETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": true},
-    {"name": "BTC", "estimated": "2018-03-27T13:45:15.801Z", "status": false}
+    {"name": "ETT", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": "Complete"},
+    {"name": "Waves", "amount": "Depends your balance", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": "On the way"},
+    {"name": "wETT", "amount": "100 wETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": "Coming soon"},
+    {"name": "eETT", "amount": "100 eETT per user invitation", "estimated": "2018-03-27T13:45:15.801Z", "description": "blah-blah-blah-blah and other words, this may be a really long blah-blah-blah-blah and other words, this may be a really long", "status": "Complete"},
+    {"name": "BTC", "estimated": "2018-03-27T13:45:15.801Z", "status": "Coming soon"}
   ]
 }

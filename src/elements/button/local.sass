@@ -1,0 +1,22 @@
+@import '../../vars'
+
+.button
+  position: relative
+  justify-content: center
+  align-items: center
+  height: 40px
+  padding: 0 16px
+  cursor: pointer
+  border: none
+  border-radius: 2px
+  outline: none
+  overflow: hidden
+  &::-moz-focus-inner
+    border: none
+  &.full_width
+    width: 100%
+  &.accent
+    background: $accent
+    color: $background
+    &:hover
+      background: darken($accent, 3%)

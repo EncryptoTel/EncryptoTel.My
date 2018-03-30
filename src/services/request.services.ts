@@ -11,57 +11,69 @@ export class RequestServices {
   constructor(private http: HttpClient,
               private logger: LoggerServices) {}
 
-  post(uri: string, data: object, serverReady: boolean = false) {
-    return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `${_env.waves_api_url}/${uri}`, {...data}).toPromise()
+  // Requests superclass method for POST requests
+  // TODO: Basic POST request processing. Especially errors processing.
+  post(uri: string, data: object, serverReady: boolean = false): Promise<any> {
+    return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}, {responseType: 'json'}).toPromise()
       .then(response => {
         this.logger.log(response, 'POST-superclass response');
         return Promise.resolve(response);
-      }).catch(error => {
-        this.logger.log(error, 'POST-superclass response');
-        return Promise.reject(error);
+      }).catch(response => {
+        this.logger.log(response.error, 'POST-superclass response');
+        return Promise.reject(response.error);
       });
   }
 
-  put(uri: string, data: object, serverReady: boolean = false) {
-    return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `${_env.waves_api_url}/${uri}`, {...data}).toPromise()
+  // Requests superclass method for PUT requests
+  // TODO: Basic PUT request processing. Especially errors processing.
+  put(uri: string, data: object, serverReady: boolean = false): Promise<any> {
+    return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}, {responseType: 'json'}).toPromise()
       .then(response => {
         this.logger.log(response, 'PUT-superclass response');
         return Promise.resolve(response);
-      }).catch(error => {
-        this.logger.log(error, 'PUT-superclass response');
-        return Promise.reject(error);
+      }).catch(response => {
+        this.logger.log(response.error, 'PUT-superclass response');
+        return Promise.reject(response.error);
       });
   }
 
-  get(uri: string, serverReady: boolean = false) {
-    return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `${_env.waves_api_url}/${uri}`).toPromise()
+  // Requests superclass method for GET requests
+  // TODO: Basic GET request processing. Especially errors processing.
+  get(uri: string, serverReady: boolean = false): Promise<any> {
+    return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {
         this.logger.log(response, 'GET-superclass response');
         return Promise.resolve(response);
-      }).catch(error => {
-        this.logger.log(error, 'GET-superclass response');
-        return Promise.reject(error);
+      }).catch(response => {
+        this.logger.log(response.error, 'GET-superclass response');
+        return Promise.reject(response.error);
       });
   }
 
-  del(uri: string, serverReady: boolean = false) {
-    return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `${_env.waves_api_url}/${uri}`).toPromise()
+  // Requests superclass method for DELETE requests
+  // TODO: Basic DELETE request processing. Especially errors processing.
+  del(uri: string, serverReady: boolean = false): Promise<any> {
+    return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {
         this.logger.log(response, 'DELETE-superclass response');
         return Promise.resolve(response);
-      }).catch(error => {
-        this.logger.log(error, 'DELETE-superclass response');
-        return Promise.reject(error);
+      }).catch(response => {
+        this.logger.log(response.error, 'DELETE-superclass response');
+        return Promise.reject(response.error);
       });
   }
-  getJson(uri: string) {
-    return this.http.get(`${_env.api_url}/${uri}`).toPromise()
+
+  // Requests superclass method for wavesAPI requests
+  // TODO: Basic wavesAPI request processing. Especially errors processing.
+  getWaves(uri: string, serverReady): Promise<any> {
+    return this.http.get(serverReady ? `${_env.waves_api_url}/${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {
         this.logger.log(response, 'GET-superclass response');
         return Promise.resolve(response);
-      }).catch(error => {
-        this.logger.log(error, 'GET-superclass response');
-        return Promise.reject(error);
+      }).catch(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.reject(response);
       });
   }
+
 }
