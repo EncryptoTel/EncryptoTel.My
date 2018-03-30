@@ -7,10 +7,10 @@ export class TransactionsServices {
   constructor(private request: RequestServices) {}
 
   getTransactions(address: string): Promise<Object> {
-    return this.request.get(`transactions/address/${address}/limit/15`);
+    return this.request.getWaves(`transactions/address/${address}/limit/50`, true);
   }
 
   getCourse(): Promise<Object> {
-    return this.request.getJson('course.json');
+    return this.request.get('course.json');
   }
 }

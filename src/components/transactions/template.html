@@ -11,9 +11,12 @@
       <span (click)="filter('received')">Received</span>
     </div>
   </div>
-  <div class="transactions_items_wrapper" *ngIf="transactions">
-    <div class="transactions_item" *ngFor="let transaction of transactions[0]">
-      <transaction-element [transaction]="transaction" [address]="address" [course]="course"></transaction-element>
+  <div class="transactions_items_wrapper">
+    <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions">
+      <div class="transactions_items_date" *ngIf="sortByDate(transaction.timestamp)">{{transaction.timestamp | date}}</div>
+      <div class="transactions_item">
+        <transaction-element [transaction]="transaction" [address]="address" [course]="course"></transaction-element>
+      </div>
     </div>
   </div>
 </div>

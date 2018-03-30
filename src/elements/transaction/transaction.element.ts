@@ -16,7 +16,7 @@ export class TransactionElement {
     return this.type = sender === this.address ? 'Send' : 'Received';
   }
 
-  convertToUSD(): string {
+  convertToUSD(): number {
     return this.transaction.amount * this.course.ett_course;
   }
 }

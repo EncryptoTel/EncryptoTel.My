@@ -26,7 +26,7 @@ import {AuthorizationServices} from '../services/authorization.services';
     StorageServices,
     {provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptor, multi: true},
     RequestServices,
-    AuthorizationService,
+    AuthorizationServices,
     TransactionsServices
   ],
   bootstrap: [MainViewComponent]

@@ -14,5 +14,5 @@ interface Transaction {
   type: number;
 }
 interface Course {
-  ett_course: string;
+  ett_course: number;
 }
