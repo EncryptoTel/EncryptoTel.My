@@ -80,7 +80,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this._services.fetchAuth()) {
-      this.router.navigateByUrl('/dashboard')
+      this.router.navigateByUrl('dashboard')
     }
   }
 
