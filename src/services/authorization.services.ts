@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
@@ -13,33 +14,83 @@ export class AuthorizationServices {
   formMessage: string;
 
   constructor(private _req: RequestServices,
-              private _storage: StorageServices) {
+              private _storage: StorageServices,
+              private router: Router) {
     this.authSubscription = new Subject<void>();
   }
 
   // Method for check if user already logged in
   // TODO: Token expiration validation
   fetchAuth(): boolean {
-    return !!this._storage.readItem('inv_token');
+    return !!this._storage.readItem('_auth_tk');
   }
 
   // Primary authorization method
-  // TODO: Successful response processing
   signIn(formData): Promise<void> {
     return this._req.post('login', {...formData}, true)
       .then(res => {
-        console.log('then', res);
+        this._storage.writeItem('_auth_tk', res);
         this.authSubscription.next();
         return;
       }).catch(res => {
         if (res.message) {
-          this.formMessage = res.message
+          this.setMessage(res.message);
         } else {
-          this.formMessage = 'Network error'
+          this.setMessage('Unknown error');
         }
         this.authSubscription.next();
         return;
       })
+  }
+
+  // Invitation hash validation
+  validateHash(hash: string): Promise<boolean> {
+    return this._req.post('invite/check', {hash: hash}, true)
+      .then(res => {
+        return Promise.resolve(!!res.success);
+      }).catch(res => {
+        if (res.message) {
+          this.setMessage(res.message);
+        } else {
+          this.setMessage('Unknown error');
+        }
+        return Promise.resolve(false);
+      })
+  }
+
+  // Wallet validation
+  validateWallet(wallet: string): Promise<void> {
+    return this._req.getWaves(`addresses/balance/${wallet}`, true)
+      .then().catch()
+  }
+
+  // Primary registration method
+  signUp(formData): Promise<void> {
+    return this._req.post('invite/save', {...formData}, true)
+      .then(res => {
+        this._storage.writeItem('_auth_tk', res);
+        this.authSubscription.next();
+        return;
+      })
+      .catch(res => {
+        if (res.message) {
+          this.setMessage(res.message);
+        } else {
+          this.setMessage('Unknown error')
+        }
+        return;
+      })
+  }
+
+  logout(): void {
+    localStorage.removeItem('_auth_tk');
+    this.router.navigateByUrl('').then(() => this.authSubscription.next());
+  }
+
+  // Services message setter
+  setMessage(message: string): void {
+    this.formMessage = message;
+    this.authSubscription.next();
   }
 
   // Services message clearing
