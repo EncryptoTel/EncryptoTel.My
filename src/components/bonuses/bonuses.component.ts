@@ -22,7 +22,6 @@ export class BonusesComponent {
   bonusesList: Bonus[];
 
   constructor(private _services: BonusesServices) {
-
     this.pageInfo = {
       title: 'EncryptoTel Bonuses',
       description:
