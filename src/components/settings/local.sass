@@ -1,6 +1,7 @@
 @import "../../vars"
 a
   text-decoration: underline
+
 .container
   align-items: center
   height: 100%
@@ -24,9 +25,41 @@ a
     &_description
       width: 66%
   &_form
-    height: 35%
+    height: 45%
     form
       display: flex
       flex-flow: column
       justify-content: space-around
       height: 100%
+      p
+        margin-top: 5%
+  &_delete
+    display: flex
+    flex-flow: column
+    justify-content: flex-end
+    height: 15%
+    &_link
+      color: $error
+      cursor: pointer
+      margin-bottom: 15px
+
+.input_wrapper
+  position: relative
+  .edit
+    position: absolute
+    right: 20px
+    top: 38%
+    font-size: 11px
+    cursor: pointer
+    color: #b7b7b7
+    &:last-child
+      right: 42px
+
+.icon
+  position: absolute
+  width: 15px
+  height: 15px
+  cursor: pointer
+  right: 20px
+  top: 30%
+

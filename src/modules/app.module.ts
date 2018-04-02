@@ -11,6 +11,7 @@ import {RequestServices} from '../services/request.services';
 
 import {MainViewComponent} from '../components/main-view.component';
 import {AuthorizationServices} from '../services/authorization.services';
+import {SettingsServices} from '../services/settings.services';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {AuthorizationServices} from '../services/authorization.services';
     StorageServices,
     {provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptor, multi: true},
     RequestServices,
-    AuthorizationServices
+    AuthorizationServices,
+    SettingsServices
   ],
   bootstrap: [MainViewComponent]
 })

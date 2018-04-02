@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 import {PageInfo} from '../../models/page-info.model';
-import {FormControl, FormGroup} from '@angular/forms';
+import {SettingsServices} from '../../services/settings.services';
 
 @Component({
   selector: 'settings-component',
@@ -16,14 +16,49 @@ export class SettingsComponent {
       `The entire Cardano team is made up of experts around the world, and the core technology team
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
-  settings: FormGroup = new FormGroup({
-    'name': new FormControl(),
-    'email': new FormControl(),
-    'language': new FormControl()
-  });
+  status = false;
+  comments = false;
+  editStatus = {
+    name: false,
+    email: false,
+    language: false
+  };
+  account: AccoutModel = {
+    account: {
+      email: '',
+      profile: {
+        firstname: '',
+        language_id: 0,
+        lastname: '',
+        new_comments: 0,
+        status_updates: 0
+      }
+    }
+  };
 
-  constructor() {
-
+  constructor(private _service: SettingsServices) {
+    this.getAccount();
   }
 
+  statusUpdates(): void {
+    this.status = !this.status;
+  }
+
+  newComments(): void {
+    this.comments = !this.comments;
+  }
+
+  edit(type: string, field: HTMLInputElement): void {
+    this.editStatus[type] = true;
+    field.focus();
+  }
+
+  getAccount() {
+    this._service.getAccount().then((res: AccoutModel) => {
+      console.log(res);
+      this.account = res;
+    }).catch(err => {
+      console.error(err);
+    })
+  }
 }
