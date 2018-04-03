@@ -8,4 +8,12 @@ export class SettingsServices {
   getAccount() {
     return this.request.get('account', true);
   }
+
+  getLanguages() {
+    return this.request.get('languages', true);
+  }
+
+  save(profile) {
+    return this.request.post('account/profile', profile, true);
+  }
 }

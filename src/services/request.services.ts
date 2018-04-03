@@ -15,7 +15,7 @@ export class RequestServices {
   }
 
   createHeaders(): HttpHeaders {
-    const token = this.storage.readItem('_auth_tk');
+    const token = this.storage.readItem('_auth_tk') || '';
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `${token.token_type} ${token.access_token}`

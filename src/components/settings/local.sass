@@ -45,21 +45,35 @@ a
 
 .input_wrapper
   position: relative
+  .icon
+    position: absolute
+    width: 15px
+    height: 15px
+    right: 20px
+    top: 30%
+    fill: #b7b7b7
+    animation: loading-icon 1s ease-in-out infinite
+  &:nth-child(4)
+    .icon
+      animation: unset
+      cursor: pointer
   .edit
     position: absolute
-    right: 20px
+    right: 42px
     top: 38%
     font-size: 11px
     cursor: pointer
     color: #b7b7b7
-    &:last-child
-      right: 42px
 
-.icon
-  position: absolute
+.loading_icon
   width: 15px
   height: 15px
-  cursor: pointer
-  right: 20px
-  top: 30%
+  margin-right: 15px
+  fill: #b7b7b7
+  animation: loading-icon 1s ease-in-out infinite
 
+@keyframes loading-icon
+  from
+    transform: rotate(0)
+  to
+    transform: rotate(360deg)

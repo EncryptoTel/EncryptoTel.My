@@ -16,51 +16,78 @@
     <div class="settings_form">
       <form>
         <div class="input_wrapper">
-          <input type="text" placeholder="name" [readonly]="!editStatus.name" #nameField
-                 [(ngModel)]="account.account.profile.firstname" name="name">
-          <span *ngIf="!editStatus.name" class="edit" (click)="edit('name', nameField)">edit name</span>
+          <input type="text"
+                 placeholder="First Name"
+                 [readonly]="!editStatus.firstName"
+                 #firstName
+                 [(ngModel)]="account.account.profile.firstname"
+                 name="firstName"
+                 (blur)="save('firstName')">
+          <span *ngIf="!editStatus.firstName" class="edit" (click)="edit('firstName', firstName)">edit first name</span>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.firstName"></svg-icon>
         </div>
         <div class="input_wrapper">
-          <input type="email" placeholder="email" [readonly]="!editStatus.email" #emailField
-                 [(ngModel)]="account.account.email" name="email">
+          <input type="text"
+                 placeholder="Last Name"
+                 [readonly]="!editStatus.lastName"
+                 #lastName
+                 [(ngModel)]="account.account.profile.lastname"
+                 name="lastName"
+                 (blur)="save('lastName')">
+          <span *ngIf="!editStatus.lastName" class="edit" (click)="edit('lastName', lastName)">edit last name</span>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.lastName"></svg-icon>
+        </div>
+        <div class="input_wrapper">
+          <input type="email"
+                 placeholder="email"
+                 [readonly]="!editStatus.email"
+                 #emailField
+                 [(ngModel)]="account.account.email"
+                 name="email"
+                 (blur)="save('email')">
           <span *ngIf="!editStatus.email" class="edit" (click)="edit('email', emailField)">edit email</span>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.email"></svg-icon>
         </div>
         <div class="input_wrapper">
-          <div class="select">
-            <div class="select_current">English</div>
-            <div class="select_options">
-              <div class="select_option">
-                Russian
-              </div>
-              <div class="select_option">
-                Poland
+          <div class="select" (click)="showLanguages()">
+            <div class="select_current">{{currentLanguage()}}</div>
+            <div class="select_options" *ngIf="editStatus.language">
+              <div class="select_option" *ngFor="let language of languages" (click)="setLanguage(language)">
+                {{language.name}}
               </div>
             </div>
             <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>
           </div>
-          <span *ngIf="!editStatus.language" class="edit" (click)="edit('language')">edit language</span>
+          <span *ngIf="!editStatus.language" class="edit" (click)="showLanguages()">edit language</span>
         </div>
         <p>Email notifications for &#171;My feedback&#187;</p>
         <div class="checkbox_container">
-          <div class="checkbox" [ngClass]="{'checkbox_active': status}" (click)="statusUpdates()">
+          <div class="checkbox" *ngIf="!loadersIcons.status"
+               [ngClass]="{'checkbox_active': this.account.account.profile.status_updates}"
+               (click)="setStatusUpdates()">
             <svg-icon src="../../assets/icons/check mark_14px.svg"></svg-icon>
           </div>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="loading_icon"
+                    *ngIf="loadersIcons.status"></svg-icon>
           <span>Status updates</span>
         </div>
         <div class="checkbox_container">
-          <div class="checkbox" [ngClass]="{'checkbox_active': comments}" (click)="newComments()">
+          <div class="checkbox" [ngClass]="{'checkbox_active': this.account.account.profile.new_comments}"
+               (click)="setNewComments()" *ngIf="!loadersIcons.comments">
             <svg-icon src="../../assets/icons/check mark_14px.svg"></svg-icon>
           </div>
-          <span> New comments</span>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="loading_icon"
+                    *ngIf="loadersIcons.comments"></svg-icon>
+          <span>New comments</span>
         </div>
       </form>
     </div>
-    <div class="settings_delete">
-      <p class="settings_delete_link">Delete my profile...</p>
-      <p>
-        Any of your ideas that other have supported will be attributed to &#171;Anonymous&#187;. All of your ideas
-        without support and all comments will be deleted.
-      </p>
-    </div>
+    <!--<div class="settings_delete">-->
+    <!--<p class="settings_delete_link">Delete my profile...</p>-->
+    <!--<p>-->
+    <!--Any of your ideas that other have supported will be attributed to &#171;Anonymous&#187;. All of your ideas-->
+    <!--without support and all comments will be deleted.-->
+    <!--</p>-->
+    <!--</div>-->
   </div>
 </div>

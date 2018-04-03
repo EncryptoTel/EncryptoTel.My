@@ -97,6 +97,14 @@ input[type='text'], input[type='email']
     left: 0
     width: 100%
     background: $background
+    border-bottom: 1px solid #B7B7B7
+    border-left: 1px solid #B7B7B7
+    border-right: 1px solid #B7B7B7
+    overflow: auto
+    height: 355px
+    display: flex
+    flex-flow: column
+    z-index: 10
   &_option
     display: flex
     flex-flow: column
@@ -105,6 +113,9 @@ input[type='text'], input[type='email']
     height: 35px
     padding: 5px 15px
     cursor: pointer
+    flex: 1 0 auto
+    &:hover
+      background: rgba(90,202,209,.2)
 
 
 p,a
