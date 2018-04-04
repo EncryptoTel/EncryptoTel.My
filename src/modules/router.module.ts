@@ -12,13 +12,18 @@ import {RoadmapComponent} from '../components/roadmap/roadmap.component';
 import {SignInComponent} from '../components/sign-in/sign-in.component';
 import {SignUpComponent} from '../components/sign-up/sign-up.component';
 import {BugsComponent} from '../components/bugs/bugs.component';
+import {BugsFormComponent} from '../components/bugs/bugs-form/bugs-form.component';
+import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.component';
 
 const Routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
   {path: 'dashboard', component: IndexComponent, canActivate: [AuthGuardServices]},
   {path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuardServices]},
   {path: 'swap', component: SwapComponent, canActivate: [AuthGuardServices]},
-  {path: 'bugs', component: BugsComponent, canActivate: [AuthGuardServices]},
+  {path: 'bugs', component: BugsComponent, canActivate: [AuthGuardServices], children: [
+      {path: '', component: BugsListComponent, canActivate: [AuthGuardServices]},
+      {path: 'new', component: BugsFormComponent, canActivate: [AuthGuardServices]}
+    ]},
   {path: 'bonuses', component: BonusesComponent, canActivate: [AuthGuardServices]},
   {path: 'roadmap', component: RoadmapComponent, canActivate: [AuthGuardServices]},
   {path: 'sign-in', component: SignInComponent},

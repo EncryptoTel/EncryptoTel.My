@@ -1,1 +1,104 @@
+@import '../../vars'
+
+.container
+  height: 75%
+
+.bugs
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+  align-items: flex-start
+  height: 100%
+  &_category
+    display: flex
+    flex-flow: column
+    justify-content: space-around
+    height: 75%
+    &_new_bug_button
+      background: $accent
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+      color: $background
+      padding: 0
+      border: none
+      height: 55px
+      border-radius: 5px
+      cursor: pointer
+    &_wrap
+      display: flex
+      flex-flow: column
+      justify-content: space-around
+      width: 30%
+      height: 100%
+    &_container
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+      border: 1px solid #7B7B7B
+      height: 70%
+      box-shadow: 0 1px 10px #7B7B7B
+    &_body
+      display: flex
+      flex-flow: column
+      justify-content: space-between
+      height: 80%
+      width: 90%
+    &_item
+      display: flex
+      flex-flow: row
+      &_title
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+      &_counter
+        background: #7B7B7B
+        border-radius: 15px
+        color: #fff
+        padding: 5px 10px
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        margin-left: 10px
+    &_search
+      &_wrap
+        display: flex
+        flex-flow: row wrap
+        height: 35px
+      &_input
+        flex: 1 1 auto
+        height: 100%
+        border: 1px solid #7B7B7B
+      &_button
+        width: 35px
+        height: 35px
+        padding: 0
+        border: none
+        background: #7B7B7B
+  &_feedback_wrap
+    display: flex
+    flex-flow: column
+    justify-content: center
+    align-items: center
+    border: 1px solid #7B7B7B
+    height: 65px
+    box-shadow: 0 1px 10px #7B7B7B
+    a
+      height: 90%
+      width: 90%
+      display: flex
+      flex-flow: column
+      justify-content: center
+
+.current_title
+  color: $accent
+
+.current_couter
+  background: $accent
+
+
 
