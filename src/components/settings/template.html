@@ -23,7 +23,6 @@
                  [(ngModel)]="account.account.profile.firstname"
                  name="firstName"
                  (blur)="save('firstName')"
-                 (change)="checkField(firstName)"
                  maxlength="255">
           <span *ngIf="!editStatus.firstName" class="edit" (click)="edit('firstName', firstName)">edit first name</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.firstName"></svg-icon>
@@ -36,7 +35,6 @@
                  [(ngModel)]="account.account.profile.lastname"
                  name="lastName"
                  (blur)="save('lastName')"
-                 (change)="checkField(lastName)"
                  maxlength="255">
           <span *ngIf="!editStatus.lastName" class="edit" (click)="edit('lastName', lastName)">edit last name</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.lastName"></svg-icon>
@@ -49,7 +47,6 @@
                  [(ngModel)]="account.account.email"
                  name="email"
                  (blur)="save('email')"
-                 (change)="checkField(emailField)"
                  maxlength="255">
           <span *ngIf="!editStatus.email" class="edit" (click)="edit('email', emailField)">edit email</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.email"></svg-icon>

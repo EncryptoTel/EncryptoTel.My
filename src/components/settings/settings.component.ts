@@ -74,19 +74,9 @@ export class SettingsComponent {
     field.focus();
   }
 
-  // check value of field
-  checkField(field: HTMLInputElement) {
-    if (field.value.length >= 255) {
-      this.isValid = false;
-      field.checkValidity();
-    } else {
-      this.isValid = true;
-    }
-  }
-
   // save data
   save(loader: string): void {
-    if (this.isValid) {
+    if (this.account.account.email.length < 255 && this.account.account.profile.firstname.length < 255 && this.account.account.profile.lastname.length < 255) {
       this.loadersIcons[loader] = true;
       this._service.save(this.account.account).then(() => {
         this.loadersIcons[loader] = false;
