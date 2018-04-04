@@ -42,6 +42,7 @@ export class SettingsComponent {
     }
   };
   languages: LanguagesModel[] = []; // array of available languages from back
+  isValid = false; // is validity input fields?
 
   constructor(private _service: SettingsServices) {
     this.getAccount();  // get date about account
@@ -73,15 +74,27 @@ export class SettingsComponent {
     field.focus();
   }
 
+  // check value of field
+  checkField(field: HTMLInputElement) {
+    if (field.value.length >= 255) {
+      this.isValid = false;
+      field.checkValidity();
+    } else {
+      this.isValid = true;
+    }
+  }
+
   // save data
   save(loader: string): void {
-    this.loadersIcons[loader] = true;
-    this._service.save(this.account.account).then(() => {
-      this.loadersIcons[loader] = false;
-      this.resetStatuses();
-    }).catch(err => {
-      console.error(err);
-    });
+    if (this.isValid) {
+      this.loadersIcons[loader] = true;
+      this._service.save(this.account.account).then(() => {
+        this.loadersIcons[loader] = false;
+        this.resetStatuses();
+      }).catch(err => {
+        console.error(err);
+      });
+    }
   }
 
   // reset all statuses of edit
