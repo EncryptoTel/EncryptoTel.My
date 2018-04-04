@@ -9,6 +9,8 @@ import {IndexComponent} from '../components/index/index.component';
 import {TransactionsComponent} from '../components/transactions/transactions.component';
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {SettingsComponent} from '../components/settings/settings.component';
+import {RoadmapComponent} from '../components/roadmap/roadmap.component';
+import {SwapComponent} from '../components/swap/swap.component';
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import {SettingsComponent} from '../components/settings/settings.component';
     IndexComponent,
     TransactionsComponent,
     BonusesComponent,
+    RoadmapComponent,
+    SwapComponent,
     SettingsComponent
   ],
   exports: [
@@ -32,7 +36,9 @@ import {SettingsComponent} from '../components/settings/settings.component';
     IndexComponent,
     TransactionsComponent,
     BonusesComponent,
-    SettingsComponent
+    SettingsComponent,
+    RoadmapComponent,
+    SwapComponent
   ]
 })
 export class ComponentsModule {}
