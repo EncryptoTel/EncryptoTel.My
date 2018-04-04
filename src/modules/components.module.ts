@@ -10,6 +10,7 @@ import {TransactionsComponent} from '../components/transactions/transactions.com
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {RoadmapComponent} from '../components/roadmap/roadmap.component';
 import {SwapComponent} from '../components/swap/swap.component';
+import {BugsComponent} from '../components/bugs/bugs.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {SwapComponent} from '../components/swap/swap.component';
     TransactionsComponent,
     BonusesComponent,
     RoadmapComponent,
-    SwapComponent
+    SwapComponent,
+    BugsComponent
   ],
   exports: [
     ElementsModule,
@@ -35,7 +37,8 @@ import {SwapComponent} from '../components/swap/swap.component';
     TransactionsComponent,
     BonusesComponent,
     RoadmapComponent,
-    SwapComponent
+    SwapComponent,
+    BugsComponent
   ]
 })
 export class ComponentsModule {}

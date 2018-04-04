@@ -1,0 +1,11 @@
+<page-info-element [pageInfo]="pageInfo"></page-info-element>
+<loader-element *ngIf="loading"></loader-element>
+<div class="container" *ngIf="!loading">
+  <div class="bugs">
+    <router-outlet></router-outlet>
+    <div class="bugs-category-wrapper">
+      <button>Filing a new Bug</button>
+      <div class="bugs-category"></div>
+    </div>
+  </div>
+</div>
