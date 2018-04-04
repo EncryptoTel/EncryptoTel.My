@@ -1,5 +1,5 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
-<div class="container">
+<div class="container" (click)="hideLanguages($event)">
   <div class="settings">
     <div class="settings_header">
       <div class="settings_avatar_wrapper">
@@ -18,36 +18,42 @@
         <div class="input_wrapper">
           <input type="text"
                  placeholder="First Name"
-                 [readonly]="!editStatus.firstName"
+                 [disabled]="!editStatus.firstName"
                  #firstName
                  [(ngModel)]="account.account.profile.firstname"
                  name="firstName"
                  (blur)="save('firstName')"
-                 maxlength="255">
+                 (keydown.enter)="save('firstName')"
+                 maxlength="255"
+                 autocomplete='given-name'>
           <span *ngIf="!editStatus.firstName" class="edit" (click)="edit('firstName', firstName)">edit first name</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.firstName"></svg-icon>
         </div>
         <div class="input_wrapper">
           <input type="text"
                  placeholder="Last Name"
-                 [readonly]="!editStatus.lastName"
+                 [disabled]="!editStatus.lastName"
                  #lastName
                  [(ngModel)]="account.account.profile.lastname"
                  name="lastName"
                  (blur)="save('lastName')"
-                 maxlength="255">
+                 (keydown.enter)="save('lastName')"
+                 maxlength="255"
+                 autocomplete='family-name'>
           <span *ngIf="!editStatus.lastName" class="edit" (click)="edit('lastName', lastName)">edit last name</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.lastName"></svg-icon>
         </div>
         <div class="input_wrapper">
           <input type="email"
                  placeholder="email"
-                 [readonly]="!editStatus.email"
+                 [disabled]="!editStatus.email"
                  #emailField
                  [(ngModel)]="account.account.email"
                  name="email"
                  (blur)="save('email')"
-                 maxlength="255">
+                 (keydown.enter)="save('email')"
+                 maxlength="255"
+                 autocomplete='email'>
           <span *ngIf="!editStatus.email" class="edit" (click)="edit('email', emailField)">edit email</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.email"></svg-icon>
         </div>
@@ -61,7 +67,7 @@
             </div>
             <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>
           </div>
-          <span *ngIf="!editStatus.language" class="edit" (click)="showLanguages()">edit language</span>
+          <span *ngIf="!editStatus.language" class="edit" (click)="showLanguages()" id="langEdit">edit language</span>
         </div>
         <p>Email notifications for &#171;My feedback&#187;</p>
         <div class="checkbox_container">

@@ -20,7 +20,9 @@ export class SettingsComponent {
     firstName: false,
     lastName: false,
     email: false,
-    language: false
+    language: false,
+    status: false,
+    comments: false
   };  // enable/disable edit fields
   loadersIcons = {
     firstName: false,
@@ -42,7 +44,6 @@ export class SettingsComponent {
     }
   };
   languages: LanguagesModel[] = []; // array of available languages from back
-  isValid = false; // is validity input fields?
 
   constructor(private _service: SettingsServices) {
     this.getAccount();  // get date about account
@@ -71,6 +72,7 @@ export class SettingsComponent {
   // activate edit status of field
   edit(type: string, field: HTMLInputElement): void {
     this.editStatus[type] = true;
+    field.disabled = false;
     field.focus();
   }
 
@@ -80,7 +82,7 @@ export class SettingsComponent {
       this.loadersIcons[loader] = true;
       this._service.save(this.account.account).then(() => {
         this.loadersIcons[loader] = false;
-        this.resetStatuses();
+        this.resetStatuses(loader);
       }).catch(err => {
         console.error(err);
       });
@@ -88,18 +90,18 @@ export class SettingsComponent {
   }
 
   // reset all statuses of edit
-  resetStatuses(): void {
-    this.editStatus = {
-      firstName: false,
-      lastName: false,
-      email: false,
-      language: false
-    };
+  resetStatuses(type: string): void {
+    this.editStatus[type] = false;
   }
 
   // controller of select
   showLanguages(): void {
     this.editStatus.language = !this.editStatus.language;
+  }
+
+  // global controller of lang select
+  hideLanguages(event) {
+    event.target.classList.contains('select_current') || (event.target.id === 'langEdit') || (event.target.id === 'arrow') ? this.editStatus.language = true : this.editStatus.language = false;
   }
 
   //  find current lang from array lang
