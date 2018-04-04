@@ -10,6 +10,7 @@ import {StorageServices} from '../services/storage.services';
 import {RequestServices} from '../services/request.services';
 
 import {MainViewComponent} from '../components/main-view.component';
+import {TransactionsServices} from '../services/transactions.services';
 import {AuthorizationServices} from '../services/authorization.services';
 import {SettingsServices} from '../services/settings.services';
 
@@ -27,7 +28,8 @@ import {SettingsServices} from '../services/settings.services';
     {provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptor, multi: true},
     RequestServices,
     AuthorizationServices,
-    SettingsServices
+    SettingsServices,
+    TransactionsServices
   ],
   bootstrap: [MainViewComponent]
 })
