@@ -126,7 +126,6 @@ export class SettingsComponent {
   // get languages from back
   private getLanguages(): void {
     this._service.getLanguages().then((res: LanguagesModel[]) => {
-      console.log(res);
       this.languages = res;
     }).catch(err => {
       console.error(err);
