@@ -14,18 +14,10 @@ export class RequestServices {
               private logger: LoggerServices) {
   }
 
-  createHeaders(): HttpHeaders {
-    const token = this.storage.readItem('_auth_tk') || '';
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `${token.token_type} ${token.access_token}`
-    });
-  }
-
   // Requests superclass method for POST requests
   // TODO: Basic POST request processing. Especially errors processing.
   post(uri: string, data: object, serverReady: boolean = false): Promise<any> {
-    return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}, {headers: this.createHeaders()}).toPromise()
+    return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}).toPromise()
       .then(response => {
         this.logger.log(response, 'POST-superclass response');
         return Promise.resolve(response);
@@ -38,7 +30,7 @@ export class RequestServices {
   // Requests superclass method for PUT requests
   // TODO: Basic PUT request processing. Especially errors processing.
   put(uri: string, data: object, serverReady: boolean = false): Promise<any> {
-    return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}, {headers: this.createHeaders()}).toPromise()
+    return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}).toPromise()
       .then(response => {
         this.logger.log(response, 'PUT-superclass response');
         return Promise.resolve(response);
@@ -51,7 +43,7 @@ export class RequestServices {
   // Requests superclass method for GET requests
   // TODO: Basic GET request processing. Especially errors processing.
   get(uri: string, serverReady: boolean = false): Promise<any> {
-    return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {headers: this.createHeaders()}).toPromise()
+    return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
         this.logger.log(response, 'GET-superclass response');
         return Promise.resolve(response);
@@ -64,7 +56,7 @@ export class RequestServices {
   // Requests superclass method for DELETE requests
   // TODO: Basic DELETE request processing. Especially errors processing.
   del(uri: string, serverReady: boolean = false): Promise<any> {
-    return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {headers: this.createHeaders()}).toPromise()
+    return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
         this.logger.log(response, 'DELETE-superclass response');
         return Promise.resolve(response);

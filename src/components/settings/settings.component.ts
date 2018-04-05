@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 
-import {PageInfo} from '../../models/page-info.model';
 import {SettingsServices} from '../../services/settings.services';
+import {PageInfo} from '../../models/page-info.model';
+import {emailRegExp, nameRegExp} from '../../shared/vars';
+
 
 @Component({
   selector: 'settings-component',
@@ -17,22 +19,28 @@ export class SettingsComponent {
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
   editStatus = {
-    firstName: false,
-    lastName: false,
+    firstname: false,
+    lastname: false,
     email: false,
     language: false,
     status: false,
     comments: false
   };  // enable/disable edit fields
   loadersIcons = {
-    firstName: false,
-    lastName: false,
+    firstname: false,
+    lastname: false,
     email: false,
     status: false,
     comments: false
   };  // enable/disable loaders icons
+  validState = {
+    firstname: true,
+    lastname: true,
+    email: true
+  };
   account: AccoutModel = {  // account data from backend
     account: {
+      hash: '',
       email: '',
       profile: {
         firstname: '',
@@ -69,6 +77,16 @@ export class SettingsComponent {
     this.editStatus.language = false;
   }
 
+  validation(event): void {
+    const value = event.target.value;
+    const id = event.target.id;
+    if (id === 'firstname' || id === 'lastname') {
+      this.validState[id] = nameRegExp.test(value);
+    } else if (id === 'email') {
+      this.validState.email = emailRegExp.test(value);
+    }
+  }
+
   // activate edit status of field
   edit(type: string, field: HTMLInputElement): void {
     this.editStatus[type] = true;
@@ -76,16 +94,34 @@ export class SettingsComponent {
     field.focus();
   }
 
+  // validation
+  saveValidation(value: string): boolean {
+    if (value === 'firstname' || value === 'lastname') {
+      return nameRegExp.test(this.account.account.profile[value]);
+    } else if (value === 'email') {
+      return emailRegExp.test(this.account.account.profile[value]);
+    }
+    return true;
+  }
+
   // save data
   save(loader: string): void {
     if (this.account.account.email.length < 255 && this.account.account.profile.firstname.length < 255 && this.account.account.profile.lastname.length < 255) {
-      this.loadersIcons[loader] = true;
-      this._service.save(this.account.account).then(() => {
-        this.loadersIcons[loader] = false;
-        this.resetStatuses(loader);
-      }).catch(err => {
-        console.error(err);
-      });
+      if (this.saveValidation(loader)) {
+        this.loadersIcons[loader] = true;
+        const data = {};
+        if (loader !== 'language_id') {
+          data[loader] = this.account.account.profile[loader];
+        } else {
+          data['language_id'] = this.account.account.profile.language_id;
+        }
+        this._service.save(data).then(() => {
+          this.loadersIcons[loader] = false;
+          this.resetStatuses(loader);
+        }).catch(err => {
+          console.error(err);
+        });
+      }
     }
   }
 

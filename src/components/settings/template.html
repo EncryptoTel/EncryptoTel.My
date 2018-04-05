@@ -3,7 +3,8 @@
   <div class="settings">
     <div class="settings_header">
       <div class="settings_avatar_wrapper">
-        <img src="../../assets/icons/logo.svg" class="settings_avatar">
+        <img src="https://www.gravatar.com/avatar/{{account.account.hash}}" class="settings_avatar"
+             *ngIf="account.account.hash">
       </div>
       <div class="settings_avatar_description">
         <p>Avatar</p>
@@ -18,44 +19,56 @@
         <div class="input_wrapper">
           <input type="text"
                  placeholder="First Name"
-                 [disabled]="!editStatus.firstName"
-                 #firstName
+                 [disabled]="!editStatus.firstname"
+                 #firstname
                  [(ngModel)]="account.account.profile.firstname"
                  name="firstName"
-                 (blur)="save('firstName')"
-                 (keydown.enter)="save('firstName')"
+                 (blur)="save('firstname')"
+                 (keyup)="validation($event)"
+                 (keydown.enter)="save('firstname')"
                  maxlength="255"
-                 autocomplete='given-name'>
-          <span *ngIf="!editStatus.firstName" class="edit" (click)="edit('firstName', firstName)">edit first name</span>
-          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.firstName"></svg-icon>
+                 autocomplete='given-name'
+                 [ngClass]="{'invalid':!validState.firstname}"
+                 id="firstname">
+          <span *ngIf="!editStatus.firstName" class="edit" (click)="edit('firstName', firstname)">edit first name</span>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.firstname"></svg-icon>
+          <span class="alert" *ngIf="!validState.firstname">Please enter correct first name</span>
         </div>
         <div class="input_wrapper">
           <input type="text"
                  placeholder="Last Name"
-                 [disabled]="!editStatus.lastName"
-                 #lastName
+                 [disabled]="!editStatus.lastname"
+                 #lastname
                  [(ngModel)]="account.account.profile.lastname"
                  name="lastName"
-                 (blur)="save('lastName')"
-                 (keydown.enter)="save('lastName')"
+                 (blur)="save('lastname')"
+                 (keyup)="validation($event)"
+                 (keydown.enter)="save('lastname')"
                  maxlength="255"
-                 autocomplete='family-name'>
-          <span *ngIf="!editStatus.lastName" class="edit" (click)="edit('lastName', lastName)">edit last name</span>
-          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.lastName"></svg-icon>
+                 autocomplete='family-name'
+                 [ngClass]="{'invalid':!validState.lastname}"
+                 id="lastname">
+          <span *ngIf="!editStatus.lastName" class="edit" (click)="edit('lastName', lastname)">edit last name</span>
+          <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.lastname"></svg-icon>
+          <span class="alert" *ngIf="!validState.lastname">Please enter correct last name</span>
         </div>
         <div class="input_wrapper">
           <input type="email"
                  placeholder="email"
                  [disabled]="!editStatus.email"
-                 #emailField
+                 #email
                  [(ngModel)]="account.account.email"
                  name="email"
                  (blur)="save('email')"
+                 (keyup)="validation($event)"
                  (keydown.enter)="save('email')"
                  maxlength="255"
-                 autocomplete='email'>
-          <span *ngIf="!editStatus.email" class="edit" (click)="edit('email', emailField)">edit email</span>
+                 autocomplete='email'
+                 [ngClass]="{'invalid':!validState.email}"
+                 id="email">
+          <span *ngIf="!editStatus.email" class="edit" (click)="edit('email', email)">edit email</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.email"></svg-icon>
+          <span class="alert" *ngIf="!validState.email">Please enter correct e-mail</span>
         </div>
         <div class="input_wrapper">
           <div class="select" (click)="showLanguages()">

@@ -3,6 +3,7 @@ interface AccoutModel {
 }
 
 interface Account {
+  hash: string;
   email: string;
   profile: Profile;
 
