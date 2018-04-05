@@ -9,7 +9,7 @@ export class BonusesServices {
 
   // Getting bonuses list
   fetchBonuses(): Promise<Bonus[]> {
-    return this._req.get('bonuses.json').then(res => {
+    return this._req.get('bonuses', true).then(res => {
       return res['bonuses'] || [];
     }).catch(() => {
       return [];
