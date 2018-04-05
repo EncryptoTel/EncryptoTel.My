@@ -27,11 +27,11 @@ export class AuthorizationServices {
 
   // Primary authorization method
   signIn(formData): Promise<void> {
-    return this._req.post('login', {...formData}, true)
+    return this._req.post('auth/login', {...formData}, true)
       .then(res => {
         this._storage.writeItem('_auth_tk', res);
         this.authSubscription.next();
-        return;
+        return Promise.resolve(null);
       }).catch(res => {
         if (res.message) {
           this.setMessage(res.message);
@@ -39,7 +39,7 @@ export class AuthorizationServices {
           this.setMessage('Unknown error');
         }
         this.authSubscription.next();
-        return;
+        return Promise.reject(null);
       })
   }
 
