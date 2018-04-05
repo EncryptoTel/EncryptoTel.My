@@ -15,10 +15,10 @@
       </div>
       <div class="table_body">
         <div class="table_row" *ngFor="let bonus of bonusesList">
-          <div class="table_column">{{bonus.name}}</div>
-          <div class="table_column">{{bonus.amount}}</div>
-          <div class="table_column">{{bonus.estimated | date}}</div>
-          <div class="table_column" [title]="bonus.description"><p>{{bonus.description}}</p></div>
+          <div class="table_column">{{bonus.name || 'Unnamed'}}</div>
+          <div class="table_column">{{bonus.amount || 'None'}}</div>
+          <div class="table_column">{{bonus.date | date}}</div>
+          <div class="table_column" [title]="bonus.description || 'Empty description'"><p>{{bonus.description}}</p></div>
           <div class="table_column">{{bonus.status}}</div>
         </div>
       </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="table_row">
           <div class="table_column title">Estimate time for distribution</div>
-          <div class="table_column value">{{bonus.estimated | date}}</div>
+          <div class="table_column value">{{bonus.date | date}}</div>
         </div>
         <div class="table_row description" *ngIf="bonus.description">
           <div class="table_column title">Description</div>
