@@ -61,19 +61,19 @@ export class SettingsComponent {
   // controller 'status' checkbox
   setStatusUpdates(): void {
     this.account.account.profile.status_updates = this.account.account.profile.status_updates === 1 ? 0 : 1;
-    this.save('status');
+    this.save('status', {status_updates: this.account.account.profile.status_updates});
   }
 
   // controller 'comments' checkbox
   setNewComments(): void {
     this.account.account.profile.new_comments = this.account.account.profile.new_comments === 1 ? 0 : 1;
-    this.save('comments');
+    this.save('comments', {new_comments: this.account.account.profile.new_comments});
   }
 
   // // controller 'language' checkbox
   setLanguage(language: LanguagesModel): void {
     this.account.account.profile.language_id = language.id;
-    this.save('language');
+    this.save('language', {language_id: this.account.account.profile.language_id});
     this.editStatus.language = false;
   }
 
@@ -105,19 +105,13 @@ export class SettingsComponent {
   }
 
   // save data
-  save(loader: string): void {
+  save(loader: string, value): void {
     if (this.account.account.email.length < 255 && this.account.account.profile.firstname.length < 255 && this.account.account.profile.lastname.length < 255) {
       if (this.saveValidation(loader)) {
-        this.loadersIcons[loader] = true;
-        const data = {};
-        if (loader !== 'language_id') {
-          data[loader] = this.account.account.profile[loader];
-        } else {
-          data['language_id'] = this.account.account.profile.language_id;
-        }
-        this._service.save(data).then(() => {
+        this.resetStatuses(loader);
+        this._service.save(value).then((res: Profile) => {
+          this.account.account.profile = res;
           this.loadersIcons[loader] = false;
-          this.resetStatuses(loader);
         }).catch(err => {
           console.error(err);
         });
