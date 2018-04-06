@@ -1,7 +1,8 @@
 export interface Bonus {
   name: string;
+  code: string;
   amount: string;
-  estimated: Date;
+  date: Date;
   description: string;
   status: string;
 }

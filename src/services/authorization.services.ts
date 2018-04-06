@@ -31,7 +31,7 @@ export class AuthorizationServices {
       .then(res => {
         this._storage.writeItem('_auth_tk', res);
         this.authSubscription.next();
-        return;
+        return Promise.resolve(null);
       }).catch(res => {
         if (res.message) {
           this.setMessage(res.message);
@@ -39,7 +39,7 @@ export class AuthorizationServices {
           this.setMessage('Unknown error');
         }
         this.authSubscription.next();
-        return;
+        return Promise.reject(null);
       })
   }
 
