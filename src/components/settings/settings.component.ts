@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {SettingsServices} from '../../services/settings.services';
 import {PageInfo} from '../../models/page-info.model';
 import {emailRegExp, nameRegExp} from '../../shared/vars';
+import {PopupServices} from '../../services/popup.services';
 
 
 @Component({
@@ -53,7 +54,8 @@ export class SettingsComponent {
   };
   languages: LanguagesModel[] = []; // array of available languages from back
 
-  constructor(private _service: SettingsServices) {
+  constructor(private _service: SettingsServices,
+              private popup: PopupServices) {
     this.getAccount();  // get date about account
     this.getLanguages();  // get all languages
   }
@@ -77,16 +79,6 @@ export class SettingsComponent {
     this.editStatus.language = false;
   }
 
-  validation(event): void {
-    const value = event.target.value;
-    const id = event.target.id;
-    if (id === 'firstname' || id === 'lastname') {
-      this.validState[id] = nameRegExp.test(value);
-    } else if (id === 'email') {
-      this.validState.email = emailRegExp.test(value);
-    }
-  }
-
   // activate edit status of field
   edit(type: string, field: HTMLInputElement): void {
     this.editStatus[type] = true;
@@ -94,27 +86,53 @@ export class SettingsComponent {
     field.focus();
   }
 
+  validation(event): void {
+    const value = event.target.value;
+    const id = event.target.id;
+    if (id === 'firstname' || id === 'lastname') {
+      this.validState[id] = nameRegExp.test(value);
+    } else if (id === 'email') {
+      this.validState[id] = emailRegExp.test(value);
+    }
+  }
+
   // validation
   saveValidation(value: string): boolean {
-    if (value === 'firstname' || value === 'lastname') {
-      return nameRegExp.test(this.account.account.profile[value]);
-    } else if (value === 'email') {
-      return emailRegExp.test(this.account.account.profile[value]);
-    }
-    return true;
+    return nameRegExp.test(this.account.account.profile[value]);
   }
 
   // save data
   save(loader: string, value): void {
-    if (this.account.account.email.length < 255 && this.account.account.profile.firstname.length < 255 && this.account.account.profile.lastname.length < 255) {
+    if (this.account.account.profile.firstname.length < 255 && this.account.account.profile.lastname.length < 255) {
       if (this.saveValidation(loader)) {
         this.resetStatuses(loader);
+        this.loadersIcons[loader] = true;
         this._service.save(value).then((res: Profile) => {
           this.account.account.profile = res;
           this.loadersIcons[loader] = false;
         }).catch(err => {
           console.error(err);
+          this.loadersIcons[loader] = false;
         });
+      }
+    }
+  }
+
+  changeEmail(email: object) {
+    if (email.email.length < 255) {
+      const validation = this.validState.email = emailRegExp.test(email.email);
+      if (validation) {
+        this.loadersIcons.email = true;
+        this.editStatus.email = false;
+        this._service.changeEmail(email).then(res => {
+          console.log(res);
+          this.loadersIcons.email = false;
+          this.popup.showSuccess(res.message);
+        }).catch(err => {
+          console.error(err);
+          this.popup.showError(err.errors.email);
+          this.loadersIcons.email = false;
+        })
       }
     }
   }

@@ -1,0 +1,34 @@
+@import '../../vars'
+
+.popup
+  width: 40%
+  height: 100%
+  display: flex
+  flex-flow: row
+  justify-content: center
+  align-items: center
+  position: absolute
+  left: calc(50% - 20%)
+  color: $background
+  transition: all .3s ease-in
+
+svg-icon
+  width: 15px
+  height: 15px
+  position: absolute
+  right: 15px
+  top: 15px
+  cursor: pointer
+
+.active
+  bottom: 0
+
+.inactive
+  bottom: -100%
+
+
+.error
+  background: $popup_error
+
+.success
+  background: $popup_success

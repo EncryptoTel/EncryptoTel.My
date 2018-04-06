@@ -13,6 +13,8 @@ import {MainViewComponent} from '../components/main-view.component';
 import {TransactionsServices} from '../services/transactions.services';
 import {AuthorizationServices} from '../services/authorization.services';
 import {SettingsServices} from '../services/settings.services';
+import {PopupServices} from '../services/popup.services';
+import {ChangeEmailServices} from '../services/change-email.services';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {SettingsServices} from '../services/settings.services';
     RequestServices,
     AuthorizationServices,
     SettingsServices,
-    TransactionsServices
+    TransactionsServices,
+    PopupServices,
+    ChangeEmailServices
   ],
   bootstrap: [MainViewComponent]
 })

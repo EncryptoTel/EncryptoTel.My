@@ -11,6 +11,8 @@ import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {SettingsComponent} from '../components/settings/settings.component';
 import {RoadmapComponent} from '../components/roadmap/roadmap.component';
 import {SwapComponent} from '../components/swap/swap.component';
+import {ChangeEmailComponent} from '../components/change-email/change-email/change-email.component';
+import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import {SwapComponent} from '../components/swap/swap.component';
     BonusesComponent,
     RoadmapComponent,
     SwapComponent,
-    SettingsComponent
+    SettingsComponent,
+    ChangeEmailComponent,
+    ChangeEmailConfirmComponent
   ],
   exports: [
     ElementsModule,
@@ -38,7 +42,9 @@ import {SwapComponent} from '../components/swap/swap.component';
     BonusesComponent,
     SettingsComponent,
     RoadmapComponent,
-    SwapComponent
+    SwapComponent,
+    ChangeEmailComponent,
+    ChangeEmailConfirmComponent
   ]
 })
 export class ComponentsModule {}

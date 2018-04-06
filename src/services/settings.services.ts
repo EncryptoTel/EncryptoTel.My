@@ -13,7 +13,11 @@ export class SettingsServices {
     return this.request.get('languages', true);
   }
 
-  save(profile) {
+  save(profile: object) {
     return this.request.post('account/profile', profile, true);
+  }
+
+  changeEmail(email: object) {
+    return this.request.post('account/email/change', email, true);
   }
 }

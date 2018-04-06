@@ -30,7 +30,7 @@
                  autocomplete='given-name'
                  [ngClass]="{'invalid':!validState.firstname}"
                  id="firstname">
-          <span *ngIf="!editStatus.firstName" class="edit" (click)="edit('firstName', firstname)">edit first name</span>
+          <span *ngIf="!editStatus.firstname" class="edit" (click)="edit('firstname', firstname)">edit first name</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.firstname"></svg-icon>
           <span class="alert" *ngIf="!validState.firstname">Please enter correct first name</span>
         </div>
@@ -48,7 +48,7 @@
                  autocomplete='family-name'
                  [ngClass]="{'invalid':!validState.lastname}"
                  id="lastname">
-          <span *ngIf="!editStatus.lastName" class="edit" (click)="edit('lastName', lastname)">edit last name</span>
+          <span *ngIf="!editStatus.lastname" class="edit" (click)="edit('lastname', lastname)">edit last name</span>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.lastname"></svg-icon>
           <span class="alert" *ngIf="!validState.lastname">Please enter correct last name</span>
         </div>
@@ -59,9 +59,9 @@
                  #email
                  [(ngModel)]="account.account.email"
                  name="email"
-                 (blur)="save('email',{email:account.account.email})"
+                 (blur)="changeEmail({email:account.account.email})"
                  (keyup)="validation($event)"
-                 (keydown.enter)="save('email',{email:account.account.email})"
+                 (keydown.enter)="changeEmail({email:account.account.email})"
                  maxlength="255"
                  autocomplete='email'
                  [ngClass]="{'invalid':!validState.email}"
@@ -113,3 +113,4 @@
     <!--</div>-->
   </div>
 </div>
+
