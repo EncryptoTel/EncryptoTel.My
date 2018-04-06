@@ -1,2 +1,69 @@
 @import '../../../vars'
 
+.bug
+  &_list
+    &_wrap
+      display: flex
+      flex-flow: column
+      justify-content: flex-start
+      height: 100%
+    &_item
+      display: flex
+      flex-flow: row
+      justify-content: space-between
+      height: 17%
+      &_vote
+        display: flex
+        flex-flow: column
+        justify-content: space-between
+        width: 15%
+        height: 100%
+        &_counter
+          background: #F8F8F8
+          height: 70%
+          display: flex
+          flex-flow: column
+          justify-content: center
+          align-items: center
+          & > span:first-child
+            font-size: rem(18)
+            margin-bottom: 5px
+        &_button
+          height: 25%
+          display: flex
+          flex-flow: column
+          justify-content: center
+          align-items: center
+          background: #E5E5E5
+          border: none
+      &_description
+        display: flex
+        flex-flow: column
+        justify-content: space-between
+        height: 100%
+        width: 82%
+        &_title
+          font-weight: 600
+        &_footer
+          display: flex
+          flex-flow: row
+          justify-content: flex-start
+          align-items: center
+          & > div
+            margin-right: 15px
+          &_tag
+            border-radius: 20px
+            padding: 5px 15px
+            text-transform: uppercase
+            color: $background
+            text-align: center
+          &_report
+            display: flex
+            flex-flow: row
+            justify-content: space-between
+            &::before
+              content: '•'
+              padding: 0 5px
+
+.fixed
+  background: #804AFF
