@@ -1,0 +1,7 @@
+<div class="container">
+  <loader-element *ngIf="loader"></loader-element>
+  <div *ngIf="!loader">
+    <h2 *ngIf="success">{{message}}</h2>
+    <h2 *ngFor="let error of errors">{{error}}</h2>
+  </div>
+</div>
