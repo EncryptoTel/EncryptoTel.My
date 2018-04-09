@@ -22,7 +22,7 @@ const Routes: Routes = [
   {path: 'swap', component: SwapComponent, canActivate: [AuthGuardServices]},
   {path: 'bugs', component: BugsComponent, canActivate: [AuthGuardServices], children: [
       {path: '', component: BugsListComponent, canActivate: [AuthGuardServices]},
-      {path: 'new', component: BugsCreateComponent, canActivate: [AuthGuardServices]}
+      {path: 'filing', component: BugsCreateComponent, canActivate: [AuthGuardServices]}
     ]},
   {path: 'bonuses', component: BonusesComponent, canActivate: [AuthGuardServices]},
   {path: 'roadmap', component: RoadmapComponent, canActivate: [AuthGuardServices]},

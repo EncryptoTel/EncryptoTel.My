@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'transaction-element',
@@ -6,4 +6,17 @@ import {Component} from '@angular/core';
   styleUrls: ['./local.sass']
 })
 
-export class TransactionElement {}
+export class TransactionElement {
+  @Input() transaction: Transaction;
+  @Input() address: string;
+  @Input() course: Course;
+  type: string;
+
+  setTypeTransaction(sender: string): string {
+    return this.type = sender === this.address ? 'Send' : 'Received';
+  }
+
+  convertToUSD(): number {
+    return this.transaction.amount * this.course.ett_course;
+  }
+}

@@ -3,7 +3,7 @@ import {PageInfo} from '../../../models/page-info.model';
 
 
 @Component({
-  selector: 'bugs-form-component',
+  selector: 'bugs-create-component',
   templateUrl: './template.html',
   styleUrls: ['./local.sass']
 })
