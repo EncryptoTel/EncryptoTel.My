@@ -7,6 +7,9 @@ export class BugsServices {
   }
 
   search(value: string) {
-    return this.request.post('issues', {my: true, q: value},true);
+    return this.request.post('issues', {my: false, q: value}, true);
+  }
+  getBugs() {
+    return this.request.post('issues', {my: false}, true);
   }
 }

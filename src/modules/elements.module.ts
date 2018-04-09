@@ -14,6 +14,7 @@ import {ButtonElement} from '../elements/button/button.element';
 import {TransactionElement} from '../elements/transaction/transaction.element';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PopupElement} from '../elements/popup/popup.element';
+import {BugElement} from '../elements/bug/bug.element';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import {PopupElement} from '../elements/popup/popup.element';
     LoaderElement,
     ButtonElement,
     TransactionElement,
-    PopupElement
+    PopupElement,
+    BugElement
   ],
   exports: [
     CommonModule,
@@ -48,7 +50,8 @@ import {PopupElement} from '../elements/popup/popup.element';
     LoaderElement,
     ButtonElement,
     TransactionElement,
-    PopupElement
+    PopupElement,
+    BugElement
   ]
 })
 export class ElementsModule {}

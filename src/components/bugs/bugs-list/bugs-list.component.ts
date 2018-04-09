@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {PageInfo} from '../../../models/page-info.model';
+import {BugsServices} from '../../../services/bugs.services';
+import {BugModel} from '../../../models/bug.model';
 
 
 @Component({
@@ -9,6 +11,21 @@ import {PageInfo} from '../../../models/page-info.model';
 })
 
 export class BugsListComponent {
+  constructor(private _service: BugsServices) {
+    this.getBugs();
+  }
+
+  bugs: BugModel[];
+
+  getBugs() {
+    this._service.getBugs().then(res => {
+      console.log(res);
+      this.bugs = res.issues;
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
   pageInfo: PageInfo = {
     title: 'Encryptotel: Bugs',
     description:
