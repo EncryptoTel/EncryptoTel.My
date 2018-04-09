@@ -8,11 +8,14 @@ import {SignUpComponent} from '../components/sign-up/sign-up.component';
 import {IndexComponent} from '../components/index/index.component';
 import {TransactionsComponent} from '../components/transactions/transactions.component';
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
+import {SettingsComponent} from '../components/settings/settings.component';
 import {RoadmapComponent} from '../components/roadmap/roadmap.component';
 import {SwapComponent} from '../components/swap/swap.component';
 import {BugsComponent} from '../components/bugs/bugs.component';
 import {BugsCreateComponent} from '../components/bugs/bugs-create/bugs-create.component';
 import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.component';
+import {ChangeEmailComponent} from '../components/change-email/change-email/change-email.component';
+import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 
 @NgModule({
   imports: [
@@ -30,7 +33,11 @@ import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.componen
     SwapComponent,
     BugsComponent,
     BugsCreateComponent,
-    BugsListComponent
+    BugsListComponent,
+    SwapComponent,
+    SettingsComponent,
+    ChangeEmailComponent,
+    ChangeEmailConfirmComponent
   ],
   exports: [
     ElementsModule,
@@ -40,8 +47,11 @@ import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.componen
     IndexComponent,
     TransactionsComponent,
     BonusesComponent,
+    SettingsComponent,
     RoadmapComponent,
     SwapComponent,
+    ChangeEmailComponent,
+    ChangeEmailConfirmComponent,
     BugsComponent,
     BugsCreateComponent,
     BugsListComponent

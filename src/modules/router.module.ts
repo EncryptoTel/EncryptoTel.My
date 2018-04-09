@@ -14,6 +14,9 @@ import {SignUpComponent} from '../components/sign-up/sign-up.component';
 import {BugsComponent} from '../components/bugs/bugs.component';
 import {BugsCreateComponent} from '../components/bugs/bugs-create/bugs-create.component';
 import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.component';
+import {SettingsComponent} from '../components/settings/settings.component';
+import {ChangeEmailComponent} from '../components/change-email/change-email/change-email.component';
+import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 
 const Routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
@@ -26,9 +29,12 @@ const Routes: Routes = [
     ]},
   {path: 'bonuses', component: BonusesComponent, canActivate: [AuthGuardServices]},
   {path: 'roadmap', component: RoadmapComponent, canActivate: [AuthGuardServices]},
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuardServices]},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-up/:hash', component: SignUpComponent},
+  {path: 'change-email/:token', component: ChangeEmailComponent},
+  {path: 'email-confirmation/:token', component: ChangeEmailConfirmComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
