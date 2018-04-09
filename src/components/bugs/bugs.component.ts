@@ -13,5 +13,10 @@ export class BugsComponent {
     title: 'Encryptotel: Bugs',
     description:
       `Here you can report found bugs and functionality issues, comment on existing problems or check their status. Your contributions will help us shape the future of Encryptotel.`
+  };
+  showButtonCreate = true;
+
+  onActivate(component): void {
+    component.title && component.title === 'Bugs Create' ? this.showButtonCreate = false : this.showButtonCreate = true;
   }
 }

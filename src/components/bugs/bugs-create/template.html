@@ -1,7 +1,7 @@
 <div class="bugs_create_wrap">
   <div class="bugs_create_rules">
     <p>When filling new bug, please provide:</p>
-    <div>
+    <div class="bugs_create_rules_items">
       <p>1. Version of Encryptotel PBX or Softphone</p>
       <p>2. Steps to reproduce the issues</p>
       <p>3. Expected result</p>
@@ -12,7 +12,7 @@
   </div>
   <form class="bugs_create_form">
     <p>Bug details</p>
-    <input type="text" placeholder="Bug title">
+    <input type="text" placeholder="Bug title" (keyup)="search($event)">
     <textarea placeholder="Describe your Bug ..."></textarea>
     <div class="bugs_create_form_controls">
       <input type="reset" value="Cancel">
