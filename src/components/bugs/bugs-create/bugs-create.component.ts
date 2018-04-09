@@ -8,7 +8,7 @@ import {PageInfo} from '../../../models/page-info.model';
   styleUrls: ['./local.sass']
 })
 
-export class BugsFormComponent {
+export class BugsCreateComponent {
   pageInfo: PageInfo = {
     title: 'Encryptotel: Bugs',
     description:

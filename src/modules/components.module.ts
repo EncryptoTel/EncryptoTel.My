@@ -11,7 +11,7 @@ import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {RoadmapComponent} from '../components/roadmap/roadmap.component';
 import {SwapComponent} from '../components/swap/swap.component';
 import {BugsComponent} from '../components/bugs/bugs.component';
-import {BugsFormComponent} from '../components/bugs/bugs-form/bugs-form.component';
+import {BugsCreateComponent} from '../components/bugs/bugs-create/bugs-create.component';
 import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.component';
 
 @NgModule({
@@ -29,7 +29,7 @@ import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.componen
     RoadmapComponent,
     SwapComponent,
     BugsComponent,
-    BugsFormComponent,
+    BugsCreateComponent,
     BugsListComponent
   ],
   exports: [
@@ -43,7 +43,7 @@ import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.componen
     RoadmapComponent,
     SwapComponent,
     BugsComponent,
-    BugsFormComponent,
+    BugsCreateComponent,
     BugsListComponent
   ]
 })
