@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 
 import {SettingsServices} from '../../services/settings.services';
 import {PageInfo} from '../../models/page-info.model';
+import {AccountModel, Profile} from '../../models/accout.model';
 import {emailRegExp, nameRegExp} from '../../shared/vars';
 import {PopupServices} from '../../services/popup.services';
 
@@ -39,7 +40,7 @@ export class SettingsComponent {
     lastname: true,
     email: true
   };
-  account: AccoutModel = {  // account data from backend
+  account: AccountModel = {  // account data from backend
     account: {
       hash: '',
       email: '',
@@ -118,13 +119,13 @@ export class SettingsComponent {
     }
   }
 
-  changeEmail(email: object) {
-    if (email.email.length < 255) {
-      const validation = this.validState.email = emailRegExp.test(email.email);
+  changeEmail(email: string) {
+    if (email.length < 255) {
+      const validation = this.validState.email = emailRegExp.test(email);
       if (validation) {
         this.loadersIcons.email = true;
         this.editStatus.email = false;
-        this._service.changeEmail(email).then(res => {
+        this._service.changeEmail({email: email}).then(res => {
           console.log(res);
           this.loadersIcons.email = false;
           this.popup.showSuccess(res.message);
@@ -166,7 +167,7 @@ export class SettingsComponent {
 
   // get account data from back
   private getAccount(): void {
-    this._service.getAccount().then((res: AccoutModel) => {
+    this._service.getAccount().then((res: AccountModel) => {
       this.account = res;
     }).catch(err => {
       console.error(err);

@@ -5,11 +5,11 @@ import {RequestServices} from './request.services';
 export class ChangeEmailServices {
   constructor(private request: RequestServices) {}
 
-  changeEmail(token: string): Promise<object> {
+  changeEmail(token: string) {
     return this.request.post('account/email/change/confirm', {token: token}, true);
   }
 
-  confirmChangeEmail(token: string): Promise<object> {
+  confirmChangeEmail(token: string) {
     return this.request.post('account/email/change/confirm', {token: token}, true);
   }
 }
