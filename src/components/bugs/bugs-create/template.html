@@ -10,16 +10,18 @@
     </div>
     <p>Thank you.</p>
   </div>
-  <form class="bugs_create_form">
+  <form [formGroup]="newBugForm" class="bugs_create_form">
     <p>Bug details</p>
-    <input type="text" placeholder="Bug title" (keyup)="search($event)">
-    <textarea placeholder="Describe your Bug ..."></textarea>
+    <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary">
+    <select-element [values]="tagsArray" [currentValue]="tag" (getValue)="setTag($event)"></select-element>
+    <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
     <div class="bugs_create_form_controls">
       <input type="reset" value="Cancel">
-      <input type="submit" value="Post">
+      <input type="submit" value="Post" (click)="create()">
     </div>
   </form>
   <div class="bugs_create_similar">
-    <p>~ No similar bugs found ~</p>
+    <!--<p>~ No similar bugs found ~</p>-->
+    <bug-element *ngFor="let bug of similarBugs.issues" [issue]="bug"></bug-element>
   </div>
 </div>

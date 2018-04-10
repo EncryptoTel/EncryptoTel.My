@@ -25,3 +25,7 @@ interface Status {
 interface Tag {
   name: string;
 }
+
+export interface Tags {
+  tags: Tag[];
+}

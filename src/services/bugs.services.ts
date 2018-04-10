@@ -9,7 +9,16 @@ export class BugsServices {
   search(value: string) {
     return this.request.post('issues', {my: false, q: value}, true);
   }
+
   getBugs() {
-    return this.request.post('issues', {my: false}, true);
+    return this.request.post('issues', {my: false, page: 0}, true);
+  }
+
+  getTags() {
+    return this.request.get('issues/tags', true);
+  }
+
+  create(bug) {
+    return this.request.post('issues/create', bug, true);
   }
 }

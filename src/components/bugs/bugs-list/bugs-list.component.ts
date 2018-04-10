@@ -15,6 +15,11 @@ export class BugsListComponent {
     this.getBugs();
   }
 
+  pageInfo: PageInfo = {
+    title: 'Encryptotel: Bugs',
+    description:
+      `Here you can report found bugs and functionality issues, comment on existing problems or check their status. Your contributions will help us shape the future of Encryptotel.`
+  };
   bugs: BugModel[];
 
   getBugs() {
@@ -24,11 +29,5 @@ export class BugsListComponent {
     }).catch(err => {
       console.error(err);
     });
-  }
-
-  pageInfo: PageInfo = {
-    title: 'Encryptotel: Bugs',
-    description:
-      `Here you can report found bugs and functionality issues, comment on existing problems or check their status. Your contributions will help us shape the future of Encryptotel.`
   }
 }
