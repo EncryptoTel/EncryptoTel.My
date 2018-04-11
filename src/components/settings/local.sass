@@ -1,0 +1,88 @@
+@import "../../vars"
+a
+  text-decoration: underline
+
+.container
+  align-items: center
+  height: 100%
+
+.settings
+  width: 40%
+  height: 100%
+  display: flex
+  flex-flow: column
+  &_header
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    align-items: center
+    height: 20%
+  &_avatar
+    max-width: 100%
+    height: auto
+    &_wrapper
+      width: 70px
+    &_description
+      width: 66%
+  &_form
+    height: 55%
+    form
+      display: flex
+      flex-flow: column
+      justify-content: space-around
+      height: 100%
+      p
+        margin-top: 5%
+  &_delete
+    display: flex
+    flex-flow: column
+    justify-content: flex-end
+    height: 15%
+    &_link
+      color: $error
+      cursor: pointer
+      margin-bottom: 15px
+
+.input_wrapper
+  position: relative
+  .icon
+    position: absolute
+    width: 15px
+    height: 15px
+    right: 20px
+    top: 30%
+    fill: #b7b7b7
+    animation: loading-icon 1s ease-in-out infinite
+  &:nth-child(4)
+    .icon
+      animation: unset
+      cursor: pointer
+  .edit
+    position: absolute
+    right: 42px
+    top: 38%
+    font-size: 11px
+    cursor: pointer
+    color: #b7b7b7
+
+.loading_icon
+  width: 15px
+  height: 15px
+  margin-right: 15px
+  fill: #b7b7b7
+  animation: loading-icon 1s ease-in-out infinite
+
+.alert
+  position: absolute
+  top: calc(100% + 4px)
+  color: $error
+  font-size: rem(12)
+
+.invalid
+  border: 1px solid $error
+
+@keyframes loading-icon
+  from
+    transform: rotate(0)
+  to
+    transform: rotate(360deg)

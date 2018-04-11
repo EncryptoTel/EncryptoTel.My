@@ -1,0 +1,53 @@
+@import '../../../vars'
+
+.bugs_create
+  &_wrap
+    display: flex
+    flex-flow: column
+    justify-content: flex-start
+    height: 100%
+  &_rules
+    margin-bottom: 5%
+    &_items
+      p
+        margin-bottom: 3px
+    & > p:first-child
+      margin-bottom: 15px
+    & > p:last-child
+      margin-top: 15px
+  &_form
+    display: flex
+    flex-flow: column
+    height: 50%
+    margin-bottom: 5%
+    p
+      font-weight: 600
+      margin-bottom: 15px
+    input
+      margin-bottom: 10px
+    textarea
+      height: 50%
+      margin: 10px 0
+    &_controls
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      input
+        cursor: pointer
+        border: none
+        display: flex
+        flex-flow: row
+        justify-content: center
+        align-items: center
+        width: 75px
+        height: 30px
+        margin-bottom: 10px
+        &:first-child
+          margin-right: 15px
+      input[type='submit']
+        background: $accent
+        color: $background
+        border-radius: 5px
+  &_similar
+    text-align: center
+    flex: 1 0 auto

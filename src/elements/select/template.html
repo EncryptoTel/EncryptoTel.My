@@ -1,0 +1,9 @@
+<div class="select" (click)="toggleVisible()">
+  <div class="select_current">{{currentValue}}</div>
+  <div class="select_options" *ngIf="state">
+    <div class="select_option" *ngFor="let value of values" (click)="setValue(value)">
+      {{value}}
+    </div>
+  </div>
+  <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>
+</div>
