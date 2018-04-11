@@ -24,6 +24,8 @@
 
 *
   box-sizing: border-box
+  margin: 0
+  padding: 0
   display: flex
   flex-direction: column
 
@@ -49,6 +51,48 @@ input
   &:-webkit-autofill
     animation: auto_fill 0ms forwards
 
+input[type='text'], input[type='email']
+  height: 35px
+  border: 1px solid #B7B7B7
+  padding: 5px 15px
+  display: flex
+  flex-flow: column
+  justify-content: center
+
+.checkbox
+  width: 15px
+  height: 15px
+  cursor: pointer
+  border: 1px solid #b7b7b7
+  display: flex
+  flex-flow: column
+  justify-content: center
+  align-items: center
+  margin-right: 15px
+  &_container
+    display: flex
+    flex-flow: row
+  svg-icon
+    display: none
+  &_active
+    background: $accent
+    border: none
+    svg-icon
+      display: block
+      fill: $background
+      width: 11px
+      height: 11px
+
+textarea
+  border: 1px solid #B7B7B7
+  padding: 5px 15px
+  &::placeholder
+    font-weight: 300
+    color: rgba($primary, .3)
+
+p,a
+  display: inline
+
 main-view
   width: 100vw
   height: 100vh
@@ -56,16 +100,30 @@ main-view
     height: calc(100% - 64px)
   sign-in-component, sign-up-component
     height: 100%
+  popup-element
+    position: absolute
+    width: 100%
+    height: 5%
+    bottom: 0
 
 loader-element
   flex: 1 0 auto
 
+transaction-element
+  border: 1px solid #E1E1E1
+
 page-info-element
   flex: 0 0 auto
 
-bugs-list-component
+bugs-list-component, bugs-create-component
   width: 60%
+
+bugs-create-component
   height: 100%
+
+bug-element
+  flex: 1 0 100px
+  margin-bottom: 35px
 // Classes styles
 
 .button_overlay
@@ -179,12 +237,15 @@ bugs-list-component
     font-size: 18px
   .container
     width: 1440px
+
 @media (max-width: 1279px)
   .container
     width: 1024px
+
 @media (min-width: 1024px)
   .hidden_sm_up
     display: none
+
 @media (max-width: 1023px)
   .container
     width: 768px
@@ -205,6 +266,7 @@ bugs-list-component
       width: 100%
       border-bottom: none !important
       background: transparent !important
+
 @media (max-width: 767px)
   .container
     width: 100%

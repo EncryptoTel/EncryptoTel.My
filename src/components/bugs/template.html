@@ -2,9 +2,9 @@
 <loader-element *ngIf="loading"></loader-element>
 <div class="container" *ngIf="!loading">
   <div class="bugs">
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
     <div class="bugs_category_wrap">
-      <button class="bugs_category_new_bug_button">Filing a new Bug</button>
+      <a routerLink="filing" class="bugs_category_new_bug_button" *ngIf="showButtonCreate">Filing a new Bug</a>
       <div class="bugs_category_container">
         <div class="bugs_category_body">
           <h4>Encryptotel: Bugs</h4>

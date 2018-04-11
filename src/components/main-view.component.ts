@@ -10,7 +10,8 @@ import {TimerObservable} from 'rxjs/observable/TimerObservable';
   template:
     `<header-element *ngIf="!loading && authorized"></header-element>
      <loader-element *ngIf="loading"></loader-element>
-     <router-outlet *ngIf="!loading"></router-outlet>`
+     <router-outlet *ngIf="!loading"></router-outlet>
+     <popup-element></popup-element>`
 })
 
 export class MainViewComponent implements OnDestroy {

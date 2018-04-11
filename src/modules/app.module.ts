@@ -10,7 +10,12 @@ import {StorageServices} from '../services/storage.services';
 import {RequestServices} from '../services/request.services';
 
 import {MainViewComponent} from '../components/main-view.component';
+import {TransactionsServices} from '../services/transactions.services';
 import {AuthorizationServices} from '../services/authorization.services';
+import {SettingsServices} from '../services/settings.services';
+import {PopupServices} from '../services/popup.services';
+import {ChangeEmailServices} from '../services/change-email.services';
+import {BugsServices} from '../services/bugs.services';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,12 @@ import {AuthorizationServices} from '../services/authorization.services';
     StorageServices,
     {provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptor, multi: true},
     RequestServices,
-    AuthorizationServices
+    AuthorizationServices,
+    SettingsServices,
+    TransactionsServices,
+    PopupServices,
+    ChangeEmailServices,
+    BugsServices
   ],
   bootstrap: [MainViewComponent]
 })
