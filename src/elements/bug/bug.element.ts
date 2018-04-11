@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {Bug} from '../../models/bug.model';
 
@@ -10,4 +10,9 @@ import {Bug} from '../../models/bug.model';
 
 export class BugElement {
   @Input() issue: Bug;
+  @Output() clickHandlerFallback = new EventEmitter<object>();
+
+  getBug() {
+    this.clickHandlerFallback.emit({id: this.issue.id});
+  }
 }

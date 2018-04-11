@@ -58,6 +58,7 @@ input[type='text'], input[type='email']
   display: flex
   flex-flow: column
   justify-content: center
+  font-family: inherit
 
 .checkbox
   width: 15px
@@ -86,6 +87,7 @@ input[type='text'], input[type='email']
 textarea
   border: 1px solid #B7B7B7
   padding: 5px 15px
+  font-family: inherit
   &::placeholder
     font-weight: 300
     color: rgba($primary, .3)
@@ -115,11 +117,8 @@ transaction-element
 page-info-element
   flex: 0 0 auto
 
-bugs-list-component, bugs-create-component
+bugs-list-component, bugs-create-component, bug-component
   width: 60%
-
-bugs-create-component
-  height: 100%
 
 bug-element
   flex: 1 0 100px

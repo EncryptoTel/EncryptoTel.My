@@ -1,0 +1,170 @@
+@import '../../../vars'
+
+.bug
+  &_header
+    display: flex
+    flex-flow: column
+    margin-bottom: 25px
+    h3
+      font-weight: 500
+      font-size: rem(20)
+      margin-bottom: 10px
+    a
+      &::before
+        content: '←'
+        padding: 0 5px
+  &_body
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    flex: 1
+    min-height: 100px
+    margin-bottom: 30px
+    &_votes
+      display: flex
+      flex-flow: column
+      justify-content: space-between
+      width: 100px
+      height: 90px
+      &_counter
+        background: #F8F8F8
+        height: 70%
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        border: 1px solid #c5c5c5
+        & > span:first-child
+          font-size: rem(18)
+          margin-bottom: 5px
+      &_button
+        height: 25%
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        background: #E5E5E5
+        cursor: pointer
+        border: 1px solid #c5c5c5
+    &_description
+      display: flex
+      flex-flow: column
+      justify-content: space-between
+      width: 82%
+      h4
+        font-weight: 600
+      h4, > p
+        margin-bottom: 10px
+      &_author
+        display: flex
+        flex-flow: row
+        justify-content: flex-start
+        align-items: center
+        & > div
+          width: 5%
+          margin-right: 5px
+        & p:nth-child(3)
+          margin: 0 2px
+          &::after, &::before
+            content: '•'
+            padding: 0 5px
+  &_response
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    margin-bottom: 30px
+    &_avatar
+      width: 15%
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      & > div
+        width: 35%
+    &_text
+      display: flex
+      flex-flow: column
+      width: 82%
+    &_header
+      display: flex
+      flex-flow: row
+      align-items: center
+      margin-bottom: 10px
+      & p:nth-child(2)
+        margin: 0 2px
+        &::after, &::before
+          content: '•'
+          padding: 0 5px
+    &_body
+      display: flex
+      flex-flow: column
+      margin-bottom: 10px
+    &_footer
+      p
+        color: #cfcfcf
+        cursor: pointer
+        font-size: rem(12)
+  &_newComment
+    display: flex
+    flex-flow: column
+    h3
+      font-weight: 600
+      font-size: rem(15)
+    textarea
+      height: 135px
+      margin: 10px 0
+      font-family: inherit
+    &_control
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      input
+        cursor: pointer
+        border: none
+        display: flex
+        flex-flow: row
+        justify-content: center
+        align-items: center
+        width: 120px
+        height: 30px
+        background: $accent
+        color: $background
+        border-radius: 5px
+        margin-bottom: 30px
+        font-size: rem(15)
+  &_comments
+    &_list
+      display: flex
+      flex-flow: column
+    &_item
+      display: flex
+      flex-flow: row
+      justify-content: space-between
+      margin-bottom: 30px
+      &_avatar
+        width: 5%
+      &_body
+        display: flex
+        flex-flow: column
+        width: 92%
+      &_author
+        display: flex
+        flex-flow: row
+        margin-bottom: 15px
+        & p:nth-child(2)
+          margin: 0 2px
+          &::after, &::before
+            content: '•'
+            padding: 0 5px
+
+.tag
+  border-radius: 20px
+  padding: 5px 15px
+  text-transform: uppercase
+  color: $background
+  text-align: center
+
+.feature-started
+  background: #E88C63
+
+img
+  max-width: 100%

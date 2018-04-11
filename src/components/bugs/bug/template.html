@@ -1,0 +1,73 @@
+<div class="bug">
+  <div class="bug_header">
+    <h3>Bug details</h3>
+    <a routerLink="/bugs">Encryptotel: Bug Requests</a>
+  </div>
+  <div class="bug_body">
+    <div class="bug_body_votes">
+      <div class="bug_body_votes_counter">
+        <span>{{details.votes}}</span>
+        <span>votes</span>
+      </div>
+      <button class="bug_body_votes_button">
+        Vote
+      </button>
+    </div>
+    <div class="bug_body_description">
+      <h4>{{details.summary}}</h4>
+      <p>{{details.description}}</p>
+      <div class="bug_body_description_author">
+        <div>
+          <img src="https://www.gravatar.com/avatar/{{details.user.hash}}" alt="author avatar">
+        </div>
+        <p>{{details.user.email}} shared this bug</p>
+        <p>Mar 18, 2018</p>
+        <p>Flag idea as inappropriate...</p>
+      </div>
+    </div>
+  </div>
+  <div class="bug_response">
+    <div class="bug_response_avatar">
+      <div>
+        <img src="https://www.gravatar.com/avatar/{{details.user.hash}}" alt="admin avatar">
+      </div>
+    </div>
+    <div class="bug_response_text">
+      <div class="bug_response_header">
+        <p class="tag feature-started">FEATURE-STARTED</p>
+        <p>Joan (Admin) responded</p>
+        <p>Jan 23, 2018</p>
+      </div>
+      <div class="bug_response_body">
+        <p>We are actively working on allowing you to fix elements in your design.</p>
+      </div>
+      <div class="bug_response_footer">
+        <p>Show previous admin responses (2)</p>
+      </div>
+    </div>
+  </div>
+  <div class="bug_newComment">
+    <h3>{{details.comments.length}} comments</h3>
+    <textarea placeholder="Write a comment..." #commentField></textarea>
+    <div class="bug_newComment_control">
+      <input type="button" value="Post comment" (click)="postComment(commentField)">
+    </div>
+  </div>
+  <div class="bug_comments_list">
+    <div class="bug_comments_item" *ngFor="let comment of details.comments">
+      <div class="bug_comments_item_avatar">
+        <img src="https://www.gravatar.com/avatar/{{comment.user.hash}}" alt="{{comment.user.email}} avatar">
+      </div>
+      <div class="bug_comments_item_body">
+        <div class="bug_comments_item_author">
+          <p>{{comment.user.email}}</p>
+          <p>March 26,2018 12:16 PM</p>
+          <p>Flag as inappropriate</p>
+        </div>
+        <div class="bug_comments_item_comment">
+          <p>{{comment.comment}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

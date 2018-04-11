@@ -15,6 +15,8 @@ export interface Bug {
 
 interface User {
   email: string;
+  deleted_at: string;
+  hash: string;
 }
 
 interface Status {
@@ -28,4 +30,19 @@ interface Tag {
 
 export interface Tags {
   tags: Tag[];
+}
+
+export interface BugReview {
+  comments: Comments[];
+  description: string;
+  id: number;
+  status: Status;
+  summary: string;
+  user: User;
+  votes: number;
+}
+interface Comments {
+  id: number;
+  comment: string;
+  user: User;
 }
