@@ -6,8 +6,8 @@ export class BugsServices {
   constructor(private request: RequestServices) {
   }
 
-  search(value: string) {
-    return this.request.post('issues', {my: false, q: value}, true);
+  getStatuses() {
+    return this.request.get('issues/statuses', true);
   }
 
   getBugs(page: number) {
@@ -22,11 +22,19 @@ export class BugsServices {
     return this.request.get('issues/tags', true);
   }
 
+  search(value: string) {
+    return this.request.post('issues', {my: false, q: value}, true);
+  }
+
   create(bug: object) {
     return this.request.post('issues/create', bug, true);
   }
 
   postComment(comment: object) {
     return this.request.post('issues/comment', comment, true)
+  }
+
+  vote(id: number) {
+    return this.request.post('issues/vote', {issue_id: id}, true)
   }
 }

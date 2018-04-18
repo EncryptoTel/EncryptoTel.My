@@ -23,22 +23,23 @@ export class BugsListComponent {
       `Here you can report found bugs and functionality issues, comment on existing problems or check their status. Your contributions will help us shape the future of Encryptotel.`
   };
   bugs: BugModel[];
-  page = 0;
+  page = 1;
 
-  getBugs(): void {
-    this._service.getBugs(this.page).then(res => {
-      this.bugs = res.issues;
-    }).catch(err => {
-      console.error(err);
-    });
-  }
 
-  getBug(bug: object): void {
+  getBug(bug): void {
     this.router.navigate(['bugs', bug.id])
   }
 
+  vote(id) {
+    this._service.vote(id).then(res => {
+      this.getBugs();
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
   prevPage(): void {
-    if (this.page !== 0) {
+    if (this.page !== 1) {
       this.page -= 1;
       this.getBugs();
     }
@@ -47,5 +48,13 @@ export class BugsListComponent {
   nextPage(): void {
     this.page += 1;
     this.getBugs();
+  }
+
+  private getBugs(): void {
+    this._service.getBugs(this.page).then(res => {
+      this.bugs = res.issues;
+    }).catch(err => {
+      console.error(err);
+    });
   }
 }

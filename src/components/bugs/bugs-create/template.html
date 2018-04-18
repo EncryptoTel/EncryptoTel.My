@@ -13,10 +13,10 @@
   <form [formGroup]="newBugForm" class="bugs_create_form">
     <p>Bug details</p>
     <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary">
-    <select-element [values]="tagsArray" [currentValue]="tag" (getValue)="setTag($event)"></select-element>
+    <select-element [values]="priorities" [currentValue]="priority" (getValue)="setTag($event)"></select-element>
     <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
     <div class="bugs_create_form_controls">
-      <input type="reset" value="Cancel">
+      <input type="reset" value="Cancel" (click)="cancel()">
       <input type="submit" value="Post" (click)="create()">
     </div>
   </form>

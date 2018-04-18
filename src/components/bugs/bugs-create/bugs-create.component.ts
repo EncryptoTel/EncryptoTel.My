@@ -3,6 +3,7 @@ import {PageInfo} from '../../../models/page-info.model';
 import {BugsServices} from '../../../services/bugs.services';
 import {BugModel, Tags} from '../../../models/bug.model';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -12,8 +13,9 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 
 export class BugsCreateComponent {
-  constructor(private _service: BugsServices) {
-    this.getTags();
+  constructor(private _service: BugsServices,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   pageInfo: PageInfo = {
@@ -29,13 +31,19 @@ export class BugsCreateComponent {
     'summary': new FormControl(),
     'description': new FormControl()
   });
-  tags: Tags;
-  tagsArray: string[] = [];
-  tag = 'Select tag';
+
+  priorities: string[] = [
+    'text',
+    'warning',
+    'error',
+    'critical'
+  ];
+
+  priority = 'Select one';
+
   private newBug = {
     summary: '',
-    description: '',
-    tags: []
+    description: ''
   };
 
   search(event) {
@@ -50,8 +58,7 @@ export class BugsCreateComponent {
   create() {
     this.newBug = {
       summary: this.newBugForm.value.summary,
-      description: this.newBugForm.value.description,
-      tags: [this.tag]
+      description: this.newBugForm.value.description
     };
     this._service.create(this.newBug).then(res => {
       console.log(res);
@@ -59,23 +66,10 @@ export class BugsCreateComponent {
       console.error(err);
     })
   }
-
+  cancel() {
+    this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+  }
   setTag(event) {
-    this.tag = event;
-  }
-
-  private getTags() {
-    this._service.getTags().then(res => {
-      this.tags = res;
-      this.createTagsArray();
-    }).catch(err => {
-      console.error(err);
-    })
-  }
-
-  private createTagsArray(): void {
-    this.tagsArray = this.tags.tags.map(el => {
-      return el.name;
-    });
+    this.priority = event;
   }
 }

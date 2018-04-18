@@ -15,6 +15,7 @@
     flex-flow: column
     justify-content: space-around
     height: 75%
+    font-size: rem(13)
     &_new_bug_button
       background: $success
       display: flex
@@ -33,7 +34,7 @@
       flex-flow: column
       justify-content: flex-start
       width: 30%
-      height: 75%
+      height: 85%
     &_container
       display: flex
       flex-flow: column
@@ -46,10 +47,16 @@
       flex-flow: column
       justify-content: space-between
       height: 80%
-      width: 90%
+      width: 100%
+      h4
+        align-self: center
+        width: 90%
     &_item
       display: flex
       flex-flow: row
+      padding-left: 5%
+      &:nth-child(2)
+        margin-bottom: 10px
       &_title
         display: flex
         flex-flow: column
@@ -69,6 +76,8 @@
       &_wrap
         display: flex
         flex-flow: row wrap
+        align-self: center
+        width: 90%
         height: 35px
       &_input
         flex: 1 1 auto
@@ -96,7 +105,8 @@
       display: flex
       flex-flow: column
       justify-content: center
-
+.current_item
+  border-left: 2px solid $accent
 .current_title
   color: $accent
 

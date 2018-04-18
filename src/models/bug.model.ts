@@ -22,6 +22,7 @@ interface User {
 interface Status {
   name: string;
   is_closed: number;
+  issues: number
 }
 
 interface Tag {
@@ -45,4 +46,10 @@ interface Comments {
   id: number;
   comment: string;
   user: User;
+}
+
+export interface Statuses {
+  all: number;
+  my: number;
+  statuses: Status[];
 }

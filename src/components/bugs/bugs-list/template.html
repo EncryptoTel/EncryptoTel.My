@@ -1,5 +1,5 @@
 <div class="bug_list_wrap">
-  <bug-element *ngFor="let bug of bugs" [issue]="bug" (clickHandlerFallback)="getBug($event)"></bug-element>
+  <bug-element *ngFor="let bug of bugs" [issue]="bug" (clickHandlerFallback)="getBug($event)" (vote)="vote($event)"></bug-element>
   <div class="pagination">
     <button (click)="prevPage()"><</button>
     <span>{{page}} page</span>

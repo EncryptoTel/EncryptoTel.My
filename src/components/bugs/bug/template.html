@@ -9,7 +9,7 @@
         <span>{{details.votes}}</span>
         <span>votes</span>
       </div>
-      <button class="bug_body_votes_button">
+      <button class="bug_body_votes_button" [ngClass]="{'voted': details.vote_exists === 1}">
         Vote
       </button>
     </div>
