@@ -1,17 +1,30 @@
 import {Injectable} from '@angular/core';
 import {RequestServices} from './request.services';
+import {Bug, BugModel} from '../models/bug.model';
 
 @Injectable()
 export class BugsServices {
   constructor(private request: RequestServices) {
   }
 
+  filter = {
+    page: 1,
+    my: false,
+    status: 1,
+    q: ''
+  };
+  bugs: Bug[];
+
   getStatuses() {
     return this.request.get('issues/statuses', true);
   }
 
-  getBugs(page: number) {
-    return this.request.post('issues', {my: false, page: page}, true);
+  getBugs() {
+    this.request.post('issues', this.filter, true).then((res: BugModel) => {
+      this.bugs = res.issues;
+    }).catch(err => {
+      console.error(err);
+    });
   }
 
   getBug(id: object) {
@@ -36,5 +49,9 @@ export class BugsServices {
 
   vote(id: number) {
     return this.request.post('issues/vote', {issue_id: id}, true)
+  }
+
+  report(id: number) {
+    return this.request.post('issues/claim', {issue_id: id}, true);
   }
 }

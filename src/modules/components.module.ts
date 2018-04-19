@@ -17,6 +17,7 @@ import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.componen
 import {ChangeEmailComponent} from '../components/change-email/change-email/change-email.component';
 import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 import {BugComponent} from '../components/bugs/bug/bug.component';
+import {FeedbackComponent} from '../components/feedback/feedback.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import {BugComponent} from '../components/bugs/bug/bug.component';
     SettingsComponent,
     ChangeEmailComponent,
     ChangeEmailConfirmComponent,
-    BugComponent
+    BugComponent,
+    FeedbackComponent
   ],
   exports: [
     ElementsModule,
@@ -57,7 +59,8 @@ import {BugComponent} from '../components/bugs/bug/bug.component';
     BugsComponent,
     BugsCreateComponent,
     BugsListComponent,
-    BugComponent
+    BugComponent,
+    FeedbackComponent
   ]
 })
 export class ComponentsModule {}

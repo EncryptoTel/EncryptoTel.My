@@ -28,15 +28,29 @@ export class BugsComponent {
     statuses: []
   };
 
+  filter(value: string): void {
+    if (value === 'my') {
+      this._service.filter.my = true;
+    } else if (value === 'all') {
+      this._service.filter.my = false;
+    }
+    this._service.getBugs();
+  }
+
+  filterStatus(id: number): void {
+    this._service.filter.status = id;
+    this._service.getBugs();
+  }
+
+  onActivate(component): void {
+    component.title && component.title === 'Bugs Create' ? this.showButtonCreate = false : this.showButtonCreate = true;
+  }
+
   private getStatuses(): void {
     this._service.getStatuses().then((res: Statuses) => {
       this.statuses = res;
     }).catch(err => {
       console.error(err);
     })
-  }
-
-  onActivate(component): void {
-    component.title && component.title === 'Bugs Create' ? this.showButtonCreate = false : this.showButtonCreate = true;
   }
 }

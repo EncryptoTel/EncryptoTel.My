@@ -3,14 +3,19 @@ export interface BugModel {
 }
 
 export interface Bug {
-  comments: number;
+  claim_exists: number;
+  claims: number;
+  kind_id: number;
   votes: number;
+  vote_exists: number;
+  comments: number;
   id: number;
   description: string;
   user: User;
   status: Status;
   summary: string;
   tags: Tag[];
+  kind: number;
 }
 
 interface User {
@@ -22,7 +27,8 @@ interface User {
 interface Status {
   name: string;
   is_closed: number;
-  issues: number
+  issues: number;
+  id: number;
 }
 
 interface Tag {
@@ -34,6 +40,8 @@ export interface Tags {
 }
 
 export interface BugReview {
+  claim_exists: number;
+  claims: number;
   comments: Comments[];
   description: string;
   id: number;
@@ -41,7 +49,9 @@ export interface BugReview {
   summary: string;
   user: User;
   votes: number;
+  vote_exists: number;
 }
+
 interface Comments {
   id: number;
   comment: string;

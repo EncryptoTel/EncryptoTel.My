@@ -33,17 +33,18 @@ export class BugsCreateComponent {
   });
 
   priorities: string[] = [
-    'text',
-    'warning',
-    'error',
-    'critical'
+    'Fault - non-service related fault, such as spelling mistake, text error etc',
+    'Minor - non-critical error, that does not significantly affect the service',
+    'Major - significant error leading to service malfunction',
+    'Critical - error leading to service stop'
   ];
 
   priority = 'Select one';
 
   private newBug = {
     summary: '',
-    description: ''
+    description: '',
+    kind: 1
   };
 
   search(event) {
@@ -58,10 +59,11 @@ export class BugsCreateComponent {
   create() {
     this.newBug = {
       summary: this.newBugForm.value.summary,
-      description: this.newBugForm.value.description
+      description: this.newBugForm.value.description,
+      kind: 1
     };
-    this._service.create(this.newBug).then(res => {
-      console.log(res);
+    this._service.create(this.newBug).then(() => {
+      this.router.navigate(['../'], {relativeTo: this.activatedRoute})
     }).catch(err => {
       console.error(err);
     })

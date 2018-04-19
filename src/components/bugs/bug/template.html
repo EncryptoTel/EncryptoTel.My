@@ -9,7 +9,7 @@
         <span>{{details.votes}}</span>
         <span>votes</span>
       </div>
-      <button class="bug_body_votes_button" [ngClass]="{'voted': details.vote_exists === 1}">
+      <button class="bug_body_votes_button" [ngClass]="{'voted': details.vote_exists === 1}" (click)="vote()">
         Vote
       </button>
     </div>
@@ -22,7 +22,7 @@
         </div>
         <p>{{details.user.email}} shared this bug</p>
         <p>Mar 18, 2018</p>
-        <p>Flag idea as inappropriate...</p>
+        <p [ngClass]="{'reported': details.claim_exists === 1}" (click)="report()">{{formatClaims()}} Flag idea as inappropriate...</p>
       </div>
     </div>
   </div>

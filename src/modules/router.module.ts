@@ -18,6 +18,7 @@ import {SettingsComponent} from '../components/settings/settings.component';
 import {ChangeEmailComponent} from '../components/change-email/change-email/change-email.component';
 import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 import {BugComponent} from '../components/bugs/bug/bug.component';
+import {FeedbackComponent} from '../components/feedback/feedback.component';
 
 const Routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
@@ -27,6 +28,7 @@ const Routes: Routes = [
   {path: 'bugs', component: BugsComponent, canActivate: [AuthGuardServices], children: [
       {path: '', component: BugsListComponent, canActivate: [AuthGuardServices]},
       {path: 'filing', component: BugsCreateComponent, pathMatch: 'full', canActivate: [AuthGuardServices]},
+      {path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuardServices]},
       {path: ':id', component: BugComponent, canActivate: [AuthGuardServices]}
     ]},
   {path: 'bonuses', component: BonusesComponent, canActivate: [AuthGuardServices]},

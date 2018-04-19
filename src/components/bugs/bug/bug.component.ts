@@ -22,7 +22,9 @@ export class BugComponent {
     id: 0,
     status: {
       name: '',
-      is_closed: 0
+      is_closed: 0,
+      issues: 0,
+      id: 0
     },
     summary: '',
     user: {
@@ -30,7 +32,10 @@ export class BugComponent {
       deleted_at: '',
       hash: ''
     },
-    votes: 0
+    votes: 0,
+    vote_exists: 0,
+    claims: 0,
+    claim_exists: 0
   };
 
   getBag(): void {
@@ -43,11 +48,37 @@ export class BugComponent {
 
   postComment(commentField): void {
     console.log(commentField.value);
-    this._service.postComment({issue_id: this.id, comment: commentField.value}).then(res => {
+    this._service.postComment({issue_id: this.id, comment: commentField.value}).then(() => {
       this.getBag();
       commentField.value = null;
     }).catch(err => {
       console.error(err);
     })
+  }
+
+  formatClaims() {
+    if (this.details.claims !== 0) {
+      return this.details.claims
+    }
+  }
+
+  report(): void {
+    if (this.details.claim_exists === 0) {
+      this._service.report(this.details.id).then(() => {
+        this.getBag();
+      }).catch(err => {
+        console.error(err);
+      })
+    }
+  }
+
+  vote(): void {
+    if (this.details.vote_exists === 0) {
+      this._service.vote(this.details.id).then(() => {
+        this.getBag();
+      }).catch(err => {
+        console.error(err);
+      })
+    }
   }
 }

@@ -1,0 +1,12 @@
+<loader-element *ngIf="loading"></loader-element>
+<div class="feedback_create_wrap" *ngIf="!loading">
+  <form [formGroup]="newBugForm" class="feedback_create_form">
+    <p>Give feedback</p>
+    <input type="text" placeholder="Title" formControlName="summary">
+    <textarea placeholder="Describe your message ..." formControlName="description"></textarea>
+    <div class="feedback_create_form_controls">
+      <input type="reset" value="Cancel" (click)="cancel()">
+      <input type="submit" value="Post" (click)="create()">
+    </div>
+  </form>
+</div>

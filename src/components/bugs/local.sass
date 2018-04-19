@@ -55,6 +55,7 @@
       display: flex
       flex-flow: row
       padding-left: 5%
+      cursor: pointer
       &:nth-child(2)
         margin-bottom: 10px
       &_title
@@ -91,6 +92,9 @@
         border: none
         background: #7B7B7B
         cursor: pointer
+        &_wrap
+          cursor: pointer
+          position: relative
   &_feedback_wrap
     display: flex
     flex-flow: column
@@ -105,13 +109,21 @@
       display: flex
       flex-flow: column
       justify-content: center
+
 .current_item
   border-left: 2px solid $accent
+
 .current_title
   color: $accent
 
 .current_couter
   background: $accent
 
+.search_icon
+  position: absolute
+  width: 70%
+  height: 70%
+  right: 15%
+  top: 15%
 
 

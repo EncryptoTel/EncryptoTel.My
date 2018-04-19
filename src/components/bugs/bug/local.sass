@@ -68,6 +68,8 @@
           &::after, &::before
             content: '•'
             padding: 0 5px
+        & p:nth-child(4)
+          cursor: pointer
   &_response
     display: flex
     flex-flow: row
@@ -172,3 +174,24 @@ img
 .voted
   background: $success
   color: $background
+
+.reported
+  color: $error
+
+.new
+  background: #4995fd
+
+.planned
+  background: #ffa44a
+
+.in_progress
+  background: #41d070
+
+.known_issue
+  background: #f25757
+
+.closed
+  background: #898888
+
+.fixed
+  background: #8756fc

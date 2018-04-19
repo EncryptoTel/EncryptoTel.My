@@ -1,0 +1,39 @@
+@import '../../vars'
+
+.feedback_create
+  &_wrap
+    display: flex
+    flex-flow: column
+  &_form
+    display: flex
+    flex-flow: column
+    height: 50%
+    margin-bottom: 5%
+    p
+      font-weight: 600
+      margin-bottom: 15px
+    input
+      margin-bottom: 10px
+    textarea
+      height: 135px
+      margin: 10px 0
+    &_controls
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      input
+        cursor: pointer
+        border: none
+        display: flex
+        flex-flow: row
+        justify-content: center
+        align-items: center
+        width: 75px
+        height: 30px
+        margin-bottom: 10px
+        &:first-child
+          margin-right: 15px
+      input[type='submit']
+        background: $success
+        color: $background
+        border-radius: 5px

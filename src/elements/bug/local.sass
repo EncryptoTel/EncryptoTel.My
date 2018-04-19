@@ -57,13 +57,32 @@
           display: flex
           flex-flow: row
           justify-content: space-between
+          cursor: pointer
           &::before
             content: '•'
             padding: 0 5px
 
+.new
+  background: #4995fd
+
+.planned
+  background: #ffa44a
+
+.in_progress
+  background: #41d070
+
+.known_issue
+  background: #f25757
+
+.closed
+  background: #898888
+
 .fixed
-  background: #804AFF
+  background: #8756fc
 
 .voted
   background: $success
   color: $background
+
+.reported
+  color: $error
