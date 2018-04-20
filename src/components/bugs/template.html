@@ -1,30 +1,30 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
 <loader-element *ngIf="loading"></loader-element>
-<div class="container" *ngIf="!loading">
+<div class="container" *ngIf="!loading" [@Fade]>
   <div class="bugs">
     <router-outlet (activate)="onActivate($event)"></router-outlet>
     <div class="bugs_category_wrap">
-      <a routerLink="filing" class="bugs_category_new_bug_button" *ngIf="showButtonCreate">Filing a new Bug</a>
+      <a routerLink="filing" class="bugs_category_new_bug_button" *ngIf="showButtonCreate" [@Fade]>Filing a new Bug</a>
       <div class="bugs_category_container">
         <div class="bugs_category_body">
           <h4>Encryptotel: Bugs</h4>
           <div class="bugs_category">
-            <div class="bugs_category_item" (click)="filter('all')">
-              <div class="bugs_category_item_title current_title">All bugs</div>
-              <div class="bugs_category_item_counter current_couter">{{statuses.all}}</div>
+            <div class="bugs_category_item" [ngClass]="{'current_item': (_service.filter.status === '' && _service.filter.my === false)}" (click)="filter('all')">
+              <div class="bugs_category_item_title">All bugs</div>
+              <div class="bugs_category_item_counter">{{statuses.all}}</div>
             </div>
-            <div class="bugs_category_item" (click)="filter('my')">
+            <div class="bugs_category_item" [ngClass]="{'current_item': (_service.filter.status === '' && _service.filter.my === true)}" (click)="filter('my')">
               <div class="bugs_category_item_title">My Topic</div>
               <div class="bugs_category_item_counter">{{statuses.my}}</div>
             </div>
-            <div class="bugs_category_item" *ngFor="let status of statuses.statuses" (click)="filterStatus(status.id)">
+            <div class="bugs_category_item" [ngClass]="{'current_item': status.id === _service.filter.status}" *ngFor="let status of statuses.statuses" (click)="filter(status.id)">
               <div class="bugs_category_item_title">{{status.name}}</div>
               <div class="bugs_category_item_counter">{{status.issues}}</div>
             </div>
           </div>
           <div class="bugs_category_search_wrap">
-            <input type="search" placeholder="Search" class="bugs_category_search_input">
-            <div class="bugs_category_search_button_wrap">
+            <input type="search" placeholder="Search" class="bugs_category_search_input" #searchField>
+            <div class="bugs_category_search_button_wrap" (click)="search(searchField)">
               <input type="button" class="bugs_category_search_button">
               <svg-icon src="../../assets/icons/search.svg" class="search_icon"></svg-icon>
             </div>

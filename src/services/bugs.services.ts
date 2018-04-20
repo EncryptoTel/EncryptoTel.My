@@ -10,18 +10,21 @@ export class BugsServices {
   filter = {
     page: 1,
     my: false,
-    status: 1,
+    status: '',
     q: ''
   };
   bugs: Bug[];
+  listLoading = true;
 
   getStatuses() {
     return this.request.get('issues/statuses', true);
   }
 
   getBugs() {
+    this.listLoading = true;
     this.request.post('issues', this.filter, true).then((res: BugModel) => {
       this.bugs = res.issues;
+      this.listLoading = false;
     }).catch(err => {
       console.error(err);
     });

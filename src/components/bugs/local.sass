@@ -10,6 +10,7 @@
   justify-content: space-between
   align-items: flex-start
   height: 100%
+  width: 90%
   &_category
     display: flex
     flex-flow: column
@@ -25,7 +26,7 @@
       color: $background
       padding: 0
       border: none
-      height: 55px
+      height: 50px
       border-radius: 5px
       cursor: pointer
       margin-bottom: 15px
@@ -33,20 +34,20 @@
       display: flex
       flex-flow: column
       justify-content: flex-start
-      width: 30%
-      height: 85%
+      width: 32%
+      height: 95%
     &_container
       display: flex
       flex-flow: column
       justify-content: center
       align-items: center
-      border: 1px solid #7B7B7B
+      border: 1px solid $gray
       height: 70%
     &_body
       display: flex
       flex-flow: column
       justify-content: space-between
-      height: 80%
+      height: 85%
       width: 100%
       h4
         align-self: center
@@ -56,6 +57,7 @@
       flex-flow: row
       padding-left: 5%
       cursor: pointer
+      position: relative
       &:nth-child(2)
         margin-bottom: 10px
       &_title
@@ -64,7 +66,7 @@
         justify-content: center
         align-items: center
       &_counter
-        background: #7B7B7B
+        background: $gray
         border-radius: 15px
         color: #fff
         padding: 5px 10px
@@ -83,14 +85,14 @@
       &_input
         flex: 1 1 auto
         height: 100%
-        border: 1px solid #7B7B7B
+        border: 1px solid $gray
         padding: 7px
       &_button
         width: 35px
         height: 100%
         padding: 0
         border: none
-        background: #7B7B7B
+        background: $gray
         cursor: pointer
         &_wrap
           cursor: pointer
@@ -100,7 +102,7 @@
     flex-flow: column
     justify-content: center
     align-items: center
-    border: 1px solid #7B7B7B
+    border: 1px solid $gray
     height: 65px
     margin-top: 15px
     a
@@ -111,19 +113,23 @@
       justify-content: center
 
 .current_item
-  border-left: 2px solid $accent
-
-.current_title
-  color: $accent
-
-.current_couter
-  background: $accent
+  &::before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    height: 100%
+    border-left: 2px solid $accent
+  & > div:first-child
+    color: $accent
+  & > div:last-child
+    background: $accent
 
 .search_icon
   position: absolute
-  width: 70%
-  height: 70%
-  right: 15%
-  top: 15%
+  width: 64%
+  height: 64%
+  right: 18%
+  top: 18%
 
 

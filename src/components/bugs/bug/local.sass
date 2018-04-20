@@ -25,27 +25,28 @@
       flex-flow: column
       justify-content: space-between
       width: 100px
-      height: 90px
+      height: 100px
       &_counter
         background: #F8F8F8
-        height: 70%
+        height: 65%
         display: flex
         flex-flow: column
         justify-content: center
         align-items: center
-        border: 1px solid #c5c5c5
+        border: 1px solid $dark_gray
+        user-select: none
         & > span:first-child
           font-size: rem(18)
           margin-bottom: 5px
       &_button
-        height: 25%
+        height: 30%
         display: flex
         flex-flow: column
         justify-content: center
         align-items: center
         background: #E5E5E5
+        border: none
         cursor: pointer
-        border: 1px solid #c5c5c5
     &_description
       display: flex
       flex-flow: column
@@ -54,7 +55,10 @@
       h4
         font-weight: 600
       h4, > p
-        margin-bottom: 10px
+        margin-bottom: 15px
+      p
+        font-size: 0.92rem
+        line-height: 1.1
       &_author
         display: flex
         flex-flow: row

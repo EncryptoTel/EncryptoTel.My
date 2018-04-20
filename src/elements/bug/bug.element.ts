@@ -32,8 +32,8 @@ export class BugElement {
   }
 
   formatClaims() {
-    if (this.issue.claims !== 0) {
-      return this.issue.claims;
+    if (this.issue.claim_exists !== 0) {
+      return this.issue.claims_count;
     }
   }
 }

@@ -4,12 +4,14 @@ import {BugsServices} from '../../../services/bugs.services';
 import {BugModel, Tags} from '../../../models/bug.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FadeAnimation} from '../../../shared/functions';
 
 
 @Component({
   selector: 'bugs-create-component',
   templateUrl: './template.html',
-  styleUrls: ['./local.sass']
+  styleUrls: ['./local.sass'],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class BugsCreateComponent {
@@ -28,8 +30,8 @@ export class BugsCreateComponent {
     issues: []
   };
   newBugForm: FormGroup = new FormGroup({
-    'summary': new FormControl(null, Validators.minLength(5)),
-    'description': new FormControl(null, Validators.minLength(10))
+    'summary': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
+    'description': new FormControl(null, [Validators.required, Validators.minLength(10)])
   });
 
   priorities: string[] = [
@@ -40,7 +42,8 @@ export class BugsCreateComponent {
   ];
 
   priority = 'Select one';
-
+  loading = false;
+  isSendedRequest = false;
   private newBug = {
     summary: '',
     description: '',
@@ -49,21 +52,34 @@ export class BugsCreateComponent {
 
   search(event) {
     const title = event.target.value;
-    this._service.search(title).then((res: BugModel) => {
-      this.similarBugs = res;
-    }).catch(err => {
-      console.error(err);
-    })
+    if (title === '' || title === null || title === undefined) {
+      this.similarBugs = {
+        issues: []
+      }
+    } else {
+      this.loading = true;
+      this._service.search(title).then((res: BugModel) => {
+        this.similarBugs = res;
+        this.loading = false;
+      }).catch(err => {
+        console.error(err);
+      })
+    }
   }
 
   create() {
     if (this.newBugForm.valid) {
+      this.similarBugs = {
+        issues: []
+      };
+      this.isSendedRequest = true;
       this.newBug = {
         summary: this.newBugForm.value.summary,
         description: this.newBugForm.value.description,
         kind: 1
       };
       this._service.create(this.newBug).then(() => {
+        this.isSendedRequest = false;
         this.router.navigate(['../'], {relativeTo: this.activatedRoute})
       }).catch(err => {
         console.error(err);

@@ -1,4 +1,5 @@
-<div class="bug_list_wrap">
+<loader-element *ngIf="_service.listLoading"></loader-element>
+<div class="bug_list_wrap" *ngIf="!_service.listLoading" [@Fade]>
   <bug-element *ngFor="let bug of _service.bugs" [issue]="bug" (clickHandlerFallback)="getBug($event)" (vote)="vote($event)" (report)="report($event)"></bug-element>
   <div class="pagination" *ngIf="paginationControl()">
     <button (click)="prevPage()"><</button>

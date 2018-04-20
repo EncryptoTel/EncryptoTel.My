@@ -2,12 +2,14 @@ import {Component} from '@angular/core';
 import {PageInfo} from '../../../models/page-info.model';
 import {BugsServices} from '../../../services/bugs.services';
 import {Router} from '@angular/router';
+import {FadeAnimation} from '../../../shared/functions';
 
 
 @Component({
   selector: 'bugs-list-component',
   templateUrl: './template.html',
-  styleUrls: ['./local.sass']
+  styleUrls: ['./local.sass'],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class BugsListComponent {

@@ -9,14 +9,18 @@
     flex-flow: column
     height: 50%
     margin-bottom: 5%
+    .input_wrapper
+      position: relative
+      margin-bottom: 25px
+    select-element
+      margin-bottom: 20px
     p
       font-weight: 600
       margin-bottom: 15px
-    input
-      margin-bottom: 10px
     textarea
       height: 135px
-      margin: 10px 0
+      &:focus
+        outline: none
     &_controls
       display: flex
       flex-flow: row
@@ -37,3 +41,13 @@
         background: $success
         color: $background
         border-radius: 5px
+
+.alert_message
+  color: $error
+  position: absolute
+  bottom: -20px
+  left: 15px
+  font-size: 0.85rem
+
+.ng-touched.ng-invalid:not(form)
+  border: 1px solid $error

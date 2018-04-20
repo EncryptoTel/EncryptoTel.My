@@ -4,31 +4,30 @@ export interface BugModel {
 
 export interface Bug {
   claim_exists: number;
-  claims: number;
-  kind_id: number;
-  votes: number;
-  vote_exists: number;
-  comments: number;
-  id: number;
+  claims_count: number;
+  comments_count: number;
   description: string;
-  user: User;
+  id: number;
+  kind_id: number;
+  priority: Priority;
   status: Status;
   summary: string;
-  tags: Tag[];
-  kind: number;
+  user: User;
+  vote_exists: number;
+  votes_count: number;
 }
 
 interface User {
   email: string;
-  deleted_at: string;
+  is_admin: number;
   hash: string;
 }
 
 interface Status {
-  name: string;
-  is_closed: number;
-  issues: number;
   id: number;
+  is_closed: number;
+  name: string;
+  issues?: number;
 }
 
 interface Tag {
@@ -41,20 +40,25 @@ export interface Tags {
 
 export interface BugReview {
   claim_exists: number;
-  claims: number;
+  claims_count: number;
   comments: Comments[];
   description: string;
   id: number;
+  kind_id: number;
+  priority: Priority;
   status: Status;
   summary: string;
   user: User;
-  votes: number;
   vote_exists: number;
+  votes_count: number;
 }
 
 interface Comments {
-  id: number;
+  claim_exists: number;
+  claims: number;
   comment: string;
+  id: number;
+  status: null;
   user: User;
 }
 
@@ -62,4 +66,8 @@ export interface Statuses {
   all: number;
   my: number;
   statuses: Status[];
+}
+
+export interface Priority {
+  name: string;
 }

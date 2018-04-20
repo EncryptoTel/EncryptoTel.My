@@ -1,4 +1,4 @@
-<div class="bugs_create_wrap">
+<div class="bugs_create_wrap" [@Fade]>
   <div class="bugs_create_rules">
     <p>When filling new bug, please provide:</p>
     <div class="bugs_create_rules_items">
@@ -12,15 +12,23 @@
   </div>
   <form [formGroup]="newBugForm" class="bugs_create_form">
     <p>Bug details</p>
-    <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary">
+    <div class="input_wrapper">
+      <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus>
+      <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
+    </div>
     <select-element [values]="priorities" [currentValue]="priority" (getValue)="setTag($event)"></select-element>
-    <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
-    <div class="bugs_create_form_controls">
+    <div class="input_wrapper">
+      <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
+      <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>
+    </div>
+    <div class="bugs_create_form_controls" *ngIf="!isSendedRequest">
       <input type="reset" value="Cancel" (click)="cancel()">
       <input type="submit" value="Post" (click)="create()">
     </div>
+    <loader-element *ngIf="isSendedRequest"></loader-element>
   </form>
-  <div class="bugs_create_similar">
+  <loader-element *ngIf="loading"></loader-element>
+  <div class="bugs_create_similar" *ngIf="!loading" [@Fade]>
     <!--<p>~ No similar bugs found ~</p>-->
     <bug-element *ngFor="let bug of similarBugs.issues" [issue]="bug"></bug-element>
   </div>

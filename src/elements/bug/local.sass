@@ -11,26 +11,26 @@
       flex-flow: column
       justify-content: space-between
       width: 100px
-      height: 90px
       &_counter
-        background: #F8F8F8
-        height: 70%
+        background: $light_gray
+        height: 65%
         display: flex
         flex-flow: column
         justify-content: center
         align-items: center
-        border: 1px solid #c5c5c5
+        border: 1px solid $dark_gray
+        user-select: none
         & > span:first-child
           font-size: rem(18)
           margin-bottom: 5px
       &_button
-        height: 25%
+        height: 30%
         display: flex
         flex-flow: column
         justify-content: center
         align-items: center
         background: #E5E5E5
-        border: 1px solid #c5c5c5
+        border: none
         cursor: pointer
     &_description
       display: flex
@@ -40,27 +40,46 @@
       &_title
         font-weight: 600
         cursor: pointer
+      &_body
+        overflow: hidden
+        margin: 10px 0
+        flex: 1
+        font-size: 0.92rem
+        line-height: 1.1
       &_footer
         display: flex
         flex-flow: row
         justify-content: flex-start
         align-items: center
-        & > div
-          margin-right: 15px
+        & > div:not(:nth-child(2))
+          margin-right: 16px
+        &_comments
+          font-size: 0.92rem
+          user-select: none
+          margin-right: 0
         &_tag
           border-radius: 20px
           padding: 5px 15px
           text-transform: uppercase
           color: $background
           text-align: center
+          cursor: pointer
         &_report
           display: flex
           flex-flow: row
           justify-content: space-between
           cursor: pointer
+          font-size: 0.92rem
           &::before
             content: '•'
-            padding: 0 5px
+            padding: 0 8px
+
+.voted
+  background: $success
+  color: $background
+
+.reported
+  color: $error
 
 .new
   background: #4995fd
@@ -80,9 +99,4 @@
 .fixed
   background: #8756fc
 
-.voted
-  background: $success
-  color: $background
 
-.reported
-  color: $error

@@ -1,18 +1,19 @@
 <div class="bug_list_item">
   <div class="bug_list_item_vote">
     <div class="bug_list_item_vote_counter">
-      <span>{{issue.votes}}</span>
+      <span>{{issue.votes_count}}</span>
       <span>votes</span>
     </div>
     <button class="bug_list_item_vote_button" [ngClass]="{'voted': issue.vote_exists === 1}" (click)="voteHandler()">Vote</button>
   </div>
   <div class="bug_list_item_description">
     <div class="bug_list_item_description_title" (click)="getBug()">{{issue.summary}}</div>
-    <div class="bug_list_item_description_body">{{issue.description}}
+    <div class="bug_list_item_description_body">
+      {{issue.description}}
     </div>
     <div class="bug_list_item_description_footer">
       <div class="bug_list_item_description_footer_tag fixed">{{issue.status.name}}</div>
-      <div class="bug_list_item_description_footer_comments">{{issue.comments}} comments</div>
+      <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} comments</div>
       <div class="bug_list_item_description_footer_report" (click)="reportHandler()" [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...</div>
     </div>
   </div>

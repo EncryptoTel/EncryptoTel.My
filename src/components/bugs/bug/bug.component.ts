@@ -2,11 +2,13 @@ import {Component} from '@angular/core';
 import {BugsServices} from '../../../services/bugs.services';
 import {ActivatedRoute} from '@angular/router';
 import {BugReview} from '../../../models/bug.model';
+import {FadeAnimation} from '../../../shared/functions';
 
 @Component({
   selector: 'bug-component',
   templateUrl: './template.html',
-  styleUrls: ['./local.sass']
+  styleUrls: ['./local.sass'],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class BugComponent {
@@ -17,9 +19,15 @@ export class BugComponent {
 
   id = this.activatedRoute.snapshot.params.id;
   details: BugReview = {
+    claim_exists: 0,
+    claims_count: 0,
     comments: [],
     description: '',
     id: 0,
+    kind_id: 1,
+    priority: {
+      name: ''
+    },
     status: {
       name: '',
       is_closed: 0,
@@ -29,18 +37,20 @@ export class BugComponent {
     summary: '',
     user: {
       email: '',
-      deleted_at: '',
+      is_admin: 0,
       hash: ''
     },
-    votes: 0,
     vote_exists: 0,
-    claims: 0,
-    claim_exists: 0
+    votes_count: 0
   };
+  loading = false
+  ;
 
   getBag(): void {
+    this.loading = true;
     this._service.getBug({id: this.id}).then((res: BugReview) => {
       this.details = res;
+      this.loading = false;
     }).catch(err => {
       console.error(err);
     })
@@ -56,9 +66,9 @@ export class BugComponent {
     })
   }
 
-  formatClaims() {
-    if (this.details.claims !== 0) {
-      return this.details.claims
+  formatClaims(item) {
+    if (item.claims_count !== 0) {
+      return item.claims_count
     }
   }
 
@@ -72,13 +82,14 @@ export class BugComponent {
     }
   }
 
-  reportComment(id: number): void {
-    console.log(id);
-    this._service.reportComment(id).then(() => {
-      this.getBag();
-    }).catch(err => {
-      console.error(err);
-    })
+  reportComment(comment): void {
+    if (comment.claim_exists === 0) {
+      this._service.reportComment(comment.id).then(() => {
+        this.getBag();
+      }).catch(err => {
+        console.error(err);
+      })
+    }
   }
 
   vote(): void {

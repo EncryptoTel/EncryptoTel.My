@@ -1,4 +1,5 @@
-<div class="bug">
+<loader-element *ngIf="loading"></loader-element>
+<div class="bug" *ngIf="!loading" [@Fade]>
   <div class="bug_header">
     <h3>Bug details</h3>
     <a routerLink="/bugs">Encryptotel: Bug Requests</a>
@@ -6,7 +7,7 @@
   <div class="bug_body">
     <div class="bug_body_votes">
       <div class="bug_body_votes_counter">
-        <span>{{details.votes}}</span>
+        <span>{{details.votes_count}}</span>
         <span>votes</span>
       </div>
       <button class="bug_body_votes_button" [ngClass]="{'voted': details.vote_exists === 1}" (click)="vote()">
@@ -22,7 +23,8 @@
         </div>
         <p>{{details.user.email}} shared this bug</p>
         <p>Mar 18, 2018</p>
-        <p [ngClass]="{'reported': details.claim_exists === 1}" (click)="report()">{{formatClaims()}} Flag idea as inappropriate...</p>
+        <p [ngClass]="{'reported': details.claim_exists === 1}" (click)="report()">{{formatClaims(details)}} Flag idea
+          as inappropriate...</p>
       </div>
     </div>
   </div>
@@ -62,7 +64,10 @@
         <div class="bug_comments_item_author">
           <p>{{comment.user.email}}</p>
           <p>March 26,2018 12:16 PM</p>
-          <p (click)="reportComment(comment.id)">Flag as inappropriate</p>
+          <p (click)="reportComment(comment)"
+             [ngClass]="{'reported': details.claim_exists === 1}">
+            {{formatClaims(comment)}} Flag as inappropriate
+          </p>
         </div>
         <div class="bug_comments_item_comment">
           <p>{{comment.comment}}</p>

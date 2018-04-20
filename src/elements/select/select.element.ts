@@ -1,9 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {FadeAnimation} from '../../shared/functions';
 
 @Component({
   selector: 'select-element',
   templateUrl: './template.html',
-  styleUrls: ['./local.sass']
+  styleUrls: ['./local.sass'],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class SelectElement {
