@@ -54,4 +54,8 @@ export class BugsServices {
   report(id: number) {
     return this.request.post('issues/claim', {issue_id: id}, true);
   }
+
+  reportComment(id: number) {
+    return this.request.post('issues/comment/claim', {comment_id: id}, true);
+  }
 }

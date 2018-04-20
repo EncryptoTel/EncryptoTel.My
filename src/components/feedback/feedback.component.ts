@@ -27,8 +27,8 @@ export class FeedbackComponent {
       description: this.newBugForm.value.description,
       kind: 2
     };
-    this._service.create(feedback).then(res => {
-      console.log(res);
+    this._service.create(feedback).then(() => {
+      this.router.navigate(['../'], {relativeTo: this.activatedRoute})
     }).catch(err => {
       console.error(err);
     })

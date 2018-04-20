@@ -62,7 +62,7 @@
         <div class="bug_comments_item_author">
           <p>{{comment.user.email}}</p>
           <p>March 26,2018 12:16 PM</p>
-          <p>Flag as inappropriate</p>
+          <p (click)="reportComment(comment.id)">Flag as inappropriate</p>
         </div>
         <div class="bug_comments_item_comment">
           <p>{{comment.comment}}</p>

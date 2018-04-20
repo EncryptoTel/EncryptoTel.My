@@ -72,6 +72,15 @@ export class BugComponent {
     }
   }
 
+  reportComment(id: number): void {
+    console.log(id);
+    this._service.reportComment(id).then(() => {
+      this.getBag();
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
   vote(): void {
     if (this.details.vote_exists === 0) {
       this._service.vote(this.details.id).then(() => {

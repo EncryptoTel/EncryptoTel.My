@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {PageInfo} from '../../../models/page-info.model';
 import {BugsServices} from '../../../services/bugs.services';
 import {BugModel, Tags} from '../../../models/bug.model';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
 
@@ -28,8 +28,8 @@ export class BugsCreateComponent {
     issues: []
   };
   newBugForm: FormGroup = new FormGroup({
-    'summary': new FormControl(),
-    'description': new FormControl()
+    'summary': new FormControl(null, Validators.minLength(5)),
+    'description': new FormControl(null, Validators.minLength(10))
   });
 
   priorities: string[] = [
@@ -57,20 +57,24 @@ export class BugsCreateComponent {
   }
 
   create() {
-    this.newBug = {
-      summary: this.newBugForm.value.summary,
-      description: this.newBugForm.value.description,
-      kind: 1
-    };
-    this._service.create(this.newBug).then(() => {
-      this.router.navigate(['../'], {relativeTo: this.activatedRoute})
-    }).catch(err => {
-      console.error(err);
-    })
+    if (this.newBugForm.valid) {
+      this.newBug = {
+        summary: this.newBugForm.value.summary,
+        description: this.newBugForm.value.description,
+        kind: 1
+      };
+      this._service.create(this.newBug).then(() => {
+        this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+      }).catch(err => {
+        console.error(err);
+      })
+    }
   }
+
   cancel() {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute})
   }
+
   setTag(event) {
     this.priority = event;
   }
