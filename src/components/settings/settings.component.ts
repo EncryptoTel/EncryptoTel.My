@@ -126,7 +126,6 @@ export class SettingsComponent {
         this.loadersIcons.email = true;
         this.editStatus.email = false;
         this._service.changeEmail({email: email}).then(res => {
-          console.log(res);
           this.loadersIcons.email = false;
           this.popup.showSuccess(res.message);
         }).catch(err => {

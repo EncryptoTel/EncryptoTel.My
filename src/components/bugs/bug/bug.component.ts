@@ -57,7 +57,6 @@ export class BugComponent {
   }
 
   postComment(commentField): void {
-    console.log(commentField.value);
     this._service.postComment({issue_id: this.id, comment: commentField.value}).then(() => {
       this.getBag();
       commentField.value = null;
