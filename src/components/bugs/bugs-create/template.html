@@ -13,7 +13,7 @@
   <form [formGroup]="newBugForm" class="bugs_create_form">
     <p>Bug details</p>
     <div class="input_wrapper">
-      <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus>
+      <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus #searchField>
       <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
     </div>
     <select-element [values]="priorities" [currentValue]="priority" (getValue)="setTag($event)"></select-element>
@@ -30,6 +30,6 @@
   <loader-element *ngIf="loading"></loader-element>
   <div class="bugs_create_similar" *ngIf="!loading" [@Fade]>
     <!--<p>~ No similar bugs found ~</p>-->
-    <bug-element *ngFor="let bug of similarBugs.issues" [issue]="bug"></bug-element>
+    <bug-element *ngFor="let bug of similarBugs.issues" [issue]="bug" (vote)="vote($event,searchField)" (report)="report($event, searchField)" (clickHandlerFallback)="getBug($event)"></bug-element>
   </div>
 </div>

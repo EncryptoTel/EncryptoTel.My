@@ -61,7 +61,7 @@
         line-height: 1.1
       &_author
         display: flex
-        flex-flow: row
+        flex-flow: row wrap
         justify-content: flex-start
         align-items: center
         & > div
@@ -201,3 +201,55 @@ img
 
 .fixed
   background: #8756fc
+
+@media (max-width: 1023px)
+  .bug
+    &_body
+      &_votes
+        width: 15%
+        &_counter
+          & > span:first-child
+            font-size: rem(14)
+          & > span:last-child
+            font-size: rem(12)
+      &_description
+        width: 80%
+        &_author
+          flex-flow: column
+          justify-content: flex-start
+          align-items: flex-start
+          & > div
+            width: 13%
+          & > p
+            font-size: rem(12)
+          & > p, > p:nth-child(3)
+            margin: 5px 0 0 0
+    &_response
+      &_avatar
+        width: 15%
+        justify-content: flex-start
+        & > div
+          width: 100%
+      &_text
+        width: 80%
+      &_header
+        display: flex
+        flex-flow: column
+        align-items: flex-start
+        & > p
+          font-size: rem(12)
+        & p:nth-child(2)
+          margin: 5px 0
+    &_comments
+      &_item
+        &_avatar
+          width: 15%
+        &_body
+          width: 80%
+        &_author
+          flex-flow: column
+          margin-bottom: 15px
+          & > p
+            font-size: rem(12)
+          & p:nth-child(2)
+            margin: 5px 0

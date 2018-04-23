@@ -94,4 +94,30 @@ export class BugsCreateComponent {
   setTag(event) {
     this.priority = event;
   }
+
+  vote(event, searchField) {
+    this._service.vote(event).then(() => {
+      this._service.search(searchField.value).then((res: BugModel) => {
+        this.similarBugs = res;
+      }).catch(err => {
+        console.error(err);
+      });
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
+  report(event, searchField) {
+    this._service.report(event).then(() => {
+      this._service.search(searchField.value).then((res: BugModel) => {
+        this.similarBugs = res;
+      }).catch(err => {
+        console.error(err);
+      });
+    })
+  }
+
+  getBug(bug): void {
+    this.router.navigate(['bugs', bug.id])
+  }
 }

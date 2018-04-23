@@ -21,7 +21,6 @@ export class BugsServices {
   }
 
   getBugs() {
-    this.listLoading = true;
     this.request.post('issues', this.filter, true).then((res: BugModel) => {
       this.bugs = res.issues;
       this.listLoading = false;

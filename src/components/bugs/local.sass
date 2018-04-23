@@ -3,6 +3,9 @@
 .container
   height: 75%
   margin-top: 25px
+  display: flex
+  flex-flow: row
+  justify-content: center
 
 .bugs
   display: flex
@@ -131,5 +134,44 @@
   height: 64%
   right: 18%
   top: 18%
+
+@media (max-width: 1023px)
+  .bugs
+    flex-flow: column-reverse
+    width: 100%
+    &_category
+      flex-flow: row wrap
+      flex: 1
+      justify-content: space-between
+      &_wrap
+        width: 100%
+        flex: 1 1 330px
+        margin-bottom: 30px
+      &_container
+        flex: 1 1 auto
+      &_body
+        flex: 1
+        justify-content: space-around
+        h4
+          flex: 1
+          display: flex
+          flex-flow: column
+          justify-content: center
+      &_search
+        &_wrap
+          flex: 1
+          align-items: center
+        &_button_wrap
+          height: 100%
+      &_item
+        width: 45%
+        height: max-content
+        justify-content: space-between
+        &:nth-child(2)
+          margin-bottom: unset
+        &:nth-child(2n)
+          margin-right: 5%
+    &_feedback_wrap
+      display: none
 
 

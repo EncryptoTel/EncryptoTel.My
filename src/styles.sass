@@ -97,7 +97,7 @@ p,a
 
 main-view
   width: 100vw
-  height: 100vh
+  min-height: 100vh
   > *:not(header-element)
     height: calc(100% - 64px)
   sign-in-component, sign-up-component
@@ -248,6 +248,7 @@ bug-element
 @media (max-width: 1023px)
   .container
     width: 768px
+    padding: 0 16px
   .hidden_sm_down
     display: none
   .table
@@ -266,10 +267,13 @@ bug-element
       border-bottom: none !important
       background: transparent !important
 
+  bugs-list-component,bugs-create-component, bug-component
+    width: 100%
+
 @media (max-width: 767px)
   .container
     width: 100%
-    padding: 0 rem(32)
+    padding: 0 rem(16)
   .table
     &_column
       &_wrap
