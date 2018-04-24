@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {BugsServices} from '../../../services/bugs.services';
 import {ActivatedRoute} from '@angular/router';
-import {BugReview} from '../../../models/bug.model';
+import {BugReview, Comments} from '../../../models/bug.model';
 import {FadeAnimation} from '../../../shared/functions';
 
 @Component({
@@ -22,6 +22,7 @@ export class BugComponent {
     claim_exists: 0,
     claims_count: 0,
     comments: [],
+    created_at: '',
     description: '',
     id: 0,
     kind_id: 1,
@@ -43,32 +44,48 @@ export class BugComponent {
     vote_exists: 0,
     votes_count: 0
   };
-  loading = false
-  ;
+  loading = true;
+  showAllComments = false;
+  adminComments: Comments[] = [];
 
   getBag(): void {
-    this.loading = true;
     this._service.getBug({id: this.id}).then((res: BugReview) => {
       this.details = res;
+      this.getAdminComments();
       this.loading = false;
     }).catch(err => {
       console.error(err);
     })
   }
 
+  getAdminComments(): void {
+    this.details.comments.forEach(el => {
+      if (el.user.is_admin === 1) {
+        this.adminComments.push(el);
+      }
+    });
+    this.adminComments.reverse();
+  };
+
   postComment(commentField): void {
-    this._service.postComment({issue_id: this.id, comment: commentField.value}).then(() => {
-      this.getBag();
-      commentField.value = null;
-    }).catch(err => {
-      console.error(err);
-    })
+    if (this.validation(commentField)) {
+      this._service.postComment({issue_id: this.id, comment: commentField.value}).then(() => {
+        this.getBag();
+        commentField.value = null;
+      }).catch(err => {
+        console.error(err);
+      })
+    }
   }
 
-  formatClaims(item) {
+  formatClaims(item): number {
     if (item.claims_count !== 0) {
       return item.claims_count
     }
+  }
+
+  showAllAdminComments(): void {
+    this.showAllComments = true;
   }
 
   report(): void {
@@ -99,5 +116,33 @@ export class BugComponent {
         console.error(err);
       })
     }
+  }
+
+  setTagStyle(status: number): string {
+    switch (status) {
+      case (1):
+        return 'new';
+      case (2):
+        return 'planned';
+      case (3):
+        return 'in_progress';
+      case (4):
+        return 'done';
+      case (5):
+        return 'known_issue';
+      case (6):
+        return 'closed';
+      default:
+        return
+    }
+  }
+
+  validation(commentField): boolean {
+    const isValid = commentField.value.length > 10 && commentField.value.length < 255;
+    isValid ? commentField.classList.remove('invalid') : commentField.classList.add('invalid');
+    return isValid;
+  }
+  showAlert(commentField) {
+    commentField.classList.contains('invalid')
   }
 }

@@ -42,6 +42,7 @@ export interface BugReview {
   claim_exists: number;
   claims_count: number;
   comments: Comments[];
+  created_at: string;
   description: string;
   id: number;
   kind_id: number;
@@ -53,10 +54,11 @@ export interface BugReview {
   votes_count: number;
 }
 
-interface Comments {
+export interface Comments {
   claim_exists: number;
   claims: number;
   comment: string;
+  created_at: string;
   id: number;
   status: null;
   user: User;

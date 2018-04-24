@@ -12,7 +12,7 @@
       {{issue.description}}
     </div>
     <div class="bug_list_item_description_footer">
-      <div class="bug_list_item_description_footer_tag fixed">{{issue.status.name}}</div>
+      <div class="bug_list_item_description_footer_tag {{setTagStyle(issue.status.id)}}">{{issue.status.name}}</div>
       <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} comments</div>
       <div class="bug_list_item_description_footer_report" (click)="reportHandler()" [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...</div>
     </div>

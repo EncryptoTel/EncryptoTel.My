@@ -36,4 +36,22 @@ export class BugElement {
       return this.issue.claims_count;
     }
   }
+  setTagStyle(status: number): string {
+    switch (status) {
+      case (1):
+        return 'new';
+      case (2):
+        return 'planned';
+      case (3):
+        return 'in_progress';
+      case (4):
+        return 'done';
+      case (5):
+        return 'known_issue';
+      case (6):
+        return 'closed';
+      default:
+        return
+    }
+  }
 }

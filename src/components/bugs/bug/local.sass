@@ -51,9 +51,12 @@
       display: flex
       flex-flow: column
       justify-content: space-between
-      width: 82%
+      width: 80%
       h4
         font-weight: 600
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
       h4, > p
         margin-bottom: 15px
       p
@@ -78,7 +81,7 @@
     display: flex
     flex-flow: row
     justify-content: space-between
-    margin-bottom: 30px
+    margin-bottom: 10px
     &_avatar
       width: 15%
       display: flex
@@ -92,9 +95,11 @@
       width: 82%
     &_header
       display: flex
-      flex-flow: row
+      flex-flow: row wrap
       align-items: center
       margin-bottom: 10px
+      & p:not(:nth-child(1))
+        font-size: rem(12)
       & p:nth-child(2)
         margin: 0 2px
         &::after, &::before
@@ -123,6 +128,7 @@
       display: flex
       flex-flow: row
       justify-content: flex-end
+      position: relative
       input
         cursor: pointer
         border: none
@@ -141,21 +147,24 @@
     &_list
       display: flex
       flex-flow: column
+      padding-bottom: 35px
     &_item
       display: flex
       flex-flow: row
       justify-content: space-between
-      margin-bottom: 30px
       &_avatar
         width: 5%
       &_body
         display: flex
         flex-flow: column
         width: 92%
+        padding: 10px 0
       &_author
         display: flex
         flex-flow: row
         margin-bottom: 15px
+        & > p
+          font-size: rem(12)
         & p:nth-child(2)
           margin: 0 2px
           &::after, &::before
@@ -171,11 +180,20 @@
   color: $background
   text-align: center
 
-.feature-started
-  background: #E88C63
-
 img
   max-width: 100%
+
+textarea:focus
+  outline: none
+
+.invalid
+  border: 1px solid $error
+
+.alert_message
+  color: $error
+  position: absolute
+  top: 0
+  left: 15px
 
 .voted
   background: $success
@@ -193,14 +211,14 @@ img
 .in_progress
   background: #41d070
 
+.done
+  background: #8756fc
+
 .known_issue
   background: #f25757
 
 .closed
   background: #898888
-
-.fixed
-  background: #8756fc
 
 @media (max-width: 1023px)
   .bug
