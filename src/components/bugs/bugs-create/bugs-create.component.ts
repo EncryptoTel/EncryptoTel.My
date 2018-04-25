@@ -5,6 +5,7 @@ import {BugModel, Tags} from '../../../models/bug.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FadeAnimation} from '../../../shared/functions';
+import {PopupServices} from '../../../services/popup.services';
 
 
 @Component({
@@ -17,7 +18,8 @@ import {FadeAnimation} from '../../../shared/functions';
 export class BugsCreateComponent {
   constructor(private _service: BugsServices,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private popup: PopupServices) {
   }
 
   pageInfo: PageInfo = {
@@ -35,10 +37,10 @@ export class BugsCreateComponent {
   });
 
   priorities: string[] = [
-    'Fault - non-service related fault, such as spelling mistake, text error etc',
-    'Minor - non-critical error, that does not significantly affect the service',
-    'Major - significant error leading to service malfunction',
-    'Critical - error leading to service stop'
+    'Fault (non-service related fault, such as spelling mistake, text error etc)',
+    'Minor (non-critical error, that does not significantly affect the service)',
+    'Major (significant error leading to service malfunction)',
+    'Critical (error leading to service stop)'
   ];
 
   priority = 'Select one';
@@ -49,6 +51,7 @@ export class BugsCreateComponent {
     description: '',
     kind: 1
   };
+
 
   search(event) {
     const title = event.target.value;
@@ -68,6 +71,7 @@ export class BugsCreateComponent {
   }
 
   create() {
+
     if (this.newBugForm.valid) {
       this.similarBugs = {
         issues: []
@@ -80,6 +84,7 @@ export class BugsCreateComponent {
       };
       this._service.create(this.newBug).then(() => {
         this.isSendedRequest = false;
+        this.popup.showSuccess('Bug report created');
         this.router.navigate(['../'], {relativeTo: this.activatedRoute})
       }).catch(err => {
         console.error(err);

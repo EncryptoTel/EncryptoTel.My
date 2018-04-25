@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {RequestServices} from './request.services';
-import {Bug, BugModel} from '../models/bug.model';
+import {Bug, BugModel, Statuses} from '../models/bug.model';
 
 @Injectable()
 export class BugsServices {
-  constructor(private request: RequestServices) {
-  }
+  constructor(private request: RequestServices) {}
 
   filter = {
     page: 1,
@@ -14,10 +13,21 @@ export class BugsServices {
     q: ''
   };
   bugs: Bug[];
+  statuses: Statuses = {
+    all: 0,
+    my: 0,
+    statuses: []
+  };
   listLoading = true;
+  statusLoading = true;
 
-  getStatuses() {
-    return this.request.get('issues/statuses', true);
+  getStatuses(): void {
+    this.request.get('issues/statuses', true).then((res: Statuses) => {
+      this.statuses = res;
+      this.statusLoading = false;
+    }).catch(err => {
+      console.error(err);
+    });
   }
 
   getBugs() {

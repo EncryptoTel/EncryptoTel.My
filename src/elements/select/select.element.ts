@@ -13,6 +13,8 @@ export class SelectElement {
 
   @Input() values: any[] = [];
   @Input() currentValue = '';
+  @Input() firstWord: boolean;
+
   @Output() getValue = new EventEmitter<string>();
 
   toggleVisible() {
@@ -22,6 +24,13 @@ export class SelectElement {
   setValue(value) {
     this.currentValue = value;
     this.getValue.emit(this.currentValue);
+  }
+
+  firstWordHandler(element: string) {
+    const firstWord = element.search(/\(/);
+    const firstWordValue = element.slice(0, firstWord);
+    const otherWords = element.slice(firstWord);
+    return {firstWord: firstWordValue, otherWords: otherWords};
   }
 }
 

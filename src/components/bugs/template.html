@@ -1,6 +1,6 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
-<loader-element *ngIf="loading"></loader-element>
-<div class="container" *ngIf="!loading" [@Fade]>
+<loader-element *ngIf="_service.statusLoading"></loader-element>
+<div class="container" *ngIf="!_service.statusLoading" [@Fade]>
   <div class="bugs">
     <router-outlet (activate)="onActivate($event)"></router-outlet>
     <div class="bugs_category_wrap">
@@ -11,13 +11,13 @@
           <div class="bugs_category">
             <div class="bugs_category_item" [ngClass]="{'current_item': (_service.filter.status === '' && _service.filter.my === false)}" (click)="filter('all')">
               <div class="bugs_category_item_title">All bugs</div>
-              <div class="bugs_category_item_counter">{{statuses.all}}</div>
+              <div class="bugs_category_item_counter">{{_service.statuses.all}}</div>
             </div>
             <div class="bugs_category_item" [ngClass]="{'current_item': (_service.filter.status === '' && _service.filter.my === true)}" (click)="filter('my')">
               <div class="bugs_category_item_title">My Topic</div>
-              <div class="bugs_category_item_counter">{{statuses.my}}</div>
+              <div class="bugs_category_item_counter">{{_service.statuses.my}}</div>
             </div>
-            <div class="bugs_category_item" [ngClass]="{'current_item': status.id === _service.filter.status}" *ngFor="let status of statuses.statuses" (click)="filter(status.id)">
+            <div class="bugs_category_item" [ngClass]="{'current_item': status.id === _service.filter.status}" *ngFor="let status of _service.statuses.statuses" (click)="filter(status.id)">
               <div class="bugs_category_item_title">{{status.name}}</div>
               <div class="bugs_category_item_counter">{{status.issues}}</div>
             </div>

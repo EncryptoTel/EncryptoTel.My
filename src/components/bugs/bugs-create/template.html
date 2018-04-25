@@ -16,7 +16,7 @@
       <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus #searchField>
       <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
     </div>
-    <select-element [values]="priorities" [currentValue]="priority" (getValue)="setTag($event)"></select-element>
+    <select-element [values]="priorities" [currentValue]="priority" (getValue)="setTag($event)" [firstWord]="true"></select-element>
     <div class="input_wrapper">
       <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
       <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>

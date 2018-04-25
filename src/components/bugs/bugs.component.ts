@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {PageInfo} from '../../models/page-info.model';
 import {BugsServices} from '../../services/bugs.services';
-import {Statuses} from '../../models/bug.model';
 import {FadeAnimation} from '../../shared/functions';
 import {Router} from '@angular/router';
 
@@ -16,7 +15,7 @@ import {Router} from '@angular/router';
 export class BugsComponent {
   constructor(private _service: BugsServices,
               private router: Router) {
-    this.getStatuses();
+    this._service.getStatuses();
   }
 
   pageInfo: PageInfo = {
@@ -24,13 +23,7 @@ export class BugsComponent {
     description:
       `Here you can report found bugs and functionality issues, comment on existing problems or check their status. Your contributions will help us shape the future of Encryptotel.`
   };
-  loading = true;
   showButtonCreate = true;
-  statuses: Statuses = {
-    all: 0,
-    my: 0,
-    statuses: []
-  };
 
   filter(filter): void {
     this._service.filter.q = '';
@@ -55,14 +48,5 @@ export class BugsComponent {
 
   onActivate(component): void {
     component.title && component.title === 'Bugs Create' ? this.showButtonCreate = false : this.showButtonCreate = true;
-  }
-
-  private getStatuses(): void {
-    this._service.getStatuses().then((res: Statuses) => {
-      this.statuses = res;
-      this.loading = false;
-    }).catch(err => {
-      console.error(err);
-    })
   }
 }

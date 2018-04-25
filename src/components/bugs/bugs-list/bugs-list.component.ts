@@ -16,6 +16,7 @@ export class BugsListComponent {
   constructor(private _service: BugsServices,
               private router: Router) {
     this._service.getBugs();
+    this._service.getStatuses();
   }
 
   pageInfo: PageInfo = {

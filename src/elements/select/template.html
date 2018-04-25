@@ -2,7 +2,9 @@
   <div class="select_current">{{currentValue}}</div>
   <div class="select_options" *ngIf="state" [@Fade]>
     <div class="select_option" *ngFor="let value of values" (click)="setValue(value)">
-      {{value}}
+      <span *ngIf="!firstWord">{{value}}</span>
+      <span *ngIf="firstWord" class="first_word">{{firstWordHandler(value).firstWord}}</span>
+      <span *ngIf="firstWord" class="other_words">{{firstWordHandler(value).otherWords}}</span>
     </div>
   </div>
   <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>
