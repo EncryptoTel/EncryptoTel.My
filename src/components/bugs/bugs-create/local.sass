@@ -35,23 +35,39 @@
     &_controls
       display: flex
       flex-flow: row
-      justify-content: flex-end
-      input
-        cursor: pointer
-        border: none
+      justify-content: space-between
+      &_input_wrap
         display: flex
         flex-flow: row
-        justify-content: center
-        align-items: center
-        width: 75px
-        height: 30px
-        margin-bottom: 10px
-        &:first-child
-          margin-right: 15px
-      input[type='submit']
-        background: $success
-        color: $background
-        border-radius: 5px
+        input
+          cursor: pointer
+          border: none
+          display: flex
+          flex-flow: row
+          justify-content: center
+          align-items: center
+          width: 75px
+          height: 30px
+          margin-bottom: 10px
+          &:first-child
+            margin-right: 15px
+        input[type='submit']
+          background: $success
+          color: $background
+          border-radius: 5px
+
+.file_uploader
+  position: relative
+  input
+    position: absolute
+    top: 0
+    left: 0
+    font-size: 4px
+    opacity: 0
+  span
+    color: $accent
+    text-decoration: underline
+    cursor: default
 
 .alert_message
   color: $error

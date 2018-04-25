@@ -53,7 +53,7 @@ export class BugsCreateComponent {
   };
 
 
-  search(event) {
+  search(event): void {
     const title = event.target.value;
     if (title === '' || title === null || title === undefined) {
       this.similarBugs = {
@@ -70,8 +70,7 @@ export class BugsCreateComponent {
     }
   }
 
-  create() {
-
+  create(): void {
     if (this.newBugForm.valid) {
       this.similarBugs = {
         issues: []
@@ -91,16 +90,18 @@ export class BugsCreateComponent {
       })
     }
   }
+  
+  sendFiles() {}
 
-  cancel() {
+  cancel(): void {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute})
   }
 
-  setTag(event) {
+  setTag(event): void {
     this.priority = event;
   }
 
-  vote(event, searchField) {
+  vote(event, searchField): void {
     this._service.vote(event).then(() => {
       this._service.search(searchField.value).then((res: BugModel) => {
         this.similarBugs = res;
@@ -112,7 +113,7 @@ export class BugsCreateComponent {
     });
   }
 
-  report(event, searchField) {
+  report(event, searchField): void {
     this._service.report(event).then(() => {
       this._service.search(searchField.value).then((res: BugModel) => {
         this.similarBugs = res;

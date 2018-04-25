@@ -22,8 +22,14 @@
       <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>
     </div>
     <div class="bugs_create_form_controls" *ngIf="!isSendedRequest">
-      <input type="reset" value="Cancel" (click)="cancel()">
-      <input type="submit" value="Post" (click)="create()">
+      <div class="file_uploader">
+        <input type="file">
+        <span>Attach a file</span>
+      </div>
+      <div class="bugs_create_form_controls_input_wrap">
+        <input type="reset" value="Cancel" (click)="cancel()">
+        <input type="submit" value="Post" (click)="create()">
+      </div>
     </div>
     <loader-element *ngIf="isSendedRequest"></loader-element>
   </form>
