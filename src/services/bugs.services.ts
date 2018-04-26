@@ -4,7 +4,8 @@ import {Bug, BugModel, Statuses} from '../models/bug.model';
 
 @Injectable()
 export class BugsServices {
-  constructor(private request: RequestServices) {}
+  constructor(private request: RequestServices) {
+  }
 
   filter = {
     page: 1,
@@ -69,5 +70,9 @@ export class BugsServices {
 
   reportComment(id: number) {
     return this.request.post('issues/comment/claim', {comment_id: id}, true);
+  }
+
+  uploadFile(file) {
+    return this.request.postFile('issues/upload', file);
   }
 }

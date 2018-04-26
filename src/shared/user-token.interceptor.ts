@@ -12,11 +12,11 @@ export class UserTokenInterceptor implements HttpInterceptor {
               private _storage: StorageServices) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!request.url.includes('nodes.wavesnodes.com')) {
-      request = request.clone({
-        setHeaders: {
-          'Content-Type': 'application/json'
-        }
-      });
+      // request = request.clone({
+      //   setHeaders: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // });
       if (this._services.fetchAuth()) {
         const auth = this._storage.readItem('_auth_tk');
         request = request.clone({

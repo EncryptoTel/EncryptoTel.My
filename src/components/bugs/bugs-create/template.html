@@ -13,19 +13,22 @@
   <form [formGroup]="newBugForm" class="bugs_create_form">
     <p>Bug details</p>
     <div class="input_wrapper">
-      <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus #searchField>
+      <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus #searchField [ngClass]="{'invalid': (newBugForm.controls.summary.invalid && newBugForm.controls.summary.touched)}">
       <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
     </div>
     <select-element [values]="priorities" [currentValue]="priority" (getValue)="setTag($event)" [firstWord]="true"></select-element>
-    <div class="input_wrapper">
+    <div class="input_wrapper textarea_wrap" [ngClass]="{'invalid': (newBugForm.controls.description.invalid && newBugForm.controls.description.touched)}">
       <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
+      <ng-container #uploader_container></ng-container>
+      <ng-template #uploader>
+        <div class="file_uploader">
+          <input type="file" multiple (change)="uploadFile($event)" #uploader_field>
+          <span>Attach a file</span>
+        </div>
+      </ng-template>
       <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>
     </div>
     <div class="bugs_create_form_controls" *ngIf="!isSendedRequest">
-      <div class="file_uploader">
-        <input type="file">
-        <span>Attach a file</span>
-      </div>
       <div class="bugs_create_form_controls_input_wrap">
         <input type="reset" value="Cancel" (click)="cancel()">
         <input type="submit" value="Post" (click)="create()">

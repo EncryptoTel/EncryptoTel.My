@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import {environment as _env} from '../environments/environment';
@@ -79,4 +79,10 @@ export class RequestServices {
       });
   }
 
+  postFile(uri: string, data: FormData) {
+    const header = new HttpHeaders({'Content-Type': 'multipart/form-data'});
+    const request = new HttpRequest('POST', `${_env.api_url}/${uri}`, data, {headers: header});
+    console.log(request);
+    return this.http.request(request).toPromise();
+  }
 }

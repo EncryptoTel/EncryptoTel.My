@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
 import {PageInfo} from '../../../models/page-info.model';
 import {BugsServices} from '../../../services/bugs.services';
-import {BugModel, Tags} from '../../../models/bug.model';
+import {BugModel} from '../../../models/bug.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FadeAnimation} from '../../../shared/functions';
@@ -15,7 +15,7 @@ import {PopupServices} from '../../../services/popup.services';
   animations: [FadeAnimation('150ms')]
 })
 
-export class BugsCreateComponent {
+export class BugsCreateComponent implements OnInit {
   constructor(private _service: BugsServices,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -51,7 +51,11 @@ export class BugsCreateComponent {
     description: '',
     kind: 1
   };
+  private id: number;
 
+  @ViewChild('uploader') _uploader: TemplateRef<any>;
+  @ViewChild('uploader_container', {read: ViewContainerRef}) _uploader_container;
+  @ViewChildren('uploader_field') _uploader_field: QueryList<any>;
 
   search(event): void {
     const title = event.target.value;
@@ -71,27 +75,39 @@ export class BugsCreateComponent {
   }
 
   create(): void {
-    if (this.newBugForm.valid) {
-      this.similarBugs = {
-        issues: []
-      };
-      this.isSendedRequest = true;
-      this.newBug = {
-        summary: this.newBugForm.value.summary,
-        description: this.newBugForm.value.description,
-        kind: 1
-      };
-      this._service.create(this.newBug).then(() => {
-        this.isSendedRequest = false;
-        this.popup.showSuccess('Bug report created');
-        this.router.navigate(['../'], {relativeTo: this.activatedRoute})
-      }).catch(err => {
-        console.error(err);
-      })
-    }
+    const formData = new FormData();
+    formData.append('file', this._uploader_field.first.nativeElement.files[0]);
+    formData.append('issue_id', '1');
+    this._service.uploadFile(formData).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.error(err);
+    })
+    // if (this.newBugForm.valid) {
+    //   this.similarBugs = {
+    //     issues: []
+    //   };
+    //   this.isSendedRequest = true;
+    //   this.newBug = {
+    //     summary: this.newBugForm.value.summary,
+    //     description: this.newBugForm.value.description,
+    //     kind: 1
+    //   };
+    //   this._service.create(this.newBug).then((res) => {
+    //     this.isSendedRequest = false;
+    //     this.popup.showSuccess('Bug report created');
+    //     this.id = res.id;
+    //     // this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+    //   }).catch(err => {
+    //     console.error(err);
+    //   })
+    // }
   }
-  
-  sendFiles() {}
+
+  uploadFile() {
+    this._uploader_container.createEmbeddedView(this._uploader);
+    //this._service.uploadFile(this.id)
+  }
 
   cancel(): void {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute})
@@ -125,5 +141,9 @@ export class BugsCreateComponent {
 
   getBug(bug): void {
     this.router.navigate(['bugs', bug.id])
+  }
+
+  ngOnInit() {
+    this._uploader_container.createEmbeddedView(this._uploader);
   }
 }

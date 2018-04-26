@@ -29,13 +29,15 @@
       font-weight: 600
       margin-bottom: 15px
     textarea
-      height: 135px
+      min-height: 135px
+      width: 100%
+      border: none
       &:focus
         outline: none
     &_controls
       display: flex
       flex-flow: row
-      justify-content: space-between
+      justify-content: flex-end
       &_input_wrap
         display: flex
         flex-flow: row
@@ -58,16 +60,23 @@
 
 .file_uploader
   position: relative
+  padding: 5px 15px
   input
     position: absolute
-    top: 0
-    left: 0
+    top: 5px
+    left: 15px
     font-size: 4px
     opacity: 0
   span
     color: $accent
     text-decoration: underline
     cursor: default
+
+.textarea_wrap
+  min-height: 150px
+  display: flex
+  flex-flow: column
+  border: 1px solid #B7B7B7
 
 .alert_message
   color: $error
@@ -76,7 +85,7 @@
   left: 15px
   font-size: 0.85rem
 
-.ng-touched.ng-invalid:not(form)
+.invalid
   border: 1px solid $error
 
 @media (max-width: 1023px)
