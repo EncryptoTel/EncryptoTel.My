@@ -33,7 +33,7 @@ export class BugsServices {
 
   getBugs() {
     this.request.post('issues', this.filter, true).then((res: BugModel) => {
-      this.bugs = res.issues;
+      this.bugs = res.data;
       this.listLoading = false;
     }).catch(err => {
       console.error(err);
@@ -72,7 +72,7 @@ export class BugsServices {
     return this.request.post('issues/comment/claim', {comment_id: id}, true);
   }
 
-  uploadFile(file) {
+  uploadFile(file: FormData) {
     return this.request.postFile('issues/upload', file);
   }
 }

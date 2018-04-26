@@ -1,5 +1,5 @@
 export interface BugModel {
-  issues: Bug[];
+  data: Bug[];
 }
 
 export interface Bug {

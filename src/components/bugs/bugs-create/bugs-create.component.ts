@@ -29,7 +29,7 @@ export class BugsCreateComponent implements OnInit {
   };
   title = 'Bugs Create';
   similarBugs: BugModel = {
-    issues: []
+    data: []
   };
   newBugForm: FormGroup = new FormGroup({
     'summary': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
@@ -61,7 +61,7 @@ export class BugsCreateComponent implements OnInit {
     const title = event.target.value;
     if (title === '' || title === null || title === undefined) {
       this.similarBugs = {
-        issues: []
+        data: []
       }
     } else {
       this.loading = true;
@@ -75,17 +75,19 @@ export class BugsCreateComponent implements OnInit {
   }
 
   create(): void {
+    console.log(this._uploader_field.first.nativeElement.files);
     const formData = new FormData();
     formData.append('file', this._uploader_field.first.nativeElement.files[0]);
     formData.append('issue_id', '1');
-    this._service.uploadFile(formData).then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.error(err);
-    })
+
+    // this._service.uploadFile(formData).then(res => {
+    //   console.log(res);
+    // }).catch(err => {
+    //   console.error(err);
+    // })
     // if (this.newBugForm.valid) {
     //   this.similarBugs = {
-    //     issues: []
+    //     data: []
     //   };
     //   this.isSendedRequest = true;
     //   this.newBug = {
@@ -106,7 +108,6 @@ export class BugsCreateComponent implements OnInit {
 
   uploadFile() {
     this._uploader_container.createEmbeddedView(this._uploader);
-    //this._service.uploadFile(this.id)
   }
 
   cancel(): void {

@@ -24,6 +24,7 @@
         <div class="file_uploader">
           <input type="file" multiple (change)="uploadFile($event)" #uploader_field>
           <span>Attach a file</span>
+          <span>{{uploader_field.files[uploader_field.files.length-1]?.name}}</span>
         </div>
       </ng-template>
       <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>
@@ -39,6 +40,6 @@
   <loader-element *ngIf="loading"></loader-element>
   <div class="bugs_create_similar" *ngIf="!loading" [@Fade]>
     <!--<p>~ No similar bugs found ~</p>-->
-    <bug-element *ngFor="let bug of similarBugs.issues" [issue]="bug" (vote)="vote($event,searchField)" (report)="report($event, searchField)" (clickHandlerFallback)="getBug($event)"></bug-element>
+    <bug-element *ngFor="let bug of similarBugs.data" [issue]="bug" (vote)="vote($event,searchField)" (report)="report($event, searchField)" (clickHandlerFallback)="getBug($event)"></bug-element>
   </div>
 </div>

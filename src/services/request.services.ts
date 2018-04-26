@@ -80,9 +80,7 @@ export class RequestServices {
   }
 
   postFile(uri: string, data: FormData) {
-    const header = new HttpHeaders({'Content-Type': 'multipart/form-data'});
-    const request = new HttpRequest('POST', `${_env.api_url}/${uri}`, data, {headers: header});
-    console.log(request);
+    const request = new HttpRequest('POST', `${_env.api_url}/${uri}`, data);
     return this.http.request(request).toPromise();
   }
 }
