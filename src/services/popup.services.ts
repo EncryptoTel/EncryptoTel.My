@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class PopupServices {
-  visible = true;
+  visible = false;
   private type: string;
   private text: string;
 
@@ -20,6 +20,6 @@ export class PopupServices {
     this.text = text;
     setTimeout(() => {
       this.visible = false;
-    }, 3000)
+    }, 5000)
   }
 }

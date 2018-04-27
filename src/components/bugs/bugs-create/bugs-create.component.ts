@@ -1,7 +1,7 @@
 import {Component, OnInit, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
 import {PageInfo} from '../../../models/page-info.model';
 import {BugsServices} from '../../../services/bugs.services';
-import {BugModel} from '../../../models/bug.model';
+import {BugModel, Priority} from '../../../models/bug.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FadeAnimation} from '../../../shared/functions';
@@ -36,22 +36,21 @@ export class BugsCreateComponent implements OnInit {
     'description': new FormControl(null, [Validators.required, Validators.minLength(10)])
   });
 
-  priorities: string[] = [
-    'Fault (non-service related fault, such as spelling mistake, text error etc)',
-    'Minor (non-critical error, that does not significantly affect the service)',
-    'Major (significant error leading to service malfunction)',
-    'Critical (error leading to service stop)'
-  ];
+  priorities: Priority[] = [];
 
-  priority = 'Select one';
+  priority: Priority = {
+    name: '[Select one]',
+    id: undefined,
+    description: ''
+  };
   loading = false;
   isSendedRequest = false;
   private newBug = {
     summary: '',
     description: '',
+    priority: undefined,
     kind: 1
   };
-  private id: number;
 
   @ViewChild('uploader') _uploader: TemplateRef<any>;
   @ViewChild('uploader_container', {read: ViewContainerRef}) _uploader_container;
@@ -75,47 +74,74 @@ export class BugsCreateComponent implements OnInit {
   }
 
   create(): void {
-    console.log(this._uploader_field.first.nativeElement.files);
-    const formData = new FormData();
-    formData.append('file', this._uploader_field.first.nativeElement.files[0]);
-    formData.append('issue_id', '1');
-
-    // this._service.uploadFile(formData).then(res => {
-    //   console.log(res);
-    // }).catch(err => {
-    //   console.error(err);
-    // })
-    // if (this.newBugForm.valid) {
-    //   this.similarBugs = {
-    //     data: []
-    //   };
-    //   this.isSendedRequest = true;
-    //   this.newBug = {
-    //     summary: this.newBugForm.value.summary,
-    //     description: this.newBugForm.value.description,
-    //     kind: 1
-    //   };
-    //   this._service.create(this.newBug).then((res) => {
-    //     this.isSendedRequest = false;
-    //     this.popup.showSuccess('Bug report created');
-    //     this.id = res.id;
-    //     // this.router.navigate(['../'], {relativeTo: this.activatedRoute})
-    //   }).catch(err => {
-    //     console.error(err);
-    //   })
-    // }
+    if (this.newBugForm.valid && this.priority.id) {
+      this.similarBugs = {
+        data: []
+      };
+      this.isSendedRequest = true;
+      this.newBug = {
+        summary: this.newBugForm.value.summary,
+        description: this.newBugForm.value.description,
+        priority: this.priority.id,
+        kind: 1
+      };
+      this._service.create(this.newBug).then((res) => {
+        let fileCounter = 0;
+        this._uploader_field.forEach(el => {
+          if (el.nativeElement.files.length > 0) {
+            fileCounter += 1;
+            return;
+          }
+        });
+        console.log(fileCounter);
+        if (fileCounter > 0) {
+          this.uploadFiles(res.id);
+        } else {
+          this.isSendedRequest = false;
+          this.popup.showSuccess('Bug report created');
+          this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+        }
+      }).catch(err => {
+        console.error(err);
+      });
+    }
   }
 
-  uploadFile() {
+  createAttachInput() {
     this._uploader_container.createEmbeddedView(this._uploader);
+  }
+
+  cancelAttach(uploader_field) {
+    uploader_field.value = null;
+  }
+
+  uploadFiles(id: string) {
+    let counter = 0;
+    this._uploader_field.forEach(el => {
+      for (let i = 0; i < el.nativeElement.files.length; i++) {
+        const formData = new FormData();
+        formData.append('issue_id', id);
+        formData.append('file', el.nativeElement.files[i]);
+        this._service.uploadFile(formData).then(() => {
+          counter += 1;
+          if (counter >= el.nativeElement.files.length) {
+            this.isSendedRequest = false;
+            this.popup.showSuccess('Bug report created');
+            this.router.navigate(['../'], {relativeTo: this.activatedRoute})
+          }
+        }).catch(err => {
+          console.error(err);
+        });
+      }
+    });
   }
 
   cancel(): void {
     this.router.navigate(['../'], {relativeTo: this.activatedRoute})
   }
 
-  setTag(event): void {
-    this.priority = event;
+  setPriority(event): void {
+    this.priority.id = event.id;
   }
 
   vote(event, searchField): void {
@@ -144,7 +170,16 @@ export class BugsCreateComponent implements OnInit {
     this.router.navigate(['bugs', bug.id])
   }
 
+  getPriorities() {
+    this._service.getPriorities().then(res => {
+      this.priorities = res.priorities;
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
   ngOnInit() {
     this._uploader_container.createEmbeddedView(this._uploader);
+    this.getPriorities();
   }
 }

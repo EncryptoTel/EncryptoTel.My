@@ -69,6 +69,18 @@
       </div>
     </div>
   </ng-template>
+  <div class="bug_files_wrap">
+    <div class="bug_files_item" *ngFor="let file of files">
+      <a [href]="root + file.real_path" *ngIf="file.thumbnail">
+        <img [src]="root + file.thumbnail.real_path">
+        <span>{{file.original_name}}</span>
+      </a>
+      <a [href]="root + file.real_path" *ngIf="!file.thumbnail">
+        <svg-icon src="../../assets/icons/file.svg"></svg-icon>
+        <span>{{file.original_name}}</span>
+      </a>
+    </div>
+  </div>
   <div class="bug_newComment">
     <h3>{{details.comments.length - adminComments.length}} comments</h3>
     <textarea placeholder="Write a comment..." #commentField (blur)="validation(commentField)"></textarea>
@@ -97,4 +109,5 @@
       </div>
     </div>
   </div>
+
 </div>

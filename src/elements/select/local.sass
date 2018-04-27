@@ -10,6 +10,13 @@
   cursor: pointer
   position: relative
   font-family: inherit
+  &_current
+    display: flex
+    flex-flow: row wrap
+    justify-content: flex-start
+    align-items: flex-end
+    width: 100%
+    cursor: pointer
   &_options
     position: absolute
     top: 100%
@@ -46,5 +53,6 @@
 .first_word
   font-size: rem(14)
   margin-right: 5px
+
 .other_words
   font-size: rem(12)

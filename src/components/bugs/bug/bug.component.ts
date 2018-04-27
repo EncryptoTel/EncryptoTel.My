@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {BugsServices} from '../../../services/bugs.services';
 import {ActivatedRoute} from '@angular/router';
-import {BugReview, Comments} from '../../../models/bug.model';
+import {BugReview, Comments, File} from '../../../models/bug.model';
 import {FadeAnimation} from '../../../shared/functions';
 
 @Component({
@@ -15,6 +15,7 @@ export class BugComponent {
   constructor(private _service: BugsServices,
               private activatedRoute: ActivatedRoute) {
     this.getBag();
+    this.getFiles();
   }
 
   id = this.activatedRoute.snapshot.params.id;
@@ -27,7 +28,9 @@ export class BugComponent {
     id: 0,
     kind_id: 1,
     priority: {
-      name: ''
+      name: '',
+      id: undefined,
+      description: ''
     },
     status: {
       name: '',
@@ -47,6 +50,8 @@ export class BugComponent {
   loading = true;
   showAllComments = false;
   adminComments: Comments[] = [];
+  files: File[] = [];
+  root = 'http://investor-back.encry.ru/';
 
   getBag(): void {
     this._service.getBug({id: this.id}).then((res: BugReview) => {
@@ -142,7 +147,16 @@ export class BugComponent {
     isValid ? commentField.classList.remove('invalid') : commentField.classList.add('invalid');
     return isValid;
   }
-  showAlert(commentField) {
+
+  showAlert(commentField): void {
     commentField.classList.contains('invalid')
+  }
+
+  getFiles(): void {
+    this._service.getFiles(this.id).then((res: File[]) => {
+      this.files = res;
+    }).catch(err => {
+      console.error(err);
+    })
   }
 }

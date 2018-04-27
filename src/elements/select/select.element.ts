@@ -10,27 +10,31 @@ import {FadeAnimation} from '../../shared/functions';
 
 export class SelectElement {
   state = false;
+  currentValue = '[Select one]';
+  @Input() values: object[] = [];
+  @Input() keys: string [] = [];
+  @Input() returnedValue: string;
 
-  @Input() values: any[] = [];
-  @Input() currentValue = '';
-  @Input() firstWord: boolean;
-
-  @Output() getValue = new EventEmitter<string>();
+  @Output() getValue = new EventEmitter<any>();
 
   toggleVisible() {
     this.state = !this.state;
   }
 
   setValue(value) {
-    this.currentValue = value;
-    this.getValue.emit(this.currentValue);
+    this.currentValue = `${value[this.keys[0]]} (${value[this.keys[1]]})`;
+    this.getValue.emit(value);
   }
 
   firstWordHandler(element: string) {
     const firstWord = element.search(/\(/);
-    const firstWordValue = element.slice(0, firstWord);
-    const otherWords = element.slice(firstWord);
-    return {firstWord: firstWordValue, otherWords: otherWords};
+    if (firstWord !== -1) {
+      const firstWordValue = element.slice(0, firstWord);
+      const otherWords = element.slice(firstWord);
+      return {firstWord: firstWordValue, otherWords: otherWords};
+    } else {
+      return {firstWord: element, otherWords: ''};
+    }
   }
 }
 

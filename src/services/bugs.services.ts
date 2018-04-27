@@ -72,7 +72,15 @@ export class BugsServices {
     return this.request.post('issues/comment/claim', {comment_id: id}, true);
   }
 
+  getPriorities() {
+    return this.request.get('issues/priorities', true);
+  }
+
   uploadFile(file: FormData) {
     return this.request.postFile('issues/upload', file);
+  }
+
+  getFiles(id: number) {
+    return this.request.get(`issues/files?issue_id=${id}`, true)
   }
 }

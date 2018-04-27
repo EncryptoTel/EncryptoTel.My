@@ -1,3 +1,5 @@
+import {s} from '@angular/core/src/render3';
+
 export interface BugModel {
   data: Bug[];
 }
@@ -71,5 +73,24 @@ export interface Statuses {
 }
 
 export interface Priority {
+  id: number;
   name: string;
+  description: string;
+}
+
+export interface File {
+  created_at: string;
+  id: number;
+  mime_type: string;
+  original_name: string;
+  real_path: string;
+  thumbnail: Thumbnail | null;
+}
+
+export interface Thumbnail {
+  created_at: string;
+  id: number;
+  mime_type: string;
+  original_name: string;
+  real_path: string;
 }

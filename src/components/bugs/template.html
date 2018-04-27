@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="bugs_category_search_wrap">
-            <input type="search" placeholder="Search" class="bugs_category_search_input" #searchField>
+            <input type="search" placeholder="Search" class="bugs_category_search_input" #searchField (keyup.enter)="search(searchField)">
             <div class="bugs_category_search_button_wrap" (click)="search(searchField)">
               <input type="button" class="bugs_category_search_button">
               <svg-icon src="../../assets/icons/search.svg" class="search_icon"></svg-icon>

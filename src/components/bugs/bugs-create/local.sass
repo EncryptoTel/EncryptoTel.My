@@ -32,6 +32,7 @@
       min-height: 135px
       width: 100%
       border: none
+      resize: none
       &:focus
         outline: none
     &_controls
@@ -57,23 +58,40 @@
           background: $success
           color: $background
           border-radius: 5px
+  &_similar
+    &_placeholder
+      font-size: rem(30)
+      color: $gray
+      text-align: center
+      padding-bottom: 15px
 
 .file_uploader
   position: relative
   padding: 5px 15px
   display: flex
-  flex-flow: row
+  flex-flow: row wrap
+  align-items: center
   input
     position: absolute
     top: 5px
-    left: 15px
+    left: 30px
     font-size: 4px
     opacity: 0
-  span
+  &_attach
     color: $accent
     text-decoration: underline
     cursor: default
+  span
     margin-right: 10px
+  &_icon_wrap
+    width: 10px
+    height: 10px
+    margin-right: 5px
+    svg-icon
+      fill: #000
+      width: 10px
+      height: 10px
+      cursor: pointer
 
 .textarea_wrap
   min-height: 150px
@@ -93,3 +111,7 @@
 
 @media (max-width: 1023px)
   .bugs_create
+    &_similar
+      &_placeholder
+        font-size: rem(20)
+        padding-bottom: 10px
