@@ -20,15 +20,15 @@ export class TransactionsComponent {
   };
   transactions: Transaction[][] = this.storage.readItem('transactions') || [];
   filteredTransactions: Transaction[] = [];
-  address = '3P7tNYakdeYkR48XQoDRhdvYbmmESznb4WS';
+  address: string;
   course: Course = this.storage.readItem('course') || 1;
   filterType = 'all';
   date: boolean[] = [];
 
   constructor(private _service: TransactionsServices,
               private storage: StorageServices) {
-    this.getTransactions();
     this.getCourse();
+    this.getAddress();
     this.filter(this.filterType);
   }
 
@@ -99,6 +99,15 @@ export class TransactionsComponent {
         day = new Date(this.filteredTransactions[i].timestamp).getDate();
       }
     }
+  }
+
+  private getAddress() {
+    this._service.getAddress().then(res => {
+      this.address = res.account.wallets[0].address;
+      this.getTransactions();
+    }).catch(err => {
+      console.error(err);
+    })
   }
 }
 
