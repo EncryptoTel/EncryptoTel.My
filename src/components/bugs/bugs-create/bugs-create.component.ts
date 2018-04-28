@@ -78,6 +78,8 @@ export class BugsCreateComponent implements OnInit {
   }
 
   create(): void {
+    this.newBugForm.controls.summary.markAsTouched();
+    this.newBugForm.controls.description.markAsTouched();
     if (this.newBugForm.valid && this.priority.id) {
       this.similarBugs = {
         data: [],
