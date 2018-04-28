@@ -14,7 +14,7 @@ export class TransactionsServices {
     return this.request.get('course.json');
   }
 
-  getAddress(): Promise<Object> {
+  getAddress() {
     return this.request.get('account', true);
   }
 }
