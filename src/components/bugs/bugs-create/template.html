@@ -21,12 +21,12 @@
       <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
       <ng-container #uploader_container></ng-container>
       <ng-template #uploader>
-        <div class="file_uploader" #test>
-          <div class="file_uploader_icon_wrap" (click)="cancelAttach(uploader_field, test)">
+        <div class="file_uploader" #uploader_ref>
+          <div class="file_uploader_icon_wrap" (click)="cancelAttach(uploader_field, uploader_ref)">
             <svg-icon src="../../../assets/icons/cancel.svg" *ngIf="uploader_field.files.length>0" [@Fade]></svg-icon>
           </div>
-          <input type="file" multiple (change)="createAttachInput()" #uploader_field>
-          <span class="file_uploader_attach">Attach a file</span>
+          <input type="file" (change)="createAttachInput(uploader_field,pseudo_uploader_field)" #uploader_field>
+          <span class="file_uploader_attach" #pseudo_uploader_field>Attach a file</span>
           <span *ngFor="let file of uploader_field.files" [@Fade]>{{file.name}}</span>
         </div>
       </ng-template>

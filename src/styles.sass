@@ -93,7 +93,7 @@ textarea
     font-weight: 300
     color: rgba($primary, .3)
 
-p,a
+p, a
   display: inline
 
 main-view
@@ -104,11 +104,12 @@ main-view
   sign-in-component, sign-up-component
     height: 100%
   popup-element
-    position: absolute
+    position: fixed
     width: 40%
     height: 50px
-    bottom: 0
+    top: 0
     align-self: center
+    z-index: 4
   settings-component
     flex: 1
 
@@ -271,7 +272,7 @@ bug-element
       border-bottom: none !important
       background: transparent !important
 
-  bugs-list-component,bugs-create-component, bug-component
+  bugs-list-component, bugs-create-component, bug-component
     width: 100%
 
 @media (max-width: 767px)
@@ -298,8 +299,7 @@ bug-element
 
   main-view
     popup-element
-      width: 100%
-      bottom: 50px
+      width: calc(100% - 32px)
 
 @media (max-height: 440px)
   .authorization_copyright

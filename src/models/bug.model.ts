@@ -1,7 +1,7 @@
-import {s} from '@angular/core/src/render3';
-
 export interface BugModel {
   data: Bug[];
+  last_page: number;
+  per_page: number;
 }
 
 export interface Bug {

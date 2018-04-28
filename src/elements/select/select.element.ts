@@ -22,19 +22,8 @@ export class SelectElement {
   }
 
   setValue(value) {
-    this.currentValue = `${value[this.keys[0]]} (${value[this.keys[1]]})`;
+    this.currentValue = value[this.keys[0]];
     this.getValue.emit(value);
-  }
-
-  firstWordHandler(element: string) {
-    const firstWord = element.search(/\(/);
-    if (firstWord !== -1) {
-      const firstWordValue = element.slice(0, firstWord);
-      const otherWords = element.slice(firstWord);
-      return {firstWord: firstWordValue, otherWords: otherWords};
-    } else {
-      return {firstWord: element, otherWords: ''};
-    }
   }
 }
 

@@ -29,7 +29,9 @@ export class BugsCreateComponent implements OnInit {
   };
   title = 'Bugs Create';
   similarBugs: BugModel = {
-    data: []
+    data: [],
+    last_page: 0,
+    per_page: 0
   };
   newBugForm: FormGroup = new FormGroup({
     'summary': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
@@ -48,7 +50,7 @@ export class BugsCreateComponent implements OnInit {
   private newBug = {
     summary: '',
     description: '',
-    priority: undefined,
+    priority: 0,
     kind: 1
   };
 
@@ -60,7 +62,9 @@ export class BugsCreateComponent implements OnInit {
     const title = event.target.value;
     if (title === '' || title === null || title === undefined) {
       this.similarBugs = {
-        data: []
+        data: [],
+        last_page: 0,
+        per_page: 0
       }
     } else {
       this.loading = true;
@@ -76,7 +80,9 @@ export class BugsCreateComponent implements OnInit {
   create(): void {
     if (this.newBugForm.valid && this.priority.id) {
       this.similarBugs = {
-        data: []
+        data: [],
+        last_page: 0,
+        per_page: 0
       };
       this.isSendedRequest = true;
       this.newBug = {
@@ -93,7 +99,6 @@ export class BugsCreateComponent implements OnInit {
             return;
           }
         });
-        console.log(fileCounter);
         if (fileCounter > 0) {
           this.uploadFiles(res.id);
         } else {
@@ -107,12 +112,16 @@ export class BugsCreateComponent implements OnInit {
     }
   }
 
-  createAttachInput() {
+  createAttachInput(uploader_field,pseudo_uploader_field) {
     this._uploader_container.createEmbeddedView(this._uploader);
+    uploader_field.style.display = 'none';
+    pseudo_uploader_field.style.display = 'none';
+    console.log(uploader_field.files);
   }
 
-  cancelAttach(uploader_field) {
+  cancelAttach(uploader_field, uploader_ref) {
     uploader_field.value = null;
+    uploader_ref.style.display = 'none';
   }
 
   uploadFiles(id: string) {
@@ -131,6 +140,7 @@ export class BugsCreateComponent implements OnInit {
           }
         }).catch(err => {
           console.error(err);
+          this.isSendedRequest = false;
         });
       }
     });

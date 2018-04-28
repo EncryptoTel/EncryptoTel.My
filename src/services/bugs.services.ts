@@ -21,6 +21,10 @@ export class BugsServices {
   };
   listLoading = true;
   statusLoading = true;
+  pagination = {
+    last_page: 0,
+    per_page: 0
+  };
 
   getStatuses(): void {
     this.request.get('issues/statuses', true).then((res: Statuses) => {
@@ -34,6 +38,8 @@ export class BugsServices {
   getBugs() {
     this.request.post('issues', this.filter, true).then((res: BugModel) => {
       this.bugs = res.data;
+      this.pagination.last_page = res.last_page;
+      this.pagination.per_page = res.per_page;
       this.listLoading = false;
     }).catch(err => {
       console.error(err);

@@ -32,7 +32,7 @@ export class BugElement {
   }
 
   formatClaims() {
-    if (this.issue.claim_exists !== 0) {
+    if (this.issue.claims_count !== 0) {
       return this.issue.claims_count;
     }
   }

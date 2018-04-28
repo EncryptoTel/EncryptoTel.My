@@ -1,7 +1,6 @@
 <div class="select" (click)="toggleVisible()">
   <div class="select_current">
-    <span class="first_word">{{firstWordHandler(currentValue).firstWord}}</span>
-    <span class="other_words">{{firstWordHandler(currentValue).otherWords}}</span>
+    <span>{{currentValue}}</span>
   </div>
   <div class="select_options" *ngIf="state" [@Fade]>
     <div class="select_option" *ngFor="let value of values" (click)="setValue(value)">

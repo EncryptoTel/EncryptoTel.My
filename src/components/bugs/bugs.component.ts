@@ -27,6 +27,7 @@ export class BugsComponent {
 
   filter(filter): void {
     this._service.filter.q = '';
+    this._service.filter.page = 1;
     if (filter === 'all' || filter === 'my') {
       this._service.filter.my = filter === 'my';
       this._service.filter.status = '';
@@ -42,6 +43,7 @@ export class BugsComponent {
     this._service.filter.q = searchField.value;
     this._service.filter.my = false;
     this._service.filter.status = '';
+    this._service.filter.page = 1;
     this._service.getBugs();
     this.router.navigate(['bugs']);
   }

@@ -47,6 +47,8 @@
         background: #E5E5E5
         border: none
         cursor: pointer
+        &:focus
+          outline: none
     &_description
       display: flex
       flex-flow: column
@@ -62,13 +64,14 @@
       p
         font-size: 0.92rem
         line-height: 1.1
+        word-wrap: break-word
       &_author
         display: flex
         flex-flow: row wrap
         justify-content: flex-start
         align-items: center
         & > div
-          width: 5%
+          width: 18px
           margin-right: 5px
         & p:nth-child(3)
           margin: 0 2px
@@ -118,16 +121,23 @@
       display: flex
       flex-flow: row wrap
       align-items: flex-end
+      margin-left: 20%
     &_item
       margin-right: 15px
       margin-bottom: 15px
+      width: 32px
       a
         img
           margin-bottom: 10px
         svg-icon
-          width: 60px
-          height: 57px
+          width: 32px
+          height: 32px
           margin-bottom: 10px
+        span
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
+          font-size: rem(11)
   &_newComment
     display: flex
     flex-flow: column
@@ -251,7 +261,7 @@ textarea:focus
           justify-content: flex-start
           align-items: flex-start
           & > div
-            width: 13%
+            display: none
           & > p
             font-size: rem(12)
           & > p, > p:nth-child(3)

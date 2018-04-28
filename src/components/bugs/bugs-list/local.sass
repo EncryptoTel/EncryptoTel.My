@@ -13,16 +13,33 @@
   flex-flow: row
   justify-content: center
   align-items: center
-  button
-    cursor: pointer
-    background: $accent
-    padding: 10px
-    color: $background
-    border: none
-    margin: 15px 10px
-    width: 45px
-    display: flex
-    flex-flow: column
-    justify-content: center
-    align-items: center
-    font-weight: 600
+  .disabled
+    pointer-events: none
+    background: $dark_gray
+  &_control
+    &:nth-child(2n)
+      cursor: pointer
+      background: $accent
+      padding: 10px
+      color: $background
+      border: none
+      margin: 15px 10px
+      width: 55px
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+    &:nth-child(2n+1)
+      cursor: pointer
+      background: $accent
+      padding: 10px
+      color: $background
+      border: none
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+    &:focus
+      outline: none
+
+

@@ -29,7 +29,7 @@ export class BugsListComponent {
     this.router.navigate(['bugs', bug.id])
   }
 
-  vote(id) {
+  vote(id: number): void {
     this._service.vote(id).then(() => {
       this._service.getBugs();
     }).catch(err => {
@@ -37,7 +37,7 @@ export class BugsListComponent {
     })
   }
 
-  report(id) {
+  report(id: number): void {
     this._service.report(id).then(() => {
       this._service.getBugs();
     }).catch(err => {
@@ -53,15 +53,22 @@ export class BugsListComponent {
   }
 
   nextPage(): void {
-    this._service.filter.page += 1;
-    this._service.getBugs();
+    if (this._service.filter.page < this._service.pagination.last_page) {
+      this._service.filter.page += 1;
+      this._service.getBugs();
+    }
   }
 
   paginationControl(): boolean {
     if (this._service.bugs) {
-      return this._service.bugs.length >= 20;
+      return (this._service.bugs.length >= this._service.pagination.per_page || (this._service.filter.page === this._service.pagination.last_page && this._service.pagination.last_page > 1));
     } else {
       return false;
     }
+  }
+
+  forcePagination(page: number): void {
+    this._service.filter.page = page;
+    this._service.getBugs();
   }
 }
