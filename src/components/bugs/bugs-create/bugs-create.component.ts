@@ -112,7 +112,7 @@ export class BugsCreateComponent implements OnInit {
     }
   }
 
-  createAttachInput(uploader_field,pseudo_uploader_field) {
+  createAttachInput(uploader_field, pseudo_uploader_field) {
     this._uploader_container.createEmbeddedView(this._uploader);
     uploader_field.style.display = 'none';
     pseudo_uploader_field.style.display = 'none';
