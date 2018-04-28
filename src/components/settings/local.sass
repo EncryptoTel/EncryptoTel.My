@@ -65,6 +65,8 @@ a
     font-size: 11px
     cursor: pointer
     color: #b7b7b7
+  input
+    padding: 5px 122px 5px 15px
 
 .checkbox_margin
   margin: 20px 0
@@ -84,6 +86,41 @@ a
 
 .invalid
   border: 1px solid $error
+
+.select
+  position: relative
+  height: 35px
+  width: 100%
+  border: 1px solid #b7b7b7
+  padding: 5px 15px
+  display: flex
+  flex-flow: column
+  justify-content: center
+  cursor: pointer
+  &_options
+    position: absolute
+    top: 100%
+    left: -1px
+    display: flex
+    flex-flow: column
+    width: calc(100% + 2px)
+    height: 250px
+    background: $background
+    border-left: 1px solid #b7b7b7
+    border-right: 1px solid #b7b7b7
+    border-bottom: 1px solid #b7b7b7
+    overflow-y: auto
+  &_option
+    width: 100%
+    padding: 5px 15px
+    height: 35px
+    display: flex
+    flex-flow: column
+    justify-content: center
+    flex: 1 0 auto
+    cursor: pointer
+    &:hover
+      background: rgba(90, 202, 209, .2)
 
 @keyframes loading-icon
   from
