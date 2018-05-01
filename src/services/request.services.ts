@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 import {environment as _env} from '../environments/environment';
@@ -78,5 +78,34 @@ export class RequestServices {
         return Promise.reject(response);
       });
   }
-
+  getEth(uri: string, serverReady: boolean = false): Promise<any> {
+    return this.http.get(serverReady ? `${_env.eth_api_url}?${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
+      .then(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.resolve(response);
+      }).catch(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.reject(response);
+      });
+  }
+  getSwap(uri: string): Promise<any> {
+    return this.http.get(`${_env.swap_url}/${uri}`, {responseType: 'json'}).toPromise()
+      .then(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.resolve(response);
+      }).catch(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.reject(response);
+      });
+  }
+  getSwapStatus(uri: string): Promise<any> {
+    return this.http.get(`${_env.swap_url}/${uri}`, {responseType: 'text'}).toPromise()
+      .then(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.resolve(response);
+      }).catch(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.reject(response);
+      });
+  }
 }

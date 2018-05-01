@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 
 import {RoadmapServices} from '../../services/roadmap.services';
 
 import {PageInfo} from '../../models/page-info.model';
-import {RoadmapItem} from '../../models/roadmap-item.model';
+import {RoadmapModel} from '../../models/roadmap.model';
 
 @Component({
   selector: 'roadmap-component',
@@ -19,7 +19,11 @@ export class RoadmapComponent {
   loading: boolean;
 
   // Roadmap array
-  roadmap: RoadmapItem[];
+  roadmap: RoadmapModel;
+
+  progress: number[];
+
+  @ViewChild('dotItem') dotItems: ElementRef;
 
   constructor(private _services: RoadmapServices) {
     this.pageInfo = {
@@ -29,14 +33,17 @@ export class RoadmapComponent {
          want to show changes happening in real time. We will also pin github links where it's possible`
     };
     this.loading = true;
-    this.roadmap = [];
     this.fetchRoadmap();
+    this.progress = Array(20).fill(0).map((i, x) => x + 1);
   }
 
   fetchRoadmap(): void {
     this.loading = true;
     this._services.fetchRoadmap()
-      .then(() => this.loading = false)
+      .then(res => {
+        this.roadmap = res;
+        this.loading = false;
+      })
       .catch(() => this.loading = false)
   }
 }

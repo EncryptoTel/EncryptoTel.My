@@ -14,6 +14,7 @@ import {ButtonElement} from '../elements/button/button.element';
 import {TransactionElement} from '../elements/transaction/transaction.element';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PopupElement} from '../elements/popup/popup.element';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {PopupElement} from '../elements/popup/popup.element';
     FormsModule,
     ReactiveFormsModule,
     AngularSvgIconModule,
-    MainRouterModule
+    MainRouterModule,
+    NgxChartsModule
   ],
   declarations: [
     ClickOutsideDirective,
@@ -42,6 +44,7 @@ import {PopupElement} from '../elements/popup/popup.element';
     ReactiveFormsModule,
     AngularSvgIconModule,
     MainRouterModule,
+    NgxChartsModule,
     ClickOutsideDirective,
     HeaderElement,
     PageInfoElement,

@@ -3,3 +3,156 @@
 .container
   align-items: center
   flex: 1 0 auto
+  overflow-y: auto
+
+.input
+  &_title
+    font-size: 12px
+    font-weight: 400
+    color: $primary
+
+page-info-element
+  position: relative
+
+.swap
+  &_info
+    &:not(:last-child)
+      margin-bottom: rem(16)
+    &_wrap
+      position: absolute
+      top: rem(8)
+      left: rem(40)
+      background: $background
+      padding: rem(16) rem(32)
+      color: $primary
+      &.hidden_sm_up
+        position: initial
+    &_row
+      flex-direction: row
+      line-height: rem(18)
+      &_title
+        margin-right: rem(16)
+      &_value
+        margin-left: auto
+    &_title
+      text-transform: uppercase
+      margin-bottom: rem(6)
+
+.swap_button
+  display: flex
+  flex-direction: column
+  flex: 1 0 auto
+  justify-content: center
+  align-items: center
+  height: 40px
+  color: lighten($primary, 60%)
+  border: 1px solid lighten($primary, 60%)
+  cursor: pointer
+  background-color: transparent
+  outline: none
+  &:first-child
+    border-radius: 2px 0 0 2px
+    border-right: none
+  &:last-child
+    border-radius: 0 2px 2px 0
+    border-left: none
+  &.active
+    background-color: $success
+    color: $background
+    border: none
+
+.form_description
+  display: flex
+  flex-direction: column
+  font-size: 12px
+  b
+    display: inline
+    font-weight: 400
+  span
+    line-height: 16px
+    &:first-child
+      margin-bottom: 8px
+  span.attention
+    margin-top: 8px
+    color: $error
+
+
+#swap_form
+  width: 304px
+  margin-bottom: auto
+  .input
+    &_title
+      margin-top: rem(16)
+      margin-bottom: rem(8)
+      &:first-child
+        margin-top: rem(24)
+  span
+    display: block
+    line-height: 16px
+    font-size: 12px
+    margin-bottom: 16px
+    b
+      display: inline
+      font-weight: 400
+
+
+#submit_button
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-content: center
+  flex: 1 0 auto
+  height: 40px
+  margin: 24px 0
+  border-radius: 2px
+  background: $success
+  color: $background
+  cursor: pointer
+  border: none
+  &:hover
+    background: lighten($success, 10%)
+  &:active
+    background: darken($success, 10%)
+  &:disabled
+    background: lighten($primary, 50%)
+    cursor: initial
+
+#swap_wrap
+  flex-direction: row
+
+.footer
+  &_row
+    flex-direction: row
+    flex-wrap: wrap
+    width: 100%
+    justify-content: space-around
+    margin: auto 0 rem(32)
+    &_item
+      height: rem(48)
+      width: rem(144)
+      background: center no-repeat
+      background-size: contain
+      &:nth-child(1)
+        background-image: url('../../assets/images/waves-dex.svg')
+      &:nth-child(2)
+        background-image: url('../../assets/images/cryptopia.svg')
+      &:nth-child(3)
+        background-image: url('../../assets/images/livecoin.svg')
+      &:nth-child(4)
+        background-image: url('../../assets/images/ccex.svg')
+      &:nth-child(5)
+        background-image: url('../../assets/images/tidex.svg')
+  &_text
+    &_row
+      flex-direction: row
+      flex-wrap: wrap
+      width: 100%
+      justify-content: space-around
+      margin: rem(16) 0 rem(32)
+      color: lighten($primary, 60%)
+    &_item
+      flex-direction: row
+      &:not(:last-child)
+        &:after
+          content: '|'
+          padding: 0 rem(8)

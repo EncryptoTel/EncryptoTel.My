@@ -2,22 +2,20 @@ import {Injectable} from '@angular/core';
 
 import {RequestServices} from './request.services';
 
-import {RoadmapItem} from '../models/roadmap-item.model';
+import {RoadmapModel} from '../models/roadmap.model';
 
 @Injectable()
 export class RoadmapServices {
   constructor(private _req: RequestServices) {}
 
   // Fetching roadmap data
-  fetchRoadmap(): Promise<RoadmapItem[]> {
+  fetchRoadmap(): Promise<RoadmapModel> {
     return this._req.get('roadmap', true)
       .then(res => {
-        console.log(res);
-        return [];
+        return res;
       })
-      .catch(res => {
-        console.log(res);
-        return [];
+      .catch(() => {
+        return Promise.reject(null);
       });
   }
 }

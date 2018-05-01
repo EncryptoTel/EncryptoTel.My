@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 
 import {BonusesServices} from '../../services/bonuses.services';
 
@@ -20,6 +20,8 @@ export class BonusesComponent {
 
   // Bonuses list
   bonusesList: Bonus[];
+
+  @ViewChild('tableBody') tableBody: ElementRef;
 
   constructor(private _services: BonusesServices) {
     this.pageInfo = {
