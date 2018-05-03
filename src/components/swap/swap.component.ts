@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {SwapServices} from '../../services/swap.services';
 import {PageInfo} from '../../models/page-info.model';
 import {SwapDetails} from '../../models/swap-details.model';
+import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'swap-component',
@@ -11,7 +11,7 @@ import {SwapDetails} from '../../models/swap-details.model';
   providers: [SwapServices]
 })
 
-export class SwapComponent implements OnInit {
+export class SwapComponent implements OnInit, AfterViewChecked {
 
   // Page data
   pageInfo: PageInfo;
@@ -49,26 +49,28 @@ export class SwapComponent implements OnInit {
          from the dashboard, sending your funds directly to your wallet`
     };
   }
+
   setTarget(target: 'ethereum' | 'waves'): void {
     this.network = target;
   }
+
   capitalize = (string: string): string => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
   round = (number): number => {
-    const result = Number(number) /  Math.pow(10, 8);
+    const result = Number(number) / Math.pow(10, 8);
     return Math.round(result * 100) / 100;
   };
   numbersSplit = (number): string => {
     const num = String(number).split('.');
     if (num[0].length > 3) {
-      num[0] = num[0].split( /(?=(?:...)*$)/ ).join(' ')
+      num[0] = num[0].split(/(?=(?:...)*$)/).join(' ')
     }
     return num.join('.')
   };
 
   getInitialParams(): Promise<any> {
-    const supply =  this._services.getSupply().then(res => {
+    const supply = this._services.getSupply().then(res => {
       this.amounts = {
         waves_supply: this.numbersSplit(this.round(res['waves'])),
         ett_supply: this.numbersSplit(this.round(res['ethereum'])),
@@ -86,11 +88,24 @@ export class SwapComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const win: any = window;
+    win.test = () => {
+      console.log('test')
+    };
     this.loading = true;
     this.getInitialParams()
       .then(() => {
         this.loading = false;
         setTimeout(() => console.log(this.form.nativeElement));
       });
+  }
+
+  ngAfterViewChecked() {
+    const captcha = document.getElementById('captcha');
+    if (captcha) {
+      const script = document.createElement('script');
+      script.setAttribute('src', 'https://authedmine.com/lib/captcha.min.js');
+      captcha.appendChild(script);
+    }
   }
 }
