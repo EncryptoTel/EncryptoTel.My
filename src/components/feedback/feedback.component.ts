@@ -25,6 +25,8 @@ export class FeedbackComponent {
   loading = false;
 
   create() {
+    this.feedback.controls.summary.markAsTouched();
+    this.feedback.controls.description.markAsTouched();
     if (this.feedback.valid) {
       this.loading = true;
       const feedback = {
