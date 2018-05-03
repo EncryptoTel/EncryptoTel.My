@@ -2,23 +2,30 @@
 <div class="container">
   <div class="transactions">
     <div class="transactions_filters">
-      <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
-        <span (click)="filter('all')">All</span>
-      </div>
-      <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'send'}">
-        <span (click)="filter('send')">Send</span>
-      </div>
-      <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'received'}">
-        <span (click)="filter('received')">Received</span>
-      </div>
-    </div>
-    <div class="transactions_items_wrapper">
-      <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions; index as i">
-        <div class="transactions_items_date" *ngIf="date[i]">{{transaction.timestamp | date}}</div>
-        <div class="transactions_item">
-          <transaction-element [transaction]="transaction" [address]="address" [course]="course"></transaction-element>
+      <select-element [values]="addresses" [keys]="['address']" [currentValue]="address"></select-element>
+      <div class="transactions_filters_list">
+        <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
+          <span (click)="filter('all')">All</span>
+        </div>
+        <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'send'}">
+          <span (click)="filter('send')">Send</span>
+        </div>
+        <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'received'}">
+          <span (click)="filter('received')">Received</span>
         </div>
       </div>
     </div>
+    <div class="transactions_items_wrapper" *ngIf="transactions[0].length > 0">
+      <ng-container *ngIf="filteredTransactions.length>0">
+        <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions; index as i">
+          <div class="transactions_items_date" *ngIf="date[i]">{{transaction.timestamp | date}}</div>
+          <div class="transactions_item">
+            <transaction-element [transaction]="transaction" [address]="address"
+                                 [course]="course"></transaction-element>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <h2 *ngIf="transactions[0].length === 0">You don't have transactions</h2>
   </div>
 </div>

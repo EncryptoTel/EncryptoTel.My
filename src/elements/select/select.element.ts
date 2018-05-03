@@ -10,7 +10,7 @@ import {FadeAnimation} from '../../shared/functions';
 
 export class SelectElement {
   state = false;
-  currentValue = '[Select one]';
+  @Input() currentValue = '[Select one]';
   @Input() values: object[] = [];
   @Input() keys: string [] = [];
   @Input() isInvalid;

@@ -44,12 +44,18 @@ export class SettingsComponent {
     account: {
       hash: '',
       email: '',
+      is_admin: 0,
       profile: {
         firstname: '',
         language_id: 0,
         lastname: '',
         new_comments: 0,
         status_updates: 0
+      },
+      wallets: {
+        address: '',
+        kind: '',
+        assets: []
       }
     }
   };

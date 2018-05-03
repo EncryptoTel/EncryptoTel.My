@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {PageInfo} from '../../models/page-info.model';
 import {TransactionsServices} from '../../services/transactions.services';
 import {StorageServices} from '../../services/storage.services';
+import {AccountModel, Wallets} from '../../models/accout.model';
 
 
 @Component({
@@ -20,16 +21,15 @@ export class TransactionsComponent {
   };
   transactions: Transaction[][] = this.storage.readItem('transactions') || [];
   filteredTransactions: Transaction[] = [];
-  address = '3P7tNYakdeYkR48XQoDRhdvYbmmESznb4WS';
+  addresses: Wallets;
+  address;
   course: Course = this.storage.readItem('course') || 1;
   filterType = 'all';
   date: boolean[] = [];
 
   constructor(private _service: TransactionsServices,
               private storage: StorageServices) {
-    this.getCourse();
-    this.getTransactions();
-    this.filter(this.filterType);
+    this.getAddress();
   }
 
   private getTransactions() {
@@ -71,7 +71,9 @@ export class TransactionsComponent {
     }
     this.date = new Array(this.filteredTransactions.length);
     this.date.fill(false);
-    this.sortByDate();
+    if (this.transactions[0].length > 0) {
+      this.sortByDate();
+    }
   }
 
   private sortingSend(): void {
@@ -102,8 +104,12 @@ export class TransactionsComponent {
   }
 
   private getAddress() {
-    this._service.getAddress().then(res => {
-      console.log(res);
+    this._service.getAddress().then((res: AccountModel) => {
+      this.addresses = res.account.wallets;
+      this.address = this.addresses[0].address;
+      this.getCourse();
+      this.getTransactions();
+      this.filter(this.filterType);
     }).catch(err => {
       console.error(err);
     })

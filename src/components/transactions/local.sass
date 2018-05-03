@@ -12,9 +12,17 @@
   &_filters
     display: flex
     flex-flow: row
-    justify-content: flex-end
-    width: 55%
+    justify-content: space-between
+    align-items: flex-end
+    width: 95%
     flex: 0 0 auto
+    select-element
+      margin: 10px
+    &_list
+      display: flex
+      flex-flow: row
+      justify-content: space-between
+      align-items: flex-end
     &_items
       margin: 10px
       cursor: pointer
@@ -22,7 +30,7 @@
         padding: 10px
   &_items
     &_wrapper
-      width: 60%
+      width: 95%
       height: 85%
       overflow-y: auto
       overflow-x: hidden
