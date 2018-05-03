@@ -1,3 +1,30 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
 <loader-element *ngIf="loading"></loader-element>
-<div class="container" *ngIf="!loading"></div>
+<div class="container update" *ngIf="!loading && roadmap">
+  <div class="roadmap_update">
+    <div class="roadmap_update_text">Last update: {{roadmap.last_update | date: 'MMMM d y, HH:mm'}}<span class="hidden_ux_down">|</span><br class="hidden_ux_up">GitHub link:</div>
+    <a href="https://github.com/EncryptoTel/UI" target="_blank">
+      <svg-icon class="roadmap_github_icon" src="assets/icons/git.svg"></svg-icon>
+    </a>
+  </div>
+</div>
+<div class="container roadmap" *ngIf="!loading && roadmap">
+  <div class="roadmap_item" *ngFor="let item of roadmap.roadmap">
+    <div class="roadmap_item_date hidden_xs_down">{{item.month | date: 'MMMM yyyy'}}</div>
+    <div class="roadmap_item_dot"></div>
+    <div class="roadmap_item_date hidden_xs_up">{{item.month | date: 'MMMM yyyy'}}</div>
+    <div class="roadmap_item_issue_wrap">
+      <div class="roadmap_item_issue" *ngFor="let issue of item.issues">{{issue}}</div>
+    </div>
+    <div class="roadmap_progress_wrap">
+      <div class="roadmap_progress" *ngFor="let i of progress" [ngClass]="{'active': item.progress / 5 >= i}"></div>
+      <div class="roadmap_progress_status_wrap">
+        <div class="roadmap_progress_status">{{item.progress === 0 ? 'Awaiting' : item.progress === 100 ? 'Deployed' : 'Implementing'}}</div>
+        <div class="roadmap_progress_percentage">{{item.progress}}%</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="!loading && !roadmap">
+  <div class="table_empty">Sorry, something went wrong.<br>Please try again later</div>
+</div>

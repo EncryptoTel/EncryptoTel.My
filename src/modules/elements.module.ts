@@ -14,6 +14,7 @@ import {ButtonElement} from '../elements/button/button.element';
 import {TransactionElement} from '../elements/transaction/transaction.element';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PopupElement} from '../elements/popup/popup.element';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BugElement} from '../elements/bug/bug.element';
 import {SelectElement} from '../elements/select/select.element';
 
@@ -25,7 +26,8 @@ import {SelectElement} from '../elements/select/select.element';
     FormsModule,
     ReactiveFormsModule,
     AngularSvgIconModule,
-    MainRouterModule
+    MainRouterModule,
+    NgxChartsModule
   ],
   declarations: [
     ClickOutsideDirective,
@@ -46,6 +48,7 @@ import {SelectElement} from '../elements/select/select.element';
     ReactiveFormsModule,
     AngularSvgIconModule,
     MainRouterModule,
+    NgxChartsModule,
     ClickOutsideDirective,
     HeaderElement,
     PageInfoElement,

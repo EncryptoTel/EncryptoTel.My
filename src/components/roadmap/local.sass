@@ -1,3 +1,153 @@
+@import '../../vars'
+
 .container
-  align-items: center
-  flex: 1 0 auto
+  position: relative
+  overflow-y: auto
+  overflow-x: hidden
+  &.roadmap
+    width: 100%
+    padding: rem(40) rem(16) rem(24)
+  &.update
+    flex-direction: row
+    margin: 0 auto
+    padding: 0
+    height: 0
+    overflow: visible
+
+.roadmap
+  &_update
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    position: absolute
+    top: rem(-32)
+    width: 100%
+    text-align: center
+    font-size: rem(12)
+    color: $background
+    &_text
+      flex-direction: row
+      flex: 0 0 auto
+      > span
+        margin: 0 rem(16)
+  &_item
+    position: relative
+    flex: 0 0 auto
+    flex-direction: row
+    font-size: rem(16)
+    padding-bottom: rem(40)
+    width: 50%
+    min-width: 1023px
+    margin: 0 auto
+    &:not(:last-child)::after
+      content: ''
+      position: absolute
+      top: 0
+      left: rem(167)
+      width: 1px
+      background: $accent
+      height: 100%
+    &_date
+      flex: 0 0 rem(160)
+      align-items: flex-end
+      padding-right: rem(40)
+    &_dot
+      height: rem(15)
+      flex: 0 0 rem(15)
+      background: $accent
+      border-radius: 50%
+    &_issue
+      line-height: rem(20)
+      &_wrap
+        flex: 0 0 calc(100% - 400px)
+        padding-left: rem(40)
+  &_progress
+    background: rgba($primary, .2)
+    height: rem(5)
+    width: rem(3)
+    &:not(:last-child)
+      margin-right: rem(3)
+    &.active
+      background: $accent
+    &_wrap
+      position: relative
+      flex: 0 0 auto
+      flex-direction: row
+      height: rem(5)
+      width: fit-content
+      margin: 0 rem(24) 0 rem(40)
+    &_status
+      flex: 1 0 auto
+      margin-right: auto
+      &_wrap
+        position: absolute
+        left: 0
+        top: calc(100% + 8px)
+        flex-direction: row
+        width: 100%
+        font-size: rem(12)
+  &_github
+    &_icon
+      display: inline-flex
+      height: rem(24)
+      width: rem(24)
+      margin-left: rem(8)
+      /deep/ path
+        fill: $background
+
+@media (max-width: 1000px)
+  .roadmap_item
+    min-width: 768px
+
+@media (min-width: 751px)
+  .hidden_xs_up
+    display: none
+
+@media (max-width: 750px)
+  .container
+    min-width: initial
+  .hidden_xs_down
+    display: none
+  .container.roadmap
+    padding: rem(40) rem(32) rem(16)
+  .roadmap_item
+    flex-direction: column
+    width: 100%
+    min-width: initial
+    &:not(:last-child)::after
+      left: rem(7)
+    &_dot
+      width: rem(15)
+    &_date
+      margin: rem(-15) 0 rem(16)
+      padding-right: 0
+      flex: 1 0 auto
+      align-items: flex-start
+      padding-left: rem(40)
+    &_issue
+      line-break: normal
+      &_wrap
+        flex: 0 0 auto
+        padding-right: rem(24)
+        margin-bottom: rem(16)
+
+@media (min-width: 401px)
+  .hidden_ux_up
+    display: none
+
+@media (max-width: 400px)
+  .hidden_ux_down
+    display: none
+  .roadmap
+    &_github_icon
+      margin-top: rem(4)
+      margin-left: 0
+    &_update
+      flex-direction: column
+      top: rem(-68)
+      &_text
+        line-height: rem(16)
+  /deep/ page-info-element
+    .page_info
+      .container
+        padding-bottom: rem(48)

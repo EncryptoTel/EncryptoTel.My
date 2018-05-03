@@ -1,3 +1,102 @@
-<page-info-element [pageInfo]="pageInfo"></page-info-element>
+<page-info-element [pageInfo]="pageInfo">
+  <div class="swap_info_wrap hidden_sm_down">
+    <div class="swap_info">
+      <div class="swap_info_title">Nodes status</div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">Waves</div>
+        <div class="swap_info_row_value">{{details.waves.status ? 'OK' : 'Error'}}</div>
+      </div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">ETH</div>
+        <div class="swap_info_row_value">{{details.eth.status ? 'OK' : 'Error'}}</div>
+      </div>
+    </div>
+    <div class="swap_info">
+      <div class="swap_info_title">Balances</div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">Waves</div>
+        <div class="swap_info_row_value">{{details.waves.amount}} wETT</div>
+      </div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">ETH</div>
+        <div class="swap_info_row_value">{{details.eth.amount}} eETT</div>
+      </div>
+    </div>
+  </div>
+</page-info-element>
 <loader-element *ngIf="loading"></loader-element>
-<div class="container" *ngIf="!loading"></div>
+<div class="container" *ngIf="!loading">
+  <div class="swap_info_wrap hidden_sm_up">
+    <div class="swap_info">
+      <div class="swap_info_title">Nodes status</div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">Waves</div>
+        <div class="swap_info_row_value">{{details.waves.status ? 'OK' : 'Error'}}</div>
+      </div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">ETH</div>
+        <div class="swap_info_row_value">{{details.eth.status ? 'OK' : 'Error'}}</div>
+      </div>
+    </div>
+    <div class="swap_info">
+      <div class="swap_info_title">Balances</div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">Waves</div>
+        <div class="swap_info_row_value">{{details.waves.amount}} wETT</div>
+      </div>
+      <div class="swap_info_row">
+        <div class="swap_info_row_title">ETH</div>
+        <div class="swap_info_row_value">{{details.eth.amount}} eETT</div>
+      </div>
+    </div>
+  </div>
+  <form id='swap_form' method='post' #swapForm>
+    <p class='input_title'>Select target network</p>
+    <div id='swap_wrap'>
+      <button class='swap_button' [ngClass]="{'active': network === 'waves'}" (click)="setTarget('waves')">Waves</button>
+      <button class='swap_button' [ngClass]="{'active': network === 'ethereum'}" (click)="setTarget('ethereum')">Ethereum</button>
+    </div>
+    <div class='input_wrap'>
+      <p id='input_title' class='input_title'>Your {{capitalize(network)}} address</p>
+      <input id='address' type='text' title='Address' name='address' [placeholder]="'Please type your ' + (network === 'waves' ? 'wETT' : 'eETT') + ' address'" required>
+    </div>
+    <div class='input_title'>Captcha</div>
+    <!--<div class='coinhive-captcha' data-hashes='1024'-->
+         <!--data-key='dYB06r9WbH4gMtzEy2kgg3D1E26U0La3'-->
+         <!--data-callback='validateForm'>-->
+      <!--<em>Loading Captcha...-->
+        <!--<br> If it doesn't load, please disable Adblock!</em>-->
+    <!--</div>-->
+    <div id="captcha"></div>
+    <div class="coinhive-captcha"
+         data-hashes="1024"
+         data-key="dYB06r9WbH4gMtzEy2kgg3D1E26U0La3"
+         data-callback="test">
+      <em>Loading Captcha...<br>
+        If it doesn't load, please disable Adblock!</em>
+    </div>
+    <div id='swap_error' class='hidden'></div>
+    <input type='submit' id='submit_button' value='Exchange'>
+    <p class='form_description'>
+      <span><b>Please note:</b> Before proceeding with the swap make sure that Node Status is OK and the Waves/ETH exchange balance allows to make a swap.<br></span>
+      <span class='attention'>
+          <b>Attention:</b> We do NOT support addresses from any exchanges. You must use your personal wallet address.
+          This service will pair your addresses on Ethereum and Waves blockchains and we won’t be able to revert it. Please, be careful with that.
+        </span>
+    </p>
+  </form>
+  <div class="footer_row">
+    <div class="footer_row_item"></div>
+    <div class="footer_row_item"></div>
+    <div class="footer_row_item"></div>
+    <div class="footer_row_item"></div>
+    <div class="footer_row_item"></div>
+  </div>
+  <div class="footer_text_row">
+    <div class="footer_text_item">ETT network statistic:</div>
+    <div class="footer_text_item">Total supply - <span>{{amounts.total}} ETT</span></div>
+    <div class="footer_text_item">Circulating supply - <span>{{amounts.circulating}} ETT</span></div>
+    <div class="footer_text_item">wETT circulating supply - <span>{{amounts.waves_supply}} wETT</span></div>
+    <div class="footer_text_item">eETT circulating supply - <span>{{amounts.ett_supply}} eETT</span></div>
+  </div>
+</div>

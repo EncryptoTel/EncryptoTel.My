@@ -2,6 +2,8 @@ export const environment = {
   production: false,
   api_url: 'http://investor-back.encry.ru/api',
   waves_api_url: 'https://nodes.wavesnodes.com',
+  eth_api_url: 'https://api.etherscan.io/api',
+  swap_url: 'https://swap.encryptotel.com',
   navigation: [
     {link: 'dashboard', value: 'Dashboard', visible: true, available: true},
     {link: 'transactions', value: 'Transactions', visible: true, available: true},

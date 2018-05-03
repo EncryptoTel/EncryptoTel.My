@@ -13,7 +13,7 @@
           <div class="table_column">Status</div>
         </div>
       </div>
-      <div class="table_body">
+      <div class="table_body" #tableBody>
         <div class="table_row" *ngFor="let bonus of bonusesList">
           <div class="table_column">{{bonus.name || 'Unnamed'}}</div>
           <div class="table_column">{{bonus.amount || 'None'}}</div>
