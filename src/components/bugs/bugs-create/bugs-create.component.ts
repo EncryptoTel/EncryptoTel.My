@@ -47,6 +47,7 @@ export class BugsCreateComponent implements OnInit {
   };
   loading = false;
   isSendedRequest = false;
+  isValidPriority = false;
   private newBug = {
     summary: '',
     description: '',
@@ -154,6 +155,7 @@ export class BugsCreateComponent implements OnInit {
 
   setPriority(event): void {
     this.priority.id = event.id;
+    this.isValidPriority = true;
   }
 
   vote(event, searchField): void {

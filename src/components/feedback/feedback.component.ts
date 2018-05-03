@@ -18,18 +18,18 @@ export class FeedbackComponent {
 
   }
 
-  newBugForm: FormGroup = new FormGroup({
+  feedback: FormGroup = new FormGroup({
     'summary': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
     'description': new FormControl(null, [Validators.required, Validators.minLength(10)])
   });
   loading = false;
 
   create() {
-    if (this.newBugForm.valid) {
+    if (this.feedback.valid) {
       this.loading = true;
       const feedback = {
-        summary: this.newBugForm.value.summary,
-        description: this.newBugForm.value.description,
+        summary: this.feedback.value.summary,
+        description: this.feedback.value.description,
         kind: 2
       };
       this._service.create(feedback).then(() => {

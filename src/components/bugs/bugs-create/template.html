@@ -16,7 +16,10 @@
       <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus #searchField [ngClass]="{'invalid': (newBugForm.controls.summary.invalid && newBugForm.controls.summary.touched)}">
       <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
     </div>
-    <select-element [values]="priorities" [keys]="['name','description']" [returnedValue]="'id'" (getValue)="setPriority($event)"></select-element>
+    <div class="input_wrapper">
+      <select-element [values]="priorities" [keys]="['name','description']" [returnedValue]="'id'" (getValue)="setPriority($event)" [isInvalid]="(!isValidPriority && newBugForm.controls.summary.touched && newBugForm.controls.description.touched)"></select-element>
+      <span class="alert_message" *ngIf="(!isValidPriority && newBugForm.controls.summary.touched && newBugForm.controls.description.touched)">choose priority</span>
+    </div>
     <div class="input_wrapper textarea_wrap" [ngClass]="{'invalid': (newBugForm.controls.description.invalid && newBugForm.controls.description.touched)}">
       <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
       <ng-container #uploader_container></ng-container>

@@ -1,14 +1,14 @@
 <loader-element *ngIf="loading"></loader-element>
 <div class="feedback_create_wrap" *ngIf="!loading" [@Fade]>
-  <form [formGroup]="newBugForm" class="feedback_create_form">
+  <form [formGroup]="feedback" class="feedback_create_form">
     <p>Give feedback</p>
     <div class="input_wrapper">
       <input type="text" placeholder="Title" formControlName="summary">
-      <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
+      <span class="alert_message" *ngIf="(!feedback.controls.summary.valid && feedback.controls.summary.touched)" [@Fade]>min 5 characters</span>
     </div>
     <div class="input_wrapper">
       <textarea placeholder="Describe your message ..." formControlName="description"></textarea>
-      <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>
+      <span class="alert_message" *ngIf="(!feedback.controls.description.valid && feedback.controls.description.touched)" [@Fade]>min 10 characters</span>
     </div>
     <loader-element *ngIf="loading"></loader-element>
     <div class="feedback_create_form_controls" *ngIf="!loading">

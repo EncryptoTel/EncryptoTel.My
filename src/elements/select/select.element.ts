@@ -13,6 +13,7 @@ export class SelectElement {
   currentValue = '[Select one]';
   @Input() values: object[] = [];
   @Input() keys: string [] = [];
+  @Input() isInvalid;
   @Input() returnedValue: string;
 
   @Output() getValue = new EventEmitter<any>();
