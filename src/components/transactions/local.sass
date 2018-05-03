@@ -2,6 +2,7 @@
 .container
   align-items: center
   height: 100%
+
 .transactions
   display: flex
   flex-flow: column
@@ -33,5 +34,15 @@
   &_item
     width: 100%
     flex: 1 0 70px
+
 .active
   border-bottom: 1px solid $accent
+
+@media all and (max-width: 768px)
+  .transactions
+    width: 100%
+    &_filters
+      width: 100%
+    &_items
+      &_wrapper
+        width: 100%
