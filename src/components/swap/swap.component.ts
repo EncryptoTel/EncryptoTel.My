@@ -90,7 +90,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     const win: any = window;
     win.test = () => {
-      console.log('test')
+      alert('Work!');
     };
     this.loading = true;
     this.getInitialParams()
