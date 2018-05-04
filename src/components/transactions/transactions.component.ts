@@ -5,6 +5,7 @@ import {TransactionsServices} from '../../services/transactions.services';
 import {StorageServices} from '../../services/storage.services';
 import {AccountModel, Wallets} from '../../models/accout.model';
 import {FadeAnimation} from '../../shared/functions';
+import {Transaction} from '../../models/transactions.model';
 
 
 @Component({
@@ -33,6 +34,14 @@ export class TransactionsComponent {
   constructor(private _service: TransactionsServices,
               private storage: StorageServices) {
     this.getAddress();
+  }
+
+  changeAddress(address): void {
+    console.log(address);
+    this.address = address.address;
+    this.currency = address.kind;
+    this.getTransactions();
+    this.filter(this.filterType);
   }
 
   private getTransactions() {

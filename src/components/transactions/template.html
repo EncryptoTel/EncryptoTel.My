@@ -4,7 +4,7 @@
   <div class="transactions" *ngIf="!loading" [@Fade]>
     <div class="transactions_filters">
       <select-element [values]="addresses" [keys]="['address']" [currentValue]="address"
-                      [oneKey]="true" [split]="true"></select-element>
+                      [oneKey]="true" [split]="true" [returnedValue]="'address'" (getValue)="changeAddress($event)"></select-element>
       <div class="transactions_filters_list">
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
           <span (click)="filter('all')">All</span>

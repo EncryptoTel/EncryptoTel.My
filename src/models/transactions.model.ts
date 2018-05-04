@@ -1,4 +1,4 @@
-interface Transaction {
+export interface Transaction {
   amount: number;
   assetId: null | string;
   attachment: string;
@@ -13,6 +13,10 @@ interface Transaction {
   timestamp: number;
   type: number;
 }
-interface Course {
+export interface Course {
   course: number;
+}
+
+export interface Asset {
+  name: string;
 }

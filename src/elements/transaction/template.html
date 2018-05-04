@@ -23,7 +23,7 @@
         <p class="amount">{{type === 'Send'? '- ': '+ '}}{{(transaction.amount/K) | number: '0.0-8'}} {{asset ? asset: currency}}</p>
       </div>
       <div class="transaction_currency" *ngIf="course.course">
-        <p class="usd">{{type === 'Send'? '-': '+'}} {{convertToUSD()}} US Dollar</p>
+        <p class="usd">{{type === 'Send'? '-': '+'}} {{convertToUSD() | number: '0.0-2'}} US Dollar</p>
       </div>
     </div>
   </div>

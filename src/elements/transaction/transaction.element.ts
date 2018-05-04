@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TransactionsServices} from '../../services/transactions.services';
+import {Asset, Course, Transaction} from '../../models/transactions.model';
 
 @Component({
   selector: 'transaction-element',
@@ -32,9 +33,8 @@ export class TransactionElement implements OnInit {
 
   private getAssetsId(): void {
     if (this.transaction && this.transaction.assetId) {
-      this._service.getAssetsId(this.transaction.assetId).then(res => {
+      this._service.getAssetsId(this.transaction.assetId).then((res: Asset) => {
         this.asset = res.name;
-        console.log(res);
       }).catch(err => {
         console.error(err);
       });
@@ -42,8 +42,8 @@ export class TransactionElement implements OnInit {
   }
 
   private getCourse(): void {
-    if (this.transaction && this.transaction.assetId) {
-      this._service.getCourse(this.transaction.assetId ? this.transaction.assetId : this.type).then((res: Course) => {
+    if (this.transaction || this.transaction.assetId) {
+      this._service.getCourse(this.transaction.assetId ? this.transaction.assetId : this.currency).then((res: Course) => {
         this.course = res;
       }).catch(err => {
         console.error(err);
@@ -54,6 +54,5 @@ export class TransactionElement implements OnInit {
   ngOnInit() {
     this.getAssetsId();
     this.getCourse();
-    console.log('1');
   }
 }
