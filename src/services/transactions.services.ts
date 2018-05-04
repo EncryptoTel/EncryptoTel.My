@@ -10,11 +10,15 @@ export class TransactionsServices {
     return this.request.getWaves(`transactions/address/${address}/limit/50`, true);
   }
 
-  getCourse(): Promise<Object> {
-    return this.request.get('course.json');
+  getCourse(from: string, To: string = 'USD'): Promise<Object> {
+    return this.request.get(`currency/course?from=${from}&to=${To}`, true);
   }
 
-  getAddress() {
+  getAddress(): Promise<Object> {
     return this.request.get('account', true);
+  }
+
+  getAssetsId(assetId): Promise<Object> {
+    return this.request.getWaves(`assets/details/${assetId}`, true)
   }
 }

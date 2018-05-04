@@ -1,6 +1,6 @@
 interface Transaction {
   amount: number;
-  assetId: null;
+  assetId: null | string;
   attachment: string;
   fee: number;
   feeAsset: null;
@@ -14,5 +14,5 @@ interface Transaction {
   type: number;
 }
 interface Course {
-  ett_course: number;
+  course: number;
 }

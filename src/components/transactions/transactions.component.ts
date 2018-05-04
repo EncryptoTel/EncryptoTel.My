@@ -4,12 +4,14 @@ import {PageInfo} from '../../models/page-info.model';
 import {TransactionsServices} from '../../services/transactions.services';
 import {StorageServices} from '../../services/storage.services';
 import {AccountModel, Wallets} from '../../models/accout.model';
+import {FadeAnimation} from '../../shared/functions';
 
 
 @Component({
   selector: 'transactions-component',
   templateUrl: './template.html',
-  styleUrls: ['./local.sass']
+  styleUrls: ['./local.sass'],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class TransactionsComponent {
@@ -22,10 +24,11 @@ export class TransactionsComponent {
   transactions: Transaction[][] = this.storage.readItem('transactions') || [];
   filteredTransactions: Transaction[] = [];
   addresses: Wallets;
-  address;
-  course: Course = this.storage.readItem('course') || 1;
+  address: string;
+  currency: string;
   filterType = 'all';
   date: boolean[] = [];
+  loading = true;
 
   constructor(private _service: TransactionsServices,
               private storage: StorageServices) {
@@ -37,15 +40,6 @@ export class TransactionsComponent {
       this.storage.writeItem('transactions', res);
       this.transactions = res;
       this.filter(this.filterType);
-    }).catch(err => {
-      console.error(err);
-    });
-  }
-
-  private getCourse() {
-    this._service.getCourse().then((res: Course) => {
-      this.course = res;
-      this.storage.writeItem('course', res);
     }).catch(err => {
       console.error(err);
     });
@@ -69,9 +63,9 @@ export class TransactionsComponent {
         this.filteredTransactions = this.transactions[0];
         break;
     }
-    this.date = new Array(this.filteredTransactions.length);
-    this.date.fill(false);
     if (this.transactions[0].length > 0) {
+      this.date = new Array(this.filteredTransactions.length);
+      this.date.fill(false);
       this.sortByDate();
     }
   }
@@ -107,11 +101,13 @@ export class TransactionsComponent {
     this._service.getAddress().then((res: AccountModel) => {
       this.addresses = res.account.wallets;
       this.address = this.addresses[0].address;
-      this.getCourse();
+      this.currency = this.addresses[0].kind;
       this.getTransactions();
       this.filter(this.filterType);
+      this.loading = false;
     }).catch(err => {
       console.error(err);
+      this.loading = false;
     })
   }
 }

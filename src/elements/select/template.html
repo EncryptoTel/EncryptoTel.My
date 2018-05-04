@@ -1,11 +1,18 @@
 <div class="select" (click)="toggleVisible()" [ngClass]="{'invalid': isInvalid}">
   <div class="select_current">
-    <span>{{currentValue}}</span>
+    <span *ngIf="!split">{{currentValue}}</span>
+    <span *ngIf="split">{{currentValue | splitAddress}}</span>
   </div>
   <div class="select_options" *ngIf="state" [@Fade]>
     <div class="select_option" *ngFor="let value of values" (click)="setValue(value)">
-      <span class="first_word">{{value[keys[0]]}}</span>
-      <span class="other_words">({{value[keys[1]]}})</span>
+      <ng-container *ngIf="!split">
+        <span class="first_word">{{value[keys[0]]}}</span>
+        <span class="other_words" *ngIf="!oneKey">({{value[keys[1]]}})</span>
+      </ng-container>
+      <ng-container *ngIf="split">
+        <span class="first_word">{{value[keys[0]] | splitAddress}}</span>
+        <span class="other_words" *ngIf="!oneKey">({{value[keys[1]] | splitAddress}})</span>
+      </ng-container>
     </div>
   </div>
   <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>

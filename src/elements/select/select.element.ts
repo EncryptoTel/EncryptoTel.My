@@ -15,6 +15,8 @@ export class SelectElement {
   @Input() keys: string [] = [];
   @Input() isInvalid;
   @Input() returnedValue: string;
+  @Input() oneKey: boolean;
+  @Input() split: boolean;
 
   @Output() getValue = new EventEmitter<any>();
 

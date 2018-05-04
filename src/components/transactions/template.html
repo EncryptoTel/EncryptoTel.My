@@ -1,8 +1,10 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
 <div class="container">
-  <div class="transactions">
+  <loader-element *ngIf="loading"></loader-element>
+  <div class="transactions" *ngIf="!loading" [@Fade]>
     <div class="transactions_filters">
-      <select-element [values]="addresses" [keys]="['address']" [currentValue]="address"></select-element>
+      <select-element [values]="addresses" [keys]="['address']" [currentValue]="address"
+                      [oneKey]="true" [split]="true"></select-element>
       <div class="transactions_filters_list">
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
           <span (click)="filter('all')">All</span>
@@ -20,8 +22,11 @@
         <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions; index as i">
           <div class="transactions_items_date" *ngIf="date[i]">{{transaction.timestamp | date}}</div>
           <div class="transactions_item">
-            <transaction-element [transaction]="transaction" [address]="address"
-                                 [course]="course"></transaction-element>
+            <transaction-element [transaction]="transaction"
+                                 [address]="address"
+                                 [currency]="currency"
+                                 [@Fade]>
+            </transaction-element>
           </div>
         </div>
       </ng-container>

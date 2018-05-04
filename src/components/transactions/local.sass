@@ -11,37 +11,40 @@
   height: 100%
   &_filters
     display: flex
-    flex-flow: row
+    flex-flow: row wrap
     justify-content: space-between
     align-items: flex-end
     width: 95%
     flex: 0 0 auto
     select-element
-      margin: 10px
+      margin: 10px 10px 10px 0
+      flex: 0 1 15%
     &_list
       display: flex
       flex-flow: row
       justify-content: space-between
       align-items: flex-end
     &_items
-      margin: 10px
+      margin: 10px 0 10px 10px
       cursor: pointer
       span
         padding: 10px
   &_items
     &_wrapper
       width: 95%
-      height: 85%
       overflow-y: auto
       overflow-x: hidden
       display: flex
       flex-flow: column
     &_block
       width: 100%
+      margin-bottom: 10px
       flex: 1 0 auto
+    &_date
+      margin: 20px 0 20px 20px
   &_item
     width: 100%
-    flex: 1 0 70px
+    flex: 1 0 auto
 
 .active
   border-bottom: 1px solid $accent
@@ -54,3 +57,17 @@
     &_items
       &_wrapper
         width: 100%
+
+@media all and (max-width: 425px)
+  .transactions
+    &_filters
+      justify-content: center
+      &_list
+        order: 1
+      select-element
+        order: 2
+        flex: 0 1 auto
+        width: 100%
+    &_items
+      &_date
+        margin: 15px 0

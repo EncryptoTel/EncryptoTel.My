@@ -11,9 +11,9 @@
       width: 40px
       height: 40px
   &_currency
-    &:first-child
+    .amount
       margin-bottom: 5px
-    &:last-child
+    .usd
       color: #B7B7B7
       font-size: 0.85em
     &_wrapper
@@ -29,3 +29,18 @@
       display: flex
       flex-flow: column
       text-align: right
+
+.full
+  display: inline
+
+.splited
+  display: none
+
+@media all and (max-width: 425px)
+  .transaction
+    &_icon_wrapper
+      display: none
+  .full
+    display: none
+  .splited
+    display: inline
