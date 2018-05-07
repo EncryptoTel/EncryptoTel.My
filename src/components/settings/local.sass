@@ -4,12 +4,10 @@ a
 
 .container
   align-items: center
-  flex: 1 0 auto
   height: 100%
 
 .settings
   width: 40%
-  flex: 1
   display: flex
   flex-flow: column
   &_header
@@ -17,8 +15,8 @@ a
     flex-flow: row
     justify-content: space-between
     align-items: center
-    flex: 1
     margin: 25px 0
+    flex: 1 0 auto
   &_avatar
     max-width: 100%
     height: auto
@@ -29,7 +27,7 @@ a
       p:first-child
         margin-bottom: 10px
   &_form
-    flex: 3
+    flex: 1 0 auto
     form
       display: flex
       flex-flow: column

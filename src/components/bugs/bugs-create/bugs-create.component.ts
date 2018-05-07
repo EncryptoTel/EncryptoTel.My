@@ -116,10 +116,14 @@ export class BugsCreateComponent implements OnInit {
   }
 
   createAttachInput(uploader_field, pseudo_uploader_field) {
-    this._uploader_container.createEmbeddedView(this._uploader);
-    uploader_field.style.display = 'none';
-    pseudo_uploader_field.style.display = 'none';
-    console.log(uploader_field.files);
+    if (uploader_field.files[0].size >= 10485760) {
+      this.popup.showError('File must be less then 10mb');
+      uploader_field.value = null;
+    } else {
+      this._uploader_container.createEmbeddedView(this._uploader);
+      uploader_field.style.display = 'none';
+      pseudo_uploader_field.style.display = 'none';
+    }
   }
 
   cancelAttach(uploader_field, uploader_ref) {
