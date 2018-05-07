@@ -1,7 +1,6 @@
 <div class="select" (click)="toggleVisible()" [ngClass]="{'invalid': isInvalid}">
   <div class="select_current">
-    <span *ngIf="!split">{{currentValue}}</span>
-    <span *ngIf="split">{{currentValue | splitAddress}}</span>
+    <span>{{currentValue}}</span>
   </div>
   <div class="select_options" *ngIf="state" [@Fade]>
     <div class="select_option" *ngFor="let value of values" (click)="setValue(value)">

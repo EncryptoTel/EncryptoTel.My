@@ -4,13 +4,13 @@
   <div class="transactions" *ngIf="!loading" [@Fade]>
     <div class="transactions_filters">
       <select-element [values]="addresses" [keys]="['address']" [currentValue]="address"
-                      [oneKey]="true" [split]="true" [returnedValue]="'address'" (getValue)="changeAddress($event)"></select-element>
+                      [oneKey]="true" [returnedValue]="'address'" (getValue)="changeAddress($event)"></select-element>
       <div class="transactions_filters_list">
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
           <span (click)="filter('all')">All</span>
         </div>
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'sent'}">
-          <span (click)="filter('send')">Sent</span>
+          <span (click)="filter('sent')">Sent</span>
         </div>
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'received'}">
           <span (click)="filter('received')">Received</span>
