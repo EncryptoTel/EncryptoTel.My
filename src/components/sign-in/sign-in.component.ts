@@ -74,7 +74,9 @@ export class SignInComponent implements OnInit, OnDestroy {
           this.loading = false;
           this.router.navigateByUrl('dashboard');
         })
-        .catch(() => this.loading = false)
+        .catch(() => {
+          this.loading = false;
+        })
     }
   }
 

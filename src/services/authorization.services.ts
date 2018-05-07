@@ -33,7 +33,14 @@ export class AuthorizationServices {
         this.authSubscription.next();
         return Promise.resolve(null);
       }).catch(res => {
-        if (res.message) {
+        console.log(res);
+        if (res.errors) {
+          if (res.errors.password) {
+            this.setMessage(res.errors.password)
+          } else if (res.errors.email) {
+            this.setMessage(res.errors.email)
+          }
+        } else if (res.message) {
           this.setMessage(res.message);
         } else {
           this.setMessage('Unknown error');
