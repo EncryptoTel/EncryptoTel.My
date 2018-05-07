@@ -2,9 +2,11 @@
   <div class="bug_list_item_vote">
     <div class="bug_list_item_vote_counter">
       <span>{{issue.votes_count}}</span>
-      <span>votes</span>
+      <span>{{issue.votes_count>1? 'votes': 'vote'}}</span>
     </div>
-    <button class="bug_list_item_vote_button" [ngClass]="{'voted': issue.vote_exists === 1}" (click)="voteHandler()">Vote</button>
+    <button class="bug_list_item_vote_button" [ngClass]="{'voted': issue.vote_exists === 1}" (click)="voteHandler()">
+      Vote
+    </button>
   </div>
   <div class="bug_list_item_description">
     <div class="bug_list_item_description_title" (click)="getBug()">{{issue.summary}}</div>
@@ -13,8 +15,12 @@
     </div>
     <div class="bug_list_item_description_footer">
       <div class="bug_list_item_description_footer_tag {{setTagStyle(issue.status.id)}}">{{issue.status.name}}</div>
-      <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} comments</div>
-      <div class="bug_list_item_description_footer_report" (click)="reportHandler()" [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...</div>
+      <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} {{issue.comments_count>1?
+        'comments': 'comment'}}
+      </div>
+      <div class="bug_list_item_description_footer_report" (click)="reportHandler()"
+           [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...
+      </div>
     </div>
   </div>
 </div>
