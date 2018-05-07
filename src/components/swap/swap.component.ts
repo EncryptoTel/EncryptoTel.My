@@ -93,7 +93,6 @@ export class SwapComponent implements OnInit, AfterViewChecked {
       alert('Work!');
     };
   }
-  
   ngOnInit(): void {
     this.callbackCaptcha();
     this.loading = true;

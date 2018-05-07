@@ -8,7 +8,7 @@
     <div class="bug_body_votes">
       <div class="bug_body_votes_counter">
         <span>{{details.votes_count}}</span>
-        <span>{{details.votes_count>1? 'votes': 'vote'}}</span>
+        <span>{{details.votes_count === 1? 'vote': 'votes'}}</span>
       </div>
       <button class="bug_body_votes_button" [ngClass]="{'voted': details.vote_exists === 1}" (click)="vote()">
         Vote

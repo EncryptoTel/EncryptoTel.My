@@ -2,7 +2,7 @@
   <div class="bug_list_item_vote">
     <div class="bug_list_item_vote_counter">
       <span>{{issue.votes_count}}</span>
-      <span>{{issue.votes_count>1? 'votes': 'vote'}}</span>
+      <span>{{issue.votes_count === 1? 'vote': 'votes'}}</span>
     </div>
     <button class="bug_list_item_vote_button" [ngClass]="{'voted': issue.vote_exists === 1}" (click)="voteHandler()">
       Vote
@@ -15,8 +15,8 @@
     </div>
     <div class="bug_list_item_description_footer">
       <div class="bug_list_item_description_footer_tag {{setTagStyle(issue.status.id)}}">{{issue.status.name}}</div>
-      <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} {{issue.comments_count>1?
-        'comments': 'comment'}}
+      <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} {{issue.comments_count === 1?
+        'comment': 'comments'}}
       </div>
       <div class="bug_list_item_description_footer_report" (click)="reportHandler()"
            [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...
