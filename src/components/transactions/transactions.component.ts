@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 
 import {PageInfo} from '../../models/page-info.model';
 import {TransactionsServices} from '../../services/transactions.services';
-import {StorageServices} from '../../services/storage.services';
 import {AccountModel, Wallets} from '../../models/accout.model';
 import {FadeAnimation} from '../../shared/functions';
 import {Transaction, TransactionsModel} from '../../models/transactions.model';
@@ -20,7 +19,7 @@ export class TransactionsComponent {
     title: 'Transactions',
     description:
       `The entire Cardano team is made up of experts around the world, and the core technology team
-      consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
   transactions: Transaction[] = [];
   filteredTransactions: Transaction[] = [];
@@ -48,7 +47,7 @@ export class TransactionsComponent {
       case ('all'):
         this.filteredTransactions = this.transactions;
         break;
-      case ('send'):
+      case ('sent'):
         this.filteredTransactions = [];
         this.sortingSend();
         break;

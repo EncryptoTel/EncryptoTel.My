@@ -18,7 +18,7 @@ export class SettingsComponent {
     title: 'Settings',
     description:
       `The entire Cardano team is made up of experts around the world, and the core technology team
-      consists of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
   editStatus = {
     firstname: false,

@@ -14,6 +14,6 @@ export class TransactionElement {
   type: string;
 
   setTypeTransaction(sender: string): string {
-    return this.type = sender === this.address ? 'Send' : 'Received';
+    return this.type = sender === this.address ? 'Sent' : 'Received';
   }
 }

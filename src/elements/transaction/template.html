@@ -11,12 +11,12 @@
       <div class="transaction_currency">
         <p class="full usd">{{transaction.timestamp | date:'H:m'}}
           <!--{{type === 'Send'? 'to':'from'}} address {{type === 'Send'?transaction.recipient:transaction.sender}}-->
-          <ng-container *ngIf="type === 'Send'; then send else recipie"></ng-container>
+          <ng-container *ngIf="type === 'Sent'; then send else recipie"></ng-container>
           <ng-template #send> {{transaction.recipient? ', to address' + transaction.recipient: ''}}</ng-template>
           <ng-template #recipie>, from address {{transaction.sender}}</ng-template>
         </p>
         <p class="splited usd">{{transaction.timestamp | date:'H:m'}},
-          {{type === 'Send'? 'to':'from'}} address {{(type === 'Send'?transaction.recipient:transaction.sender) |
+          {{type === 'Sent'? 'to':'from'}} address {{(type === 'Sent'?transaction.recipient:transaction.sender) |
           splitAddress}}
         </p>
       </div>
@@ -27,7 +27,7 @@
           {{transaction.asset}}</p>
       </div>
       <div class="transaction_currency" *ngIf="transaction.convertedAmount">
-        <p class="usd">{{type === 'Send'? '-': '+'}} {{transaction.convertedAmount | number: '0.0-2'}} US Dollar</p>
+        <p class="usd">{{type === 'Sent'? '-': '+'}} {{transaction.convertedAmount | number: '0.0-2'}} US Dollar</p>
       </div>
     </div>
   </div>

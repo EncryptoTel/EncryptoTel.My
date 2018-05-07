@@ -9,8 +9,8 @@
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
           <span (click)="filter('all')">All</span>
         </div>
-        <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'send'}">
-          <span (click)="filter('send')">Send</span>
+        <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'sent'}">
+          <span (click)="filter('send')">Sent</span>
         </div>
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'received'}">
           <span (click)="filter('received')">Received</span>
