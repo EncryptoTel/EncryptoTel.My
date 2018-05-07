@@ -6,11 +6,14 @@
   <div class="transaction_currency_wrapper">
     <div class="transaction_currency_type">
       <div class="transaction_currency">
-        <p class="amount">{{setTypeTransaction(transaction.sender)}} {{asset ? asset: currency}}</p>
+        <p class="amount">{{setTypeTransaction(transaction.sender)}} {{transaction.asset}}</p>
       </div>
       <div class="transaction_currency">
-        <p class="full usd">{{transaction.timestamp | date:'H:m'}},
-          {{type === 'Send'? 'to':'from'}} address {{type === 'Send'?transaction.recipient:transaction.sender}}
+        <p class="full usd">{{transaction.timestamp | date:'H:m'}}
+          <!--{{type === 'Send'? 'to':'from'}} address {{type === 'Send'?transaction.recipient:transaction.sender}}-->
+          <ng-container *ngIf="type === 'Send'; then send else recipie"></ng-container>
+          <ng-template #send> {{transaction.recipient? ', to address' + transaction.recipient: ''}}</ng-template>
+          <ng-template #recipie>, from address {{transaction.sender}}</ng-template>
         </p>
         <p class="splited usd">{{transaction.timestamp | date:'H:m'}},
           {{type === 'Send'? 'to':'from'}} address {{(type === 'Send'?transaction.recipient:transaction.sender) |
@@ -20,10 +23,11 @@
     </div>
     <div class="transaction_currency_value" *ngIf="transaction.amount">
       <div class="transaction_currency">
-        <p class="amount">{{type === 'Send'? '- ': '+ '}}{{(transaction.amount/K) | number: '0.0-8'}} {{asset ? asset: currency}}</p>
+        <p class="amount">{{type === 'Send'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
+          {{transaction.asset}}</p>
       </div>
-      <div class="transaction_currency" *ngIf="course.course">
-        <p class="usd">{{type === 'Send'? '-': '+'}} {{convertToUSD() | number: '0.0-2'}} US Dollar</p>
+      <div class="transaction_currency" *ngIf="transaction.convertedAmount">
+        <p class="usd">{{type === 'Send'? '-': '+'}} {{transaction.convertedAmount | number: '0.0-2'}} US Dollar</p>
       </div>
     </div>
   </div>

@@ -17,20 +17,19 @@
         </div>
       </div>
     </div>
-    <div class="transactions_items_wrapper" *ngIf="transactions[0].length > 0">
+    <div class="transactions_items_wrapper" *ngIf="transactions.length > 0">
       <ng-container *ngIf="filteredTransactions.length>0">
         <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions; index as i">
           <div class="transactions_items_date" *ngIf="date[i]">{{transaction.timestamp | date}}</div>
           <div class="transactions_item">
             <transaction-element [transaction]="transaction"
                                  [address]="address"
-                                 [currency]="currency"
                                  [@Fade]>
             </transaction-element>
           </div>
         </div>
       </ng-container>
     </div>
-    <h2 *ngIf="transactions[0].length === 0">You don't have transactions</h2>
+    <h2 *ngIf="transactions.length === 0">You don't have transactions</h2>
   </div>
 </div>
