@@ -82,7 +82,7 @@
     </div>
   </div>
   <div class="bug_newComment">
-    <h3>{{details.comments.length - adminComments.length}} comments</h3>
+    <h3>{{details.comments.length - adminComments.length}} {{(details.comments.length - adminComments.length) === 1? 'comment': 'comments'}}</h3>
     <textarea placeholder="Write a comment..." #commentField (blur)="validation(commentField)"></textarea>
     <div class="bug_newComment_control">
       <span [@Fade] *ngIf="commentField.classList.contains('invalid')" class="alert_message">min 10 characters</span>
