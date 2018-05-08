@@ -126,7 +126,7 @@ export class SettingsComponent {
   }
 
   changeEmail(email: string) {
-    if (email.length < 255) {
+    if (email.length < 255 && email !== this.account.account.email) {
       const validation = this.validState.email = emailRegExp.test(email);
       if (validation) {
         this.loadersIcons.email = true;
@@ -140,6 +140,9 @@ export class SettingsComponent {
           this.loadersIcons.email = false;
         })
       }
+    }
+    if (email === this.account.account.email) {
+      this.editStatus.email = false;
     }
   }
 

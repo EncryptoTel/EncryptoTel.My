@@ -109,7 +109,7 @@ export class TransactionsComponent {
       this.filter(this.filterType);
       this.loading = false;
     }).catch(err => {
-      console.log(err);
+      console.error(err);
       this.loading = false;
     })
   }

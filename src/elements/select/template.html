@@ -1,4 +1,4 @@
-<div class="select" (click)="toggleVisible()" [ngClass]="{'invalid': isInvalid}">
+<div class="select" (click)="toggleVisible()" [ngClass]="{'invalid': isInvalid}" (clickOutside)="state = false">
   <div class="select_current">
     <span>{{currentValue}}</span>
   </div>
