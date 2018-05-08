@@ -16,6 +16,7 @@ import {SettingsServices} from '../services/settings.services';
 import {PopupServices} from '../services/popup.services';
 import {ChangeEmailServices} from '../services/change-email.services';
 import {BugsServices} from '../services/bugs.services';
+import {DialogServices} from '../services/dialog.services';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {BugsServices} from '../services/bugs.services';
     TransactionsServices,
     PopupServices,
     ChangeEmailServices,
-    BugsServices
+    BugsServices,
+    DialogServices
   ],
   bootstrap: [MainViewComponent]
 })

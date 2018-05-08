@@ -18,6 +18,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {BugElement} from '../elements/bug/bug.element';
 import {SelectElement} from '../elements/select/select.element';
 import {TransactionPipe} from '../shared/transaction.pipe';
+import {DialogElement} from '../elements/dialog/dialog.element';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import {TransactionPipe} from '../shared/transaction.pipe';
     PopupElement,
     BugElement,
     SelectElement,
-    TransactionPipe
+    TransactionPipe,
+    DialogElement
   ],
   exports: [
     CommonModule,
@@ -59,7 +61,8 @@ import {TransactionPipe} from '../shared/transaction.pipe';
     TransactionElement,
     PopupElement,
     BugElement,
-    SelectElement
+    SelectElement,
+    DialogElement
   ]
 })
 export class ElementsModule {}
