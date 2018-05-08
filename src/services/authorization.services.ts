@@ -33,7 +33,6 @@ export class AuthorizationServices {
         this.authSubscription.next();
         return Promise.resolve(null);
       }).catch(res => {
-        console.log(res);
         if (res.errors) {
           if (res.errors.password) {
             this.setMessage(res.errors.password)
