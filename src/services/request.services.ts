@@ -83,6 +83,7 @@ export class RequestServices {
     const request = new HttpRequest('POST', `${_env.api_url}/${uri}`, data);
     return this.http.request(request).toPromise();
   }
+
   getEth(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.get(serverReady ? `${_env.eth_api_url}?${uri}` : `assets/json/${uri}`, {responseType: 'json'}).toPromise()
       .then(response => {

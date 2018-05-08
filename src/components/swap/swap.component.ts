@@ -2,7 +2,6 @@ import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angul
 import {SwapServices} from '../../services/swap.services';
 import {PageInfo} from '../../models/page-info.model';
 import {SwapDetails} from '../../models/swap-details.model';
-import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'swap-component',
