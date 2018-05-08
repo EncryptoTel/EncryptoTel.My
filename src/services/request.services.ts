@@ -43,11 +43,10 @@ export class RequestServices {
       }).catch(response => {
         this.logger.log(response.error, 'PUT-superclass response');
         if (response.status === 401) {
-          this.storage.writeItem('_auth_tk', null);
+          localStorage.removeItem('_auth_tk');
           this.router.navigate(['/sign-in']);
-        } else {
-          return Promise.reject(response.error);
         }
+        return Promise.reject(response.error);
       });
   }
 
@@ -62,11 +61,10 @@ export class RequestServices {
         this.logger.log(response.error, 'GET-superclass response');
         console.log(response);
         if (response.status === 401) {
-          //this.storage.writeItem('_auth_tk', null);
+          localStorage.removeItem('_auth_tk');
           this.router.navigate(['/sign-in']);
-        } else {
-          return Promise.reject(response.error);
         }
+        return Promise.reject(response.error);
       });
   }
 
@@ -79,11 +77,10 @@ export class RequestServices {
         return Promise.resolve(response);
       }).catch(response => {
         if (response.status === 401) {
-          this.storage.writeItem('_auth_tk', null);
+          localStorage.removeItem('_auth_tk');
           this.router.navigate(['/sign-in']);
-        } else {
-          return Promise.reject(response.error);
         }
+        return Promise.reject(response.error);
       });
   }
 
