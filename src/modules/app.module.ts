@@ -1,4 +1,4 @@
-import {ErrorHandler, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {UserTokenInterceptor} from '../shared/user-token.interceptor';
@@ -16,7 +16,6 @@ import {SettingsServices} from '../services/settings.services';
 import {PopupServices} from '../services/popup.services';
 import {ChangeEmailServices} from '../services/change-email.services';
 import {BugsServices} from '../services/bugs.services';
-import {TokenErrorServices} from '../services/token-error.services';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import {TokenErrorServices} from '../services/token-error.services';
     LoggerServices,
     StorageServices,
     {provide: HTTP_INTERCEPTORS, useClass: UserTokenInterceptor, multi: true},
-    {provide: ErrorHandler, useClass: TokenErrorServices},
     RequestServices,
     AuthorizationServices,
     SettingsServices,
