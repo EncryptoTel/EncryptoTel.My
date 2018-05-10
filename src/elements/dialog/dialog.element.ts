@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {DialogServices} from '../../services/dialog.services';
+import {AuthorizationServices} from '../../services/authorization.services';
 
 
 @Component({
@@ -9,9 +10,24 @@ import {DialogServices} from '../../services/dialog.services';
 })
 
 export class DialogElement {
-  constructor(public _service: DialogServices) {
+  constructor(public _service: DialogServices,
+              private auth: AuthorizationServices) {
   }
 
-  time = 59;
+  signOut() {
+    this.auth.logout();
+  }
+
+  stayIn() {
+    this._service.stayIn().then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
+  close() {
+    this._service.visible = false;
+  }
 }
 

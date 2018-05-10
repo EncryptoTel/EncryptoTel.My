@@ -1,14 +1,14 @@
 <div class="dialog">
   <div class="dialog_head">
     <p>Your session is about to expire!</p>
-    <svg-icon src="../../assets/icons/cancel.svg" class="close"></svg-icon>
+    <svg-icon src="../../assets/icons/cancel.svg" class="close" (click)="close()"></svg-icon>
   </div>
   <div class="dialog_body">
-    <p>You will be logged out <span>{{time}}</span>.</p>
+    <p>You will be logged out <span>{{_service.time}}</span>.</p>
     <p>Do you want to stay signed in?</p>
   </div>
   <div class="dialog_footer">
-    <button class="dialog_cancel">No, Sign me out</button>
-    <button class="dialog_stay_in">Yes, Keep me signed in</button>
+    <button class="dialog_cancel" (click)="signOut()">No, Sign me out</button>
+    <button class="dialog_stay_in" (click)="stayIn()">Yes, Keep me signed in</button>
   </div>
 </div>
