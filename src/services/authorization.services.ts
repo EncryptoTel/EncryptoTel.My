@@ -6,16 +6,19 @@ import {Observable} from 'rxjs/Observable';
 
 import {RequestServices} from './request.services';
 import {StorageServices} from './storage.services';
+import {DialogServices} from './dialog.services';
 
 @Injectable()
 export class AuthorizationServices {
 
   authSubscription: Subject<void>;
   formMessage: string;
+  timer;
 
   constructor(private _req: RequestServices,
               private _storage: StorageServices,
-              private router: Router) {
+              private router: Router,
+              private dialog: DialogServices) {
     this.authSubscription = new Subject<void>();
   }
 
@@ -110,5 +113,35 @@ export class AuthorizationServices {
   // Service update subscription. Fires on any changes.
   subscribeAuth(): Observable<void> {
     return this.authSubscription.asObservable();
+  }
+
+  setTokenTimer() {
+    this.hideDialog();
+    clearInterval(this.timer);
+    this.dialog.isClosed = false;
+    const ttl = this._storage.readItem('_auth_tk').token_ttl + Date.now();
+    this.timer = setInterval(() => {
+      const currentTime = Date.now();
+      if ((ttl - currentTime) <= 60000) {
+        console.log((ttl - currentTime) / 1000);
+        if ((ttl - currentTime) <= 0) {
+          this.hideDialog();
+          this.logout();
+        } else if (!this.dialog.isClosed) {
+          this.showDialog(ttl, currentTime);
+        }
+      }
+    }, 1000);
+  }
+
+  hideDialog(): void {
+    clearInterval(this.timer);
+    this.dialog.visible = false;
+    this.dialog.time = null;
+  }
+
+  showDialog(ttl: number, currentTime: number): void {
+    this.dialog.visible = true;
+    this.dialog.time = Math.round(((ttl - currentTime) / 1000));
   }
 }

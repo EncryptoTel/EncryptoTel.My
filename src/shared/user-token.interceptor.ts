@@ -26,6 +26,7 @@ export class UserTokenInterceptor implements HttpInterceptor {
       }
       if (this._services.fetchAuth()) {
         const auth = this._storage.readItem('_auth_tk');
+        this._services.setTokenTimer();
         request = request.clone({
           setHeaders: {
             'Authorization': `${auth['token_type']} ${auth['access_token']}`

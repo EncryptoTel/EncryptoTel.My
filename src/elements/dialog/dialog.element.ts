@@ -28,6 +28,7 @@ export class DialogElement {
 
   close() {
     this._service.visible = false;
+    this._service.isClosed = true;
   }
 }
 
