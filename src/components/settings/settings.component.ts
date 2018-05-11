@@ -20,6 +20,7 @@ export class SettingsComponent {
       `The entire Cardano team is made up of experts around the world, and the core technology team
       consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
+  email;
   editStatus = {
     firstname: false,
     lastname: false,
@@ -126,7 +127,7 @@ export class SettingsComponent {
   }
 
   changeEmail(email: string) {
-    if (email.length < 255 && email !== this.account.account.email) {
+    if (email.length < 255 && email !== this.email) {
       const validation = this.validState.email = emailRegExp.test(email);
       if (validation) {
         this.loadersIcons.email = true;
@@ -177,6 +178,7 @@ export class SettingsComponent {
   private getAccount(): void {
     this._service.getAccount().then((res: AccountModel) => {
       this.account = res;
+      this.email = this.account.account.email;
     }).catch(err => {
       console.error(err);
     })
