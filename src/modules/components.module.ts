@@ -5,7 +5,7 @@ import {ElementsModule} from './elements.module';
 import {PageNotFoundComponent} from '../components/errors/page-not-found/page-not-found.component';
 import {SignInComponent} from '../components/sign-in/sign-in.component';
 import {SignUpComponent} from '../components/sign-up/sign-up.component';
-import {IndexComponent} from '../components/index/index.component';
+import {DashboardComponent} from '../components/dashboard/dashboard.component';
 import {TransactionsComponent} from '../components/transactions/transactions.component';
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {SettingsComponent} from '../components/settings/settings.component';
@@ -23,7 +23,7 @@ import {ChangeEmailConfirmComponent} from '../components/change-email/change-ema
     PageNotFoundComponent,
     SignInComponent,
     SignUpComponent,
-    IndexComponent,
+    DashboardComponent,
     TransactionsComponent,
     BonusesComponent,
     RoadmapComponent,
@@ -37,7 +37,7 @@ import {ChangeEmailConfirmComponent} from '../components/change-email/change-ema
     PageNotFoundComponent,
     SignInComponent,
     SignUpComponent,
-    IndexComponent,
+    DashboardComponent,
     TransactionsComponent,
     BonusesComponent,
     SettingsComponent,

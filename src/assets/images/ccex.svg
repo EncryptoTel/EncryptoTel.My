@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="367.858 484.858 63.917 28.284">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.602;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke: #000;
+        stroke-width: 0.283px;
+      }
+
+      .cls-2, .cls-4, .cls-5, .cls-6 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-5);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="2.068" y1="-3.599" x2="3.071" y2="-3.599" gradientUnits="objectBoundingBox">
+      <stop offset="0.412"/>
+      <stop offset="1" stop-color="#919396"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="2.074" y1="-3.134" x2="3.076" y2="-3.134" gradientUnits="objectBoundingBox">
+      <stop offset="0.412" stop-color="#0072bc"/>
+      <stop offset="1" stop-color="#c7eafb"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="5.569" y1="-6.723" x2="6.581" y2="-6.723" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="3.406" y1="-6.723" x2="4.411" y2="-6.723" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-5" x1="3.931" y1="6.06" x2="1.23" y2="6.06" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2" data-name="Group 2" class="cls-1" transform="translate(367.9 484.9)">
+    <path id="Path_38" data-name="Path 38" class="cls-2" d="M18.494,25.383A8.976,8.976,0,1,1,12.579,9.665a8.816,8.816,0,0,1,5.915,2.254A12.584,12.584,0,0,1,20.748,9.3a12.451,12.451,0,1,0,0,18.7A11.8,11.8,0,0,1,18.494,25.383Z" transform="translate(0 -4.382)"/>
+    <path id="Path_39" data-name="Path 39" class="cls-3" d="M94.766,20.832a8.967,8.967,0,1,1-5.944-15.69A8.816,8.816,0,0,1,94.738,7.4a12.585,12.585,0,0,1,2.254-2.62,12.535,12.535,0,0,0-4.648-2.563V.1H89.949V1.706c-.366-.028-.761-.056-1.127-.056-.394,0-.761.028-1.127.056V.1H85.3V2.156a12.464,12.464,0,0,0,0,23.887V28.1H87.7V26.494c.366.028.761.056,1.127.056.394,0,.761-.028,1.127-.056V28.1h2.394V26.044a12.318,12.318,0,0,0,4.648-2.563A13.377,13.377,0,0,1,94.766,20.832Z" transform="translate(-54.807 0)"/>
+    <path id="Path_40" data-name="Path 40" class="cls-4" d="M156.9,25.1h7.662v2.62h-5.014v3.1h3.465V33.41h-3.465v3.155h5.014v2.648H156.9Z" transform="translate(-112.631 -17.958)"/>
+    <path id="Path_41" data-name="Path 41" class="cls-5" d="M181.782,25.1h3.042l2.958,4.535,2.958-4.535h3.042L189.3,31.973l4.732,7.239h-3.042l-3.211-4.93-3.239,4.93H181.5l4.761-7.268Z" transform="translate(-130.301 -17.958)"/>
+    <rect id="Rectangle_26" data-name="Rectangle 26" class="cls-6" width="3.183" height="2.592" transform="translate(16.635 12.861)"/>
+  </g>
+</svg>

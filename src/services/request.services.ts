@@ -108,4 +108,27 @@ export class RequestServices {
         return Promise.reject(response);
       });
   }
+  getWavesRates(period: string): Promise<any> {
+    const calcPeriod = () => {
+      switch (period) {
+        case 'month': {
+          return '1440/30'
+        }
+        case 'week': {
+          return '240/42'
+        }
+        case 'day': {
+          return '60/24'
+        }
+      }
+    };
+    return this.http.get(`https://marketdata.wavesplatform.com/api/candles/WAVES/Ft8X1v1LTa1ABafufpaCWyVj8KkaxUWE6xBhW6sNFJck/` + calcPeriod()).toPromise()
+      .then(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.resolve(response);
+      }).catch(response => {
+        this.logger.log(response, 'GET-superclass response');
+        return Promise.reject(response);
+      });
+  }
 }

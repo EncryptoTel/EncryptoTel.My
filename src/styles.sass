@@ -124,8 +124,10 @@ p,a
 main-view
   width: 100vw
   height: 100vh
-  > *:not(header-element)
+  > *:not(ngx-tooltip-content)
     height: calc(100% - 64px)
+  > header-element
+    height: initial
   sign-in-component, sign-up-component
     height: 100%
   popup-element
@@ -288,6 +290,7 @@ page-info-element
   .container
     width: 100%
     padding: 0 rem(32)
+    min-width: initial
   .table
     &_column
       &_wrap

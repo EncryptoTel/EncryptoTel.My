@@ -1,0 +1,60 @@
+@import '../../vars'
+
+.background_wrap
+  padding: rem(32)
+  background: $accent
+  > .chart_wrap
+    width: 100%
+    height: rem(240)
+  /deep/
+    text
+      fill: $background
+    .circle circle
+      fill: $background
+    rect.tooltip-anchor
+      fill: $background
+  .chart_description
+    flex-direction: row
+    color: $background
+    font-size: rem(24)
+    margin-bottom: rem(16)
+    &_wrap
+      flex-direction: row
+    &_title
+      margin-right: rem(32)
+      font-size: rem(32)
+    &_item
+      align-items: center
+      margin-right: rem(32)
+      &_title
+        font-size: rem(12)
+        text-transform: uppercase
+        text-align: center
+      &_value
+        margin-bottom: rem(8)
+  .period_selection
+    flex-direction: row
+    margin-left: auto
+    font-size: rem(14)
+    .period_item
+      flex: 0 0 auto
+      height: rem(16)
+      cursor: pointer
+      &:not(:last-child)
+        margin-right: rem(16)
+      &.active
+        border-bottom: 1px solid $background
+
+@media (max-width: 768px)
+  .background_wrap
+    .chart_description
+      flex-direction: column
+      &_wrap
+        flex-wrap: wrap
+      &_title
+        margin-right: auto
+        margin-bottom: rem(16)
+      &_item
+        margin: 0 auto rem(16)
+    .period_selection
+      margin-top: rem(16)
