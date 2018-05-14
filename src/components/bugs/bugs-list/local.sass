@@ -1,0 +1,45 @@
+@import '../../../vars'
+
+.bug
+  &_list
+    &_wrap
+      display: flex
+      flex-flow: column
+      justify-content: flex-start
+      height: 100%
+
+.pagination
+  display: flex
+  flex-flow: row
+  justify-content: center
+  align-items: center
+  .disabled
+    pointer-events: none
+    background: $dark_gray
+  &_control
+    &:nth-child(2n)
+      cursor: pointer
+      background: $accent
+      padding: 10px
+      color: $background
+      border: none
+      margin: 15px 10px
+      width: 55px
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+    &:nth-child(2n+1)
+      cursor: pointer
+      background: $accent
+      padding: 10px
+      color: $background
+      border: none
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+    &:focus
+      outline: none
+
+

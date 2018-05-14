@@ -8,7 +8,6 @@ a
 
 .settings
   width: 40%
-  height: 100%
   display: flex
   flex-flow: column
   &_header
@@ -16,7 +15,8 @@ a
     flex-flow: row
     justify-content: space-between
     align-items: center
-    height: 20%
+    margin: 25px 0
+    flex: 1 0 auto
   &_avatar
     max-width: 100%
     height: auto
@@ -24,13 +24,15 @@ a
       width: 70px
     &_description
       width: 66%
+      p:first-child
+        margin-bottom: 10px
   &_form
-    height: 55%
+    flex: 1 0 auto
     form
       display: flex
       flex-flow: column
-      justify-content: space-around
-      height: 100%
+      justify-content: flex-start
+      flex: 1
       p
         margin-top: 5%
   &_delete
@@ -45,6 +47,7 @@ a
 
 .input_wrapper
   position: relative
+  margin-bottom: 25px
   .icon
     position: absolute
     width: 15px
@@ -64,6 +67,11 @@ a
     font-size: 11px
     cursor: pointer
     color: #b7b7b7
+  input
+    padding: 5px 122px 5px 15px
+
+.checkbox_margin
+  margin: 20px 0
 
 .loading_icon
   width: 15px
@@ -81,8 +89,51 @@ a
 .invalid
   border: 1px solid $error
 
+.select
+  position: relative
+  height: 35px
+  width: 100%
+  border: 1px solid #b7b7b7
+  padding: 5px 15px
+  display: flex
+  flex-flow: column
+  justify-content: center
+  cursor: pointer
+  &_options
+    position: absolute
+    top: 100%
+    left: -1px
+    display: flex
+    flex-flow: column
+    width: calc(100% + 2px)
+    background: $background
+    border-left: 1px solid #b7b7b7
+    border-right: 1px solid #b7b7b7
+    border-bottom: 1px solid #b7b7b7
+    overflow-y: auto
+  &_option
+    width: 100%
+    padding: 5px 15px
+    height: 35px
+    display: flex
+    flex-flow: column
+    justify-content: center
+    flex: 1 0 auto
+    cursor: pointer
+    &:hover
+      background: rgba(90, 202, 209, .2)
+
 @keyframes loading-icon
   from
     transform: rotate(0)
   to
     transform: rotate(360deg)
+
+@media all and (max-width: 768px)
+  .settings
+    width: 100%
+    &_avatar
+      &_description
+        font-size: rem(12)
+    &_form
+      padding-bottom: 15px

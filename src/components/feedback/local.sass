@@ -1,0 +1,53 @@
+@import '../../vars'
+
+.feedback_create
+  &_wrap
+    display: flex
+    flex-flow: column
+  &_form
+    display: flex
+    flex-flow: column
+    height: 50%
+    margin-bottom: 5%
+    .input_wrapper
+      position: relative
+      margin-bottom: 25px
+    select-element
+      margin-bottom: 20px
+    p
+      font-weight: 600
+      margin-bottom: 15px
+    textarea
+      height: 135px
+      &:focus
+        outline: none
+    &_controls
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      input
+        cursor: pointer
+        border: none
+        display: flex
+        flex-flow: row
+        justify-content: center
+        align-items: center
+        width: 75px
+        height: 30px
+        margin-bottom: 10px
+        &:first-child
+          margin-right: 15px
+      input[type='submit']
+        background: $success
+        color: $background
+        border-radius: 5px
+
+.alert_message
+  color: $error
+  position: absolute
+  bottom: -20px
+  left: 15px
+  font-size: 0.85rem
+
+.ng-touched.ng-invalid:not(form)
+  border: 1px solid $error

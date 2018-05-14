@@ -6,11 +6,11 @@ import {RequestServices} from './request.services';
 export class TransactionsServices {
   constructor(private request: RequestServices) {}
 
-  getTransactions(address: string): Promise<Object> {
-    return this.request.getWaves(`transactions/address/${address}/limit/50`, true);
+  getAddress(): Promise<Object> {
+    return this.request.get('account', true);
   }
 
-  getCourse(): Promise<Object> {
-    return this.request.get('course.json');
+  getTransactions(address: string): Promise<Object> {
+    return this.request.get(`transactions?address=${address}`, true);
   }
 }

@@ -18,8 +18,9 @@ export class SettingsComponent {
     title: 'Settings',
     description:
       `The entire Cardano team is made up of experts around the world, and the core technology team
-      consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
+  email;
   editStatus = {
     firstname: false,
     lastname: false,
@@ -44,12 +45,18 @@ export class SettingsComponent {
     account: {
       hash: '',
       email: '',
+      is_admin: 0,
       profile: {
         firstname: '',
         language_id: 0,
         lastname: '',
         new_comments: 0,
         status_updates: 0
+      },
+      wallets: {
+        address: '',
+        kind: '',
+        assets: []
       }
     }
   };
@@ -120,13 +127,12 @@ export class SettingsComponent {
   }
 
   changeEmail(email: string) {
-    if (email.length < 255) {
+    if (email.length < 255 && email !== this.email) {
       const validation = this.validState.email = emailRegExp.test(email);
       if (validation) {
         this.loadersIcons.email = true;
         this.editStatus.email = false;
         this._service.changeEmail({email: email}).then(res => {
-          console.log(res);
           this.loadersIcons.email = false;
           this.popup.showSuccess(res.message);
         }).catch(err => {
@@ -135,6 +141,9 @@ export class SettingsComponent {
           this.loadersIcons.email = false;
         })
       }
+    }
+    if (email === this.account.account.email) {
+      this.editStatus.email = false;
     }
   }
 
@@ -169,6 +178,7 @@ export class SettingsComponent {
   private getAccount(): void {
     this._service.getAccount().then((res: AccountModel) => {
       this.account = res;
+      this.email = this.account.account.email;
     }).catch(err => {
       console.error(err);
     })

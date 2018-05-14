@@ -1,0 +1,51 @@
+<div class="bugs_create_wrap" [@Fade]>
+  <div class="bugs_create_rules">
+    <p>When filling a new bug, please provide:</p>
+    <div class="bugs_create_rules_items">
+      <p>1. Version of Encryptotel PBX or Softphone</p>
+      <p>2. Steps to reproduce the issues</p>
+      <p>3. Expected result</p>
+      <p>4. Actual result</p>
+      <p>5. Screenshot file, video or GIF capturing the issue (optional)</p>
+    </div>
+    <p>Thank you.</p>
+  </div>
+  <form [formGroup]="newBugForm" class="bugs_create_form">
+    <p>Bug details</p>
+    <div class="input_wrapper">
+      <input type="text" placeholder="Bug title" (keyup)="search($event)" formControlName="summary" autofocus #searchField [ngClass]="{'invalid': (newBugForm.controls.summary.invalid && newBugForm.controls.summary.touched)}">
+      <span class="alert_message" *ngIf="(!newBugForm.controls.summary.valid && newBugForm.controls.summary.touched)" [@Fade]>min 5 characters</span>
+    </div>
+    <div class="input_wrapper">
+      <select-element [values]="priorities" [keys]="['name','description']" [returnedValue]="'id'" (getValue)="setPriority($event)" [isInvalid]="(!isValidPriority && newBugForm.controls.summary.touched && newBugForm.controls.description.touched)"></select-element>
+      <span class="alert_message" *ngIf="(!isValidPriority && newBugForm.controls.summary.touched && newBugForm.controls.description.touched)">choose priority</span>
+    </div>
+    <div class="input_wrapper textarea_wrap" [ngClass]="{'invalid': (newBugForm.controls.description.invalid && newBugForm.controls.description.touched)}">
+      <textarea placeholder="Describe your Bug ..." formControlName="description"></textarea>
+      <ng-container #uploader_container></ng-container>
+      <ng-template #uploader>
+        <div class="file_uploader" #uploader_ref>
+          <div class="file_uploader_icon_wrap" (click)="cancelAttach(uploader_field, uploader_ref)">
+            <svg-icon src="../../../assets/icons/cancel.svg" *ngIf="uploader_field.files.length>0" [@Fade]></svg-icon>
+          </div>
+          <input type="file" (change)="createAttachInput(uploader_field,pseudo_uploader_field)" #uploader_field>
+          <span class="file_uploader_attach" #pseudo_uploader_field>Attach a file</span>
+          <span *ngFor="let file of uploader_field.files" [@Fade]>{{file.name}}</span>
+        </div>
+      </ng-template>
+      <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>min 10 characters</span>
+    </div>
+    <div class="bugs_create_form_controls" *ngIf="!isSendedRequest">
+      <div class="bugs_create_form_controls_input_wrap">
+        <input type="reset" value="Cancel" (click)="cancel()">
+        <input type="submit" value="Post" (click)="create()">
+      </div>
+    </div>
+    <loader-element *ngIf="isSendedRequest"></loader-element>
+  </form>
+  <loader-element *ngIf="loading"></loader-element>
+  <div class="bugs_create_similar" *ngIf="!loading" [@Fade]>
+    <p *ngIf="similarBugs.data.length === 0" [@Fade] class="bugs_create_similar_placeholder">~ No similar bugs found ~</p>
+    <bug-element *ngFor="let bug of similarBugs.data" [issue]="bug" (vote)="vote($event,searchField)" (report)="report($event, searchField)" (clickHandlerFallback)="getBug($event)"></bug-element>
+  </div>
+</div>

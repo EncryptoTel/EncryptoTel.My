@@ -1,0 +1,11 @@
+<loader-element *ngIf="_service.listLoading"></loader-element>
+<div class="bug_list_wrap" *ngIf="!_service.listLoading" [@Fade]>
+  <bug-element *ngFor="let bug of _service.bugs" [issue]="bug" (clickHandlerFallback)="getBug($event)" (vote)="vote($event)" (report)="report($event)"></bug-element>
+  <div class="pagination" *ngIf="paginationControl()">
+    <button (click)="forcePagination(1)" class="pagination_control" [ngClass]="{'disabled': _service.filter.page === 1}">&#x2c2;&#x2c2;</button>
+    <button (click)="prevPage()" class="pagination_control" [ngClass]="{'disabled': _service.filter.page === 1}">prev</button>
+    <span>{{_service.filter.page}} / {{_service.pagination.last_page}}</span>
+    <button (click)="nextPage()" class="pagination_control" [ngClass]="{'disabled': _service.filter.page === _service.pagination.last_page}">next</button>
+    <button (click)="forcePagination(_service.pagination.last_page)" class="pagination_control" [ngClass]="{'disabled': _service.filter.page === _service.pagination.last_page}">&#x2c3;&#x2c3;</button>
+  </div>
+</div>

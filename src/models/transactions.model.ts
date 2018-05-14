@@ -1,18 +1,13 @@
-interface Transaction {
-  amount: number;
-  assetId: null;
-  attachment: string;
-  fee: number;
-  feeAsset: null;
-  height: number;
-  id: string;
+export interface TransactionsModel {
+  items: Transaction[]
+}
+
+export interface Transaction {
+  amount: number | null;
+  asset: string;
+  convertedAmount: null | number;
   recipient: string;
   sender: string;
-  senderPublicKey: string;
-  signature: string;
   timestamp: number;
   type: number;
-}
-interface Course {
-  ett_course: number;
 }

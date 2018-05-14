@@ -1,4 +1,4 @@
-<div class="popup {{_service.type}}" [ngClass]="{'active': _service.visible, 'inactive': !_service.visible}">
+<div class="popup {{_service.type}}">
   <p>{{_service.text}}</p>
   <svg-icon src="../../../assets/icons/cancel.svg" (click)="_service.visible = false"></svg-icon>
 </div>

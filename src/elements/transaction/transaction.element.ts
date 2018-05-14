@@ -1,4 +1,5 @@
-import {Component, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Transaction} from '../../models/transactions.model';
 
 @Component({
   selector: 'transaction-element',
@@ -9,14 +10,10 @@ import {Component, Input, Output} from '@angular/core';
 export class TransactionElement {
   @Input() transaction: Transaction;
   @Input() address: string;
-  @Input() course: Course;
+
   type: string;
 
   setTypeTransaction(sender: string): string {
-    return this.type = sender === this.address ? 'Send' : 'Received';
-  }
-
-  convertToUSD(): number {
-    return this.transaction.amount * this.course.ett_course;
+    return this.type = sender === this.address ? 'Sent' : 'Received';
   }
 }

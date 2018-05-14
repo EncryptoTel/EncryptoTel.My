@@ -15,6 +15,10 @@ import {TransactionElement} from '../elements/transaction/transaction.element';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PopupElement} from '../elements/popup/popup.element';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {BugElement} from '../elements/bug/bug.element';
+import {SelectElement} from '../elements/select/select.element';
+import {TransactionPipe} from '../shared/transaction.pipe';
+import {DialogElement} from '../elements/dialog/dialog.element';
 
 @NgModule({
   imports: [
@@ -34,7 +38,11 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
     LoaderElement,
     ButtonElement,
     TransactionElement,
-    PopupElement
+    PopupElement,
+    BugElement,
+    SelectElement,
+    TransactionPipe,
+    DialogElement
   ],
   exports: [
     CommonModule,
@@ -51,7 +59,10 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
     LoaderElement,
     ButtonElement,
     TransactionElement,
-    PopupElement
+    PopupElement,
+    BugElement,
+    SelectElement,
+    DialogElement
   ]
 })
 export class ElementsModule {}

@@ -1,0 +1,113 @@
+<loader-element *ngIf="loading"></loader-element>
+<div class="bug" *ngIf="!loading" [@Fade]>
+  <div class="bug_header">
+    <h3>Bug details</h3>
+    <a routerLink="/bugs">Encryptotel: Bug Requests</a>
+  </div>
+  <div class="bug_body">
+    <div class="bug_body_votes">
+      <div class="bug_body_votes_counter">
+        <span>{{details.votes_count}}</span>
+        <span>{{details.votes_count === 1? 'vote': 'votes'}}</span>
+      </div>
+      <button class="bug_body_votes_button" [ngClass]="{'voted': details.vote_exists === 1}" (click)="vote()">
+        Vote
+      </button>
+    </div>
+    <div class="bug_body_description">
+      <h4>{{details.summary}}</h4>
+      <p>{{details.description}}</p>
+      <div class="bug_body_description_author">
+        <div>
+          <img src="https://www.gravatar.com/avatar/{{details.user.hash}}" alt="author avatar">
+        </div>
+        <p>{{details.user.email}} shared this bug</p>
+        <p>{{details.created_at | date}}</p>
+        <p [ngClass]="{'reported': details.claim_exists === 1}" (click)="report()">{{formatClaims(details)}} Flag idea
+          as inappropriate...</p>
+      </div>
+    </div>
+  </div>
+  <div class="bug_response" *ngIf="adminComments.length>0">
+    <div class="bug_response_avatar">
+      <div>
+        <img src="https://www.gravatar.com/avatar/{{adminComments[adminComments.length-1].user.hash}}"
+             alt="admin avatar">
+      </div>
+    </div>
+    <div class="bug_response_text">
+      <div class="bug_response_header">
+        <p class="tag {{setTagStyle(adminComments[0].status.id)}}">{{adminComments[0].status.name}}</p>
+        <p>{{adminComments[0].user.email}} (Admin) responded</p>
+        <p>{{adminComments[0].created_at| date}}</p>
+      </div>
+      <div class="bug_response_body">
+        <p>{{adminComments[0].comment}}</p>
+      </div>
+      <div class="bug_response_footer" *ngIf="!showAllComments && adminComments.length>1" [@Fade]>
+        <p (click)="showAllAdminComments()">Show previous admin responses ({{adminComments.length-1}})</p>
+      </div>
+    </div>
+  </div>
+  <ng-template [ngIf]="showAllComments">
+    <div class="bug_response" *ngFor="let comment of adminComments;first as First" [@Fade]>
+      <div class="bug_response_avatar" *ngIf="!First">
+        <div>
+          <img src="https://www.gravatar.com/avatar/{{comment.user.hash}}"
+               alt="admin avatar">
+        </div>
+      </div>
+      <div class="bug_response_text" *ngIf="!First">
+        <div class="bug_response_header">
+          <p class="tag {{setTagStyle(comment.status.id)}}">{{comment.status.name}}</p>
+          <p>{{comment.user.email}} (Admin) responded</p>
+          <p>{{comment.created_at | date}}</p>
+        </div>
+        <div class="bug_response_body">
+          <p>{{comment.comment}}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div class="bug_files_wrap">
+    <div class="bug_files_item" *ngFor="let file of files">
+      <a [href]="root + file.real_path" *ngIf="file.thumbnail" target="_blank">
+        <img [src]="root + file.thumbnail.real_path">
+        <span>{{file.original_name}}</span>
+      </a>
+      <a [href]="root + file.real_path" *ngIf="!file.thumbnail" target="_blank">
+        <svg-icon src="../../assets/icons/file.svg"></svg-icon>
+        <span>{{file.original_name}}</span>
+      </a>
+    </div>
+  </div>
+  <div class="bug_newComment">
+    <h3>{{details.comments.length - adminComments.length}} {{(details.comments.length - adminComments.length) === 1? 'comment': 'comments'}}</h3>
+    <textarea placeholder="Write a comment..." #commentField (blur)="validation(commentField)"></textarea>
+    <div class="bug_newComment_control">
+      <span [@Fade] *ngIf="commentField.classList.contains('invalid')" class="alert_message">min 10 characters</span>
+      <input type="button" value="Post comment" (click)="postComment(commentField)">
+    </div>
+  </div>
+  <div class="bug_comments_list">
+    <div class="bug_comments_item" *ngFor="let comment of details.comments" [@Fade]>
+      <div class="bug_comments_item_avatar" *ngIf="comment.user.is_admin === 0">
+        <img src="https://www.gravatar.com/avatar/{{comment.user.hash}}" alt="{{comment.user.email}} avatar">
+      </div>
+      <div class="bug_comments_item_body" *ngIf="comment.user.is_admin === 0">
+        <div class="bug_comments_item_author">
+          <p>{{comment.user.email}}</p>
+          <p>{{comment.created_at | date}}</p>
+          <p (click)="reportComment(comment)"
+             [ngClass]="{'reported': details.claim_exists === 1}">
+            {{formatClaims(comment)}} Flag as inappropriate
+          </p>
+        </div>
+        <div class="bug_comments_item_comment">
+          <p>{{comment.comment}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

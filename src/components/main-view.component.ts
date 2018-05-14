@@ -1,35 +1,59 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
 
 import {AuthorizationServices} from '../services/authorization.services';
-import {TimerObservable} from 'rxjs/observable/TimerObservable';
+import {PopupServices} from '../services/popup.services';
+import {FadeAnimation} from '../shared/functions';
+import {DialogServices} from '../services/dialog.services';
+import {RequestServices} from '../services/request.services';
+import {StorageServices} from '../services/storage.services';
+
 
 @Component({
   selector: 'main-view',
   template:
-    `<header-element *ngIf="!loading && authorized"></header-element>
-     <loader-element *ngIf="loading"></loader-element>
-     <router-outlet *ngIf="!loading"></router-outlet>
-     <popup-element></popup-element>`
+      `
+    <header-element *ngIf="!loading && authorized"></header-element>
+    <loader-element *ngIf="loading"></loader-element>
+    <router-outlet *ngIf="!loading"></router-outlet>
+    <popup-element *ngIf="popup.visible" [@Fade]></popup-element>
+    <dialog-element *ngIf="dialog.visible" [@Fade]></dialog-element>`,
+  animations: [FadeAnimation('150ms')]
 })
 
-export class MainViewComponent implements OnDestroy {
+export class MainViewComponent implements OnInit, OnDestroy {
 
   authorized: boolean;
   subscription: Subscription;
   loading: boolean;
 
-  tokenTimeout: TimerObservable;
-
-  constructor(private _auth: AuthorizationServices) {
+  constructor(private _auth: AuthorizationServices,
+              public popup: PopupServices,
+              public dialog: DialogServices,
+              private req: RequestServices,
+              private storage: StorageServices) {
     this.loading = false;
     this.authorized = this._auth.fetchAuth();
     this.subscription = this._auth.subscribeAuth()
       .subscribe(() => {
         this.authorized = this._auth.fetchAuth();
+        if (this.authorized) {
+          // this._auth.setTokenTimer();
+        } else {
+          // this._auth.hideDialog();
+        }
       });
-    this.tokenTimeout = new TimerObservable(2000);
+  }
+
+  ngOnInit() {
+    this.req.post('account/me', {}, true).then(res => {
+      localStorage.removeItem('_auth_tk');
+      this.storage.writeItem('_auth_tk', res);
+    }).catch(err => {
+      console.error(err);
+    })
   }
 
   ngOnDestroy(): void {

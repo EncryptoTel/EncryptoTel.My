@@ -1,0 +1,179 @@
+@import '../../vars'
+
+.container
+  margin-top: 25px
+  display: flex
+  flex-flow: row
+  justify-content: center
+
+.bugs
+  display: flex
+  flex-flow: row
+  justify-content: space-between
+  align-items: flex-start
+  height: 100%
+  width: 90%
+  &_category
+    display: flex
+    flex-flow: column
+    justify-content: space-around
+    font-size: rem(13)
+    &_new_bug_button
+      background: $success
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+      color: $background
+      padding: 0
+      border: none
+      height: 50px
+      border-radius: 5px
+      cursor: pointer
+      margin-bottom: 15px
+    &_wrap
+      display: flex
+      flex-flow: column
+      justify-content: flex-start
+      width: 32%
+    &_container
+      display: flex
+      flex-flow: column
+      justify-content: center
+      align-items: center
+      border: 1px solid $gray
+      flex: 1 1 350px
+      box-shadow: 0 1px 6px rgba($primary, .1)
+    &_body
+      display: flex
+      flex-flow: column
+      justify-content: space-around
+      width: 100%
+      flex: 1
+      h4
+        align-self: center
+        width: 90%
+        margin-top: 10px
+    &_item
+      display: flex
+      flex-flow: row
+      padding-left: 5%
+      cursor: pointer
+      position: relative
+      margin-bottom: 5px
+      &:nth-child(2)
+        margin-bottom: 10px
+      &_title
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+      &_counter
+        background: $gray
+        border-radius: 15px
+        color: #fff
+        padding: 5px 10px
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        margin-left: 10px
+    &_search
+      &_wrap
+        display: flex
+        flex-flow: row wrap
+        align-self: center
+        width: 90%
+        height: 35px
+        margin: 10px 0
+      &_input
+        flex: 1 1 auto
+        height: 100%
+        border: 1px solid $gray
+        padding: 7px
+      &_button
+        width: 35px
+        height: 100%
+        padding: 0
+        border: none
+        background: $gray
+        cursor: pointer
+        &_wrap
+          cursor: pointer
+          position: relative
+  &_feedback_wrap
+    display: flex
+    flex-flow: column
+    justify-content: center
+    align-items: center
+    border: 1px solid $gray
+    height: 65px
+    margin-top: 15px
+    box-shadow: 0 1px 6px rgba($primary, .1)
+    a
+      height: 90%
+      width: 90%
+      display: flex
+      flex-flow: column
+      justify-content: center
+
+.current_item
+  &::before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    height: 100%
+    border-left: 2px solid $accent
+  & > div:first-child
+    color: $accent
+  & > div:last-child
+    background: $accent
+
+.search_icon
+  position: absolute
+  width: 64%
+  height: 64%
+  right: 18%
+  top: 18%
+
+@media (max-width: 1023px)
+  .bugs
+    flex-flow: column-reverse
+    width: 100%
+    &_category
+      flex-flow: row wrap
+      justify-content: space-between
+      align-items: center
+      &_item
+        margin-bottom: 10px
+      &_wrap
+        width: 100%
+        flex: 1 1 330px
+        margin-bottom: 30px
+      &_container
+        flex: 1 1 auto
+      &_body
+        flex: 1
+        justify-content: space-around
+        h4
+          display: flex
+          flex-flow: column
+          justify-content: center
+      &_search
+        &_wrap
+          align-items: center
+        &_button_wrap
+          height: 100%
+      &_item
+        width: 45%
+        height: max-content
+        justify-content: space-between
+        &:nth-child(2)
+          margin-bottom: unset
+        &:nth-child(2n)
+          margin-right: 5%
+    &_feedback_wrap
+      display: none
+
+

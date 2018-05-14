@@ -1,0 +1,299 @@
+@import '../../../vars'
+
+.bug
+  &_header
+    display: flex
+    flex-flow: column
+    margin-bottom: 25px
+    h3
+      font-weight: 500
+      font-size: rem(20)
+      margin-bottom: 10px
+    a
+      &::before
+        content: '←'
+        padding: 0 5px
+  &_body
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    flex: 1
+    min-height: 100px
+    margin-bottom: 30px
+    &_votes
+      display: flex
+      flex-flow: column
+      justify-content: space-between
+      width: 100px
+      height: 100px
+      &_counter
+        background: #F8F8F8
+        height: 65%
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        border: 1px solid $dark_gray
+        user-select: none
+        & > span:first-child
+          font-size: rem(18)
+          margin-bottom: 5px
+      &_button
+        height: 30%
+        display: flex
+        flex-flow: column
+        justify-content: center
+        align-items: center
+        background: #E5E5E5
+        border: none
+        cursor: pointer
+        &:focus
+          outline: none
+    &_description
+      display: flex
+      flex-flow: column
+      justify-content: space-between
+      width: 80%
+      h4
+        font-weight: 600
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+      h4, > p
+        margin-bottom: 15px
+      p
+        font-size: 0.92rem
+        line-height: 1.1
+        word-wrap: break-word
+      &_author
+        display: flex
+        flex-flow: row wrap
+        justify-content: flex-start
+        align-items: center
+        & > div
+          width: 18px
+          margin-right: 5px
+        & p:nth-child(3)
+          margin: 0 2px
+          &::after, &::before
+            content: '•'
+            padding: 0 5px
+        & p:nth-child(4)
+          cursor: pointer
+  &_response
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    &_avatar
+      width: 15%
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      & > div
+        width: 35%
+    &_text
+      display: flex
+      flex-flow: column
+      width: 82%
+    &_header
+      display: flex
+      flex-flow: row wrap
+      align-items: center
+      margin-bottom: 10px
+      & p:not(:nth-child(1))
+        font-size: rem(12)
+      & p:nth-child(2)
+        margin: 0 2px
+        &::after, &::before
+          content: '•'
+          padding: 0 5px
+    &_body
+      display: flex
+      flex-flow: column
+      margin-bottom: 30px
+    &_footer
+      p
+        color: #cfcfcf
+        cursor: pointer
+        font-size: rem(12)
+  &_files
+    &_wrap
+      display: flex
+      flex-flow: row wrap
+      align-items: flex-end
+      margin-left: 20%
+    &_item
+      margin-right: 15px
+      margin-bottom: 15px
+      width: 32px
+      a
+        img
+          margin-bottom: 10px
+        svg-icon
+          width: 32px
+          height: 32px
+          margin-bottom: 10px
+        span
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
+          font-size: rem(11)
+  &_newComment
+    display: flex
+    flex-flow: column
+    margin-top: 30px
+    h3
+      font-weight: 600
+      font-size: rem(15)
+    textarea
+      height: 135px
+      margin: 10px 0
+      font-family: inherit
+    &_control
+      display: flex
+      flex-flow: row
+      justify-content: flex-end
+      position: relative
+      input
+        cursor: pointer
+        border: none
+        display: flex
+        flex-flow: row
+        justify-content: center
+        align-items: center
+        width: 120px
+        height: 30px
+        background: $accent
+        color: $background
+        border-radius: 5px
+        margin-bottom: 30px
+        font-size: rem(15)
+  &_comments
+    &_list
+      display: flex
+      flex-flow: column
+      padding-bottom: 35px
+    &_item
+      display: flex
+      flex-flow: row
+      justify-content: space-between
+      margin-bottom: 25px
+      &_avatar
+        width: 5%
+      &_body
+        display: flex
+        flex-flow: column
+        width: 92%
+      &_author
+        display: flex
+        flex-flow: row wrap
+        margin-bottom: 15px
+        & > p
+          font-size: rem(12)
+        & p:nth-child(2)
+          margin: 0 2px
+          &::after, &::before
+            content: '•'
+            padding: 0 5px
+        & p:nth-child(3)
+          cursor: pointer
+
+.tag
+  border-radius: 20px
+  padding: 5px 15px
+  text-transform: uppercase
+  color: $background
+  text-align: center
+
+img
+  max-width: 100%
+
+textarea:focus
+  outline: none
+
+.invalid
+  border: 1px solid $error
+
+.alert_message
+  color: $error
+  position: absolute
+  top: 0
+  left: 15px
+
+.voted
+  background: $success
+  color: $background
+
+.reported
+  color: $error
+
+.new
+  background: #4995fd
+
+.planned
+  background: #ffa44a
+
+.in_progress
+  background: #41d070
+
+.done
+  background: #8756fc
+
+.known_issue
+  background: #f25757
+
+.closed
+  background: #898888
+
+@media (max-width: 1023px)
+  .bug
+    &_body
+      &_votes
+        width: 15%
+        &_counter
+          & > span:first-child
+            font-size: rem(14)
+          & > span:last-child
+            font-size: rem(12)
+      &_description
+        width: 80%
+        &_author
+          flex-flow: column
+          justify-content: flex-start
+          align-items: flex-start
+          & > div
+            display: none
+          & > p
+            font-size: rem(12)
+          & > p, > p:nth-child(3)
+            margin: 5px 0 0 0
+          & p:nth-child(3)
+            &::after, &::before
+              display: none
+    &_response
+      &_avatar
+        width: 15%
+        justify-content: flex-start
+        & > div
+          width: 100%
+      &_text
+        width: 80%
+      &_header
+        display: flex
+        flex-flow: column
+        align-items: flex-start
+        & > p
+          font-size: rem(12)
+        & p:nth-child(2)
+          margin: 5px 0
+    &_comments
+      &_item
+        &_avatar
+          width: 15%
+        &_body
+          width: 80%
+        &_author
+          & > p
+            font-size: rem(12)
+          & p:nth-child(3)
+            margin: 5px 0

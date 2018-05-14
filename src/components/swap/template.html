@@ -61,11 +61,19 @@
       <input id='address' type='text' title='Address' name='address' [placeholder]="'Please type your ' + (network === 'waves' ? 'wETT' : 'eETT') + ' address'" required>
     </div>
     <div class='input_title'>Captcha</div>
-    <div class='coinhive-captcha' data-hashes='1024'
-         data-key='dYB06r9WbH4gMtzEy2kgg3D1E26U0La3'
-         data-callback='validateForm'>
-      <em>Loading Captcha...
-        <br> If it doesn't load, please disable Adblock!</em>
+    <!--<div class='coinhive-captcha' data-hashes='1024'-->
+         <!--data-key='dYB06r9WbH4gMtzEy2kgg3D1E26U0La3'-->
+         <!--data-callback='validateForm'>-->
+      <!--<em>Loading Captcha...-->
+        <!--<br> If it doesn't load, please disable Adblock!</em>-->
+    <!--</div>-->
+    <div id="captcha"></div>
+    <div class="coinhive-captcha"
+         data-hashes="1024"
+         data-key="dYB06r9WbH4gMtzEy2kgg3D1E26U0La3"
+         data-callback="test">
+      <em>Loading Captcha...<br>
+        If it doesn't load, please disable Adblock!</em>
     </div>
     <div id='swap_error' class='hidden'></div>
     <input type='submit' id='submit_button' value='Exchange'>

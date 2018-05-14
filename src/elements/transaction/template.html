@@ -6,35 +6,28 @@
   <div class="transaction_currency_wrapper">
     <div class="transaction_currency_type">
       <div class="transaction_currency">
-        <p>{{setTypeTransaction(transaction.sender)}} ETT</p>
+        <p class="amount">{{setTypeTransaction(transaction.sender)}} {{transaction.asset}}</p>
       </div>
       <div class="transaction_currency">
-        <p>{{transaction.timestamp | date:'H:m'}},
-          {{type === 'Send'? 'to':'from'}} address {{type === 'Send'?transaction.recipient:transaction.sender}}
+        <p class="full usd">{{transaction.timestamp | date:'H:m'}}
+          <ng-container *ngIf="type === 'Sent'; then sent else recipie"></ng-container>
+          <ng-template #sent> {{transaction.recipient? ', to address ' + transaction.recipient: ''}}</ng-template>
+          <ng-template #recipie>, from address {{transaction.sender}}</ng-template>
+        </p>
+        <p class="splited usd">{{transaction.timestamp | date:'H:m'}},
+          {{type === 'Sent'? 'to':'from'}} address {{(type === 'Sent'?transaction.recipient:transaction.sender) |
+          splitAddress}}
         </p>
       </div>
     </div>
-    <div class="transaction_currency_value">
+    <div class="transaction_currency_value" *ngIf="transaction.amount">
       <div class="transaction_currency">
-        <p>{{type === 'Send'? '-': '+'}}{{transaction.amount}} ETT </p>
+        <p class="amount">{{type === 'Send'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
+          {{transaction.asset}}</p>
       </div>
-      <div class="transaction_currency">
-        <p>{{type === 'Send'? '-': '+'}} {{convertToUSD()}} US Dollar</p>
+      <div class="transaction_currency" *ngIf="transaction.convertedAmount">
+        <p class="usd">{{type === 'Sent'? '-': '+'}} {{transaction.convertedAmount | number: '0.0-2'}} US Dollar</p>
       </div>
     </div>
   </div>
 </div>
-
-<!--amount:1-->
-<!--assetId:null-->
-<!--attachment:""-->
-<!--fee:100000-->
-<!--feeAsset:null-->
-<!--height:936552-->
-<!--id:"95bMry5yPngNLsZvP6Nd2HwMM9avhnrivnFqw9BoRJSR"-->
-<!--recipient:"3P7tNYakdeYkR48XQoDRhdvYbmmESznb4WS"-->
-<!--sender:"3PKPcdHa5YRnG1BoME3wenD7UcWELrbV18F"-->
-<!--senderPublicKey:"6WXdBprEBdJAj3HxPp5DovpYhCPHzEq97A9vaCXEaevh"-->
-<!--signature:"3bPiR2GVwcwqre6kffDc5SAWSgg4X3L9g9DBfZSM25hxzJ7XMQV59KXWgc9ZJ2iXhCGhcDUB3T2hTpibT7W3pTHd"-->
-<!--timestamp:1522243059137-->
-<!--type:4-->

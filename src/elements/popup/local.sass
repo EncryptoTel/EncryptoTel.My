@@ -1,14 +1,12 @@
 @import '../../vars'
 
 .popup
-  width: 40%
+  width: 100%
   height: 100%
   display: flex
   flex-flow: row
   justify-content: center
   align-items: center
-  position: absolute
-  left: calc(50% - 20%)
   color: $background
   transition: all .3s ease-in
 
@@ -19,6 +17,7 @@ svg-icon
   right: 15px
   top: 15px
   cursor: pointer
+  fill: $background
 
 .active
   bottom: 0

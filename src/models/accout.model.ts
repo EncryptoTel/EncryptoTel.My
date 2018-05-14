@@ -6,6 +6,8 @@ interface Account {
   hash: string;
   email: string;
   profile: Profile;
+  is_admin: number;
+  wallets: Wallets;
 }
 
 export interface Profile {
@@ -14,4 +16,10 @@ export interface Profile {
   lastname: string;
   new_comments: number;
   status_updates: number;
+}
+
+export interface Wallets {
+  address: string;
+  kind: string;
+  assets: any[];
 }

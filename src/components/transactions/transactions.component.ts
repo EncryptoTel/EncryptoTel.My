@@ -2,13 +2,16 @@ import {Component} from '@angular/core';
 
 import {PageInfo} from '../../models/page-info.model';
 import {TransactionsServices} from '../../services/transactions.services';
-import {StorageServices} from '../../services/storage.services';
+import {AccountModel, Wallets} from '../../models/accout.model';
+import {FadeAnimation} from '../../shared/functions';
+import {Transaction, TransactionsModel} from '../../models/transactions.model';
 
 
 @Component({
   selector: 'transactions-component',
   templateUrl: './template.html',
-  styleUrls: ['./local.sass']
+  styleUrls: ['./local.sass'],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class TransactionsComponent {
@@ -16,48 +19,35 @@ export class TransactionsComponent {
     title: 'Transactions',
     description:
       `The entire Cardano team is made up of experts around the world, and the core technology team
-      consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
   };
-  transactions: Transaction[][] = this.storage.readItem('transactions') || [];
+  transactions: Transaction[] = [];
   filteredTransactions: Transaction[] = [];
-  address = '3P7tNYakdeYkR48XQoDRhdvYbmmESznb4WS';
-  course: Course = this.storage.readItem('course') || 1;
+  addresses: Wallets;
+  address: string;
   filterType = 'all';
   date: boolean[] = [];
+  loading = true;
 
-  constructor(private _service: TransactionsServices,
-              private storage: StorageServices) {
-    this.getTransactions();
-    this.getCourse();
+  constructor(private _service: TransactionsServices) {
+    this.getAddress();
     this.filter(this.filterType);
   }
 
-  private getTransactions() {
-    this._service.getTransactions(this.address).then((res: Transaction[][]) => {
-      this.storage.writeItem('transactions', res);
-      this.transactions = res;
-      this.filter(this.filterType);
-    }).catch(err => {
-      console.error(err);
-    });
-  }
-
-  private getCourse() {
-    this._service.getCourse().then((res: Course) => {
-      this.course = res;
-      this.storage.writeItem('course', res);
-    }).catch(err => {
-      console.error(err);
-    });
+  changeAddress(address): void {
+    this.loading = true;
+    this.address = address.address;
+    this.getTransactions(this.address);
+    this.filter(this.filterType);
   }
 
   private filter(value: string): void {
     this.filterType = value;
     switch (value) {
       case ('all'):
-        this.filteredTransactions = this.transactions[0];
+        this.filteredTransactions = this.transactions;
         break;
-      case ('send'):
+      case ('sent'):
         this.filteredTransactions = [];
         this.sortingSend();
         break;
@@ -66,16 +56,18 @@ export class TransactionsComponent {
         this.sortingReceived();
         break;
       default:
-        this.filteredTransactions = this.transactions[0];
+        this.filteredTransactions = this.transactions;
         break;
     }
-    this.date = new Array(this.filteredTransactions.length);
-    this.date.fill(false);
-    this.sortByDate();
+    if (this.transactions.length > 0) {
+      this.date = new Array(this.filteredTransactions.length);
+      this.date.fill(false);
+      this.sortByDate();
+    }
   }
 
   private sortingSend(): void {
-    this.transactions[0].forEach((el: Transaction) => {
+    this.transactions.forEach((el: Transaction) => {
       if (el.sender === this.address) {
         this.filteredTransactions.push(el);
       }
@@ -83,7 +75,7 @@ export class TransactionsComponent {
   }
 
   private sortingReceived(): void {
-    this.transactions[0].forEach((el: Transaction) => {
+    this.transactions.forEach((el: Transaction) => {
       if (el.recipient === this.address) {
         this.filteredTransactions.push(el);
       }
@@ -99,6 +91,27 @@ export class TransactionsComponent {
         day = new Date(this.filteredTransactions[i].timestamp).getDate();
       }
     }
+  }
+
+  private getAddress(): void {
+    this._service.getAddress().then((res: AccountModel) => {
+      this.addresses = res.account.wallets;
+      this.address = this.addresses[0].address;
+      this.getTransactions(this.address);
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
+  private getTransactions(address: string): void {
+    this._service.getTransactions(address).then((res: TransactionsModel) => {
+      this.transactions = res.items;
+      this.filter(this.filterType);
+      this.loading = false;
+    }).catch(err => {
+      console.error(err);
+      this.loading = false;
+    })
   }
 }
 

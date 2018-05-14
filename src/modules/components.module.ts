@@ -11,8 +11,13 @@ import {BonusesComponent} from '../components/bonuses/bonuses.component';
 import {SettingsComponent} from '../components/settings/settings.component';
 import {RoadmapComponent} from '../components/roadmap/roadmap.component';
 import {SwapComponent} from '../components/swap/swap.component';
+import {BugsComponent} from '../components/bugs/bugs.component';
+import {BugsCreateComponent} from '../components/bugs/bugs-create/bugs-create.component';
+import {BugsListComponent} from '../components/bugs/bugs-list/bugs-list.component';
 import {ChangeEmailComponent} from '../components/change-email/change-email/change-email.component';
 import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
+import {BugComponent} from '../components/bugs/bug/bug.component';
+import {FeedbackComponent} from '../components/feedback/feedback.component';
 
 @NgModule({
   imports: [
@@ -28,9 +33,15 @@ import {ChangeEmailConfirmComponent} from '../components/change-email/change-ema
     BonusesComponent,
     RoadmapComponent,
     SwapComponent,
+    BugsComponent,
+    BugsCreateComponent,
+    BugsListComponent,
+    SwapComponent,
     SettingsComponent,
     ChangeEmailComponent,
-    ChangeEmailConfirmComponent
+    ChangeEmailConfirmComponent,
+    BugComponent,
+    FeedbackComponent
   ],
   exports: [
     ElementsModule,
@@ -44,7 +55,12 @@ import {ChangeEmailConfirmComponent} from '../components/change-email/change-ema
     RoadmapComponent,
     SwapComponent,
     ChangeEmailComponent,
-    ChangeEmailConfirmComponent
+    ChangeEmailConfirmComponent,
+    BugsComponent,
+    BugsCreateComponent,
+    BugsListComponent,
+    BugComponent,
+    FeedbackComponent
   ]
 })
 export class ComponentsModule {}

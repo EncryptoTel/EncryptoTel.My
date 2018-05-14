@@ -70,20 +70,20 @@
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="icon" *ngIf="loadersIcons.email"></svg-icon>
           <span class="alert" *ngIf="!validState.email">Please enter correct e-mail</span>
         </div>
-        <div class="input_wrapper">
-          <div class="select" (click)="showLanguages()">
-            <div class="select_current">{{currentLanguage()}}</div>
-            <div class="select_options" *ngIf="editStatus.language">
-              <div class="select_option" *ngFor="let language of languages" (click)="setLanguage(language)">
-                {{language.name}}
-              </div>
-            </div>
-            <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>
-          </div>
-          <span *ngIf="!editStatus.language" class="edit" (click)="showLanguages()" id="langEdit">edit language</span>
-        </div>
+        <!--<div class="input_wrapper">-->
+          <!--<div class="select" (click)="showLanguages()">-->
+            <!--<div class="select_current">{{currentLanguage()}}</div>-->
+            <!--<div class="select_options" *ngIf="editStatus.language">-->
+              <!--<div class="select_option" *ngFor="let language of languages" (click)="setLanguage(language)">-->
+                <!--{{language.name}}-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>-->
+          <!--</div>-->
+          <!--<span *ngIf="!editStatus.language" class="edit" (click)="showLanguages()" id="langEdit">edit language</span>-->
+        <!--</div>-->
         <p>Email notifications for &#171;My feedback&#187;</p>
-        <div class="checkbox_container">
+        <div class="checkbox_container checkbox_margin">
           <div class="checkbox" *ngIf="!loadersIcons.status"
                [ngClass]="{'checkbox_active': this.account.account.profile.status_updates}"
                (click)="setStatusUpdates()">
