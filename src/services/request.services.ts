@@ -163,11 +163,4 @@ export class RequestServices {
         return Promise.reject(response);
       });
   }
-
-  private unAuthorizedError(response) {
-    if (response.status === 401) {
-      localStorage.removeItem('_auth_tk');
-      this.router.navigate(['/sign-in']);
-    }
-  }
 }

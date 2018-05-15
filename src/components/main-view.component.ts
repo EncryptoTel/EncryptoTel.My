@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 
 import {Subscription} from 'rxjs/Subscription';
 
@@ -7,8 +6,6 @@ import {AuthorizationServices} from '../services/authorization.services';
 import {PopupServices} from '../services/popup.services';
 import {FadeAnimation} from '../shared/functions';
 import {DialogServices} from '../services/dialog.services';
-import {RequestServices} from '../services/request.services';
-import {StorageServices} from '../services/storage.services';
 
 
 @Component({
@@ -31,9 +28,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
 
   constructor(private _auth: AuthorizationServices,
               public popup: PopupServices,
-              public dialog: DialogServices,
-              private req: RequestServices,
-              private storage: StorageServices) {
+              public dialog: DialogServices) {
     this.loading = false;
     this.authorized = this._auth.fetchAuth();
     this.subscription = this._auth.subscribeAuth()
@@ -47,14 +42,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnInit() {
-    this.req.post('account/me', {}, true).then(res => {
-      localStorage.removeItem('_auth_tk');
-      this.storage.writeItem('_auth_tk', res);
-    }).catch(err => {
-      console.error(err);
-    })
-  }
+  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

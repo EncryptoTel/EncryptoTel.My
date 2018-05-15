@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
+
 import {PageInfo} from '../../models/page-info.model';
 import {RequestServices} from '../../services/request.services';
-import {DatePipe} from '@angular/common';
+import {StorageServices} from '../../services/storage.services';
+
 
 @Component({
   selector: 'my-index',
@@ -26,11 +30,13 @@ export class DashboardComponent implements OnInit {
   curse_details;
 
   constructor(private _req: RequestServices,
-              private _date: DatePipe) {
+              private _date: DatePipe,
+              private _storage: StorageServices,
+              private _router: Router) {
     this.pageInfo = {
       title: 'Index page',
       description:
-      `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
+        `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     };
     this.loading = true;
@@ -88,7 +94,14 @@ export class DashboardComponent implements OnInit {
       }).catch(() => this.loading = false);
   }
 
+  private navigateToLastUrl() {
+    if (this._storage.readItem('last_url')) {
+      this._router.navigate([this._storage.readItem('last_url')]);
+    }
+  }
+
   ngOnInit(): void {
     this.getCurse();
+    this.navigateToLastUrl();
   }
 }
