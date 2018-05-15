@@ -22,7 +22,7 @@
     </div>
     <div class="transaction_currency_value" *ngIf="transaction.amount">
       <div class="transaction_currency">
-        <p class="amount">{{type === 'Send'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
+        <p class="amount">{{type === 'Sent'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
           {{transaction.asset}}</p>
       </div>
       <div class="transaction_currency" *ngIf="transaction.convertedAmount">
