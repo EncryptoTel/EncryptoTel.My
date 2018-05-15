@@ -21,7 +21,9 @@ export class RequestServices {
   post(uri: string, data: object, serverReady: boolean = false): Promise<any> {
     return this.http.post(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}).toPromise()
       .then(response => {
-        this.storage.writeItem('last_url', this.router.url);
+        if (this.router.url !== '/sign-in') {
+          this.storage.writeItem('last_url', this.router.url);
+        }
         this.logger.log(response, 'POST-superclass response');
         return Promise.resolve(response);
       }).catch(response => {
@@ -36,7 +38,9 @@ export class RequestServices {
   put(uri: string, data: object, serverReady: boolean = false): Promise<any> {
     return this.http.put(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`, {...data}).toPromise()
       .then(response => {
-        this.storage.writeItem('last_url', this.router.url);
+        if (this.router.url !== '/sign-in') {
+          this.storage.writeItem('last_url', this.router.url);
+        }
         this.logger.log(response, 'PUT-superclass response');
         return Promise.resolve(response);
       }).catch(response => {
@@ -51,8 +55,9 @@ export class RequestServices {
   get(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
-        console.log(response);
-        this.storage.writeItem('last_url', this.router.url);
+        if (this.router.url !== '/sign-in') {
+          this.storage.writeItem('last_url', this.router.url);
+        }
         this.logger.log(response, 'GET-superclass response');
         return Promise.resolve(response);
       }).catch(response => {
@@ -67,7 +72,9 @@ export class RequestServices {
   del(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.delete(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
-        this.storage.writeItem('last_url', this.router.url);
+        if (this.router.url !== '/sign-in') {
+          this.storage.writeItem('last_url', this.router.url);
+        }
         this.logger.log(response, 'DELETE-superclass response');
         return Promise.resolve(response);
       }).catch(response => {
