@@ -1,0 +1,35 @@
+<loader-element *ngIf="loading"></loader-element>
+<div class="background_wrap" *ngIf="!loading">
+  <div class="chart_description">
+    <div class="chart_description_wrap">
+      <div class="chart_description_title">Waves</div>
+      <div class="chart_description_item">
+        <div class="chart_description_item_value">${{curse_details.price}}</div>
+        <div class="chart_description_item_title">Waves price</div>
+      </div>
+      <div class="chart_description_item">
+        <div class="chart_description_item_value">{{curse_details.mark}}${{curse_details.diff}}</div>
+        <div class="chart_description_item_title">Since last {{period}} (USD)</div>
+      </div>
+      <div class="chart_description_item">
+        <div class="chart_description_item_value">{{curse_details.mark}}{{curse_details.percentage}}%</div>
+        <div class="chart_description_item_title">Since last {{period}} (%)</div>
+      </div>
+    </div>
+    <div class="period_selection">
+      <div class="period_item" [ngClass]="{'active': period === 'day'}" (click)="setPeriod('day')">1D</div>
+      <div class="period_item" [ngClass]="{'active': period === 'week'}" (click)="setPeriod('week')">1W</div>
+      <div class="period_item" [ngClass]="{'active': period === 'month'}" (click)="setPeriod('month')">1M</div>
+    </div>
+  </div>
+  <div class="chart_wrap">
+    <ngx-charts-line-chart
+      [customColors]="[{name: 'Waves', value: 'rgba(255, 255, 255, .8)'}]"
+      [xAxis]="true"
+      [yAxis]="true"
+      [showGridLines]="false"
+      [autoScale]="true"
+      [results]="rates"></ngx-charts-line-chart>
+  </div>
+</div>
+<div class="container" *ngIf="!loading"></div>

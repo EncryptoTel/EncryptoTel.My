@@ -4,7 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuardServices} from '../services/auth-guard.services';
 
 import {PageNotFoundComponent} from '../components/errors/page-not-found/page-not-found.component';
-import {IndexComponent} from '../components/index/index.component';
+import {DashboardComponent} from '../components/dashboard/dashboard.component';
 import {SwapComponent} from '../components/swap/swap.component';
 import {TransactionsComponent} from '../components/transactions/transactions.component';
 import {BonusesComponent} from '../components/bonuses/bonuses.component';
@@ -22,7 +22,7 @@ import {FeedbackComponent} from '../components/feedback/feedback.component';
 
 const Routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
-  {path: 'dashboard', component: IndexComponent, canActivate: [AuthGuardServices]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardServices]},
   {path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuardServices]},
   {path: 'swap', component: SwapComponent, canActivate: [AuthGuardServices]},
   {path: 'bugs', component: BugsComponent, canActivate: [AuthGuardServices], children: [
