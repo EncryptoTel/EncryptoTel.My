@@ -102,6 +102,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurse();
-    this.navigateToLastUrl();
+    // this.navigateToLastUrl();
   }
 }
