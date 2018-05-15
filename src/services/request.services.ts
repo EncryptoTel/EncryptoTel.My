@@ -51,6 +51,7 @@ export class RequestServices {
   get(uri: string, serverReady: boolean = false): Promise<any> {
     return this.http.get(serverReady ? `${_env.api_url}/${uri}` : `assets/json/${uri}`).toPromise()
       .then(response => {
+        console.log(response);
         this.storage.writeItem('last_url', this.router.url);
         this.logger.log(response, 'GET-superclass response');
         return Promise.resolve(response);
@@ -154,12 +155,5 @@ export class RequestServices {
         this.logger.log(response, 'GET-superclass response');
         return Promise.reject(response);
       });
-  }
-
-  private unAuthorizedError(response) {
-    if (response.status === 401) {
-      localStorage.removeItem('_auth_tk');
-      this.router.navigate(['/sign-in']);
-    }
   }
 }

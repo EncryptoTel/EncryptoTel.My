@@ -88,8 +88,8 @@ export class SwapComponent implements OnInit, AfterViewChecked {
 
   callbackCaptcha() {
     const win: any = window;
-    win.test = () => {
-      alert('Work!');
+    win.test = (ev) => {
+      console.log(ev);
     };
   }
   ngOnInit(): void {

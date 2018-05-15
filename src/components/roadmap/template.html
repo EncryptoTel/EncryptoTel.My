@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="container roadmap" *ngIf="!loading && roadmap">
-  <div class="roadmap_item" *ngFor="let item of roadmap.roadmap">
+  <div class="roadmap_item" *ngFor="let item of roadmap.roadmap" [ngClass]="{'active': item.progress === 100}">
     <div class="roadmap_item_date hidden_xs_down">{{item.month | date: 'MMMM yyyy'}}</div>
     <div class="roadmap_item_dot"></div>
     <div class="roadmap_item_date hidden_xs_up">{{item.month | date: 'MMMM yyyy'}}</div>

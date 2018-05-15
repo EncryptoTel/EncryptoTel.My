@@ -45,7 +45,7 @@
       top: 0
       left: rem(167)
       width: 1px
-      background: $accent
+      background: $primary
       height: 100%
     &_date
       flex: 0 0 rem(160)
@@ -54,13 +54,21 @@
     &_dot
       height: rem(15)
       flex: 0 0 rem(15)
-      background: $accent
+      border: 1px solid $primary
+      background: $background
       border-radius: 50%
+      z-index: 10
     &_issue
       line-height: rem(20)
       &_wrap
         flex: 0 0 calc(100% - 400px)
         padding-left: rem(40)
+    &.active
+      &:not(:last-child)::after
+        background: $accent
+      .roadmap_item_dot
+        background: $accent
+        border-color: $accent
   &_progress
     background: rgba($primary, .2)
     height: rem(5)
