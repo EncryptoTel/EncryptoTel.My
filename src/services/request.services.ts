@@ -144,13 +144,13 @@ export class RequestServices {
     const calcPeriod = () => {
       switch (period) {
         case 'month': {
-          return 'frame=1440&limit=30'
+          return 'time_frame=1440&limit=30'
         }
         case 'week': {
-          return 'frame=240&limit42'
+          return 'time_frame=240&limit42'
         }
         case 'day': {
-          return 'frame=60&limit=24'
+          return 'time_frame=60&limit=24'
         }
       }
     };
