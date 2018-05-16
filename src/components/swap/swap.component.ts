@@ -15,7 +15,10 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   // Page data
   pageInfo: PageInfo;
   loading: boolean;
-
+  address: string;
+  token = '';
+  submitIsBlocked = true;
+  isShowedError = false;
   details: SwapDetails = {
     waves: {
       status: true,
@@ -37,6 +40,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   };
 
   @ViewChild('swapForm') form: ElementRef;
+  @ViewChild('submitElement') submit: ElementRef;
 
   constructor(private _services: SwapServices) {
     this.loading = true;
@@ -88,26 +92,63 @@ export class SwapComponent implements OnInit, AfterViewChecked {
 
   callbackCaptcha() {
     const win: any = window;
-    win.test = (ev) => {
-      console.log(ev);
+    win.test = (token) => {
+      console.log(token);
+      this.token = token;
+      this.submitIsBlocked = false;
+      this.submit.nativeElement.disabled = false;
     };
   }
+
+  private validateAddress() {
+    if (this.network === 'ethereum') {
+      return this.address.substring(0, 2) === '0x' && this.address.length === 42;
+    } else if (this.network === 'waves') {
+      return this.address.substring(0, 2) === '3P' && this.address.length === 35;
+    } else {
+      return false;
+    }
+  }
+
   ngOnInit(): void {
     this.callbackCaptcha();
     this.loading = true;
     this.getInitialParams()
       .then(() => {
         this.loading = false;
-        setTimeout(() => console.log(this.form.nativeElement));
       });
+  }
+
+  postData(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (this.address && this.address.length > 2 && this.validateAddress() && this.token) {
+      const data = {
+        network: this.network,
+        address: this.address,
+        coinhiveCaptchaToken: this.token
+      };
+      this._services.postData(data).then(res => {
+        console.log(res);
+      }).catch(err => {
+        console.error(err);
+      })
+    } else {
+      this.isShowedError = true;
+    }
+
+  }
+
+  private createCaptcha(captcha: HTMLElement): void {
+    const script = document.createElement('script');
+    script.setAttribute('src', 'https://authedmine.com/lib/captcha.min.js');
+    captcha.appendChild(script);
   }
 
   ngAfterViewChecked() {
     const captcha = document.getElementById('captcha');
-    if (captcha) {
-      const script = document.createElement('script');
-      script.setAttribute('src', 'https://authedmine.com/lib/captcha.min.js');
-      captcha.appendChild(script);
+    if (captcha && captcha.children.length < 1) {
+      this.createCaptcha(captcha);
     }
   }
 }
