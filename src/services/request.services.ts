@@ -154,13 +154,6 @@ export class RequestServices {
         }
       }
     };
-    return this.http.get(`${_env.api_url}/currency/courses?` + calcPeriod()).toPromise()
-      .then(response => {
-        this.logger.log(response, 'GET-superclass response');
-        return Promise.resolve(response);
-      }).catch(response => {
-        this.logger.log(response, 'GET-superclass response');
-        return Promise.reject(response);
-      });
+    return this.get(`currency/courses?` + calcPeriod(), true)
   }
 }
