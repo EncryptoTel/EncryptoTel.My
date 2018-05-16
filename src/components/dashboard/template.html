@@ -2,10 +2,10 @@
 <div class="background_wrap" *ngIf="!loading">
   <div class="chart_description">
     <div class="chart_description_wrap">
-      <div class="chart_description_title">Waves</div>
+      <div class="chart_description_title">ETT</div>
       <div class="chart_description_item">
         <div class="chart_description_item_value">${{curse_details.price}}</div>
-        <div class="chart_description_item_title">Waves price</div>
+        <div class="chart_description_item_title">ETT price</div>
       </div>
       <div class="chart_description_item">
         <div class="chart_description_item_value">{{curse_details.mark}}${{curse_details.diff}}</div>
@@ -29,7 +29,8 @@
       [yAxis]="true"
       [showGridLines]="false"
       [autoScale]="true"
-      [results]="rates"></ngx-charts-line-chart>
+      [results]="rates">
+    </ngx-charts-line-chart>
   </div>
 </div>
 <div class="container" *ngIf="!loading"></div>

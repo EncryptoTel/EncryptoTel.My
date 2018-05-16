@@ -1,13 +1,20 @@
-import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+
 import {SwapServices} from '../../services/swap.services';
 import {PageInfo} from '../../models/page-info.model';
 import {SwapDetails} from '../../models/swap-details.model';
+import {PopupServices} from '../../services/popup.services';
+import {FadeAnimation} from '../../shared/functions';
+import {ethRegExp, wavesRegExp} from '../../shared/vars';
+
 
 @Component({
   selector: 'swap-component',
   templateUrl: './template.html',
   styleUrls: ['./local.sass'],
-  providers: [SwapServices]
+  providers: [SwapServices],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class SwapComponent implements OnInit, AfterViewChecked {
@@ -15,10 +22,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   // Page data
   pageInfo: PageInfo;
   loading: boolean;
-  address: string;
   token = '';
-  submitIsBlocked = true;
-  isShowedError = false;
   details: SwapDetails = {
     waves: {
       status: true,
@@ -29,9 +33,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
       amount: 0
     }
   };
-
   network: 'ethereum' | 'waves';
-
   amounts = {
     ett_supply: '0',
     waves_supply: '0',
@@ -39,10 +41,13 @@ export class SwapComponent implements OnInit, AfterViewChecked {
     circulating: '0'
   };
 
-  @ViewChild('swapForm') form: ElementRef;
-  @ViewChild('submitElement') submit: ElementRef;
+  form: FormGroup = new FormGroup({
+    'addressWaves': new FormControl(null, [Validators.pattern(wavesRegExp), Validators.required]),
+    'addressEth': new FormControl(null, [Validators.pattern(ethRegExp), Validators.required])
+  });
 
-  constructor(private _services: SwapServices) {
+  constructor(private _services: SwapServices,
+              private popup: PopupServices) {
     this.loading = true;
     this.network = 'waves';
     this.pageInfo = {
@@ -54,6 +59,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   }
 
   setTarget(target: 'ethereum' | 'waves'): void {
+    this.form.reset();
     this.network = target;
   }
 
@@ -93,56 +99,42 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   callbackCaptcha() {
     const win: any = window;
     win.test = (token) => {
-      console.log(token);
       this.token = token;
-      this.submitIsBlocked = false;
-      this.submit.nativeElement.disabled = false;
     };
-  }
-
-  private validateAddress() {
-    if (this.network === 'ethereum') {
-      return this.address.substring(0, 2) === '0x' && this.address.length === 42;
-    } else if (this.network === 'waves') {
-      return this.address.substring(0, 2) === '3P' && this.address.length === 35;
-    } else {
-      return false;
-    }
-  }
-
-  ngOnInit(): void {
-    this.callbackCaptcha();
-    this.loading = true;
-    this.getInitialParams()
-      .then(() => {
-        this.loading = false;
-      });
   }
 
   postData(e) {
     e.preventDefault();
     e.stopPropagation();
-    if (this.address && this.address.length > 2 && this.validateAddress() && this.token) {
+    if ((this.form.controls.addressWaves.valid || this.form.controls.addressEth.valid) && this.token) {
       const data = {
         network: this.network,
-        address: this.address,
+        address: this.network === 'waves' ? this.form.controls.addressWaves.value : this.form.controls.addressEth.value,
         coinhiveCaptchaToken: this.token
       };
       this._services.postData(data).then(res => {
         console.log(res);
+        this.popup.showSuccess(`${res.network} ${res.address}`, false);
       }).catch(err => {
         console.error(err);
       })
-    } else {
-      this.isShowedError = true;
     }
-
   }
 
   private createCaptcha(captcha: HTMLElement): void {
     const script = document.createElement('script');
     script.setAttribute('src', 'https://authedmine.com/lib/captcha.min.js');
     captcha.appendChild(script);
+  }
+
+  ngOnInit(): void {
+    console.log(this.form);
+    this.callbackCaptcha();
+    this.loading = true;
+    this.getInitialParams()
+      .then(() => {
+        this.loading = false;
+      });
   }
 
   ngAfterViewChecked() {

@@ -81,7 +81,7 @@ page-info-element
   margin-bottom: auto
   .input
     &_title
-      margin-top: rem(16)
+      margin-top: rem(20)
       margin-bottom: rem(8)
       &:first-child
         margin-top: rem(24)
@@ -93,7 +93,6 @@ page-info-element
     b
       display: inline
       font-weight: 400
-
 
 #submit_button
   display: flex
@@ -156,7 +155,15 @@ page-info-element
           content: '|'
           padding: 0 rem(8)
 
+.input_wrap
+  position: relative
+
 .error_message
-  margin-top: 8px
+  position: absolute
   color: $error
-  margin-bottom: unset
+  bottom: -16px
+  left: 0
+  font-size: rem(12)
+
+.error_input
+  border: 1px solid $error

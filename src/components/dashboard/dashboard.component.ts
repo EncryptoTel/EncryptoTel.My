@@ -65,31 +65,18 @@ export class DashboardComponent implements OnInit {
     };
     this._req.getWavesRates(this.period)
       .then(res => {
-        res.reverse().map((item, ix) => {
-          if (this.period !== 'day') {
-            if (Number(item.close) !== 0 && ix % 2 === 0) {
-              this.rates[0].series.push({
-                name: this._date.transform(item.timestamp, calcFormat()),
-                value: item.close
-              })
-            }
-          } else {
-            if (Number(item.close) !== 0) {
-              this.rates[0].series.push({
-                name: this._date.transform(item.timestamp, calcFormat()),
-                value: item.close
-              })
-            }
-          }
-        });
-        const last = res[res.length - 1].close;
-        const first = res[0].close;
         this.curse_details = {
-          price: last,
-          diff: Math.abs(Math.round((last - first) * 100) / 100),
-          percentage: Math.abs(Math.round(((last - first) / first) * 10000) / 100),
-          mark: last - first > 0 ? '+' : '-'
+          price: Math.round(res[0].price * 100) / 100,
+          diff: Math.round(res[0].diff * 100) / 100,
+          percentage: Math.round(res[0].percent * 100) / 100,
+          mark: res[0].mark
         };
+        this.rates = res;
+        for (const rate of this.rates) {
+          rate.series.map(item => item.name = this._date.transform(item.timestamp, calcFormat()));
+          this.rates[this.rates.indexOf(rate)] = {name: rate['currency_from'], series: rate.series};
+        }
+        console.log(this.rates);
         this.loading = false;
       }).catch(() => this.loading = false);
   }

@@ -1,9 +1,14 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import 'rxjs/add/operator/toPromise';
+
 import {RequestServices} from './request.services';
+
 
 @Injectable()
 export class SwapServices {
-  constructor(private _req: RequestServices) {}
+  constructor(private _req: RequestServices,
+              private http: HttpClient) {}
   getSupply(): Promise<any> {
     return this._req.getSwap('supply');
   }
@@ -21,7 +26,7 @@ export class SwapServices {
       '&tag=latest&apikey=6IUI24CQUWUPAS3N2QYFVT9R6BFY5F1HAN', true)
   }
   postData(data): Promise<any> {
-    return this._req.post('address/bind', data, true);
+    return this.http.post('https://swap.encryptotel.com/address/bind', data).toPromise();
   }
 }
 
