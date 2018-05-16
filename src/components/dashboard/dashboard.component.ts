@@ -1,24 +1,25 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
 import {PageInfo} from '../../models/page-info.model';
 import {RequestServices} from '../../services/request.services';
+import {StorageServices} from '../../services/storage.services';
+import {AssetServices} from '../../services/asset.services';
 
 
 @Component({
   selector: 'my-index',
   templateUrl: './template.html',
   styleUrls: ['./local.sass'],
-  providers: [DatePipe]
+  providers: [DatePipe, AssetServices]
 })
 
 export class DashboardComponent implements OnInit {
-
   // Page data
   pageInfo: PageInfo;
   loading: boolean;
   period = 'month';
-
   rates = [
     {
       name: 'Waves',
@@ -27,8 +28,43 @@ export class DashboardComponent implements OnInit {
   ];
   curse_details;
 
+
+
+  // ----------------------------------------------------------------------------------------------------
+
+  kinds = [
+    { name: 'WAVES' },
+    { name: 'ETH' }
+  ];
+  show_form = false;
+  assets;
+  showForm() {
+    this.show_form = true;
+  }
+  hideForm() {
+    this.show_form = false;
+  }
+  nameShorter = (item, max, required) => {
+    if (item.length > max) {
+      return (item.slice(0, required) + '...');
+    } else {
+      return item;
+    }
+  };
+
+
+  getAssets(): void {
+    this.assets = this._assets.getAssets();
+
+  }
+
+
+  // ----------------------------------------------------------------------------------------------------
   constructor(private _req: RequestServices,
-              private _date: DatePipe) {
+              private _date: DatePipe,
+              private _storage: StorageServices,
+              private _router: Router,
+              private _assets: AssetServices) {
     this.pageInfo = {
       title: 'Index page',
       description:
@@ -37,12 +73,10 @@ export class DashboardComponent implements OnInit {
     };
     this.loading = true;
   }
-
   setPeriod(period: string): void {
     this.period = period;
     this.getCurse();
   }
-
   getCurse(): void {
     this.loading = true;
     this.rates[0].series = [];
@@ -75,8 +109,15 @@ export class DashboardComponent implements OnInit {
         this.loading = false;
       }).catch(() => this.loading = false);
   }
-
+  private navigateToLastUrl() {
+    if (this._storage.readItem('last_url')) {
+      this._router.navigate([this._storage.readItem('last_url')]);
+    }
+  }
   ngOnInit(): void {
     this.getCurse();
+    this.getAssets();
+    // this.navigateToLastUrl();
   }
 }
+

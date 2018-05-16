@@ -33,4 +33,50 @@
     </ngx-charts-line-chart>
   </div>
 </div>
-<div class="container" *ngIf="!loading"></div>
+<div class="container" *ngIf="!loading">
+  <div class="snippet_wrap">
+    <div class="snippet_item">
+      <div class="snippet_name">Waves
+        <div class="snippet_button_close"><span></span></div>
+      </div>
+      <div class="snippet_contain">
+        <div class="snippet_value">25.000000</div>
+        <div class="snippet_address">{{nameShorter('2BS0HTITRPVYZJUO4J87DXGN0VPJCS0TPTX', 30, 28)}}</div>
+        <div></div>
+      </div>
+    </div>
+    <div class="snippet_item add_new">
+      <div class="snippet_name">
+        <div class="snippet_button_add"
+             (click)="showForm()"
+        ><span></span></div>
+      </div>
+      <div class="snippet_contain"></div>
+    </div>
+  </div>
+</div>
+<div class="adding" *ngIf="show_form">
+  <div class="adding_item" (click)="hideForm()"></div>
+  <div class="adding_row">
+    <div class="adding_item" (click)="hideForm()"></div>
+    <div class="adding_wrap">
+      <div class="adding_header">
+        <div>Add asset</div>
+        <div class="adding_button_close" (click)="hideForm()"><span></span></div>
+      </div>
+      <div class="adding_text">
+        Select the asset that you want to add to the Dashboard. We only display
+        transactions and total sum of the asset. It is completely decentralized,
+        we do not store any of that information.</div>
+      <select-element [values]="kinds" [keys]="['name']"></select-element>
+      <input [placeholder]="'Label'">
+      <input [placeholder]="'Address'">
+      <div class="adding_button_row">
+        <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>
+        <div class="adding_button_add">Add</div>
+      </div>
+    </div>
+    <div class="adding_item" (click)="hideForm()"></div>
+  </div>
+  <div class="adding_item" (click)="hideForm()"></div>
+</div>
