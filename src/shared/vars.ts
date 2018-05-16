@@ -4,6 +4,8 @@ export const nameRegExp = new RegExp(/^[\a-z\u00BF-\u1FFF\u2C00-\uD7FF]+([\a-z\u
 
 export const wavesRegExp = new RegExp(/^3P([\a-z0-9]){33}$/i);
 
+export const ethRegExp = new RegExp(/^0x([\a-z0-9]){40}$/i);
+
 export const months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 export const week: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
