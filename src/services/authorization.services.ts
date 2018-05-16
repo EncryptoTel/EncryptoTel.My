@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {Subject} from 'rxjs/Subject';
@@ -116,13 +116,12 @@ export class AuthorizationServices {
   }
 
   setTokenTimer() {
-    // clearInterval(this.timer);
-    // this.dialog.visible = false;
+    clearInterval(this.timer);
+    this.dialog.visible = false;
     const ttl = this._storage.readItem('_auth_tk').token_ttl + Date.now();
     this.timer = null;
     this.timer = setInterval(() => {
       const currentTime = Date.now();
-      console.log((ttl - currentTime) / 1000);
       if ((ttl - currentTime) <= 60000) {
         if ((ttl - currentTime) <= 0) {
           this.hideDialog();

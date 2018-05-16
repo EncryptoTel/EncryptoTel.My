@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <form id='swap_form' method='post' #swapForm>
+  <form id='swap_form' method='post' #swapForm (submit)="postData($event)">
     <p class='input_title'>Select target network</p>
     <div id='swap_wrap'>
       <button class='swap_button' [ngClass]="{'active': network === 'waves'}" (click)="setTarget('waves')">Waves</button>
@@ -58,15 +58,10 @@
     </div>
     <div class='input_wrap'>
       <p id='input_title' class='input_title'>Your {{capitalize(network)}} address</p>
-      <input id='address' type='text' title='Address' name='address' [placeholder]="'Please type your ' + (network === 'waves' ? 'wETT' : 'eETT') + ' address'" required>
+      <input id='address' type='text' title='Address' name='address' [placeholder]="'Please type your ' + (network === 'waves' ? 'wETT' : 'eETT') + ' address'" required [(ngModel)]="address">
+      <span *ngIf="isShowedError" class='error_message'>Wrong address. Please check it.</span>
     </div>
     <div class='input_title'>Captcha</div>
-    <!--<div class='coinhive-captcha' data-hashes='1024'-->
-         <!--data-key='dYB06r9WbH4gMtzEy2kgg3D1E26U0La3'-->
-         <!--data-callback='validateForm'>-->
-      <!--<em>Loading Captcha...-->
-        <!--<br> If it doesn't load, please disable Adblock!</em>-->
-    <!--</div>-->
     <div id="captcha"></div>
     <div class="coinhive-captcha"
          data-hashes="1024"
@@ -76,7 +71,7 @@
         If it doesn't load, please disable Adblock!</em>
     </div>
     <div id='swap_error' class='hidden'></div>
-    <input type='submit' id='submit_button' value='Exchange'>
+    <input type='submit' id='submit_button' value='Exchange' [disabled]="submitIsBlocked" #submitElement>
     <p class='form_description'>
       <span><b>Please note:</b> Before proceeding with the swap make sure that Node Status is OK and the Waves/ETH exchange balance allows to make a swap.<br></span>
       <span class='attention'>

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
 
@@ -26,7 +26,6 @@ export class UserTokenInterceptor implements HttpInterceptor {
       }
       if (this._services.fetchAuth()) {
         const auth = this._storage.readItem('_auth_tk');
-        // this._services.setTokenTimer();
         request = request.clone({
           setHeaders: {
             'Authorization': `${auth['token_type']} ${auth['access_token']}`
@@ -34,6 +33,15 @@ export class UserTokenInterceptor implements HttpInterceptor {
         })
       }
     }
-    return next.handle(request);
+    return next.handle(request).do((event: HttpEvent<any>) => {
+      if (event instanceof HttpResponse) {
+        if (!this.excludeHeaders(request.url) && event.headers.get('Authorization')) {
+          const auth = this._storage.readItem('_auth_tk');
+          auth['access_token'] = event.headers.get('Authorization').split(' ')[1];
+          this._storage.writeItem('_auth_tk', auth);
+          this._services.setTokenTimer();
+        }
+      }
+    });
   }
 }
