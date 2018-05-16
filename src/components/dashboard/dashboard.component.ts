@@ -76,7 +76,6 @@ export class DashboardComponent implements OnInit {
           rate.series.map(item => item.name = this._date.transform(item.timestamp, calcFormat()));
           this.rates[this.rates.indexOf(rate)] = {name: rate['currency_from'], series: rate.series};
         }
-        console.log(this.rates);
         this.loading = false;
       }).catch(() => this.loading = false);
   }
