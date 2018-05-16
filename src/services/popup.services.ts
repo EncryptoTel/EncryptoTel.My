@@ -6,20 +6,22 @@ export class PopupServices {
   private type: string;
   private text: string;
 
-  showError(text: string): void {
-    this.show(text, 'error');
+  showError(text: string, enableTimer = true): void {
+    this.show(text, 'error', enableTimer);
   }
 
-  showSuccess(text) {
-    this.show(text, 'success');
+  showSuccess(text: string, enableTimer = true): void {
+    this.show(text, 'success', enableTimer);
   }
 
-  private show(text: string, type: string) {
+  private show(text: string, type: string, enableTimer) {
     this.visible = true;
     this.type = type;
     this.text = text;
-    setTimeout(() => {
-      this.visible = false;
-    }, 5000)
+    if (enableTimer) {
+      setTimeout(() => {
+        this.visible = false;
+      }, 5000)
+    }
   }
 }
