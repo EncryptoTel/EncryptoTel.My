@@ -9,6 +9,7 @@ import {AuthorizationServices} from '../../services/authorization.services';
 import {validateForm, inputValidation, FadeAnimation} from '../../shared/functions';
 import {emailRegExp} from '../../shared/vars';
 import {environment as _env} from '../../environments/environment';
+import {StorageServices} from '../../services/storage.services';
 
 @Component({
   selector: 'sign-in-component',
@@ -31,7 +32,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private _services: AuthorizationServices,
-              private router: Router) {
+              private router: Router,
+              private _storage: StorageServices) {
     this.signInForm = new FormGroup({
       'email': new FormControl('', [
         Validators.required,
@@ -72,12 +74,19 @@ export class SignInComponent implements OnInit, OnDestroy {
       this._services.signIn(this.signInForm.value)
         .then(() => {
           this.loading = false;
-          this.router.navigateByUrl('dashboard');
+          if(this._storage.readItem('last_url')) {
+            this.navigateToLastUrl();
+          } else {
+            this.router.navigateByUrl('dashboard');
+          }
         })
         .catch(() => {
           this.loading = false;
         })
     }
+  }
+  private navigateToLastUrl() {
+      this.router.navigate([this._storage.readItem('last_url')]);
   }
 
   ngOnInit(): void {
