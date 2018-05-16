@@ -147,7 +147,7 @@ export class RequestServices {
           return 'time_frame=1440&limit=30'
         }
         case 'week': {
-          return 'time_frame=240&limit42'
+          return 'time_frame=240&limit=42'
         }
         case 'day': {
           return 'time_frame=60&limit=24'
