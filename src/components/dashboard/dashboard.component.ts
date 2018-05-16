@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
 import {PageInfo} from '../../models/page-info.model';
 import {RequestServices} from '../../services/request.services';
-import {StorageServices} from '../../services/storage.services';
 
 
 @Component({
@@ -30,9 +28,7 @@ export class DashboardComponent implements OnInit {
   curse_details;
 
   constructor(private _req: RequestServices,
-              private _date: DatePipe,
-              private _storage: StorageServices,
-              private _router: Router) {
+              private _date: DatePipe) {
     this.pageInfo = {
       title: 'Index page',
       description:
@@ -80,14 +76,7 @@ export class DashboardComponent implements OnInit {
       }).catch(() => this.loading = false);
   }
 
-  private navigateToLastUrl() {
-    if (this._storage.readItem('last_url')) {
-      this._router.navigate([this._storage.readItem('last_url')]);
-    }
-  }
-
   ngOnInit(): void {
     this.getCurse();
-    // this.navigateToLastUrl();
   }
 }
