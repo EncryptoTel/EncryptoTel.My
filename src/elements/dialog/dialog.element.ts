@@ -18,15 +18,13 @@ export class DialogElement {
 
   signOut() {
     this.auth.logout();
+    this.close();
   }
 
   stayIn() {
     this._service.stayIn().then(res => {
-      console.log(res);
       this.storage.writeItem('_auth_tk', res);
-    }).catch(err => {
-      console.error(err);
-    })
+    }).catch()
   }
 
   close() {
