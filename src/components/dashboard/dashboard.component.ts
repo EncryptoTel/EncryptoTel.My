@@ -34,7 +34,6 @@ export class DashboardComponent implements OnInit {
   show_form = false;
   assets;
   picked_assets = [];
-  label;
   address;
   asset_id;
 
@@ -47,9 +46,6 @@ export class DashboardComponent implements OnInit {
       : item);
   };
 
-  setLabel(text) {
-    this.label = text.value;
-  }
   setAddress(text) {
     this.address = text.value;
   }
