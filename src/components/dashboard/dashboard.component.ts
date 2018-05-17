@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
   curse_details;
 
 
-  // --------------------------------------------------------------------------------------------------
+  //
 
   show_form = false;
   assets;
@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
     this.hideForm();
   }
 
-  // ----------------------------------------------------------------------------------------------------
+  //
   constructor(private _req: RequestServices,
               private _date: DatePipe,
               private _storage: StorageServices,
