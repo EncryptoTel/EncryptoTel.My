@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="transactions_items_wrapper" *ngIf="transactions.length > 0">
+    <div class="transactions_items_wrapper" *ngIf="transactions && transactions.length > 0">
       <ng-container *ngIf="filteredTransactions.length>0">
         <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions; index as i">
           <div class="transactions_items_date" *ngIf="date[i]">{{transaction.timestamp | date}}</div>
@@ -30,6 +30,6 @@
         </div>
       </ng-container>
     </div>
-    <h2 *ngIf="transactions.length === 0" class="message">You don't have any transactions</h2>
+    <h2 *ngIf="!transactions || transactions.length === 0" class="message">You don't have any transactions for this wallet</h2>
   </div>
 </div>

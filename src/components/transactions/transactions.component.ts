@@ -49,7 +49,7 @@ export class TransactionsComponent {
         break;
       case ('sent'):
         this.filteredTransactions = [];
-        this.sortingSend();
+        this.sortingSent();
         break;
       case ('received'):
         this.filteredTransactions = [];
@@ -59,14 +59,14 @@ export class TransactionsComponent {
         this.filteredTransactions = this.transactions;
         break;
     }
-    if (this.transactions.length > 0) {
+    if (this.transactions && this.transactions.length > 0) {
       this.date = new Array(this.filteredTransactions.length);
       this.date.fill(false);
       this.sortByDate();
     }
   }
 
-  private sortingSend(): void {
+  private sortingSent(): void {
     this.transactions.forEach((el: Transaction) => {
       if (el.sender === this.address) {
         this.filteredTransactions.push(el);
@@ -76,7 +76,7 @@ export class TransactionsComponent {
 
   private sortingReceived(): void {
     this.transactions.forEach((el: Transaction) => {
-      if (el.recipient === this.address) {
+      if (el.sender !== this.address) {
         this.filteredTransactions.push(el);
       }
     })

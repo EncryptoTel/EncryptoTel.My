@@ -35,20 +35,20 @@ export class AuthorizationServices {
         this._storage.writeItem('_auth_tk', res);
         this.authSubscription.next();
         return Promise.resolve(null);
-      }).catch(res => {
-        if (res.errors) {
-          if (res.errors.password) {
-            this.setMessage(res.errors.password)
-          } else if (res.errors.email) {
-            this.setMessage(res.errors.email)
+      }).catch(err => {
+        if (err.errors) {
+          if (err.errors.password) {
+            this.setMessage(err.errors.password)
+          } else if (err.errors.email) {
+            this.setMessage(err.errors.email)
           }
-        } else if (res.message) {
-          this.setMessage(res.message);
+        } else if (err.message) {
+          this.setMessage(err.message);
         } else {
           this.setMessage('Unknown error');
         }
         this.authSubscription.next();
-        return Promise.reject(null);
+        return Promise.reject(err);
       })
   }
 
@@ -118,7 +118,7 @@ export class AuthorizationServices {
   setTokenTimer() {
     clearInterval(this.timer);
     this.dialog.visible = false;
-    const ttl = this._storage.readItem('_auth_tk').token_ttl + Date.now();
+    const ttl = this._storage.readItem('_auth_tk').token_ttl + Date.now() - 10000;
     this.timer = null;
     this.timer = setInterval(() => {
       const currentTime = Date.now();

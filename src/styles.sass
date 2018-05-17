@@ -13,7 +13,6 @@
 @font-face
   font-family: 'Roboto'
   font-weight: 400
-  font-weight: 400
   src: url('./assets/fonts/Roboto-Regular.ttf') format("truetype")
 
 @font-face
@@ -120,7 +119,7 @@ main-view
     height: 100%
     top: 0
     left: 0
-    z-index: 3
+    z-index: 30
     display: flex
     flex-flow: column
     justify-content: center
@@ -163,7 +162,6 @@ bug-element
   margin: 0 auto
 
 .table
-  overflow-x: hidden
   position: relative
   &_row
     flex-direction: row
@@ -194,8 +192,6 @@ bug-element
       background: transparent
       border-bottom: 1px solid rgba($primary, .2)
       color: rgba($primary, .7)
-  &_body
-    overflow-y: auto
   &_empty
     align-items: center
     margin: 10vh 0
@@ -271,7 +267,6 @@ bug-element
   .hidden_sm_down
     display: none
   .table
-    overflow-y: auto
     &_column
       &_wrap
         flex: 0 0 auto

@@ -1,24 +1,25 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
 import {PageInfo} from '../../models/page-info.model';
 import {RequestServices} from '../../services/request.services';
+import {StorageServices} from '../../services/storage.services';
+import {AssetServices} from '../../services/asset.services';
 
 
 @Component({
   selector: 'my-index',
   templateUrl: './template.html',
   styleUrls: ['./local.sass'],
-  providers: [DatePipe]
+  providers: [DatePipe, AssetServices]
 })
 
 export class DashboardComponent implements OnInit {
-
   // Page data
   pageInfo: PageInfo;
   loading: boolean;
   period = 'month';
-
   rates = [
     {
       name: 'Waves',
@@ -27,8 +28,52 @@ export class DashboardComponent implements OnInit {
   ];
   curse_details;
 
+
+  //
+
+  show_form = false;
+  assets;
+  picked_assets = [];
+  address;
+  asset_id;
+
+  showForm() { this.show_form = true; }
+  hideForm() { this.show_form = false; }
+  nameShorter = (item, max, required): string => {
+    return (
+      item.length > max
+      ? item.slice(0, required) + '...'
+      : item);
+  };
+
+  setAddress(text) {
+    this.address = text.value;
+  }
+  setAssetId(event) {
+    this.asset_id = event.identifier;
+  }
+  getAssets() {
+    this._assets.getAssets().then(res => {
+      this.assets = res['list'];
+    })
+  }
+  addNewAsset() {
+    this._assets.addAsset( {
+        address: this.address,
+        kind: 'waves',
+        asset_id: this.asset_id })
+      .then(() => {
+        this.hideForm();
+        this.getAccountAssets();
+      }).catch();
+  }
+
+  //
   constructor(private _req: RequestServices,
-              private _date: DatePipe) {
+              private _date: DatePipe,
+              private _storage: StorageServices,
+              private _router: Router,
+              private _assets: AssetServices) {
     this.pageInfo = {
       title: 'Index page',
       description:
@@ -37,12 +82,10 @@ export class DashboardComponent implements OnInit {
     };
     this.loading = true;
   }
-
   setPeriod(period: string): void {
     this.period = period;
     this.getCurse();
   }
-
   getCurse(): void {
     this.loading = true;
     this.rates[0].series = [];
@@ -52,10 +95,10 @@ export class DashboardComponent implements OnInit {
           return 'HH:mm'
         }
         case 'week': {
-          return 'dd/MM HH:mm'
+          return 'MM/dd HH:mm'
         }
         case 'month': {
-          return 'dd/MM'
+          return 'MM/dd'
         }
       }
     };
@@ -76,7 +119,27 @@ export class DashboardComponent implements OnInit {
       }).catch(() => this.loading = false);
   }
 
+  getAccountAssets(): void {
+    this._assets.getAccountAssets()
+      .then(res => {
+        this.picked_assets = [];
+        res.account.wallets.map(wallet => {
+          wallet.assets.map(asset => {
+            this.picked_assets.push({...asset, address: wallet.address})
+          })
+        });
+      }).catch();
+  }
+
+  getAssetById(id: string): string {
+    const asset = this.assets.find(ast => ast.identifier === id);
+    return asset ? asset.name : '';
+  }
+
   ngOnInit(): void {
     this.getCurse();
+    this.getAccountAssets();
+    this.getAssets();
   }
 }
+

@@ -147,9 +147,11 @@ page-info-element
       width: 100%
       justify-content: space-around
       margin: rem(16) 0 rem(32)
-      color: lighten($primary, 60%)
+      color: #757575
+      font-size: rem(13)
     &_item
       flex-direction: row
+      margin-bottom: 10px
       &:not(:last-child)
         &:after
           content: '|'
@@ -167,3 +169,16 @@ page-info-element
 
 .error_input
   border: 1px solid $error
+@media all and (max-width: 425px)
+  .footer
+    &_row
+      flex-flow: column
+      align-items: center
+      &_item
+        margin-bottom: 10px
+    &_text
+      &_row
+        flex-flow: column
+        align-items: center
+      &_item
+        margin-bottom: 10px

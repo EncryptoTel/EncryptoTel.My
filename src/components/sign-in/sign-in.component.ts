@@ -74,13 +74,17 @@ export class SignInComponent implements OnInit, OnDestroy {
       this._services.signIn(this.signInForm.value)
         .then(() => {
           this.loading = false;
-          if(this._storage.readItem('last_url')) {
+          if (this._storage.readItem('last_url')) {
             this.navigateToLastUrl();
           } else {
             this.router.navigateByUrl('dashboard');
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          const control = Object.keys(err.errors);
+          for (const c of control) {
+            this.signInForm.controls[c].setErrors({response: err.errors[c].join('')});
+          }
           this.loading = false;
         })
     }
