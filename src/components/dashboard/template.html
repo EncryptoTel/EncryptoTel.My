@@ -68,19 +68,14 @@
         Select the asset that you want to add to the Dashboard. We only display
         transactions and total sum of the asset. It is completely decentralized,
         we do not store any of that information.</div>
-      <select-element [values]="assets"
-                      [keys]="['name']"
-                      (getValue)="setAssetId($event)"></select-element>
-      <input id="label-input"
-             title="Asset label"
-             #thislabel
-             [placeholder]="'Label'"
-             (keyup)="setLabel(thislabel)">
       <input id="address-input"
              title="Asset address"
              #thisaddress
              [placeholder]="'Address'"
              (keyup)="setAddress(thisaddress)">
+      <select-element [values]="assets"
+                      [keys]="['name']"
+                      (getValue)="setAssetId($event)"></select-element>
       <div class="adding_button_row">
         <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>
         <div class="adding_button_add" (click)="addNewAsset()">Add</div>
