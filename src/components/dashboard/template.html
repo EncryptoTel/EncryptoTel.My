@@ -35,13 +35,13 @@
 </div>
 <div class="container" *ngIf="!loading">
   <div class="snippet_wrap">
-    <div class="snippet_item">
-      <div class="snippet_name">Waves
+    <div class="snippet_item" *ngFor="let item of picked_assets">
+      <div class="snippet_name">{{item.name}}
         <div class="snippet_button_close"><span></span></div>
       </div>
       <div class="snippet_contain">
-        <div class="snippet_value">25.000000</div>
-        <div class="snippet_address">{{nameShorter('2BS0HTITRPVYZJUO4J87DXGN0VPJCS0TPTX', 30, 28)}}</div>
+        <div class="snippet_value">{{item.balance}}</div>
+        <div class="snippet_address">{{nameShorter(item.identifier, 30, 28)}}</div>
         <div></div>
       </div>
     </div>
@@ -68,7 +68,7 @@
         Select the asset that you want to add to the Dashboard. We only display
         transactions and total sum of the asset. It is completely decentralized,
         we do not store any of that information.</div>
-      <select-element [values]="kinds" [keys]="['name']"></select-element>
+      <select-element [values]="assets" [keys]="['name']"></select-element>
       <input [placeholder]="'Label'">
       <input [placeholder]="'Address'">
       <div class="adding_button_row">

@@ -32,33 +32,46 @@ export class DashboardComponent implements OnInit {
 
   // ----------------------------------------------------------------------------------------------------
 
-  kinds = [
-    { name: 'WAVES' },
-    { name: 'ETH' }
-  ];
   show_form = false;
   assets;
-  showForm() {
-    this.show_form = true;
-  }
-  hideForm() {
-    this.show_form = false;
-  }
-  nameShorter = (item, max, required) => {
-    if (item.length > max) {
-      return (item.slice(0, required) + '...');
-    } else {
-      return item;
+
+  picked_assets = [
+    {
+      name: 'waves',
+      balance: '25.000000',
+      identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
+    },
+    {
+      name: 'ETT',
+      balance: '26.000000',
+      identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
+    },
+    {
+      name: 'wETT',
+      balance: '27.000000',
+      identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
     }
+  ];
+
+  showForm() { this.show_form = true; }
+  hideForm() { this.show_form = false; }
+  nameShorter(item, max, required): string {
+    return (item.length > max ? item.slice(0, required) + '...' : item);
   };
-
-
-  getAssets(): void {
-    this.assets = this._assets.getAssets();
+  getAssets() {
+    this._assets.getAssets().then(res => {
+      this.assets = res['list'];
+    })
+  }
+  addAssets() {
 
   }
 
 
+
+  addAsset(): void {
+
+  }
   // ----------------------------------------------------------------------------------------------------
   constructor(private _req: RequestServices,
               private _date: DatePipe,

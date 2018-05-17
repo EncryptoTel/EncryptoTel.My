@@ -3,6 +3,7 @@
 .background_wrap
   padding: rem(32)
   background: $accent
+  flex: 0 0 auto
   > .chart_wrap
     width: 100%
     height: rem(240)
@@ -49,7 +50,7 @@
     display: grid
     grid-template-columns: repeat(auto-fill, minmax(rem(256), 1fr))
     grid-gap: rem(24)
-    padding-top: rem(32)
+    padding: rem(32) 0
   &_item
     min-height: rem(160)
     max-height: rem(160)
@@ -140,6 +141,8 @@
       display: none
     >select-element
       margin: rem(24) 0
+      /deep/ .select_options
+        max-height: rem(256)
     >input
       height: 35px
       margin-bottom: rem(24)
