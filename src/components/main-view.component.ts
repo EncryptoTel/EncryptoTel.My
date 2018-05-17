@@ -12,7 +12,7 @@ import {DialogServices} from '../services/dialog.services';
   selector: 'main-view',
   template:
       `
-    <header-element *ngIf="!loading && authorized"></header-element>
+    <header-element *ngIf="!loading && isAuthorized()"></header-element>
     <loader-element *ngIf="loading"></loader-element>
     <router-outlet *ngIf="!loading"></router-outlet>
     <popup-element *ngIf="popup.visible" [@Fade]></popup-element>
@@ -25,16 +25,19 @@ export class MainViewComponent implements OnInit, OnDestroy {
   authorized: boolean;
   subscription: Subscription;
   loading: boolean;
+  logout: boolean;
 
   constructor(private _auth: AuthorizationServices,
               public popup: PopupServices,
               public dialog: DialogServices) {
     this.loading = false;
+    this.logout = false;
     this.authorized = this._auth.fetchAuth();
     this.subscription = this._auth.subscribeAuth()
       .subscribe(() => {
         this.authorized = this._auth.fetchAuth();
         if (this.authorized) {
+          this.logout = false;
           // this._auth.setTokenTimer();
         } else {
           // this._auth.hideDialog();
@@ -42,7 +45,17 @@ export class MainViewComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnInit() {}
+  isAuthorized() {
+    const auth = this._auth.fetchAuth();
+    if (!auth && !this.logout) {
+      this.logout = true;
+      this._auth.logout();
+    }
+    return auth;
+  }
+
+  ngOnInit() {
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
