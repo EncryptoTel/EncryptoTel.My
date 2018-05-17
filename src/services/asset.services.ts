@@ -6,10 +6,10 @@ export class AssetServices {
   constructor (private _req: RequestServices) {}
 
   getAssets(): Promise<object> {
-    return this._req.get('assets/get', true);
+    return this._req.get('assets', true);
   }
 
-  addAssets(asset): Promise<object> {
+  addAsset(asset): Promise<object> {
     return this._req.post('assets/add', {...asset}, true);
   }
 

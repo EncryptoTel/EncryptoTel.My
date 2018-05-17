@@ -29,12 +29,10 @@ export class DashboardComponent implements OnInit {
   curse_details;
 
 
-
   // ----------------------------------------------------------------------------------------------------
 
   show_form = false;
   assets;
-
   picked_assets = [
     {
       name: 'waves',
@@ -52,26 +50,41 @@ export class DashboardComponent implements OnInit {
       identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
     }
   ];
+  label;
+  address;
+  asset_id;
 
   showForm() { this.show_form = true; }
   hideForm() { this.show_form = false; }
   nameShorter(item, max, required): string {
-    return (item.length > max ? item.slice(0, required) + '...' : item);
+    return (
+      item.length > max
+      ? item.slice(0, required) + '...'
+      : item);
   };
+
+  setLabel(text) {
+    this.label = text.value;
+  }
+  setAddress(text) {
+    this.address = text.value;
+  }
+  setAssetId(event) {
+    this.asset_id = event.identifier;
+  }
   getAssets() {
     this._assets.getAssets().then(res => {
       this.assets = res['list'];
     })
   }
-  addAssets() {
-
+  addNewAsset() {
+    this._assets.addAsset( {
+        address: this.address,
+        kind: 'waves',
+        asset_id: this.asset_id });
+    this.hideForm();
   }
 
-
-
-  addAsset(): void {
-
-  }
   // ----------------------------------------------------------------------------------------------------
   constructor(private _req: RequestServices,
               private _date: DatePipe,
