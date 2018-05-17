@@ -80,7 +80,9 @@ export class SignInComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('dashboard');
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          const control = Object.keys(err.errors);
+          // this.hasError(control[0], 'pattern');
           this.loading = false;
         })
     }

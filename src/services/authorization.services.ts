@@ -35,20 +35,20 @@ export class AuthorizationServices {
         this._storage.writeItem('_auth_tk', res);
         this.authSubscription.next();
         return Promise.resolve(null);
-      }).catch(res => {
-        if (res.errors) {
-          if (res.errors.password) {
-            this.setMessage(res.errors.password)
-          } else if (res.errors.email) {
-            this.setMessage(res.errors.email)
+      }).catch(err => {
+        if (err.errors) {
+          if (err.errors.password) {
+            this.setMessage(err.errors.password)
+          } else if (err.errors.email) {
+            this.setMessage(err.errors.email)
           }
-        } else if (res.message) {
-          this.setMessage(res.message);
+        } else if (err.message) {
+          this.setMessage(err.message);
         } else {
           this.setMessage('Unknown error');
         }
         this.authSubscription.next();
-        return Promise.reject(null);
+        return Promise.reject(err);
       })
   }
 
