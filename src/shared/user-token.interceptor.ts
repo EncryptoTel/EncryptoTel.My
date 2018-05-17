@@ -40,6 +40,9 @@ export class UserTokenInterceptor implements HttpInterceptor {
           auth['access_token'] = event.headers.get('Authorization').split(' ')[1];
           this._storage.writeItem('_auth_tk', auth);
           this._services.setTokenTimer();
+          if (request.url === 'me') {
+            console.log(auth);
+          }
         }
       }
     });

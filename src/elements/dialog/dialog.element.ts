@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {DialogServices} from '../../services/dialog.services';
 import {AuthorizationServices} from '../../services/authorization.services';
-import {StorageServices} from '../../services/storage.services';
 
 
 @Component({
@@ -12,8 +11,7 @@ import {StorageServices} from '../../services/storage.services';
 
 export class DialogElement {
   constructor(public _service: DialogServices,
-              private auth: AuthorizationServices,
-              private storage: StorageServices) {
+              private auth: AuthorizationServices) {
   }
 
   signOut() {
@@ -22,9 +20,7 @@ export class DialogElement {
   }
 
   stayIn() {
-    this._service.stayIn().then(res => {
-      this.storage.writeItem('_auth_tk', res);
-    }).catch()
+    this._service.stayIn().then().catch()
   }
 
   close() {
