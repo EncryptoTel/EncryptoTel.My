@@ -82,7 +82,9 @@ export class SignInComponent implements OnInit, OnDestroy {
         })
         .catch((err) => {
           const control = Object.keys(err.errors);
-          // this.hasError(control[0], 'pattern');
+          for (const c of control) {
+            this.signInForm.controls[c].setErrors({response: err.errors[c].join('')});
+          }
           this.loading = false;
         })
     }

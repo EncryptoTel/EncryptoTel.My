@@ -95,10 +95,10 @@ export class DashboardComponent implements OnInit {
           return 'HH:mm'
         }
         case 'week': {
-          return 'dd/MM HH:mm'
+          return 'MM/dd HH:mm'
         }
         case 'month': {
-          return 'dd/MM'
+          return 'MM/dd'
         }
       }
     };
