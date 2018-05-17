@@ -28,5 +28,8 @@ export class SwapServices {
   postData(data): Promise<any> {
     return this.http.post('https://swap.encryptotel.com/address/bind', data).toPromise();
   }
+  checkToken(): Promise<any>  {
+    return this._req.post('account/me', {}, true);
+  }
 }
 

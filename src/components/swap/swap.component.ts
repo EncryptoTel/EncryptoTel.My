@@ -7,6 +7,7 @@ import {SwapDetails} from '../../models/swap-details.model';
 import {PopupServices} from '../../services/popup.services';
 import {FadeAnimation} from '../../shared/functions';
 import {ethRegExp, wavesRegExp} from '../../shared/vars';
+import {StorageServices} from '../../services/storage.services';
 
 
 @Component({
@@ -47,7 +48,8 @@ export class SwapComponent implements OnInit, AfterViewChecked {
   });
 
   constructor(private _services: SwapServices,
-              private popup: PopupServices) {
+              private popup: PopupServices,
+              private storage: StorageServices) {
     this.loading = true;
     this.network = 'waves';
     this.pageInfo = {
@@ -117,6 +119,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
         this.popup.showSuccess(`${res.network} ${res.address}`, false);
       }).catch(err => {
         console.error(err);
+        this.popup.showError('Captcha is invalid. Please update the page.')
       })
     }
   }
@@ -127,10 +130,18 @@ export class SwapComponent implements OnInit, AfterViewChecked {
     captcha.appendChild(script);
   }
 
+  private checkToken() {
+    this._services.checkToken().then(res => {
+      this.storage.writeItem('_auth_tk', res);
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
   ngOnInit(): void {
-    console.log(this.form);
     this.callbackCaptcha();
     this.loading = true;
+    this.checkToken();
     this.getInitialParams()
       .then(() => {
         this.loading = false;

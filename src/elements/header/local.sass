@@ -93,6 +93,9 @@
         justify-content: center
         background: $background
         transition: all linear 150ms
+        &.disabled
+          color: rgba($primary, .5)
+          pointer-events: none
         &:hover
           background: rgba($primary, .2)
         &.active
