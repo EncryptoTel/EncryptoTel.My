@@ -117,6 +117,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
         this.popup.showSuccess(`${res.network} ${res.address}`, false);
       }).catch(err => {
         console.error(err);
+        this.popup.showError('Captcha invalid. Please update page.')
       })
     }
   }
