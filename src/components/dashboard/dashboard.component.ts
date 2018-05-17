@@ -33,30 +33,14 @@ export class DashboardComponent implements OnInit {
 
   show_form = false;
   assets;
-  picked_assets = [
-    {
-      name: 'waves',
-      balance: '25.000000',
-      identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
-    },
-    {
-      name: 'ETT',
-      balance: '26.000000',
-      identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
-    },
-    {
-      name: 'wETT',
-      balance: '27.000000',
-      identifier: 'f982frn92iurnf98eu91uenf091in298ducn'
-    }
-  ];
+  picked_assets = [];
   label;
   address;
   asset_id;
 
   showForm() { this.show_form = true; }
   hideForm() { this.show_form = false; }
-  nameShorter(item, max, required): string {
+  nameShorter = (item, max, required): string => {
     return (
       item.length > max
       ? item.slice(0, required) + '...'
@@ -81,8 +65,11 @@ export class DashboardComponent implements OnInit {
     this._assets.addAsset( {
         address: this.address,
         kind: 'waves',
-        asset_id: this.asset_id });
-    this.hideForm();
+        asset_id: this.asset_id })
+      .then(() => {
+        this.hideForm();
+        this.getAccountAssets();
+      }).catch();
   }
 
   //
@@ -135,15 +122,28 @@ export class DashboardComponent implements OnInit {
         this.loading = false;
       }).catch(() => this.loading = false);
   }
-  private navigateToLastUrl() {
-    if (this._storage.readItem('last_url')) {
-      this._router.navigate([this._storage.readItem('last_url')]);
-    }
+
+  getAccountAssets(): void {
+    this._assets.getAccountAssets()
+      .then(res => {
+        this.picked_assets = [];
+        res.account.wallets.map(wallet => {
+          wallet.assets.map(asset => {
+            this.picked_assets.push({...asset, address: wallet.address})
+          })
+        });
+      }).catch();
   }
+
+  getAssetById(id: string): string {
+    const asset = this.assets.find(ast => ast.identifier === id);
+    return asset ? asset.name : '';
+  }
+
   ngOnInit(): void {
     this.getCurse();
+    this.getAccountAssets();
     this.getAssets();
-    // this.navigateToLastUrl();
   }
 }
 

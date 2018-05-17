@@ -9,6 +9,10 @@ export class AssetServices {
     return this._req.get('assets', true);
   }
 
+  getAccountAssets(): Promise<any> {
+    return this._req.get('account', true);
+  }
+
   addAsset(asset): Promise<object> {
     return this._req.post('assets/add', {...asset}, true);
   }

@@ -59,7 +59,7 @@ export class TransactionsComponent {
         this.filteredTransactions = this.transactions;
         break;
     }
-    if (this.transactions.length > 0) {
+    if (this.transactions && this.transactions.length > 0) {
       this.date = new Array(this.filteredTransactions.length);
       this.date.fill(false);
       this.sortByDate();

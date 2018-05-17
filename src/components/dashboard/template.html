@@ -24,7 +24,7 @@
   </div>
   <div class="chart_wrap">
     <ngx-charts-line-chart
-      [customColors]="[{name: 'encryptotel', value: 'rgba(255, 255, 255, .8)'},{name: 'encryptotel-eth', value: 'rgba(66, 66, 66, .8)'}]"
+      [customColors]="[{name: 'encryptotel', value: 'rgba(255, 255, 255, .8)'},{name: 'encryptotel-eth', value: '#3e90ff'}]"
       [xAxis]="true"
       [yAxis]="true"
       [showGridLines]="false"
@@ -36,12 +36,12 @@
 <div class="container" *ngIf="!loading">
   <div class="snippet_wrap">
     <div class="snippet_item" *ngFor="let item of picked_assets">
-      <div class="snippet_name">{{item.name}}
-        <div class="snippet_button_close"><span></span></div>
+      <div class="snippet_name">{{getAssetById(item.asset_id)}}
+        <div class="snippet_button_close" *ngIf="item['editable']"><span></span></div>
       </div>
       <div class="snippet_contain">
-        <div class="snippet_value">{{item.balance}}</div>
-        <div class="snippet_address">{{nameShorter(item.identifier, 30, 28)}}</div>
+        <div class="snippet_value">{{item['balance']}}</div>
+        <div class="snippet_address">{{nameShorter(item.address, 30, 28)}}</div>
         <div></div>
       </div>
     </div>
@@ -72,10 +72,12 @@
                       [keys]="['name']"
                       (getValue)="setAssetId($event)"></select-element>
       <input id="label-input"
+             title="Asset label"
              #thislabel
              [placeholder]="'Label'"
              (keyup)="setLabel(thislabel)">
       <input id="address-input"
+             title="Asset address"
              #thisaddress
              [placeholder]="'Address'"
              (keyup)="setAddress(thisaddress)">
