@@ -118,7 +118,7 @@ export class AuthorizationServices {
   setTokenTimer() {
     clearInterval(this.timer);
     this.dialog.visible = false;
-    const ttl = this._storage.readItem('_auth_tk').token_ttl + Date.now();
+    const ttl = this._storage.readItem('_auth_tk').token_ttl + Date.now() - 10000;
     this.timer = null;
     this.timer = setInterval(() => {
       const currentTime = Date.now();
