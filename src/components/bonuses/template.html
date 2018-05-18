@@ -17,7 +17,7 @@
         <div class="table_row" *ngFor="let bonus of bonusesList">
           <div class="table_column">{{bonus.name || 'Unnamed'}}</div>
           <div class="table_column">{{bonus.amount || 'None'}}</div>
-          <div class="table_column">{{bonus.date | date}}</div>
+          <div class="table_column">{{bonus.date | date: 'MM/dd/yyyy'}}</div>
           <div class="table_column" [title]="bonus.description || 'Empty description'"><p>{{bonus.description}}</p></div>
           <div class="table_column">{{bonus.status}}</div>
         </div>
