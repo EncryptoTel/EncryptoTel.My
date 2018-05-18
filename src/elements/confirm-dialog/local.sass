@@ -1,12 +1,13 @@
 @import '../../vars'
 
-.dialog
+.confirm-dialog
   display: flex
   flex-flow: column
   font-size: rem(18)
   background: $background
   box-shadow: 0 1px 6px rgba($primary, .1)
   max-width: 400px
+  min-width: 280px
   height: 230px
   &_head
     display: flex
@@ -38,7 +39,7 @@
   &_cancel
     background: transparent
     padding: 8px 17px
-  &_stay_in
+  &_accept
     color: $background
     background: $success
     padding: 8px 17px
@@ -54,7 +55,7 @@
   z-index: 4
 
 @media all and (max-width: 320px)
-  .dialog
+  .confirm-dialog
     font-size: rem(15)
     &_footer
       button

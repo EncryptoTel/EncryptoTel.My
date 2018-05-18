@@ -17,8 +17,7 @@ export class SettingsComponent {
   pageInfo: PageInfo = {
     title: 'Settings',
     description:
-      `The entire Cardano team is made up of experts around the world, and the core technology team
-      consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      `Edit your name and email, or choose to remain anonymous, set notification policy, or completely delete your account.`
   };
   email;
   editStatus = {

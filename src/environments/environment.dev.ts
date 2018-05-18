@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  api_url: 'https://my.encryptotel.com/api',
+  api_url: 'http://investor-front-dev.encry.ru/api',
   waves_api_url: 'https://nodes.wavesnodes.com',
   waves_api_dev: 'https://testnode1.wavesnodes.com',
   eth_api_url: 'https://api.etherscan.io/api',

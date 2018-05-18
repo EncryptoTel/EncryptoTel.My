@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {RequestServices} from './request.services';
 import {StorageServices} from './storage.services';
 import {DialogServices} from './dialog.services';
+import {PopupServices} from './popup.services';
 
 @Injectable()
 export class AuthorizationServices {
@@ -18,7 +19,8 @@ export class AuthorizationServices {
   constructor(private _req: RequestServices,
               private _storage: StorageServices,
               private router: Router,
-              private dialog: DialogServices) {
+              private dialog: DialogServices,
+              private popup: PopupServices) {
     this.authSubscription = new Subject<void>();
   }
 
@@ -93,6 +95,7 @@ export class AuthorizationServices {
 
   logout(): void {
     localStorage.removeItem('_auth_tk');
+    this.popup.visible = false;
     this.router.navigateByUrl('').then(() => this.authSubscription.next());
   }
 
