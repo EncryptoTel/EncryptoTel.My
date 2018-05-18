@@ -54,7 +54,11 @@ export class DashboardComponent implements OnInit {
   }
   getAssets() {
     this._assets.getAssets().then(res => {
-      this.assets = res['list'];
+      this.assets = res['list'].sort((a, b) => {
+        if (a.name < b.name) { return -1 }
+        if (a.name > b.name) { return 1 }
+        return 0;
+      });
     })
   }
   addNewAsset() {
@@ -66,6 +70,12 @@ export class DashboardComponent implements OnInit {
         this.hideForm();
         this.getAccountAssets();
       }).catch();
+  }
+  removeAsset(asset) {
+    this._assets.removeAsset({asset: asset.asset_id, address: asset.address})
+      .then(() => {
+        this.getAccountAssets();
+      }).catch()
   }
 
   //
