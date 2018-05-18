@@ -34,7 +34,8 @@
   </div>
 </div>
 <div class="container" *ngIf="!loading">
-  <div class="snippet_wrap">
+  <loader-element *ngIf="loadingAssets"></loader-element>
+  <div class="snippet_wrap" *ngIf="!loadingAssets">
     <div class="snippet_item" *ngFor="let item of picked_assets">
       <div class="snippet_name">{{getAssetById(item.asset_id)}}
         <div class="snippet_button_close" *ngIf="item['editable']" (click)="removeAsset(item)"><span></span></div>

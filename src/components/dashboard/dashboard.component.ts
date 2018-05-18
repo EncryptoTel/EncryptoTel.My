@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   // Page data
   pageInfo: PageInfo;
   loading: boolean;
+  loadingAssets = true;
   period = 'month';
   rates = [
     {
@@ -133,7 +134,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getAccountAssets(): void {
-    this.loading = true;
     this._assets.getAccountAssets()
       .then(res => {
         this.picked_assets = [];
@@ -142,6 +142,7 @@ export class DashboardComponent implements OnInit {
             this.picked_assets.push({...asset, address: wallet.address})
           });
           this.loading = false;
+          this.loadingAssets = false;
         });
       }).catch();
   }
