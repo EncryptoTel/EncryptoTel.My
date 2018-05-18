@@ -63,6 +63,7 @@ export class DashboardComponent implements OnInit {
         if (a.name > b.name) { return 1 }
         return 0;
       });
+      this.loading = false;
     })
   }
 
@@ -128,7 +129,7 @@ export class DashboardComponent implements OnInit {
           rate.series.map(item => item.name = this._date.transform(item.timestamp, calcFormat()));
           this.rates[this.rates.indexOf(rate)] = {name: rate['currency_from'], series: rate.series};
         }
-        this.loading = false;
+        this.getAccountAssets();
       }).catch(() => this.loading = false);
   }
 
@@ -140,7 +141,8 @@ export class DashboardComponent implements OnInit {
           wallet.assets.map(asset => {
             this.picked_assets.push({...asset, address: wallet.address})
           });
-          this.loading = false;
+          this.getAssets();
+
         });
       }).catch();
   }
@@ -165,8 +167,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurse();
-    this.getAccountAssets();
-    this.getAssets();
+
+
   }
 }
 
