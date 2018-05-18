@@ -21,8 +21,7 @@ import {FadeAnimation} from '../../shared/functions';
 export class DashboardComponent implements OnInit {
   // Page data
   pageInfo: PageInfo;
-  loading: boolean;
-  loadingAssets = true;
+  loading = true;
   period = 'month';
   rates = [
     {
@@ -66,6 +65,7 @@ export class DashboardComponent implements OnInit {
       });
     })
   }
+
   addNewAsset() {
     this._assets.addAsset( {
         address: this.address,
@@ -94,7 +94,6 @@ export class DashboardComponent implements OnInit {
         `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     };
-    this.loading = true;
   }
   setPeriod(period: string): void {
     this.period = period;
@@ -142,7 +141,6 @@ export class DashboardComponent implements OnInit {
             this.picked_assets.push({...asset, address: wallet.address})
           });
           this.loading = false;
-          this.loadingAssets = false;
         });
       }).catch();
   }

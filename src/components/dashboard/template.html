@@ -1,5 +1,5 @@
 <loader-element *ngIf="loading"></loader-element>
-<div class="background_wrap" *ngIf="!loading">
+<div class="background_wrap" *ngIf="!loading" [@Fade]>
   <div class="chart_description">
     <div class="chart_description_wrap">
       <div class="chart_description_title">ETT</div>
@@ -33,10 +33,9 @@
     </ngx-charts-line-chart>
   </div>
 </div>
-<div class="container" *ngIf="!loading">
-  <loader-element *ngIf="loadingAssets"></loader-element>
-  <div class="snippet_wrap" *ngIf="!loadingAssets">
-    <div class="snippet_item" *ngFor="let item of picked_assets">
+<div class="container" *ngIf="!loading" [@Fade]>
+  <div class="snippet_wrap">
+    <div class="snippet_item" *ngFor="let item of picked_assets" [@Fade]>
       <div class="snippet_name">{{getAssetById(item.asset_id)}}
         <div class="snippet_button_close" *ngIf="item['editable']" (click)="removeAsset(item)"><span></span></div>
       </div>
