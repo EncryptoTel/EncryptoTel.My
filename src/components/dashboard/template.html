@@ -48,40 +48,34 @@
     <div class="snippet_item add_new">
       <div class="snippet_name">
         <div class="snippet_button_add"
-             (click)="showForm()"
-        ><span></span></div>
+             (click)="showForm()"><span></span></div>
       </div>
       <div class="snippet_contain"></div>
     </div>
   </div>
 </div>
 <div class="adding" *ngIf="show_form">
-  <div class="adding_item" (click)="hideForm()"></div>
-  <div class="adding_row">
-    <div class="adding_item" (click)="hideForm()"></div>
-    <div class="adding_wrap">
-      <div class="adding_header">
-        <div>Add asset</div>
-        <div class="adding_button_close" (click)="hideForm()"><span></span></div>
-      </div>
-      <div class="adding_text">
-        Select the asset that you want to add to the Dashboard. We only display
-        transactions and total sum of the asset. It is completely decentralized,
-        we do not store any of that information.</div>
-      <input id="address-input"
-             title="Asset address"
-             #thisaddress
-             [placeholder]="'Address'"
-             (keyup)="setAddress(thisaddress)">
-      <select-element [values]="assets"
-                      [keys]="['name']"
-                      (getValue)="setAssetId($event)"></select-element>
-      <div class="adding_button_row">
-        <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>
-        <div class="adding_button_add" (click)="addNewAsset()">Add</div>
-      </div>
+  <div class="adding_wrap">
+    <div class="adding_header">
+      <div>Add asset</div>
+      <div class="adding_button_close" (click)="hideForm()"><span></span></div>
     </div>
-    <div class="adding_item" (click)="hideForm()"></div>
+    <div class="adding_text">
+      Select the asset that you want to add to the Dashboard. We only display
+      transactions and total sum of the asset. It is completely decentralized,
+      we do not store any of that information.</div>
+    <input id="address-input"
+           title="Asset address"
+           #thisaddress
+           [placeholder]="'Address'"
+           (keyup)="setAddress(thisaddress)">
+    <select-element [values]="assets"
+                    [keys]="['name']"
+                    (getValue)="setAssetId($event)"></select-element>
+    <div class="adding_button_row">
+      <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>
+      <div class="adding_button_add" (click)="addNewAsset()">Add</div>
+    </div>
   </div>
-  <div class="adding_item" (click)="hideForm()"></div>
 </div>
+<confirm-dialog-element *ngIf="_confirmDialog.visible" (accept)="confirmDelAsset()" (cancel)="cancelDelAsset()" [@Fade]></confirm-dialog-element>

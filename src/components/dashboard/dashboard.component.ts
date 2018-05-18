@@ -6,13 +6,16 @@ import {PageInfo} from '../../models/page-info.model';
 import {RequestServices} from '../../services/request.services';
 import {StorageServices} from '../../services/storage.services';
 import {AssetServices} from '../../services/asset.services';
+import {ConfirmDialogServices} from '../../services/confirm-dialog.services';
+import {FadeAnimation} from '../../shared/functions';
 
 
 @Component({
   selector: 'my-index',
   templateUrl: './template.html',
   styleUrls: ['./local.sass'],
-  providers: [DatePipe, AssetServices]
+  providers: [DatePipe, AssetServices],
+  animations: [FadeAnimation('150ms')]
 })
 
 export class DashboardComponent implements OnInit {
@@ -36,6 +39,7 @@ export class DashboardComponent implements OnInit {
   picked_assets = [];
   address;
   asset_id;
+  current_asset;
 
   showForm() { this.show_form = true; }
   hideForm() { this.show_form = false; }
@@ -72,10 +76,8 @@ export class DashboardComponent implements OnInit {
       }).catch();
   }
   removeAsset(asset) {
-    this._assets.removeAsset({asset: asset.asset_id, address: asset.address})
-      .then(() => {
-        this.getAccountAssets();
-      }).catch()
+    this.current_asset = asset;
+    this._confirmDialog.showDialog();
   }
 
   //
@@ -83,7 +85,8 @@ export class DashboardComponent implements OnInit {
               private _date: DatePipe,
               private _storage: StorageServices,
               private _router: Router,
-              private _assets: AssetServices) {
+              private _assets: AssetServices,
+              public _confirmDialog: ConfirmDialogServices) {
     this.pageInfo = {
       title: 'Index page',
       description:
@@ -144,6 +147,19 @@ export class DashboardComponent implements OnInit {
   getAssetById(id: string): string {
     const asset = this.assets.find(ast => ast.identifier === id);
     return asset ? asset.name : '';
+  }
+
+  confirmDelAsset(): void {
+    this._assets.removeAsset({asset: this.current_asset.asset_id, address: this.current_asset.address})
+      .then(() => {
+        this.getAccountAssets();
+        this._confirmDialog.hideDialog();
+      }).catch()
+  }
+
+  cancelDelAsset(): void {
+    this._confirmDialog.hideDialog();
+    this.current_asset = undefined;
   }
 
   ngOnInit(): void {

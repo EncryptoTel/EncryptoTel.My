@@ -1,0 +1,13 @@
+<div class="confirm-dialog">
+  <div class="confirm-dialog_head">
+    <p>Confirm action</p>
+    <svg-icon src="../../assets/icons/cancel.svg" class="close" (click)="closeDialog()"></svg-icon>
+  </div>
+  <div class="confirm-dialog_body">
+    <p>{{text}}</p>
+  </div>
+  <div class="confirm-dialog_footer">
+    <button class="confirm-dialog_cancel" (click)="cancelHandler()">Cancel</button>
+    <button class="confirm-dialog_accept" (click)="acceptHandler()">Accept</button>
+  </div>
+</div>
