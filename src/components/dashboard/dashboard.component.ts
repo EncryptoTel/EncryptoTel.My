@@ -21,8 +21,7 @@ import {FadeAnimation} from '../../shared/functions';
 export class DashboardComponent implements OnInit {
   // Page data
   pageInfo: PageInfo;
-  loading: boolean;
-  loadingAssets = true;
+  loading = true;
   period = 'month';
   rates = [
     {
@@ -64,8 +63,10 @@ export class DashboardComponent implements OnInit {
         if (a.name > b.name) { return 1 }
         return 0;
       });
+      this.loading = false;
     })
   }
+
   addNewAsset() {
     this._assets.addAsset( {
         address: this.address,
@@ -94,7 +95,6 @@ export class DashboardComponent implements OnInit {
         `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     };
-    this.loading = true;
   }
   setPeriod(period: string): void {
     this.period = period;
@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
           rate.series.map(item => item.name = this._date.transform(item.timestamp, calcFormat()));
           this.rates[this.rates.indexOf(rate)] = {name: rate['currency_from'], series: rate.series};
         }
-        this.loading = false;
+        this.getAccountAssets();
       }).catch(() => this.loading = false);
   }
 
@@ -141,8 +141,8 @@ export class DashboardComponent implements OnInit {
           wallet.assets.map(asset => {
             this.picked_assets.push({...asset, address: wallet.address})
           });
-          this.loading = false;
-          this.loadingAssets = false;
+          this.getAssets();
+
         });
       }).catch();
   }
@@ -167,8 +167,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurse();
-    this.getAccountAssets();
-    this.getAssets();
+
+
   }
 }
 
