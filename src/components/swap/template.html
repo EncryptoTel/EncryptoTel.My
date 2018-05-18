@@ -90,8 +90,8 @@
            value='Exchange'
            [disabled]="!(
            token &&(
-           (form.controls.addressWaves.valid && form.controls.addressWaves.touched) ||
-           (form.controls.addressEth.valid && form.controls.addressEth.touched)))">
+           (form.controls.addressWaves.valid) ||
+           (form.controls.addressEth.valid)))">
     <p class='form_description'>
       <span><b>Please note:</b> Before proceeding with the swap make sure that Node Status is OK and the Waves/ETH exchange balance allows to make a swap.<br></span>
       <span class='attention'>
