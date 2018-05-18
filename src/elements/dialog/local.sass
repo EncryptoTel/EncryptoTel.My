@@ -6,7 +6,7 @@
   font-size: rem(18)
   background: $background
   box-shadow: 0 1px 6px rgba($primary, .1)
-  width: 400px
+  max-width: 400px
   height: 230px
   &_head
     display: flex
@@ -52,3 +52,10 @@
   top: 20px
   right: 30px
   z-index: 4
+
+@media all and (max-width: 320px)
+  .dialog
+    font-size: rem(15)
+    &_footer
+      button
+        font-size: rem(15)
