@@ -37,7 +37,7 @@
   <div class="snippet_wrap">
     <div class="snippet_item" *ngFor="let item of picked_assets">
       <div class="snippet_name">{{getAssetById(item.asset_id)}}
-        <div class="snippet_button_close" *ngIf="item['editable']"><span></span></div>
+        <div class="snippet_button_close" *ngIf="item['editable']" (click)="removeAsset(item)"><span></span></div>
       </div>
       <div class="snippet_contain">
         <div class="snippet_value">{{item['balance']}}</div>

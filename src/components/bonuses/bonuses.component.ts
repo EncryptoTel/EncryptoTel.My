@@ -27,8 +27,8 @@ export class BonusesComponent {
     this.pageInfo = {
       title: 'EncryptoTel Bonuses',
       description:
-      `The entire Cardano team is made up of experts around the world, and the core technology team<br class="hidden_sm_down">
-      consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      `Track upcoming bonus distributions from us and our partners. Earn bonuses<br class="hidden_sm_down">
+       for engaging in community activities`
     };
     this.loading = true;
     this.bonusesList = [];

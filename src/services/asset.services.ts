@@ -17,4 +17,7 @@ export class AssetServices {
     return this._req.post('assets/add', {...asset}, true);
   }
 
+  removeAsset(asset): Promise<any> {
+    return this._req.post('assets/delete', {...asset}, true);
+  }
 }
