@@ -35,7 +35,7 @@ export class UserTokenInterceptor implements HttpInterceptor {
     }
     return next.handle(request).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
-        if (!this.excludeHeaders(request.url) && event.headers.get('Authorization')) {
+        if (event.headers.get('Authorization')) {
           const auth = this._storage.readItem('_auth_tk');
           auth['access_token'] = event.headers.get('Authorization').split(' ')[1];
           this._storage.writeItem('_auth_tk', auth);
