@@ -133,13 +133,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getAccountAssets(): void {
+    this.loading = true;
     this._assets.getAccountAssets()
       .then(res => {
         this.picked_assets = [];
         res.account.wallets.map(wallet => {
           wallet.assets.map(asset => {
             this.picked_assets.push({...asset, address: wallet.address})
-          })
+          });
+          this.loading = false;
         });
       }).catch();
   }
