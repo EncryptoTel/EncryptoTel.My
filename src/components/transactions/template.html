@@ -30,6 +30,6 @@
         </div>
       </ng-container>
     </div>
-    <h2 *ngIf="!transactions || transactions.length === 0" class="message">You don't have any transactions for this wallet</h2>
+    <h2 *ngIf="!transactions || filteredTransactions.length === 0 || transactions.length === 0" class="message">You don't have any transactions for this wallet</h2>
   </div>
 </div>

@@ -25,6 +25,7 @@ page-info-element
       background: $background
       padding: rem(16) rem(32)
       color: $primary
+      font-weight: 300
       &.hidden_sm_up
         position: initial
     &_row
@@ -34,6 +35,10 @@ page-info-element
         margin-right: rem(16)
       &_value
         margin-left: auto
+        &.success
+          color: $success
+        &.error
+          color: $error
     &_title
       text-transform: uppercase
       margin-bottom: rem(6)
@@ -152,10 +157,6 @@ page-info-element
     &_item
       flex-direction: row
       margin-bottom: 10px
-      &:not(:last-child)
-        &:after
-          content: '|'
-          padding: 0 rem(8)
 
 .input_wrap
   position: relative

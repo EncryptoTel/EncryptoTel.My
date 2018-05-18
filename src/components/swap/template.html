@@ -4,11 +4,11 @@
       <div class="swap_info_title">Nodes status</div>
       <div class="swap_info_row">
         <div class="swap_info_row_title">Waves</div>
-        <div class="swap_info_row_value">{{details.waves.status ? 'OK' : 'Error'}}</div>
+        <div class="swap_info_row_value" [ngClass]="details.waves.status ? 'success' : 'error'">{{details.waves.status ? 'OK' : 'Error'}}</div>
       </div>
       <div class="swap_info_row">
         <div class="swap_info_row_title">ETH</div>
-        <div class="swap_info_row_value">{{details.eth.status ? 'OK' : 'Error'}}</div>
+        <div class="swap_info_row_value" [ngClass]="details.eth.status ? 'success' : 'error'">{{details.eth.status ? 'OK' : 'Error'}}</div>
       </div>
     </div>
     <div class="swap_info">
