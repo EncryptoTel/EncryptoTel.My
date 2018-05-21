@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   loading = true;
   loadingAssets = true;
   loaderGraph = true;
-  period = 'month';
+  period = this._storage.readItem('period') || 'month';
   rates = [
     {
       name: 'Waves',
@@ -115,6 +115,7 @@ export class DashboardComponent implements OnInit {
 
   setPeriod(period: string): void {
     this.period = period;
+    this._storage.writeItem('period', this.period);
     this.getCurse();
   }
 
