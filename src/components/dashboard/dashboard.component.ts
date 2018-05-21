@@ -82,6 +82,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addNewAsset() {
+    this.loadingAssets = true;
     this._assets.addAsset({
       address: this.address,
       kind: 'waves',
@@ -89,6 +90,7 @@ export class DashboardComponent implements OnInit {
     })
       .then(() => {
         this.hideForm();
+
         this.getAccountAssets();
       }).catch();
   }
