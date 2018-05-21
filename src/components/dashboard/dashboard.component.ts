@@ -150,7 +150,6 @@ export class DashboardComponent implements OnInit {
         }
         this.loading = false;
         this.loaderGraph = false;
-        this.getAccountAssets();
       }).catch(() => this.loading = false);
   }
 
@@ -187,6 +186,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurse();
+    this.getAccountAssets();
   }
 }
 

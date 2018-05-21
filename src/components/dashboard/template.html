@@ -35,7 +35,7 @@
   </div>
 </div>
 <loader-element *ngIf="!loading && loadingAssets"></loader-element>
-<div class="container" *ngIf="!loadingAssets" [@Fade]>
+<div class="container" *ngIf="!loadingAssets && !loading" [@Fade]>
   <div class="snippet_wrap">
     <div class="snippet_item" *ngFor="let item of picked_assets" [@Fade]>
       <div class="snippet_name">{{getAssetById(item.asset_id)}}
