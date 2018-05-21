@@ -23,7 +23,8 @@
     </div>
   </div>
   <div class="chart_wrap">
-    <ngx-charts-line-chart
+    <loader-element class="graph_loader" *ngIf="loaderGraph"></loader-element>
+    <ngx-charts-line-chart *ngIf="!loaderGraph"
       [customColors]="[{name: 'ETT Waves', value: 'rgb(255, 255, 255)'},{name: 'ETT Ethereum', value: 'rgb(62,144,255)'}]"
       [xAxis]="true"
       [yAxis]="true"

@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   pageInfo: PageInfo;
   loading = true;
   loadingAssets = true;
+  loaderGraph = true;
   period = 'month';
   rates = [
     {
@@ -118,6 +119,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getCurse(): void {
+    this.loaderGraph = true;
     this.rates[0].series = [];
     const calcFormat = (): string => {
       switch (this.period) {
@@ -146,6 +148,7 @@ export class DashboardComponent implements OnInit {
           this.rates[this.rates.indexOf(rate)] = {name: rate['currency_from'], series: rate.series};
         }
         this.loading = false;
+        this.loaderGraph = false;
         this.getAccountAssets();
       }).catch(() => this.loading = false);
   }
