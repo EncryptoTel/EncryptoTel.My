@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   // Page data
   pageInfo: PageInfo;
   loading = true;
+  loadingAssets = true;
   period = 'month';
   rates = [
     {
@@ -41,26 +42,38 @@ export class DashboardComponent implements OnInit {
   asset_id;
   current_asset;
 
-  showForm() { this.show_form = true; }
-  hideForm() { this.show_form = false; }
+  showForm() {
+    this.show_form = true;
+  }
+
+  hideForm() {
+    this.show_form = false;
+  }
+
   nameShorter = (item, max, required): string => {
     return (
       item.length > max
-      ? item.slice(0, required) + '...'
-      : item);
+        ? item.slice(0, required) + '...'
+        : item);
   };
 
   setAddress(text) {
     this.address = text.value;
   }
+
   setAssetId(event) {
     this.asset_id = event.identifier;
   }
+
   getAssets() {
     this._assets.getAssets().then(res => {
       this.assets = res['list'].sort((a, b) => {
-        if (a.name < b.name) { return -1 }
-        if (a.name > b.name) { return 1 }
+        if (a.name < b.name) {
+          return -1
+        }
+        if (a.name > b.name) {
+          return 1
+        }
         return 0;
       });
       this.loading = false;
@@ -68,15 +81,17 @@ export class DashboardComponent implements OnInit {
   }
 
   addNewAsset() {
-    this._assets.addAsset( {
-        address: this.address,
-        kind: 'waves',
-        asset_id: this.asset_id })
+    this._assets.addAsset({
+      address: this.address,
+      kind: 'waves',
+      asset_id: this.asset_id
+    })
       .then(() => {
         this.hideForm();
         this.getAccountAssets();
       }).catch();
   }
+
   removeAsset(asset) {
     this.current_asset = asset;
     this._confirmDialog.showDialog();
@@ -96,12 +111,13 @@ export class DashboardComponent implements OnInit {
       consist of Wall Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
     };
   }
+
   setPeriod(period: string): void {
     this.period = period;
     this.getCurse();
   }
+
   getCurse(): void {
-    this.loading = true;
     this.rates[0].series = [];
     const calcFormat = (): string => {
       switch (this.period) {
@@ -167,8 +183,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurse();
-
-
   }
 }
 
