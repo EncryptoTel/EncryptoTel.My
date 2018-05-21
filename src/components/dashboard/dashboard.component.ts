@@ -76,7 +76,7 @@ export class DashboardComponent implements OnInit {
         }
         return 0;
       });
-      this.loading = false;
+      this.loadingAssets = false;
     })
   }
 
@@ -145,6 +145,7 @@ export class DashboardComponent implements OnInit {
           rate.series.map(item => item.name = this._date.transform(item.timestamp, calcFormat()));
           this.rates[this.rates.indexOf(rate)] = {name: rate['currency_from'], series: rate.series};
         }
+        this.loading = false;
         this.getAccountAssets();
       }).catch(() => this.loading = false);
   }
@@ -158,7 +159,6 @@ export class DashboardComponent implements OnInit {
             this.picked_assets.push({...asset, address: wallet.address})
           });
           this.getAssets();
-
         });
       }).catch();
   }
