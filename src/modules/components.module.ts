@@ -18,6 +18,7 @@ import {ChangeEmailComponent} from '../components/change-email/change-email/chan
 import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 import {BugComponent} from '../components/bugs/bug/bug.component';
 import {FeedbackComponent} from '../components/feedback/feedback.component';
+import {PasswordRecoveryComponent} from '../components/password-recovery/password-recovery.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import {FeedbackComponent} from '../components/feedback/feedback.component';
     ChangeEmailComponent,
     ChangeEmailConfirmComponent,
     BugComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PasswordRecoveryComponent
   ],
   exports: [
     ElementsModule,
@@ -60,7 +62,8 @@ import {FeedbackComponent} from '../components/feedback/feedback.component';
     BugsCreateComponent,
     BugsListComponent,
     BugComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PasswordRecoveryComponent
   ]
 })
 export class ComponentsModule {}
