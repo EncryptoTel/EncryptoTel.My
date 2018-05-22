@@ -10,7 +10,7 @@
         <div class="authorization_input_error" *ngIf="hasError('email', 'response')">{{recoveryForm.controls['email'].errors.response}}</div>
       </div>
     </div>
-    <button-element value="Sign in" [loading]="loading" (onClick)="sendResetRequest()"></button-element>
+    <button-element value="Request recovery link" [loading]="loading" (onClick)="sendResetRequest()"></button-element>
   </form>
   <form class="authorization_form" (submit)="resetPassword($event)" [formGroup]="recoveryForm" *ngIf="recoveryForm.controls.token">
     <div class="authorization_form_message success" *ngIf="invalidHash.enabled" [@Fade]>{{invalidHash.message}}</div>
@@ -35,7 +35,7 @@
         <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'mismatch')">Password and password confirmation doesn't match</div>
       </div>
     </div>
-    <button-element value="Sign in" [loading]="loading" (onClick)="resetPassword()"></button-element>
+    <button-element value="Change password" [loading]="loading" (onClick)="resetPassword()"></button-element>
   </form>
   <a routerLink="/sign-in" class="authorization_link">Back to Sign In</a>
   <div class="authorization_copyright">{{copyright}}</div>

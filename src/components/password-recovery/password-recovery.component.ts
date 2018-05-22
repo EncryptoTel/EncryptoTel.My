@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FadeAnimation, inputValidation, passwordConfirmation} from '../../shared/functions';
+import {FadeAnimation, inputValidation, passwordConfirmation, validateForm} from '../../shared/functions';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {emailRegExp} from '../../shared/vars';
 import {environment as _env} from '../../environments/environment';
@@ -50,6 +50,7 @@ export class PasswordRecoveryComponent implements OnInit {
       ev.preventDefault();
       ev.stopPropagation();
     }
+    validateForm(this.recoveryForm);
     if (this.recoveryForm.valid) {
       this._services.sendResetRequest(this.recoveryForm.value)
         .then((res) => {
@@ -71,6 +72,7 @@ export class PasswordRecoveryComponent implements OnInit {
       ev.preventDefault();
       ev.stopPropagation();
     }
+    validateForm(this.recoveryForm);
     if (this.recoveryForm.valid) {
       this._services.resetPassword(this.recoveryForm.value)
         .then((res) => {
