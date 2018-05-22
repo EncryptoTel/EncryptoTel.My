@@ -46,12 +46,13 @@ export class MainViewComponent implements OnInit, OnDestroy {
   }
 
   isAuthorized() {
-    const auth = this._auth.fetchAuth();
-    if (!auth && !this.logout && !location.pathname.includes('password-recovery')) {
-      this.logout = true;
-      this._auth.logout();
-    }
-    return auth;
+    // const auth = this._auth.fetchAuth();
+    // if (!auth && !this.logout) {
+    //   this.logout = true;
+    //   this._auth.logout();
+    // }
+    // return auth;
+      return this.authorized;
   }
 
   ngOnInit() {
