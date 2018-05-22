@@ -19,6 +19,7 @@ import {BugElement} from '../elements/bug/bug.element';
 import {SelectElement} from '../elements/select/select.element';
 import {TransactionPipe} from '../shared/transaction.pipe';
 import {DialogElement} from '../elements/dialog/dialog.element';
+import {ConfirmDialogElement} from '../elements/confirm-dialog/confirm-dialog.element';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import {DialogElement} from '../elements/dialog/dialog.element';
     BugElement,
     SelectElement,
     TransactionPipe,
-    DialogElement
+    DialogElement,
+    ConfirmDialogElement
   ],
   exports: [
     CommonModule,
@@ -62,7 +64,8 @@ import {DialogElement} from '../elements/dialog/dialog.element';
     PopupElement,
     BugElement,
     SelectElement,
-    DialogElement
+    DialogElement,
+    ConfirmDialogElement
   ]
 })
 export class ElementsModule {}

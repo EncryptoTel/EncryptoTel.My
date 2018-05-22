@@ -121,21 +121,19 @@
     color: rgba($primary, .5)
 .adding
   z-index: 3
-  display: flex
   position: fixed
   height: 100vh
   width: 100vw
   top: 0
   background: rgba($primary,0.5)
-  &_row
-    flex-direction: row
-  &_item
-    transition: 300ms
-    flex: 1
-    opacity: 1
+  display: flex
+  flex-flow: column
+  justify-content: center
+  align-items: center
+  padding: 10px
   &_wrap
     background: $background
-    width: rem(448)
+    max-width: rem(448)
     padding: 0 rem(24) rem(24)
     /deep/ .other_words
       display: none
@@ -222,6 +220,13 @@
       color: $background
       &:hover
         cursor: pointer
+
+.graph_loader
+  /deep/
+    .loader_wrap
+      span.loader
+        background: $background !important
+
 @media (max-width: 768px)
   .background_wrap
     .chart_description
@@ -235,3 +240,16 @@
         margin: 0 auto rem(16)
     .period_selection
       margin-top: rem(16)
+@media all and (max-height: 736px)
+  .adding
+    &_wrap
+      >select-element
+        /deep/ .select_options
+          max-height: rem(150)
+
+@media all and (max-height: 320px)
+  .adding
+    &_wrap
+      >select-element
+        /deep/ .select_options
+          max-height: rem(65)

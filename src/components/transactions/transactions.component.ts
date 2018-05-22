@@ -18,8 +18,7 @@ export class TransactionsComponent {
   pageInfo: PageInfo = {
     title: 'Transactions',
     description:
-      `The entire Cardano team is made up of experts around the world, and the core technology team
-      consists of Well Typed, Serokell, Runtime Verification, Predictable Network Solutions and ATIX`
+      `Here you can view your transactions history and keep track of your assets.`
   };
   transactions: Transaction[] = [];
   filteredTransactions: Transaction[] = [];

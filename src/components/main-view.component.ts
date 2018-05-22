@@ -47,7 +47,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
 
   isAuthorized() {
     const auth = this._auth.fetchAuth();
-    if (!auth && !this.logout) {
+    if (!auth && !this.logout && !location.pathname.includes('password-recovery')) {
       this.logout = true;
       this._auth.logout();
     }

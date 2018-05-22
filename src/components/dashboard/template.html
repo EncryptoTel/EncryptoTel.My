@@ -1,5 +1,5 @@
 <loader-element *ngIf="loading"></loader-element>
-<div class="background_wrap" *ngIf="!loading">
+<div class="background_wrap" *ngIf="!loading" [@Fade]>
   <div class="chart_description">
     <div class="chart_description_wrap">
       <div class="chart_description_title">ETT</div>
@@ -23,7 +23,8 @@
     </div>
   </div>
   <div class="chart_wrap">
-    <ngx-charts-line-chart
+    <loader-element class="graph_loader" *ngIf="loaderGraph"></loader-element>
+    <ngx-charts-line-chart *ngIf="!loaderGraph"
       [customColors]="[{name: 'ETT Waves', value: 'rgb(255, 255, 255)'},{name: 'ETT Ethereum', value: 'rgb(62,144,255)'}]"
       [xAxis]="true"
       [yAxis]="true"
@@ -33,9 +34,10 @@
     </ngx-charts-line-chart>
   </div>
 </div>
-<div class="container" *ngIf="!loading">
+<loader-element *ngIf="!loading && loadingAssets"></loader-element>
+<div class="container" *ngIf="!loadingAssets && !loading" [@Fade]>
   <div class="snippet_wrap">
-    <div class="snippet_item" *ngFor="let item of picked_assets">
+    <div class="snippet_item" *ngFor="let item of picked_assets" [@Fade]>
       <div class="snippet_name">{{getAssetById(item.asset_id)}}
         <div class="snippet_button_close" *ngIf="item['editable']" (click)="removeAsset(item)"><span></span></div>
       </div>
@@ -48,40 +50,34 @@
     <div class="snippet_item add_new">
       <div class="snippet_name">
         <div class="snippet_button_add"
-             (click)="showForm()"
-        ><span></span></div>
+             (click)="showForm()"><span></span></div>
       </div>
       <div class="snippet_contain"></div>
     </div>
   </div>
 </div>
 <div class="adding" *ngIf="show_form">
-  <div class="adding_item" (click)="hideForm()"></div>
-  <div class="adding_row">
-    <div class="adding_item" (click)="hideForm()"></div>
-    <div class="adding_wrap">
-      <div class="adding_header">
-        <div>Add asset</div>
-        <div class="adding_button_close" (click)="hideForm()"><span></span></div>
-      </div>
-      <div class="adding_text">
-        Select the asset that you want to add to the Dashboard. We only display
-        transactions and total sum of the asset. It is completely decentralized,
-        we do not store any of that information.</div>
-      <input id="address-input"
-             title="Asset address"
-             #thisaddress
-             [placeholder]="'Address'"
-             (keyup)="setAddress(thisaddress)">
-      <select-element [values]="assets"
-                      [keys]="['name']"
-                      (getValue)="setAssetId($event)"></select-element>
-      <div class="adding_button_row">
-        <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>
-        <div class="adding_button_add" (click)="addNewAsset()">Add</div>
-      </div>
+  <div class="adding_wrap">
+    <div class="adding_header">
+      <div>Add asset</div>
+      <div class="adding_button_close" (click)="hideForm()"><span></span></div>
     </div>
-    <div class="adding_item" (click)="hideForm()"></div>
+    <div class="adding_text">
+      Select the asset that you want to add to the Dashboard. We only display
+      transactions and total sum of the asset. It is completely decentralized,
+      we do not store any of that information.</div>
+    <input id="address-input"
+           title="Asset address"
+           #thisaddress
+           [placeholder]="'Address'"
+           (keyup)="setAddress(thisaddress)">
+    <select-element [values]="assets"
+                    [keys]="['name']"
+                    (getValue)="setAssetId($event)"></select-element>
+    <div class="adding_button_row">
+      <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>
+      <div class="adding_button_add" (click)="addNewAsset()">Add</div>
+    </div>
   </div>
-  <div class="adding_item" (click)="hideForm()"></div>
 </div>
+<confirm-dialog-element *ngIf="_confirmDialog.visible" (accept)="confirmDelAsset()" (cancel)="cancelDelAsset()" [@Fade]></confirm-dialog-element>

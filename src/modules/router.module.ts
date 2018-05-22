@@ -19,6 +19,7 @@ import {ChangeEmailComponent} from '../components/change-email/change-email/chan
 import {ChangeEmailConfirmComponent} from '../components/change-email/change-email-confirm/change-email-confirm.component';
 import {BugComponent} from '../components/bugs/bug/bug.component';
 import {FeedbackComponent} from '../components/feedback/feedback.component';
+import {PasswordRecoveryComponent} from '../components/password-recovery/password-recovery.component';
 
 const Routes: Routes = [
   {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
@@ -39,6 +40,8 @@ const Routes: Routes = [
   {path: 'sign-up/:hash', component: SignUpComponent},
   {path: 'change-email/:token', component: ChangeEmailComponent},
   {path: 'email-confirmation/:token', component: ChangeEmailConfirmComponent},
+  {path: 'password-recovery', component: PasswordRecoveryComponent},
+  {path: 'password-recovery/:hash', component: PasswordRecoveryComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 
