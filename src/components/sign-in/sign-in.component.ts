@@ -90,7 +90,11 @@ export class SignInComponent implements OnInit, OnDestroy {
     }
   }
   private navigateToLastUrl() {
+    if (this._storage.readItem('last_url').includes('password-recovery')) {
+      this.router.navigateByUrl('dashboard');
+    } else {
       this.router.navigate([this._storage.readItem('last_url')]);
+    }
   }
 
   ngOnInit(): void {
