@@ -24,6 +24,8 @@
     &_title
       margin-right: rem(32)
       font-size: rem(32)
+    &_group
+      flex-direction: row
     &_item
       align-items: center
       margin-right: rem(32)
@@ -73,6 +75,7 @@
     color: $primary
   &_button
     &_add
+      transition: 300ms
       position: absolute
       width: rem(64)
       height: rem(64)
@@ -83,6 +86,7 @@
       box-shadow: 0 8px 8px rgba($primary, 0.15)
       &:hover
         cursor: pointer
+        background: darken($accent,15%)
       >span
         width: rem(16)
         height: rem(16)
@@ -230,26 +234,70 @@
 @media (max-width: 768px)
   .background_wrap
     .chart_description
-      flex-direction: column
       &_wrap
         flex-wrap: wrap
       &_title
-        margin-right: auto
+        margin-right: rem(16)
         margin-bottom: rem(16)
+      &_group
+        margin: 0 auto 0 0
       &_item
-        margin: 0 auto rem(16)
+        margin: 0 rem(16) rem(16)
     .period_selection
       margin-top: rem(16)
+  .snippet
+    &_wrap
+      grid-template-columns: repeat(auto-fill, minmax(rem(240), 1fr))
+      grid-gap: rem(16)
+    &_item
+      min-height: rem(128)
+      max-height: rem(128)
+    &_name
+      font-size: rem(16)
+      padding: 0 rem(16)
+    &_contain
+      padding: 0 rem(16)
+    &_value
+      font-size: rem(18)
+    &_address
+      font-size: rem(12)
+    &_button_add
+      width: rem(48)
+      height: rem(48)
+      bottom: rem(-24)
+      left: calc(50% - 24px)
+@media (max-width: 528px)
+  .snippet_item
+    width: rem(240)
+    margin: 0 auto
+@media (max-width: 512px)
+  .background_wrap
+    .chart_description
+      flex-direction: row
 @media all and (max-height: 736px)
   .adding
     &_wrap
       >select-element
         /deep/ .select_options
           max-height: rem(150)
-
-@media all and (max-height: 320px)
+@media all and (max-height: 512px)
   .adding
     &_wrap
       >select-element
         /deep/ .select_options
           max-height: rem(65)
+@media all and (max-height: 384px)
+  .adding
+    &_wrap
+      max-width: 80vw
+      padding: 0 rem(16) rem(16)
+      >input
+        margin: rem(16) 0
+      >select-element
+        margin: 0 0 rem(16)
+    &_header
+      padding: rem(16) 0
+    &_text
+      margin: 0 rem(-16)
+      padding: rem(16)
+
