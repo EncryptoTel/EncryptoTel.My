@@ -87,7 +87,7 @@
           <div class="checkbox" *ngIf="!loadersIcons.status"
                [ngClass]="{'checkbox_active': this.account.account.profile.status_updates}"
                (click)="setStatusUpdates()">
-            <svg-icon src="../../assets/icons/check mark_14px.svg"></svg-icon>
+            <svg-icon src="../../assets/icons/check mark_14px.svg" class="mark"></svg-icon>
           </div>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="loading_icon"
                     *ngIf="loadersIcons.status"></svg-icon>
@@ -96,7 +96,7 @@
         <div class="checkbox_container">
           <div class="checkbox" [ngClass]="{'checkbox_active': this.account.account.profile.new_comments}"
                (click)="setNewComments()" *ngIf="!loadersIcons.comments">
-            <svg-icon src="../../assets/icons/check mark_14px.svg"></svg-icon>
+            <svg-icon src="../../assets/icons/check mark_14px.svg" class="mark"></svg-icon>
           </div>
           <svg-icon src="../../assets/icons/refresh_14px.svg" class="loading_icon"
                     *ngIf="loadersIcons.comments"></svg-icon>

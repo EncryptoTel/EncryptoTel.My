@@ -105,6 +105,12 @@
   .roadmap_item
     min-width: 768px
 
+@media (max-width: 768px)
+  .roadmap_update
+    display: flex
+    top: rem(-8)
+    background: $accent
+    padding-bottom: rem(8)
 @media (min-width: 751px)
   .hidden_xs_up
     display: none
@@ -150,7 +156,7 @@
       margin-left: 0
     &_update
       flex-direction: column
-      top: rem(-68)
+      top: rem(-48)
       &_text
         line-height: rem(16)
   /deep/ page-info-element

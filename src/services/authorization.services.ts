@@ -94,6 +94,7 @@ export class AuthorizationServices {
   }
 
   logout(): void {
+    clearInterval(this.timer);
     localStorage.removeItem('_auth_tk');
     this.popup.visible = false;
     this.router.navigateByUrl('').then(() => this.authSubscription.next());

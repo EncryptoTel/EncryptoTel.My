@@ -3,3 +3,19 @@
 .container
   align-items: center
   flex: 1 0 auto
+  /deep/ .authorization_input_wrap
+    max-height: 35px
+  /deep/ circle, /deep/ rect, /deep/ path
+    fill: $accent
+
+@media (max-height: 576px)
+  .container
+    >svg-icon
+      margin: rem(32) 0 rem(8)
+  .authorization
+    &_form
+      margin: auto 0 rem(8)
+    &_link
+      margin: rem(8) 0 auto
+    &_copyright
+      margin: rem(8) 0 rem(32)

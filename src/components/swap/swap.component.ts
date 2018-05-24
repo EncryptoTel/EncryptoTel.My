@@ -56,7 +56,7 @@ export class SwapComponent implements OnInit, AfterViewChecked {
       title: 'Welcome to Swap service',
       description:
         `This service allows swapping of ETT tokens between two blockchains right<br class="hidden_sm_down">
-         from the dashboard, sending your funds directly to your wallet`
+         from the dashboard, sending your funds directly to your wallet.`
     };
   }
 

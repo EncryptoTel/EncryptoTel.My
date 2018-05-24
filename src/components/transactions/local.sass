@@ -1,14 +1,12 @@
 @import "../../vars"
 .container
   align-items: center
-  height: 75%
 
 .transactions
   display: flex
   flex-flow: column
   align-items: center
   width: 80%
-  height: 100%
   &_filters
     display: flex
     flex-flow: row wrap
@@ -19,6 +17,9 @@
     select-element
       margin: 10px 10px 10px 0
       flex: 0 1 170px
+      /deep/ span
+        margin-bottom: rem(4)
+        margin-top: rem(4)
     &_list
       display: flex
       flex-flow: row
@@ -43,14 +44,20 @@
   &_item
     width: 100%
     flex: 1 0 auto
-
+.low-resolution
+  display: none
+  max-width: rem(288)
+  min-width: rem(288)
+.high-resolution
+  min-width: rem(320)
+  max-width: rem(320)
 .active
   border-bottom: 1px solid $accent
 .message
   font-size: rem(30)
   color: $gray
   text-align: center
-  padding: 40px 0
+  padding: rem(40) 0
 @media all and (max-width: 768px)
   .transactions
     width: 100%
@@ -59,19 +66,32 @@
     &_items
       &_wrapper
         width: 100%
+  .high-resolution
+    display: none
+  .low-resolution
+    display: flex
+  .message
+    font-size: rem(18)
+    padding: rem(40) rem(24)
 
 @media all and (max-width: 425px)
   .transactions
     &_filters
       justify-content: center
-      select-element
-        margin: 10px 0
       &_list
         order: 1
       select-element
+        margin: 10px 0
         order: 2
         flex: 0 1 auto
-        width: 100%
     &_items
       &_date
         margin: 15px 0
+
+@media (max-height: 328px)
+  .container
+    display: flex
+  .transactions_filters
+    select-element
+      /deep/ .select_options
+        max-height: rem(96)

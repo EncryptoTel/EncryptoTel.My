@@ -21,11 +21,14 @@ a
     max-width: 100%
     height: auto
     &_wrapper
-      width: 70px
+      width: rem(80)
+      align-self: start
     &_description
-      width: 66%
+      flex: 1
+      margin-left: rem(24)
+      align-self: start
       p:first-child
-        margin-bottom: 10px
+        margin-bottom: rem(8)
   &_form
     flex: 1 0 auto
     form
@@ -72,7 +75,6 @@ a
 
 .checkbox_margin
   margin: 20px 0
-
 .loading_icon
   width: 15px
   height: 15px
@@ -88,7 +90,6 @@ a
 
 .invalid
   border: 1px solid $error
-
 .select
   position: relative
   height: 35px
@@ -123,17 +124,32 @@ a
     &:hover
       background: rgba(90, 202, 209, .2)
 
+.mark
+  /deep/ .cls-1
+    fill: $accent
+.icon, .loading_icon
+  /deep/ .cls-1
+    fill: transparent
 @keyframes loading-icon
   from
     transform: rotate(0)
   to
     transform: rotate(360deg)
-
 @media all and (max-width: 768px)
   .settings
     width: 100%
-    &_avatar
-      &_description
-        font-size: rem(12)
     &_form
       padding-bottom: 15px
+@media (max-width: 384px)
+  .settings
+    &_header
+      flex-flow: column
+    &_avatar
+      &_wrapper
+        align-self: center
+      &_description
+        margin: 0
+        >p:first-child
+          padding-top: rem(16)
+          align-self: center
+

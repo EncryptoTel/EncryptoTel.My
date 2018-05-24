@@ -7,9 +7,8 @@
   > .chart_wrap
     width: 100%
     height: rem(240)
-  /deep/
-    text
-      fill: $background
+  /deep/ text
+    fill: $background
     .circle circle
       fill: $background
     rect.tooltip-anchor
@@ -24,6 +23,8 @@
     &_title
       margin-right: rem(32)
       font-size: rem(32)
+    &_group
+      flex-direction: row
     &_item
       align-items: center
       margin-right: rem(32)
@@ -73,6 +74,7 @@
     color: $primary
   &_button
     &_add
+      transition: 300ms
       position: absolute
       width: rem(64)
       height: rem(64)
@@ -83,13 +85,21 @@
       box-shadow: 0 8px 8px rgba($primary, 0.15)
       &:hover
         cursor: pointer
+        background: darken($accent,15%)
       >span
-        width: rem(16)
-        height: rem(16)
-        margin: auto
+        position: absolute
         background: $background
-        //clip-path: polygon(16px 8.5px, 8.5px 8.5px, 8.5px 16px, 7.5px 16px, 7.5px 8.5px, 0px 8.5px, 0px 7.5px, 7.5px 7.5px, 7.5px 0px, 8.5px 0px, 8.5px 7.5px, 16px 7.5px, 16px 8.5px)
-        clip-path: polygon(16px 9px, 9px 9px, 9px 16px, 7px 16px, 7px 9px, 0px 9px, 0px 7px, 7px 7px, 7px 0px, 9px 0px, 9px 7px, 16px 7px, 16px 9px)
+        &:first-child
+          left: rem(24)
+          top: rem(31)
+          width: rem(16)
+          height: rem(2)
+        &:last-child
+          top: rem(24)
+          left: rem(31)
+          height: rem(16)
+          width: rem(2)
+
     &_close
       transition: 150ms
       position: absolute
@@ -102,11 +112,15 @@
       &:hover
         background: rgba($primary, 0.2)
       >span
-        width: rem(16)
-        height: rem(16)
-        margin: auto
+        position: absolute
         background: $primary
-        clip-path: polygon(0px 1px, 1px 0px, 8px 7px, 15px 0px, 16px 1px, 9px 8px, 16px 15px, 15px 16px, 8px 9px, 1px 16px, 0px 15px, 7px 8px, 0px 1px)
+        width: rem(24)
+        height: rem(2)
+        top: rem(11)
+        &:first-child
+          transform: rotate(45deg)
+        &:last-child
+          transform: rotate(315deg)
   &_contain
     flex: 1
     padding: 0 rem(24)
@@ -190,6 +204,7 @@
     &_row
       flex-direction: row
     &_close
+      position: relative
       margin-left: auto
       transition: 150ms
       height: rem(24)
@@ -199,11 +214,15 @@
       &:hover
         background: rgba($primary, 0.2)
       >span
-        width: rem(16)
-        height: rem(16)
-        margin: auto
+        position: absolute
         background: $primary
-        clip-path: polygon(0px 1px, 1px 0px, 8px 7px, 15px 0px, 16px 1px, 9px 8px, 16px 15px, 15px 16px, 8px 9px, 1px 16px, 0px 15px, 7px 8px, 0px 1px)
+        width: rem(24)
+        height: rem(2)
+        top: rem(11)
+        &:first-child
+          transform: rotate(45deg)
+        &:last-child
+          transform: rotate(315deg)
     &_cancel
       color: $primary
       transition: 300ms
@@ -223,33 +242,77 @@
 
 .graph_loader
   /deep/
-    .loader_wrap
-      span.loader
-        background: $background !important
+  .loader_wrap
+    span.loader
+      background: $background !important
 
 @media (max-width: 768px)
   .background_wrap
     .chart_description
-      flex-direction: column
       &_wrap
         flex-wrap: wrap
       &_title
-        margin-right: auto
+        margin-right: rem(16)
         margin-bottom: rem(16)
+      &_group
+        margin: 0 auto 0 0
       &_item
-        margin: 0 auto rem(16)
+        margin: 0 rem(16) rem(16)
     .period_selection
       margin-top: rem(16)
+  .snippet
+    &_wrap
+      grid-template-columns: repeat(auto-fill, minmax(rem(240), 1fr))
+      grid-gap: rem(16)
+    &_item
+      min-height: rem(128)
+      max-height: rem(128)
+    &_name
+      font-size: rem(16)
+      padding: 0 rem(16)
+    &_contain
+      padding: 0 rem(16)
+    &_value
+      font-size: rem(18)
+    &_address
+      font-size: rem(12)
+    &_button_add
+      width: rem(48)
+      height: rem(48)
+      bottom: rem(-24)
+      left: calc(50% - 24px)
+@media (max-width: 528px)
+  .snippet_item
+    width: rem(240)
+    margin: 0 auto
+@media (max-width: 512px)
+  .background_wrap
+    .chart_description
+      flex-direction: row
 @media all and (max-height: 736px)
   .adding
     &_wrap
       >select-element
         /deep/ .select_options
           max-height: rem(150)
-
-@media all and (max-height: 320px)
+@media all and (max-height: 512px)
   .adding
     &_wrap
       >select-element
         /deep/ .select_options
           max-height: rem(65)
+@media all and (max-height: 384px)
+  .adding
+    &_wrap
+      max-width: 80vw
+      padding: 0 rem(16) rem(16)
+      >input
+        margin: rem(16) 0
+      >select-element
+        margin: 0 0 rem(16)
+    &_header
+      padding: rem(16) 0
+    &_text
+      margin: 0 rem(-16)
+      padding: rem(16)
+

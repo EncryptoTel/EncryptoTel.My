@@ -1,13 +1,19 @@
-<div class="transaction">
-  <div class="transaction_icon_wrapper">
+<div class="transaction {{setTypeTransaction(transaction.sender).toLocaleLowerCase()}}">
+  <div class="transaction_icon_wrapper full">
     <svg-icon
       src="../../../assets/icons/icon_{{setTypeTransaction(transaction.sender).toLocaleLowerCase()}}.svg"></svg-icon>
   </div>
   <div class="transaction_currency_wrapper">
-    <div class="transaction_currency_type">
+    <div class="transaction_currency_row">
       <div class="transaction_currency">
         <p class="amount">{{setTypeTransaction(transaction.sender)}} {{transaction.asset}}</p>
       </div>
+      <div class="transaction_currency" *ngIf="transaction.amount">
+        <p class="amount">{{type === 'Sent'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
+          {{transaction.asset}}</p>
+      </div>
+    </div>
+    <div class="transaction_currency_row">
       <div class="transaction_currency">
         <p class="full usd">{{transaction.timestamp | date:'H:mm'}}
           <ng-container *ngIf="type === 'Sent'; then sent else recipie"></ng-container>
@@ -19,13 +25,7 @@
           splitAddress}}
         </p>
       </div>
-    </div>
-    <div class="transaction_currency_value" *ngIf="transaction.amount">
-      <div class="transaction_currency">
-        <p class="amount">{{type === 'Sent'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
-          {{transaction.asset}}</p>
-      </div>
-      <div class="transaction_currency" *ngIf="transaction.convertedAmount">
+      <div class="transaction_currency" *ngIf="transaction.convertedAmount && transaction.amount">
         <p class="usd">{{type === 'Sent'? '-': '+'}} {{transaction.convertedAmount | number: '0.0-2'}} US Dollar</p>
       </div>
     </div>

@@ -28,7 +28,7 @@ export class BonusesComponent {
       title: 'EncryptoTel Bonuses',
       description:
       `Track upcoming bonus distributions from us and our partners. Earn bonuses<br class="hidden_sm_down">
-       for engaging in community activities`
+       for engaging in community activities.`
     };
     this.loading = true;
     this.bonusesList = [];

@@ -28,7 +28,7 @@
         <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'required')">Please enter password confirmation</div>
         <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'minlength')">Password confirmation is too short</div>
         <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'maxlength')">Password confirmation is too long</div>
-        <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'mismatch')">Password and password confirmation doesn't match</div>
+        <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'mismatch')">Password and password confirmation don't match</div>
       </div>
     </div>
     <div class="authorization_input_wrap">
