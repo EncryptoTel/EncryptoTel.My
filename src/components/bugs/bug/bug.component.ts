@@ -14,7 +14,7 @@ import {FadeAnimation} from '../../../shared/functions';
 export class BugComponent {
   constructor(private _service: BugsServices,
               private activatedRoute: ActivatedRoute) {
-    this.getBag();
+    this.getBug();
     this.getFiles();
   }
 
@@ -54,7 +54,7 @@ export class BugComponent {
   files: File[] = [];
   root = 'http://investor-back.encry.ru/';
 
-  getBag(): void {
+  getBug(): void {
     this._service.getBug({id: this.id}).then((res: BugReview) => {
       this.details = res;
       this.getAdminComments();
@@ -66,7 +66,7 @@ export class BugComponent {
 
   getAdminComments(): void {
     this.details.comments.forEach(el => {
-      if (el.user.is_admin === 1) {
+      if (el.user.is_admin === 1 && el.status) {
         this.adminComments.push(el);
       }
     });
@@ -76,7 +76,7 @@ export class BugComponent {
   postComment(commentField): void {
     if (this.validation(commentField)) {
       this._service.postComment({issue_id: this.id, comment: commentField.value}).then(() => {
-        this.getBag();
+        this.getBug();
         commentField.value = null;
       }).catch(err => {
         console.error(err);
@@ -97,7 +97,7 @@ export class BugComponent {
   report(): void {
     if (this.details.claim_exists === 0) {
       this._service.report(this.details.id).then(() => {
-        this.getBag();
+        this.getBug();
       }).catch(err => {
         console.error(err);
       })
@@ -107,7 +107,7 @@ export class BugComponent {
   reportComment(comment): void {
     if (comment.claim_exists === 0) {
       this._service.reportComment(comment.id).then(() => {
-        this.getBag();
+        this.getBug();
       }).catch(err => {
         console.error(err);
       })
@@ -117,7 +117,7 @@ export class BugComponent {
   vote(): void {
     if (this.details.vote_exists === 0) {
       this._service.vote(this.details.id).then(() => {
-        this.getBag();
+        this.getBug();
       }).catch(err => {
         console.error(err);
       })

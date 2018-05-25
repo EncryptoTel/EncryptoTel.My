@@ -91,10 +91,10 @@
   </div>
   <div class="bug_comments_list">
     <div class="bug_comments_item" *ngFor="let comment of details.comments" [@Fade]>
-      <div class="bug_comments_item_avatar" *ngIf="comment.user.is_admin === 0">
+      <div class="bug_comments_item_avatar" *ngIf="comment.user.is_admin === 0 || !comment.status">
         <img src="https://www.gravatar.com/avatar/{{comment.user.hash}}" alt="{{comment.user.full_name}} avatar">
       </div>
-      <div class="bug_comments_item_body" *ngIf="comment.user.is_admin === 0">
+      <div class="bug_comments_item_body" *ngIf="comment.user.is_admin === 0 || !comment.status">
         <div class="bug_comments_item_author">
           <p>{{comment.user.full_name}}</p>
           <p>{{comment.created_at | date}}</p>
