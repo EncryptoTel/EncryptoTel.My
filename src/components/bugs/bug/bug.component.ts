@@ -41,6 +41,7 @@ export class BugComponent {
     summary: '',
     user: {
       email: '',
+      full_name: '',
       is_admin: 0,
       hash: ''
     },
