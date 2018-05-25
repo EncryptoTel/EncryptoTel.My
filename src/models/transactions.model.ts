@@ -10,4 +10,5 @@ export interface Transaction {
   sender: string;
   timestamp: number;
   type: number;
+  kind: number;
 }
