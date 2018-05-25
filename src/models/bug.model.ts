@@ -21,6 +21,7 @@ export interface Bug {
 
 interface User {
   email: string;
+  full_name: string;
   is_admin: number;
   hash: string;
 }
