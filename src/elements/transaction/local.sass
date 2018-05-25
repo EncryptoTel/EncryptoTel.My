@@ -3,46 +3,58 @@
 .transaction
   display: flex
   flex-flow: row
-  width: 100%
-  padding: 10px 20px
+  flex: 1
+  padding: rem(8) rem(24)
   &_icon_wrapper
-    margin-right: 20px
+    margin-right: rem(24)
     svg-icon
       width: 40px
       height: 40px
   &_currency
-    .amount
-      margin-bottom: 10px
+    &:first-child
+      margin-right: auto
+    &_wrapper
+      display: flex
+      flex-flow: column
+      flex: 1
+    &_row
+      flex-direction: row
+      flex: 1
+      align-items: center
     .usd
       color: #B7B7B7
       font-size: rem(12)
-    &_wrapper
-      display: flex
-      flex-flow: row
-      justify-content: space-between
-      align-items: flex-start
-      flex: 1
-    &_type
-      display: flex
-      flex-flow: column
-    &_value
-      display: flex
-      flex-flow: column
-      text-align: right
-
 .full
   display: inline
 
 .splited
   display: none
 
-@media all and (max-width: 425px)
+@media all and (max-width: 640px)
   .transaction
-    padding: 10px 10px
-    font-size: rem(13)
-    &_icon_wrapper
-      display: none
+    padding: rem(8) rem(16)
+    font-size: rem(12)
+    &_currency_row:first-child
+      margin-bottom: rem(8)
   .full
     display: none
   .splited
     display: inline
+  .sent
+    box-shadow: 0 0 2px 0 rgba($popup_error,.5)
+  .received
+    box-shadow: 0 0 2px 0 rgba($popup_success,.5)
+@media (max-width: 480px)
+  .transaction_currency
+    &:nth-child(1)
+      margin-right: auto
+    &:nth-child(2)
+      margin-left: auto
+      margin-top: rem(8)
+    &_row
+      flex-direction: column
+      flex: none
+      &:first-child
+        margin-bottom: rem(16)
+
+

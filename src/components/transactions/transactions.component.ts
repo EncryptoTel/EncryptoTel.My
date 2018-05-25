@@ -18,7 +18,7 @@ export class TransactionsComponent {
   pageInfo: PageInfo = {
     title: 'Transactions',
     description:
-      `Here you can view your transactions history and keep track of your assets.`
+      `Transaction history.`
   };
   transactions: Transaction[] = [];
   filteredTransactions: Transaction[] = [];
@@ -101,6 +101,13 @@ export class TransactionsComponent {
       console.error(err);
     })
   }
+
+  nameShorter = (item, max, required): string => {
+    return (
+      item.length > max
+        ? item.slice(0, required) + '...'
+        : item);
+  };
 
   private getTransactions(address: string): void {
     this._service.getTransactions(address).then((res: TransactionsModel) => {

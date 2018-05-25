@@ -1,15 +1,19 @@
 <div class="container">
   <svg-icon src="../../assets/icons/logo_titled.svg" class="authorization_icon"></svg-icon>
-  <loader-element *ngIf="loading.page"></loader-element>
-  <form class="authorization_form" (submit)="signUp($event)" [formGroup]="signUpForm" (keyup)="clearMessage($event)" *ngIf="!loading.page">
-    <div class="authorization_form_error" *ngIf="formMessage" [@Fade]>{{formMessage}}</div>
+  <form class="authorization_form" (submit)="sendResetRequest($event)" [formGroup]="recoveryForm" *ngIf="!recoveryForm.controls.token" (change)="emailSent = false">
+    <div class="authorization_form_message success" *ngIf="emailSent" [@Fade]>Confirmation email has been sent</div>
     <div class="authorization_input_wrap">
-      <input type="text" title="Name" placeholder="Name" class="authorization_input" formControlName="name">
-      <div class="authorization_input_error_wrap" *ngIf="hasError('name')" [@Fade]>
-        <div class="authorization_input_error" *ngIf="hasError('name', 'required')">Please enter name</div>
-        <div class="authorization_input_error" *ngIf="hasError('name', 'pattern')">Please enter correct name</div>
+      <input type="text" title="E-mail" placeholder="E-mail" class="authorization_input" formControlName="email">
+      <div class="authorization_input_error_wrap" *ngIf="hasError('email')" [@Fade]>
+        <div class="authorization_input_error" *ngIf="hasError('email', 'required')">Please enter e-mail</div>
+        <div class="authorization_input_error" *ngIf="hasError('email', 'pattern')">Please enter correct e-mail</div>
+        <div class="authorization_input_error" *ngIf="hasError('email', 'response')">{{recoveryForm.controls['email'].errors.response}}</div>
       </div>
     </div>
+    <button-element value="Request recovery link" [loading]="loading" (onClick)="sendResetRequest()"></button-element>
+  </form>
+  <form class="authorization_form" (submit)="resetPassword($event)" [formGroup]="recoveryForm" *ngIf="recoveryForm.controls.token">
+    <div class="authorization_form_message success" *ngIf="invalidHash.enabled" [@Fade]>{{invalidHash.message}}</div>
     <div class="authorization_input_wrap">
       <input type="password" title="Password" placeholder="Password" class="authorization_input" formControlName="password">
       <div class="authorization_input_error_wrap" *ngIf="hasError('password')" [@Fade]>
@@ -31,14 +35,8 @@
         <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'mismatch')">Password and password confirmation don't match</div>
       </div>
     </div>
-    <div class="authorization_input_wrap">
-      <input type="text" title="Wallet (Waves 3P)" placeholder="Wallet (Waves 3P)" class="authorization_input" formControlName="wallet">
-      <div class="authorization_input_error_wrap" *ngIf="hasError('wallet')" [@Fade]>
-        <div class="authorization_input_error" *ngIf="hasError('wallet', 'required')">Please enter wallet address</div>
-        <div class="authorization_input_error" *ngIf="hasError('wallet', 'pattern')">Please enter correct wallet address</div>
-      </div>
-    </div>
-    <button-element value="Sign in" [loading]="loading.button" (onClick)="signUp()"></button-element>
+    <button-element value="Change password" [loading]="loading" (onClick)="resetPassword()"></button-element>
   </form>
+  <a routerLink="/sign-in" class="authorization_link">Back to Sign In</a>
   <div class="authorization_copyright">{{copyright}}</div>
 </div>

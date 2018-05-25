@@ -1,9 +1,12 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
 <div class="container">
-  <loader-element *ngIf="loading"></loader-element>
-  <div class="transactions" *ngIf="!loading" [@Fade]>
+  <div class="transactions" [@Fade]>
     <div class="transactions_filters">
-      <select-element [values]="addresses" [keys]="['address']" [currentValue]="address"
+      <select-element class="high-resolution"
+                      [values]="addresses" [keys]="['address']" [currentValue]="nameShorter(address,30,28)"
+                      [oneKey]="true" [returnedValue]="'address'" (getValue)="changeAddress($event)"></select-element>
+      <select-element class="low-resolution"
+                      [values]="addresses" [keys]="['address']" [currentValue]="nameShorter(address,28,26)"
                       [oneKey]="true" [returnedValue]="'address'" (getValue)="changeAddress($event)"></select-element>
       <div class="transactions_filters_list">
         <div class="transactions_filters_items" [ngClass]="{'active': filterType === 'all'}">
@@ -17,7 +20,8 @@
         </div>
       </div>
     </div>
-    <div class="transactions_items_wrapper" *ngIf="transactions && transactions.length > 0">
+    <loader-element *ngIf="loading"></loader-element>
+    <div class="transactions_items_wrapper" *ngIf="!loading && transactions && transactions.length > 0">
       <ng-container *ngIf="filteredTransactions.length>0">
         <div class="transactions_items_block" *ngFor="let transaction of filteredTransactions; index as i">
           <div class="transactions_items_date" *ngIf="date[i]">{{transaction.timestamp | date}}</div>
@@ -30,6 +34,7 @@
         </div>
       </ng-container>
     </div>
-    <h2 *ngIf="!transactions || filteredTransactions.length === 0 || transactions.length === 0" class="message">You don't have any transactions for this wallet</h2>
+    <h2 *ngIf="(!transactions || filteredTransactions.length === 0 || transactions.length === 0) && !loading" class="message">
+      You don't have any transactions for this wallet</h2>
   </div>
 </div>

@@ -30,7 +30,7 @@ export class RoadmapComponent {
       title: 'Encrypto Telecom Roadmap',
       description:
         `Track any changes and progresses of our development. Timeframes may be approximate, and we <br class="hidden_sm_down">
-         want to show changes happening in real time. We will also pin Github links where it's possible`
+         want to show changes happening in real time. We will also pin Github links where it's possible.`
     };
     this.loading = true;
     this.fetchRoadmap();

@@ -1,14 +1,14 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Discordia\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add ngx-charts
+  C:\Program Files\nodejs\node.exe C:\Users\xkubic\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
-  C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;C:\Program Files (x86)\Gource\cmd;C:\Program Files\Git\cmd;C:\Program Files\erl9.2\bin;C:\Program Files (x86)\Elixir\bin;C:\Windows\system32\config\systemprofile\.mix\escripts;C:\Program Files (x86)\Skype\Phone\;C:\RailsInstaller\Ruby2.3.3\bin;C:\Program Files\RailsInstaller\Git\cmd;C:\Program Files\Ruby24-x64\bin;C:\Users\Discordia\AppData\Local\Microsoft\WindowsApps;C:\Users\Discordia\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\WINDOWS\System32\OpenSSH\;C:\Users\xkubic\AppData\Local\Microsoft\WindowsApps;C:\Users\xkubic\AppData\Roaming\npm;
 
 Yarn version: 
-  1.4.0
+  1.5.1
 
 Node version: 
-  8.6.0
+  8.11.1
 
 Platform: 
   win32 x64
@@ -35,9 +35,11 @@ npm manifest:
       "@angular/platform-browser": "^5.0.0",
       "@angular/platform-browser-dynamic": "^5.0.0",
       "@angular/router": "^5.0.0",
+      "@swimlane/ngx-charts": "^7.3.0",
       "angular-svg-icon": "^5.0.0",
       "class-transformer": "^0.1.9",
       "core-js": "^2.5.5",
+      "d3": "^5.1.0",
       "reflect-metadata": "^0.1.12",
       "rxjs": "^5.5.2",
       "zone.js": "^0.8.26"
@@ -5623,11 +5625,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.26.tgz#7bdd72f7668c5a7ad6b118148b4ea39c59d08d2d"
 
 Trace: 
-  Error: Couldn't find package "serve-dashboard" on the "npm" registry.
-      at new MessageError (C:\Users\Discordia\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at NpmResolver.<anonymous> (C:\Users\Discordia\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:50354:15)
-      at Generator.next (<anonymous>)
-      at step (C:\Users\Discordia\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
-      at C:\Users\Discordia\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:109:13
+  Error: Couldn't find package "serve-dashboard@^1.7.2" required by "webpack-dev-server@~2.11.0" on the "npm" registry.
+      at new MessageError (C:\Users\xkubic\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at PackageRequest.<anonymous> (C:\Users\xkubic\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:36274:17)
+      at Generator.throw (<anonymous>)
+      at step (C:\Users\xkubic\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:98:30)
+      at C:\Users\xkubic\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:111:13
       at <anonymous>
       at process._tickCallback (internal/process/next_tick.js:188:7)
