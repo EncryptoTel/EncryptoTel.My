@@ -140,9 +140,9 @@ export class DashboardComponent implements OnInit {
     this._req.getWavesRates(this.period)
       .then(res => {
         this.curse_details = {
-          price: Math.round(res[0].price * 100) / 100,
-          diff: Math.round(res[0].diff * 100) / 100,
-          percentage: Math.round(res[0].percent * 100) / 100,
+          price: res[0].price,
+          diff: res[0].diff,
+          percentage: res[0].percent,
           mark: res[0].mark
         };
         this.rates = res;
