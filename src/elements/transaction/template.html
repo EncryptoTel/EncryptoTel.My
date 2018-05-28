@@ -1,12 +1,12 @@
-<div class="transaction {{setTypeTransaction(transaction.sender).toLocaleLowerCase()}}">
+<div class="transaction {{setTypeTransaction(transaction).toLocaleLowerCase()}}">
   <div class="transaction_icon_wrapper full">
     <svg-icon
-      src="../../../assets/icons/icon_{{setTypeTransaction(transaction.sender).toLocaleLowerCase()}}.svg"></svg-icon>
+      src="../../../assets/icons/icon_{{setTypeTransaction(transaction).toLocaleLowerCase()}}.svg"></svg-icon>
   </div>
   <div class="transaction_currency_wrapper">
     <div class="transaction_currency_row">
       <div class="transaction_currency">
-        <p class="amount">{{setTypeTransaction(transaction.sender)}} {{transaction.asset}}</p>
+        <p class="amount">{{setTypeTransaction(transaction)}} {{transaction.asset}}</p>
       </div>
       <div class="transaction_currency" *ngIf="transaction.amount">
         <p class="amount">{{type === 'Sent'? '- ': '+ '}}{{transaction.amount | number: '0.0-8'}}
