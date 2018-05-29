@@ -67,7 +67,7 @@ export class TransactionsComponent {
 
   private sortingSent(): void {
     this.transactions.forEach((el: Transaction) => {
-      if (el.sender === this.address) {
+      if (el.kind === 0) {
         this.filteredTransactions.push(el);
       }
     })
@@ -75,7 +75,7 @@ export class TransactionsComponent {
 
   private sortingReceived(): void {
     this.transactions.forEach((el: Transaction) => {
-      if (el.sender !== this.address) {
+      if (el.kind === 1) {
         this.filteredTransactions.push(el);
       }
     })
