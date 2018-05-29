@@ -15,21 +15,23 @@
     width: 95%
     flex: 0 0 auto
     select-element
-      margin: 10px 10px 10px 0
-      flex: 0 1 170px
+      margin: rem(10) rem(10) rem(10) 0
+      flex: 0 1 rem(170)
       /deep/ span
         margin-bottom: rem(4)
         margin-top: rem(4)
+      /deep/ .select_options
+        max-height: calc(100vh - 320px)
     &_list
       display: flex
       flex-flow: row
       justify-content: space-between
       align-items: flex-end
     &_items
-      margin: 10px 0 10px 10px
+      margin: rem(10) 0 rem(10) rem(10)
       cursor: pointer
       span
-        padding: 10px
+        padding: rem(10)
   &_items
     &_wrapper
       width: 95%
@@ -37,10 +39,10 @@
       flex-flow: column
     &_block
       width: 100%
-      margin-bottom: 10px
+      margin-bottom: rem(10)
       flex: 1 0 auto
     &_date
-      margin: 20px 0 20px 20px
+      margin: rem(20) 0 rem(20) rem(20)
   &_item
     width: 100%
     flex: 1 0 auto
@@ -52,20 +54,22 @@
   min-width: rem(320)
   max-width: rem(320)
 .active
-  border-bottom: 1px solid $accent
+  border-bottom: rem(1) solid $accent
 .message
   font-size: rem(30)
   color: $gray
   text-align: center
   padding: rem(40) 0
-@media all and (max-width: 768px)
+@media all and (max-width: 767px)
   .transactions
     width: 100%
     &_filters
       width: 100%
-    &_items
-      &_wrapper
-        width: 100%
+      select-element
+        /deep/ .select_options
+          max-height: calc(100vh - 288px)
+    &_items_wrapper
+      width: 100%
   .high-resolution
     display: none
   .low-resolution
@@ -74,6 +78,7 @@
     font-size: rem(18)
     padding: rem(40) rem(24)
 
+
 @media all and (max-width: 425px)
   .transactions
     &_filters
@@ -81,17 +86,13 @@
       &_list
         order: 1
       select-element
-        margin: 10px 0
+        margin: rem(10) 0
         order: 2
         flex: 0 1 auto
     &_items
       &_date
-        margin: 15px 0
+        margin: rem(15) 0
 
 @media (max-height: 328px)
   .container
     display: flex
-  .transactions_filters
-    select-element
-      /deep/ .select_options
-        max-height: rem(96)

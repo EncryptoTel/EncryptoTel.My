@@ -8,8 +8,8 @@
   &_icon_wrapper
     margin-right: rem(24)
     svg-icon
-      width: 40px
-      height: 40px
+      width: rem(40)
+      height: rem(40)
   &_currency
     &:first-child
       margin-right: auto
@@ -23,17 +23,17 @@
       align-items: center
     .usd
       color: #B7B7B7
-      font-size: rem(12)
+      //font-size: rem(12)
 .full
   display: inline
 
 .splited
   display: none
 
-@media all and (max-width: 640px)
+@media all and (max-width: 767px)
   .transaction
     padding: rem(8) rem(16)
-    font-size: rem(12)
+    //font-size: rem(12)
     &_currency_row:first-child
       margin-bottom: rem(8)
   .full
@@ -41,9 +41,9 @@
   .splited
     display: inline
   .sent
-    box-shadow: 0 0 2px 0 rgba($popup_error,.5)
+    box-shadow: 0 0 rem(2) 0 rgba($popup_error,.5)
   .received
-    box-shadow: 0 0 2px 0 rgba($popup_success,.5)
+    box-shadow: 0 0 rem(2) 0 rgba($popup_success,.5)
 @media (max-width: 480px)
   .transaction_currency
     &:nth-child(1)

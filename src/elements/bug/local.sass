@@ -5,26 +5,27 @@
     display: flex
     flex-flow: row
     justify-content: space-between
-    flex: 1
+    max-width: 100%
     &_vote
       display: flex
       flex-flow: column
       justify-content: space-between
-      width: 100px
+      min-width: rem(104)
       &_counter
         background: $light_gray
-        height: 65%
+        padding: rem(8) 0
+        margin-bottom: rem(8)
         display: flex
         flex-flow: column
         justify-content: center
         align-items: center
-        border: 1px solid $dark_gray
+        border: rem(1) solid $dark_gray
         user-select: none
         & > span:first-child
           font-size: rem(18)
-          margin-bottom: 5px
+          margin-bottom: rem(5)
       &_button
-        height: 30%
+        padding: rem(8) 0
         display: flex
         flex-flow: column
         justify-content: center
@@ -32,22 +33,23 @@
         background: #E5E5E5
         border: none
         cursor: pointer
+        margin-bottom: auto
         &:focus
           outline: none
     &_description
       display: flex
       flex-flow: column
+      overflow-x: hidden
       justify-content: space-between
-      width: 80%
+      flex: 1
+      padding: rem(4) 0 rem(4) rem(24)
       &_title
+        min-height: rem(16)
+        overflow-x: hidden
         font-weight: 600
         cursor: pointer
-        overflow: hidden
-        white-space: nowrap
-        text-overflow: ellipsis
       &_body
-        overflow: hidden
-        margin: 10px 0
+        margin: rem(10) 0
         flex: 1
         font-size: 0.92rem
         line-height: 1.1
@@ -57,18 +59,18 @@
         justify-content: flex-start
         align-items: center
         & > div:not(:nth-child(2))
-          margin-right: 16px
-        &_comments
-          font-size: 0.92rem
-          user-select: none
-          margin-right: 0
+          margin-right: rem(16)
         &_tag
-          border-radius: 20px
-          padding: 5px 15px
+          border-radius: rem(20)
+          padding: rem(5) rem(15)
           text-transform: uppercase
           color: $background
           text-align: center
           cursor: pointer
+        &_comments
+          font-size: 0.92rem
+          user-select: none
+          margin-right: 0
         &_report
           display: flex
           flex-flow: row
@@ -77,7 +79,7 @@
           font-size: 0.92rem
           &::before
             content: '•'
-            padding: 0 8px
+            padding: 0 rem(8)
 
 .voted
   background: $success
@@ -85,36 +87,71 @@
 
 .reported
   color: $error
-
+.mobile
+  display: none
+  flex-direction: row
+  max-width: 100%
+  &_vote
+    flex-direction: column
+    min-width: rem(56)
+    &_counter
+      padding: rem(8) 0
+      background: $light_gray
+      border: rem(1) solid $dark_gray
+      margin-bottom: rem(8)
+      text-align: center
+    &_button
+      padding: rem(8) 0
+      text-align: center
+      margin-bottom: auto
+      .voted
+        background: $success
+        color: $background
+      &:not(.voted)
+        background: #E5E5E5
+        color: #000
+    &_empty
+      display: flex
+  &_body
+    width: 100%
+    display: grid
+    margin-left: rem(16)
+    grid-gap: rem(8)
+    grid-template-columns: 1fr
+    &_title
+      font-weight: 400
+      overflow-x: hidden
+      min-height: rem(16)
+      justify-content: center
+    &_description
+      font-weight: 100
+      overflow-x: hidden
+      min-height: rem(16)
+    &_tag
+      padding: rem(4) rem(12)
+      color: white
+      border-radius: 100vmax
+      margin-right: rem(24)
+    &_row
+      flex-direction: row
+      align-items: center
 .new
   background: #4995fd
-
 .planned
   background: #ffa44a
-
 .in_progress
   background: #41d070
-
 .done
   background: #8756fc
-
 .known_issue
   background: #f25757
-
 .closed
   background: #898888
-
 @media (max-width: 1023px)
-  .bug_list
-    &_item
-      &_vote
-        width: 15%
-        &_counter
-          & > span:first-child
-            font-size: rem(14)
-          & > span:last-child
-            font-size: rem(12)
-      &_description
-        &_footer
-          &_tag
-            font-size: rem(12)
+  .bug_list_item_vote
+    min-width: rem(64)
+@media (max-width: 511px)
+  .mobile
+    display: flex
+  .bug_list_item
+    display: none
