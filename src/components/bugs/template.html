@@ -1,14 +1,20 @@
+
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
 <loader-element *ngIf="_service.statusLoading"></loader-element>
+
 <div class="container" *ngIf="!_service.statusLoading" [@Fade]>
   <div class="bugs">
     <router-outlet (activate)="onActivate($event)"></router-outlet>
     <div class="bugs_category_wrap">
       <a routerLink="filing" class="bugs_category_new_bug_button" *ngIf="showButtonCreate" [@Fade]>Filing a new Bug</a>
+
+
       <div class="bugs_category_container">
         <div class="bugs_category_body">
           <h4>Encryptotel: Bugs</h4>
           <div class="bugs_category">
+
+
             <div class="bugs_category_item" [ngClass]="{'current_item': (_service.filter.status === '' && _service.filter.my === false)}" (click)="filter('all')">
               <div class="bugs_category_item_title">All bugs</div>
               <div class="bugs_category_item_counter">{{_service.statuses.all}}</div>
@@ -22,6 +28,8 @@
               <div class="bugs_category_item_counter">{{status.issues}}</div>
             </div>
           </div>
+
+
           <div class="bugs_category_search_wrap">
             <input type="search" placeholder="Search" class="bugs_category_search_input" #searchField (keyup.enter)="search(searchField)">
             <div class="bugs_category_search_button_wrap" (click)="search(searchField)">
@@ -31,6 +39,8 @@
           </div>
         </div>
       </div>
+
+
       <div class="bugs_feedback_wrap">
         <a routerLink="feedback">Encryptotel: Give feedback</a>
       </div>
