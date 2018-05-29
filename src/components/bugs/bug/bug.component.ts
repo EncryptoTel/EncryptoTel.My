@@ -144,7 +144,7 @@ export class BugComponent {
   }
 
   validation(commentField): boolean {
-    const isValid = commentField.value.length > 9 && commentField.value.length < 255;
+    const isValid = commentField.value.length > 9;
     isValid ? commentField.classList.remove('invalid') : commentField.classList.add('invalid');
     return isValid;
   }
