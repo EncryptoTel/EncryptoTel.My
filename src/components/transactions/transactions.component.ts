@@ -103,10 +103,14 @@ export class TransactionsComponent {
   }
 
   nameShorter = (item, max, required): string => {
-    return (
-      item.length > max
-        ? item.slice(0, required) + '...'
-        : item);
+    if (item) {
+      return (
+        item.length > max
+          ? item.slice(0, required) + '...'
+          : item);
+    } else {
+      return '';
+    }
   };
 
   private getTransactions(address: string): void {

@@ -6,6 +6,8 @@ import {AuthorizationServices} from '../services/authorization.services';
 import {PopupServices} from '../services/popup.services';
 import {FadeAnimation} from '../shared/functions';
 import {DialogServices} from '../services/dialog.services';
+import {NavigationEnd, Router} from '@angular/router';
+import {AnalyticsServices} from '../services/analytics.services';
 
 
 @Component({
@@ -17,7 +19,8 @@ import {DialogServices} from '../services/dialog.services';
     <router-outlet *ngIf="!loading"></router-outlet>
     <popup-element *ngIf="popup.visible" [@Fade]></popup-element>
     <dialog-element *ngIf="dialog.visible" [@Fade]></dialog-element>`,
-  animations: [FadeAnimation('150ms')]
+  animations: [FadeAnimation('150ms')],
+  providers: [AnalyticsServices]
 })
 
 export class MainViewComponent implements OnInit, OnDestroy {
@@ -29,7 +32,9 @@ export class MainViewComponent implements OnInit, OnDestroy {
 
   constructor(private _auth: AuthorizationServices,
               public popup: PopupServices,
-              public dialog: DialogServices) {
+              public dialog: DialogServices,
+              private router: Router,
+              private analytics: AnalyticsServices) {
     this.loading = false;
     this.logout = false;
     this.authorized = this._auth.fetchAuth();
@@ -55,7 +60,28 @@ export class MainViewComponent implements OnInit, OnDestroy {
       return this.authorized;
   }
 
+  includesCheck = (url: string): boolean => {
+    return url.includes('password-recovery') ||
+      url.includes('change-email') ||
+      url.includes('sign-up') ||
+      url.includes('email-confirmation');
+  };
+
   ngOnInit() {
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        if (this.includesCheck(e.urlAfterRedirects)) {
+          this.analytics.sendPageView('/' + e.urlAfterRedirects.split('/')[1]);
+        } else if (e.urlAfterRedirects.includes('sign-in')) {
+          return;
+        } else if (/[0-9]/gi.test(e.urlAfterRedirects)) {
+          const temp = e.urlAfterRedirects.split('/').filter(i => !/[0-9]/gi.test(i)).join('/');
+          this.analytics.sendPageView(temp);
+        } else {
+          this.analytics.sendPageView(e.urlAfterRedirects);
+        }
+      }
+    })
   }
 
   ngOnDestroy(): void {

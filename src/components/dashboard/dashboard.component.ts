@@ -42,6 +42,20 @@ export class DashboardComponent implements OnInit {
   address;
   asset_id;
   current_asset;
+  networks = [
+    {id: 1, name: 'Waves'},
+    {id: 2, name: 'Ethereum'}
+  ];
+  selectedNetwork = {
+    id: 1,
+    name: 'Waves'
+  };
+  selectedAsset = '[Select asset]';
+
+  changeNetwork(network) {
+    this.selectedNetwork = network;
+    this.selectedAsset = this.filteredAssets().length > 0 ? '[Select asset]' : 'Sorry, there is no assets for this network';
+  }
 
   showForm() {
     this.show_form = true;
@@ -49,6 +63,10 @@ export class DashboardComponent implements OnInit {
 
   hideForm() {
     this.show_form = false;
+  }
+
+  filteredAssets() {
+    return this.assets.filter(asset => asset.blockchain_id === this.selectedNetwork.id);
   }
 
   nameShorter = (item, max, required): string => {
@@ -63,6 +81,7 @@ export class DashboardComponent implements OnInit {
   }
 
   setAssetId(event) {
+    this.selectedAsset = event.name;
     this.asset_id = event.identifier;
   }
 
@@ -168,13 +187,9 @@ export class DashboardComponent implements OnInit {
       }).catch();
   }
 
-  getAssetById(id: string): string {
-    const asset = this.assets.find(ast => ast.identifier === id);
-    return asset ? asset.name : '';
-  }
-
   confirmDelAsset(): void {
-    this._assets.removeAsset({asset: this.current_asset.asset_id, address: this.current_asset.address})
+    console.log(this.current_asset);
+    this._assets.removeAsset({address: this.current_asset.address, asset_id: this.current_asset.blockchain_asset.identifier})
       .then(() => {
         this.getAccountAssets();
         this._confirmDialog.hideDialog();

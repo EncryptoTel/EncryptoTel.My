@@ -89,7 +89,7 @@ export class AuthorizationServices {
         } else {
           this.setMessage('Unknown error')
         }
-        return;
+        return Promise.reject(res);
       })
   }
 

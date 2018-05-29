@@ -38,7 +38,7 @@
 <div class="container" *ngIf="!loadingAssets && !loading" [@Fade]>
   <div class="snippet_wrap">
     <div class="snippet_item" *ngFor="let item of picked_assets" [@Fade]>
-      <div class="snippet_name">{{getAssetById(item.asset_id)}}
+      <div class="snippet_name">{{item.blockchain_asset.name || ''}}
         <div class="snippet_button_close" *ngIf="item['editable']" (click)="removeAsset(item)">
           <span></span>
           <span></span>
@@ -78,13 +78,18 @@
       Select the asset that you want to add to the Dashboard. We only display
       transactions and total sum of the asset. It is completely decentralized,
       we do not store any of that information.</div>
+    <select-element [values]="networks"
+                    currentValue="Waves"
+                    [keys]="['name']"
+                    (getValue)="changeNetwork($event)"></select-element>
     <input id="address-input"
            title="Asset address"
            #thisaddress
            [placeholder]="'Address'"
            (keyup)="setAddress(thisaddress)">
-    <select-element [values]="assets"
+    <select-element [values]="filteredAssets()"
                     [keys]="['name']"
+                    [currentValue]="selectedAsset"
                     (getValue)="setAssetId($event)"></select-element>
     <div class="adding_button_row">
       <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>

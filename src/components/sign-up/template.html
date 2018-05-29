@@ -2,12 +2,12 @@
   <svg-icon src="../../assets/icons/logo_titled.svg" class="authorization_icon"></svg-icon>
   <loader-element *ngIf="loading.page"></loader-element>
   <form class="authorization_form" (submit)="signUp($event)" [formGroup]="signUpForm" (keyup)="clearMessage($event)" *ngIf="!loading.page">
-    <div class="authorization_form_error" *ngIf="formMessage" [@Fade]>{{formMessage}}</div>
     <div class="authorization_input_wrap">
       <input type="text" title="Name" placeholder="Name" class="authorization_input" formControlName="name">
       <div class="authorization_input_error_wrap" *ngIf="hasError('name')" [@Fade]>
         <div class="authorization_input_error" *ngIf="hasError('name', 'required')">Please enter name</div>
         <div class="authorization_input_error" *ngIf="hasError('name', 'pattern')">Please enter correct name</div>
+        <div class="authorization_input_error" *ngIf="hasError('name', 'response')">{{signUpForm.controls.name.errors.response}}</div>
       </div>
     </div>
     <div class="authorization_input_wrap">
@@ -16,6 +16,7 @@
         <div class="authorization_input_error" *ngIf="hasError('password', 'required')">Please enter password</div>
         <div class="authorization_input_error" *ngIf="hasError('password', 'minlength')">Password is too short</div>
         <div class="authorization_input_error" *ngIf="hasError('password', 'maxlength')">Password is too long</div>
+        <div class="authorization_input_error" *ngIf="hasError('password', 'response')">{{signUpForm.controls.password.errors.response}}</div>
       </div>
     </div>
     <div class="authorization_input_wrap">
@@ -29,6 +30,7 @@
         <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'minlength')">Password confirmation is too short</div>
         <div class="authorization_input_error" *ngIf="!hasError('password_confirmation', 'mismatch') && hasError('password_confirmation', 'maxlength')">Password confirmation is too long</div>
         <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'mismatch')">Password and password confirmation don't match</div>
+        <div class="authorization_input_error" *ngIf="hasError('password_confirmation', 'response')">{{signUpForm.controls.password_confirmation.errors.response}}</div>
       </div>
     </div>
     <div class="authorization_input_wrap">
@@ -36,6 +38,7 @@
       <div class="authorization_input_error_wrap" *ngIf="hasError('wallet')" [@Fade]>
         <div class="authorization_input_error" *ngIf="hasError('wallet', 'required')">Please enter wallet address</div>
         <div class="authorization_input_error" *ngIf="hasError('wallet', 'pattern')">Please enter correct wallet address</div>
+        <div class="authorization_input_error" *ngIf="hasError('wallet', 'response')">{{signUpForm.controls.wallet.errors.response}}</div>
       </div>
     </div>
     <button-element value="Sign in" [loading]="loading.button" (onClick)="signUp()"></button-element>
