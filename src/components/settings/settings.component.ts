@@ -5,7 +5,6 @@ import {PageInfo} from '../../models/page-info.model';
 import {AccountModel, Profile} from '../../models/accout.model';
 import {emailRegExp, nameRegExp} from '../../shared/vars';
 import {PopupServices} from '../../services/popup.services';
-import * as timezone from 'timezones.json';
 
 
 @Component({
@@ -64,8 +63,9 @@ export class SettingsComponent {
     }
   };
   languages: LanguagesModel[] = []; // array of available languages from back
-  timezones = timezone;
+  timezones;
   loading = true;
+
   constructor(private _service: SettingsServices,
               private popup: PopupServices) {
     this.getAccount();  // get date about account
@@ -84,17 +84,28 @@ export class SettingsComponent {
     this.save('comments', {new_comments: this.account.account.profile.new_comments});
   }
 
+  getTimezones() {
+    this._service.getTimezone().then(res => {
+      this.timezones = res;
+      this.loading = false;
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
   // // controller 'language' checkbox
   setLanguage(language: LanguagesModel): void {
     this.account.account.profile.language_id = language.id;
     this.save('language', {language_id: this.account.account.profile.language_id});
     this.editStatus.language = false;
   }
+
   setTimezone(tz) {
     this.account.account.profile.timezone = tz.offset;
     this.save('timezones', {timezone: this.account.account.profile.timezone});
     this.editStatus.timezones = false;
   }
+
   currentTimezone() {
     const tmz = this.timezones.find(el => {
       if (el.offset === this.account.account.profile.timezone) {
@@ -105,6 +116,7 @@ export class SettingsComponent {
       return tmz.text;
     }
   }
+
   // activate edit status of field
   edit(type: string, field: HTMLInputElement): void {
     this.editStatus[type] = true;
@@ -184,6 +196,10 @@ export class SettingsComponent {
     event.target.classList.contains('select_current') || (event.target.id === 'langEdit') || (event.target.id === 'arrow') ? this.editStatus.language = true : this.editStatus.language = false;
   }
 
+  getTimezone() {
+    this._service.getTimezone()
+  }
+
   //  find current lang from array lang
   currentLanguage(): string {
     const language = this.languages.find(el => {
@@ -201,7 +217,7 @@ export class SettingsComponent {
     this._service.getAccount().then((res: AccountModel) => {
       this.account = res;
       this.email = this.account.account.email;
-      this.loading = false;
+      this.getTimezones();
     }).catch(err => {
       console.error(err);
     })
