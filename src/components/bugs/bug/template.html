@@ -22,7 +22,7 @@
           <img src="https://www.gravatar.com/avatar/{{details.user.hash}}" alt="author avatar">
         </div>
         <p>{{details.user.full_name}} shared this bug</p>
-        <p>{{details.created_at | date}}</p>
+        <p>{{details.created_at | date: 'MMM dd, yyyy HH:mm'}}</p>
         <p [ngClass]="{'reported': details.claim_exists === 1}" (click)="report()">{{formatClaims(details)}} Flag idea
           as inappropriate...</p>
       </div>
@@ -39,7 +39,7 @@
       <div class="bug_response_header">
         <p class="tag {{setTagStyle(adminComments[0].status.id)}}">{{adminComments[0].status.name}}</p>
         <p>{{adminComments[0].user.full_name}} (Admin) responded</p>
-        <p>{{adminComments[0].created_at| date}}</p>
+        <p>{{adminComments[0].created_at| date: 'MMM dd, yyyy HH:mm'}}</p>
       </div>
       <div class="bug_response_body">
         <p>{{adminComments[0].comment}}</p>
@@ -61,7 +61,7 @@
         <div class="bug_response_header">
           <p class="tag {{setTagStyle(comment.status.id)}}">{{comment.status.name}}</p>
           <p>{{comment.user.full_name}} (Admin) responded</p>
-          <p>{{comment.created_at | date}}</p>
+          <p>{{comment.created_at | date: 'MMM dd, yyyy HH:mm'}}</p>
         </div>
         <div class="bug_response_body">
           <p>{{comment.comment}}</p>
@@ -97,7 +97,7 @@
       <div class="bug_comments_item_body" *ngIf="comment.user.is_admin === 0 || !comment.status">
         <div class="bug_comments_item_author">
           <p>{{comment.user.full_name}}</p>
-          <p>{{comment.created_at | date}}</p>
+          <p>{{comment.created_at | date: 'MMM dd, yyyy HH:mm'}}</p>
           <p (click)="reportComment(comment)"
              [ngClass]="{'reported': details.claim_exists === 1}">
             {{formatClaims(comment)}} Flag as inappropriate
