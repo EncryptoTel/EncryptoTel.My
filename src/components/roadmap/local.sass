@@ -34,8 +34,10 @@
     flex-direction: row
     font-size: rem(16)
     padding-bottom: rem(40)
-    width: 50%
-    min-width: 1023px
+    // width: 50%
+    // min-width: 1023px
+    width: 100%
+    max-width: rem(1024)
     margin: 0 auto
     &:not(:last-child)::after
       content: ''
@@ -101,7 +103,7 @@
       /deep/ path
         fill: $background
 
-@media (max-width: 1000px)
+//@media (max-width: 1000px)
   .roadmap_item
     min-width: 768px
 

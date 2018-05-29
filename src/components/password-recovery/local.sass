@@ -3,11 +3,19 @@
 .container
   align-items: center
   flex: 1 0 auto
-
-.authorization_form_message
-  position: absolute
-  top: rem(-32)
-  text-align: center
-  width: 100%
-  &:not(.success)
-    color: $error
+  /deep/ circle, /deep/ rect, /deep/ path
+    fill: $accent
+  /deep/ .authorization_input:nth-child(n)
+    height: rem(35)
+    border-width: rem(1)
+    padding: rem(5) rem(15)
+.authorization_form
+  &_message
+    position: absolute
+    top: rem(-32)
+    text-align: center
+    width: 100%
+    &:not(.success)
+      color: $error
+  >button-element
+    width: auto

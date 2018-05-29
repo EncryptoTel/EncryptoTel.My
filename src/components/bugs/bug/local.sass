@@ -4,28 +4,28 @@
   &_header
     display: flex
     flex-flow: column
-    margin-bottom: 25px
+    margin-bottom: rem(25)
     h3
       font-weight: 500
       font-size: rem(20)
-      margin-bottom: 10px
+      margin-bottom: rem(10)
     a
       &::before
         content: '←'
-        padding: 0 5px
+        padding: 0 rem(5)
   &_body
     display: flex
     flex-flow: row
     justify-content: space-between
     flex: 1
-    min-height: 100px
-    margin-bottom: 30px
+    min-height: rem(100)
+    margin-bottom: rem(30)
     &_votes
       display: flex
       flex-flow: column
       justify-content: space-between
-      width: 100px
-      height: 100px
+      width: rem(100)
+      height: rem(100)
       &_counter
         background: #F8F8F8
         height: 65%
@@ -33,11 +33,11 @@
         flex-flow: column
         justify-content: center
         align-items: center
-        border: 1px solid $dark_gray
+        border: rem(1) solid $dark_gray
         user-select: none
         & > span:first-child
           font-size: rem(18)
-          margin-bottom: 5px
+          margin-bottom: rem(5)
       &_button
         height: 30%
         display: flex
@@ -60,7 +60,7 @@
         white-space: nowrap
         text-overflow: ellipsis
       h4, > p
-        margin-bottom: 15px
+        margin-bottom: rem(15)
       p
         font-size: 0.92rem
         line-height: 1.1
@@ -71,13 +71,13 @@
         justify-content: flex-start
         align-items: center
         & > div
-          width: 18px
-          margin-right: 5px
+          width: rem(18)
+          margin-right: rem(5)
         & p:nth-child(3)
-          margin: 0 2px
+          margin: 0 rem(2)
           &::after, &::before
             content: '•'
-            padding: 0 5px
+            padding: 0 rem(5)
         & p:nth-child(4)
           cursor: pointer
   &_response
@@ -99,18 +99,18 @@
       display: flex
       flex-flow: row wrap
       align-items: center
-      margin-bottom: 10px
+      margin-bottom: rem(10)
       & p:not(:nth-child(1))
         font-size: rem(12)
       & p:nth-child(2)
-        margin: 0 2px
+        margin: 0 rem(2)
         &::after, &::before
           content: '•'
-          padding: 0 5px
+          padding: 0 rem(5)
     &_body
       display: flex
       flex-flow: column
-      margin-bottom: 30px
+      margin-bottom: rem(30)
     &_footer
       p
         color: #cfcfcf
@@ -123,16 +123,16 @@
       align-items: flex-end
       margin-left: 20%
     &_item
-      margin-right: 15px
-      margin-bottom: 15px
-      width: 32px
+      margin-right: rem(15)
+      margin-bottom: rem(15)
+      width: rem(32)
       a
         img
-          margin-bottom: 10px
+          margin-bottom: rem(10)
         svg-icon
-          width: 32px
-          height: 32px
-          margin-bottom: 10px
+          width: rem(32)
+          height: rem(32)
+          margin-bottom: rem(10)
         span
           overflow: hidden
           white-space: nowrap
@@ -141,13 +141,13 @@
   &_newComment
     display: flex
     flex-flow: column
-    margin-top: 30px
+    margin-top: rem(30)
     h3
       font-weight: 600
       font-size: rem(15)
     textarea
-      height: 135px
-      margin: 10px 0
+      height: rem(135)
+      margin: rem(10) 0
       font-family: inherit
     &_control
       display: flex
@@ -161,23 +161,23 @@
         flex-flow: row
         justify-content: center
         align-items: center
-        width: 120px
-        height: 30px
+        width: rem(120)
+        height: rem(30)
         background: $accent
         color: $background
-        border-radius: 5px
-        margin-bottom: 30px
+        border-radius: rem(5)
+        margin-bottom: rem(30)
         font-size: rem(15)
   &_comments
     &_list
       display: flex
       flex-flow: column
-      padding-bottom: 35px
+      padding-bottom: rem(35)
     &_item
       display: flex
       flex-flow: row
       justify-content: space-between
-      margin-bottom: 25px
+      margin-bottom: rem(25)
       &_avatar
         width: 5%
       &_body
@@ -187,20 +187,20 @@
       &_author
         display: flex
         flex-flow: row wrap
-        margin-bottom: 15px
+        margin-bottom: rem(15)
         & > p
           font-size: rem(12)
         & p:nth-child(2)
-          margin: 0 2px
+          margin: 0 rem(2)
           &::after, &::before
             content: '•'
-            padding: 0 5px
+            padding: 0 rem(5)
         & p:nth-child(3)
           cursor: pointer
 
 .tag
-  border-radius: 20px
-  padding: 5px 15px
+  border-radius: rem(20)
+  padding: rem(5) rem(15)
   text-transform: uppercase
   color: $background
   text-align: center
@@ -212,13 +212,13 @@ textarea:focus
   outline: none
 
 .invalid
-  border: 1px solid $error
+  border: rem(1) solid $error
 
 .alert_message
   color: $error
   position: absolute
   top: 0
-  left: 15px
+  left: rem(15)
 
 .voted
   background: $success
@@ -266,7 +266,7 @@ textarea:focus
           & > p
             font-size: rem(12)
           & > p, > p:nth-child(3)
-            margin: 5px 0 0 0
+            margin: rem(5) 0 0 0
           & p:nth-child(3)
             &::after, &::before
               display: none
@@ -285,7 +285,7 @@ textarea:focus
         & > p
           font-size: rem(12)
         & p:nth-child(2)
-          margin: 5px 0
+          margin: rem(5) 0
     &_comments
       &_item
         &_avatar
@@ -296,4 +296,4 @@ textarea:focus
           & > p
             font-size: rem(12)
           & p:nth-child(3)
-            margin: 5px 0
+            margin: rem(5) 0

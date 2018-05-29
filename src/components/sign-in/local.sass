@@ -3,10 +3,12 @@
 .container
   align-items: center
   flex: 1 0 auto
-  /deep/ .authorization_input_wrap
-    max-height: 35px
   /deep/ circle, /deep/ rect, /deep/ path
     fill: $accent
+  /deep/ .authorization_input:nth-child(n)
+    height: rem(35)
+    border-width: rem(1)
+    padding: rem(5) rem(15)
 
 @media (max-height: 576px)
   .container

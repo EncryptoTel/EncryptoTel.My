@@ -25,12 +25,12 @@
   <div class="chart_wrap">
     <loader-element class="graph_loader" *ngIf="loaderGraph"></loader-element>
     <ngx-charts-line-chart *ngIf="!loaderGraph"
-      [customColors]="[{name: 'ETT Waves', value: 'rgb(255, 255, 255)'},{name: 'ETT Ethereum', value: 'rgb(62,144,255)'}]"
-      [xAxis]="true"
-      [yAxis]="true"
-      [showGridLines]="false"
-      [autoScale]="true"
-      [results]="rates">
+                           [customColors]="[{name: 'ETT Waves', value: 'rgb(255, 255, 255)'},{name: 'ETT Ethereum', value: 'rgb(62,144,255)'}]"
+                           [xAxis]="true"
+                           [yAxis]="true"
+                           [showGridLines]="false"
+                           [autoScale]="true"
+                           [results]="rates">
     </ngx-charts-line-chart>
   </div>
 </div>
@@ -38,7 +38,7 @@
 <div class="container" *ngIf="!loadingAssets && !loading" [@Fade]>
   <div class="snippet_wrap">
     <div class="snippet_item" *ngFor="let item of picked_assets" [@Fade]>
-      <div class="snippet_name">{{getAssetById(item.asset_id)}}
+      <div class="snippet_name">{{item.blockchain_asset.name || ''}}
         <div class="snippet_button_close" *ngIf="item['editable']" (click)="removeAsset(item)">
           <span></span>
           <span></span>
@@ -46,12 +46,10 @@
       </div>
       <div class="snippet_contain">
         <div class="snippet_value">{{item['balance']}}</div>
-        <div class="snippet_address">{{nameShorter(item.address, 30, 28)}}</div>
+        <div class="snippet_address">{{nameShorter(item.address, 18, 16)}}</div>
         <div></div>
       </div>
     </div>
-
-
     <div class="snippet_item add_new">
       <div class="snippet_name">
         <div class="snippet_button_add"
@@ -62,8 +60,6 @@
       </div>
       <div class="snippet_contain"></div>
     </div>
-
-
   </div>
 </div>
 <div class="adding" *ngIf="show_form">
@@ -78,13 +74,18 @@
       Select the asset that you want to add to the Dashboard. We only display
       transactions and total sum of the asset. It is completely decentralized,
       we do not store any of that information.</div>
+    <select-element [values]="networks"
+                    currentValue="Waves"
+                    [keys]="['name']"
+                    (getValue)="changeNetwork($event)"></select-element>
     <input id="address-input"
            title="Asset address"
            #thisaddress
            [placeholder]="'Address'"
            (keyup)="setAddress(thisaddress)">
-    <select-element [values]="assets"
+    <select-element [values]="filteredAssets()"
                     [keys]="['name']"
+                    [currentValue]="selectedAsset"
                     (getValue)="setAssetId($event)"></select-element>
     <div class="adding_button_row">
       <div class="adding_button_cancel" (click)="hideForm()">Cancel</div>

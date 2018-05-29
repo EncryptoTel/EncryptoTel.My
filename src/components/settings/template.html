@@ -1,5 +1,6 @@
 <page-info-element [pageInfo]="pageInfo"></page-info-element>
-<div class="container" (click)="hideLanguages($event)">
+<loader-element *ngIf="loading"></loader-element>
+<div class="container" (click)="hideLanguages($event)" *ngIf="!loading">
   <div class="settings">
     <div class="settings_header">
       <div class="settings_avatar_wrapper">
@@ -82,6 +83,18 @@
           <!--</div>-->
           <!--<span *ngIf="!editStatus.language" class="edit" (click)="showLanguages()" id="langEdit">edit language</span>-->
         <!--</div>-->
+        <div class="input_wrapper" (clickOutside)="editStatus.timezones = false">
+          <div class="select" (click)="showTimezones()">
+            <div class="select_current">{{currentTimezone()}}</div>
+            <div class="select_options" *ngIf="editStatus.timezones">
+              <div class="select_option" *ngFor="let timezone of timezones" (click)="setTimezone(timezone)">
+                {{timezone.text}}
+              </div>
+            </div>
+            <svg-icon src="../../assets/icons/dropdown_arrow_12px.svg" class="icon"></svg-icon>
+          </div>
+          <span *ngIf="!editStatus.timezones" class="edit" (click)="showTimezones()">edit timezone</span>
+        </div>
         <p>Email notifications for &#171;My feedback&#187;</p>
         <div class="checkbox_container checkbox_margin">
           <div class="checkbox" *ngIf="!loadersIcons.status"

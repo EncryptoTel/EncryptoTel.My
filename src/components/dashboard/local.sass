@@ -48,16 +48,22 @@
         border-bottom: 1px solid $background
 .snippet
   &_wrap
-    display: grid
-    grid-template-columns: repeat(auto-fill, minmax(rem(256), 1fr))
-    grid-gap: rem(24)
-    padding: rem(32) 0
+    //display: grid
+    //grid-template-columns: repeat(auto-fill, minmax(rem(256), 1fr))
+    //grid-gap: rem(24)
+    flex-flow: row wrap
+    padding: rem(32) auto
+    width: content-box
+    justify-content: center
   &_item
     min-height: rem(160)
     max-height: rem(160)
+    width: rem(256)
+    margin: rem(16)
     display: flex
     flex-direction: column
     box-shadow: 0 4px 4px rgba($primary,0.15)
+    background: $background
     &:hover
       cursor: default
     &.add_new
@@ -66,7 +72,7 @@
         border: none
   &_name
     flex: 1
-    font-size: rem(24)
+    font-size: rem(20)
     justify-content: center
     padding: 0 rem(24)
     border-bottom: 2px solid $accent
@@ -152,12 +158,11 @@
     /deep/ .other_words
       display: none
     >select-element
-      margin: 0 0 rem(24)
+      margin: rem(24) 0
       /deep/ .select_options
         max-height: rem(256)
     >input
       height: 35px
-      margin: rem(24) 0
       border: 1px solid rgba($primary,.4)
       padding: 0 rem(16)
       font-size: rem(14)
@@ -242,9 +247,9 @@
 
 .graph_loader
   /deep/
-  .loader_wrap
-    span.loader
-      background: $background !important
+    .loader_wrap
+      span.loader
+        background: $background !important
 
 @media (max-width: 768px)
   .background_wrap
@@ -281,26 +286,32 @@
       height: rem(48)
       bottom: rem(-24)
       left: calc(50% - 24px)
-@media (max-width: 528px)
+      >span
+        &:first-child
+          top: rem(23)
+          left: rem(16)
+        &:last-child
+          left: rem(23)
+          top: rem(16)
+@media (max-width: 640px)
   .snippet_item
-    width: rem(240)
-    margin: 0 auto
+    width: 100%
+    margin-left: 0
+    margin-right: 0
 @media (max-width: 512px)
   .background_wrap
     .chart_description
       flex-direction: row
 @media all and (max-height: 736px)
-  .adding
-    &_wrap
-      >select-element
-        /deep/ .select_options
-          max-height: rem(150)
+  .adding_wrap
+    >select-element
+      /deep/ .select_options
+        max-height: rem(150)
 @media all and (max-height: 512px)
-  .adding
-    &_wrap
-      >select-element
-        /deep/ .select_options
-          max-height: rem(65)
+  .adding_wrap
+    >select-element
+      /deep/ .select_options
+        max-height: rem(65)
 @media all and (max-height: 384px)
   .adding
     &_wrap
@@ -315,4 +326,3 @@
     &_text
       margin: 0 rem(-16)
       padding: rem(16)
-

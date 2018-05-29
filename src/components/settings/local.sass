@@ -15,7 +15,7 @@ a
     flex-flow: row
     justify-content: space-between
     align-items: center
-    margin: 25px 0
+    margin: rem(25) 0
     flex: 1 0 auto
   &_avatar
     max-width: 100%
@@ -46,16 +46,16 @@ a
     &_link
       color: $error
       cursor: pointer
-      margin-bottom: 15px
+      margin-bottom: rem(15)
 
 .input_wrapper
   position: relative
-  margin-bottom: 25px
+  margin-bottom: rem(25)
   .icon
     position: absolute
-    width: 15px
-    height: 15px
-    right: 20px
+    width: rem(15)
+    height: rem(15)
+    right: rem(20)
     top: 30%
     fill: #b7b7b7
     animation: loading-icon 1s ease-in-out infinite
@@ -65,20 +65,20 @@ a
       cursor: pointer
   .edit
     position: absolute
-    right: 42px
+    right: rem(42)
     top: 38%
-    font-size: 11px
+    font-size: rem(11)
     cursor: pointer
     color: #b7b7b7
   input
-    padding: 5px 122px 5px 15px
+    padding: rem(5) 122px rem(5) rem(15)
 
 .checkbox_margin
-  margin: 20px 0
+  margin: rem(20) 0
 .loading_icon
-  width: 15px
-  height: 15px
-  margin-right: 15px
+  width: rem(15)
+  height: rem(15)
+  margin-right: rem(15)
   fill: #b7b7b7
   animation: loading-icon 1s ease-in-out infinite
 
@@ -89,13 +89,13 @@ a
   font-size: rem(12)
 
 .invalid
-  border: 1px solid $error
+  border: rem(1) solid $error
 .select
   position: relative
-  height: 35px
+  height: rem(35)
   width: 100%
-  border: 1px solid #b7b7b7
-  padding: 5px 15px
+  border: rem(1) solid #b7b7b7
+  padding: rem(5) rem(15)
   display: flex
   flex-flow: column
   justify-content: center
@@ -108,14 +108,15 @@ a
     flex-flow: column
     width: calc(100% + 2px)
     background: $background
-    border-left: 1px solid #b7b7b7
-    border-right: 1px solid #b7b7b7
-    border-bottom: 1px solid #b7b7b7
+    border-left: rem(1) solid #b7b7b7
+    border-right: rem(1) solid #b7b7b7
+    border-bottom: rem(1) solid #b7b7b7
     overflow-y: auto
+    max-height: 300px
   &_option
     width: 100%
-    padding: 5px 15px
-    height: 35px
+    padding: rem(5) rem(15)
+    height: rem(35)
     display: flex
     flex-flow: column
     justify-content: center
@@ -139,7 +140,7 @@ a
   .settings
     width: 100%
     &_form
-      padding-bottom: 15px
+      padding-bottom: rem(15)
 @media (max-width: 384px)
   .settings
     &_header
@@ -152,4 +153,3 @@ a
         >p:first-child
           padding-top: rem(16)
           align-self: center
-

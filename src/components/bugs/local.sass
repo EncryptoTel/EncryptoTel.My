@@ -1,7 +1,7 @@
 @import '../../vars'
 
 .container
-  margin-top: 25px
+  margin-top: rem(24)
   display: flex
   flex-flow: row
   justify-content: center
@@ -12,7 +12,7 @@
   justify-content: space-between
   align-items: flex-start
   height: 100%
-  width: 90%
+  width: 100%
   &_category
     display: flex
     flex-flow: column
@@ -27,23 +27,23 @@
       color: $background
       padding: 0
       border: none
-      height: 50px
-      border-radius: 5px
+      height: rem(48)
+      border-radius: rem(4)
       cursor: pointer
-      margin-bottom: 15px
+      margin-bottom: rem(16)
     &_wrap
       display: flex
       flex-flow: column
       justify-content: flex-start
-      width: 32%
+      width: rem(384)
     &_container
       display: flex
       flex-flow: column
       justify-content: center
       align-items: center
-      border: 1px solid $gray
-      flex: 1 1 350px
-      box-shadow: 0 1px 6px rgba($primary, .1)
+      border: rem(1) solid $gray
+      padding: rem(16)
+      box-shadow: 0 rem(1) rem(6) rgba($primary, .1)
     &_body
       display: flex
       flex-flow: column
@@ -51,18 +51,16 @@
       width: 100%
       flex: 1
       h4
-        align-self: center
-        width: 90%
-        margin-top: 10px
+        margin-bottom: rem(16)
     &_item
       display: flex
       flex-flow: row
-      padding-left: 5%
       cursor: pointer
       position: relative
-      margin-bottom: 5px
+      margin: rem(4) rem(-16)
+      padding: 0 rem(16)
       &:nth-child(2)
-        margin-bottom: 10px
+        margin-bottom: rem(24)
       &_title
         display: flex
         flex-flow: column
@@ -70,30 +68,30 @@
         align-items: center
       &_counter
         background: $gray
-        border-radius: 15px
+        border-radius: 100vw
         color: #fff
-        padding: 5px 10px
+        padding: rem(4) rem(8)
         display: flex
         flex-flow: column
         justify-content: center
         align-items: center
-        margin-left: 10px
+        margin-left: rem(16)
     &_search
       &_wrap
         display: flex
         flex-flow: row wrap
         align-self: center
-        width: 90%
-        height: 35px
-        margin: 10px 0
+        width: 100%
+        height: rem(35)
+        margin-top: rem(16)
       &_input
         flex: 1 1 auto
         height: 100%
-        border: 1px solid $gray
-        padding: 7px
+        border: rem(1) solid $gray
+        padding: rem(7)
         -webkit-appearance: none
       &_button
-        width: 35px
+        width: rem(35)
         height: 100%
         padding: 0
         border: none
@@ -105,19 +103,10 @@
   &_feedback_wrap
     display: flex
     flex-flow: column
-    justify-content: center
-    align-items: center
-    border: 1px solid $gray
-    height: 65px
-    margin-top: 15px
-    box-shadow: 0 1px 6px rgba($primary, .1)
-    a
-      height: 90%
-      width: 90%
-      display: flex
-      flex-flow: column
-      justify-content: center
-
+    border: rem(1) solid $gray
+    margin-top: rem(16)
+    box-shadow: 0 rem(1) rem(6) rgba($primary, .1)
+    padding: rem(24)
 .current_item
   &::before
     content: ''
@@ -125,7 +114,7 @@
     left: 0
     top: 0
     height: 100%
-    border-left: 2px solid $accent
+    border-left: rem(2) solid $accent
   & > div:first-child
     color: $accent
   & > div:last-child
@@ -145,17 +134,14 @@
     flex-flow: column-reverse
     width: 100%
     &_category
-      flex-flow: row wrap
-      justify-content: space-between
-      align-items: center
-      &_item
-        margin-bottom: 10px
+      display: grid
+      grid-column-gap: rem(32)
+      grid-template-columns: 1fr 1fr
       &_wrap
         width: 100%
-        flex: 1 1 330px
-        margin-bottom: 30px
       &_container
         flex: 1 1 auto
+        margin-bottom: rem(24)
       &_body
         flex: 1
         justify-content: space-around
@@ -164,19 +150,17 @@
           flex-flow: column
           justify-content: center
       &_search
-        &_wrap
-          align-items: center
         &_button_wrap
           height: 100%
       &_item
-        width: 45%
-        height: max-content
-        justify-content: space-between
+        margin: rem(4) 0
+        padding: 0 0 0 rem(16)
         &:nth-child(2)
           margin-bottom: unset
-        &:nth-child(2n)
-          margin-right: 5%
+        &_counter
+          margin-left: auto
     &_feedback_wrap
       display: none
-
-
+@media (max-width: 511px)
+  .bugs_category
+    grid-template-columns: 1fr

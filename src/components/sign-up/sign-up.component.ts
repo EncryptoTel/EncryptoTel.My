@@ -7,7 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {AuthorizationServices} from '../../services/authorization.services';
 
 import {FadeAnimation, inputValidation, validateForm, passwordConfirmation} from '../../shared/functions';
-import {nameRegExp, wavesRegExp} from '../../shared/vars';
+import {nameRegExp} from '../../shared/vars';
 import {environment as _env} from '../../environments/environment';
 
 @Component({
@@ -67,8 +67,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
         passwordConfirmation()
       ]),
       'wallet': new FormControl('', [
-        Validators.required,
-        Validators.pattern(wavesRegExp)
+        Validators.required
       ]),
       'hash': new FormControl(null, [
         Validators.required
@@ -119,7 +118,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
               this.loading.button = false;
               this.router.navigateByUrl('');
             })
-            .catch(() => this.loading.button = false);
+            .catch(err => {
+              const control = Object.keys(err.errors);
+              for (const c of control) {
+                this.signUpForm.controls[c].setErrors({response: err.errors[c].join('')});
+              }
+              this.loading.button = false
+            });
         }).catch(() => {
           this._services.setMessage('Invalid wallet address');
           this.loading.button = false;

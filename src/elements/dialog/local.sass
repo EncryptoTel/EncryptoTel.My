@@ -5,14 +5,14 @@
   flex-flow: column
   font-size: rem(18)
   background: $background
-  box-shadow: 0 1px 6px rgba($primary, .1)
-  max-width: 400px
-  height: 230px
+  box-shadow: 0 rem(1) rem(6) rgba($primary, .1)
+  max-width: rem(400)
+  height: rem(230)
   &_head
     display: flex
     flex-flow: row
-    border-bottom: 1px solid $accent
-    padding: 20px 30px
+    border-bottom: rem(1) solid $accent
+    padding: rem(20) rem(30)
     position: relative
   &_body
     flex: 1 0 auto
@@ -20,9 +20,9 @@
     flex-flow: column
     justify-content: center
     align-items: center
-    padding: 15px 30px
+    padding: rem(15) rem(30)
     p:first-child
-      margin-bottom: 25px
+      margin-bottom: rem(25)
     span
       color: $accent
       display: inline
@@ -31,26 +31,26 @@
     flex-flow: row
     justify-content: space-between
     align-items: flex-end
-    padding: 15px 30px
+    padding: rem(15) rem(30)
     button
       border: none
       cursor: pointer
   &_cancel
     background: transparent
-    padding: 8px 17px
+    padding: rem(8) rem(17)
   &_stay_in
     color: $background
     background: $success
-    padding: 8px 17px
-    border-radius: 5px
+    padding: rem(8) rem(17)
+    border-radius: rem(5)
 .close
   fill: #000000
-  width: 13px
-  height: 13px
+  width: rem(13)
+  height: rem(13)
   cursor: pointer
   position: absolute
-  top: 22px
-  right: 30px
+  top: rem(22)
+  right: rem(30)
   z-index: 4
 
 @media all and (max-width: 320px)

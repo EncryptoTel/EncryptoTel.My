@@ -11,14 +11,14 @@
     margin-bottom: 5%
     .input_wrapper
       position: relative
-      margin-bottom: 25px
+      margin-bottom: rem(25)
     select-element
-      margin-bottom: 20px
+      margin-bottom: rem(20)
     p
       font-weight: 600
-      margin-bottom: 15px
+      margin-bottom: rem(15)
     textarea
-      height: 135px
+      height: rem(135)
       &:focus
         outline: none
     &_controls
@@ -32,22 +32,22 @@
         flex-flow: row
         justify-content: center
         align-items: center
-        width: 75px
-        height: 30px
-        margin-bottom: 10px
+        width: rem(75)
+        height: rem(30)
+        margin-bottom: rem(10)
         &:first-child
-          margin-right: 15px
+          margin-right: rem(15)
       input[type='submit']
         background: $success
         color: $background
-        border-radius: 5px
+        border-radius: rem(5)
 
 .alert_message
   color: $error
   position: absolute
-  bottom: -20px
-  left: 15px
+  bottom: rem(-20)
+  left: rem(15)
   font-size: 0.85rem
 
 .ng-touched.ng-invalid:not(form)
-  border: 1px solid $error
+  border: rem(1) solid $error

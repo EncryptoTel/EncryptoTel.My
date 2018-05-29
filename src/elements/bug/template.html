@@ -10,9 +10,7 @@
   </div>
   <div class="bug_list_item_description">
     <div class="bug_list_item_description_title" (click)="getBug()">{{issue.summary}}</div>
-    <div class="bug_list_item_description_body">
-      {{issue.description}}
-    </div>
+    <div class="bug_list_item_description_body">{{issue.description}}</div>
     <div class="bug_list_item_description_footer">
       <div class="bug_list_item_description_footer_tag {{setTagStyle(issue.status.id)}}">{{issue.status.name}}</div>
       <div class="bug_list_item_description_footer_comments">{{issue.comments_count}} {{issue.comments_count === 1?
@@ -22,5 +20,23 @@
            [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...
       </div>
     </div>
+  </div>
+</div>
+
+<div class="mobile">
+  <div class="mobile_vote">
+    <div class="mobile_vote_counter">{{issue.votes_count}}<br>{{issue.votes_count === 1? 'vote': 'votes'}}</div>
+    <div class="mobile_vote_button" [ngClass]="{'voted': issue.vote_exists === 1}" (click)="voteHandler()">Vote</div>
+    <div class="mobile_vote_empty"></div>
+  </div>
+  <div class="mobile_body">
+    <div class="mobile_body_title" (click)="getBug()">{{issue.summary}}</div>
+    <div class="mobile_body_description">{{issue.description}}</div>
+    <div class="mobile_body_row">
+      <div class="mobile_body_tag {{setTagStyle(issue.status.id)}}">{{issue.status.name}}</div>
+      <div class="mobile_body_comments">{{issue.comments_count}} {{issue.comments_count === 1? 'comment': 'comments'}}</div>
+    </div>
+    <div class="mobile_body_report" (click)="reportHandler()"
+         [ngClass]="{'reported': issue.claim_exists === 1}">{{formatClaims()}} Flag idea as inappropriate...</div>
   </div>
 </div>
