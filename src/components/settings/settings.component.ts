@@ -5,6 +5,7 @@ import {PageInfo} from '../../models/page-info.model';
 import {AccountModel, Profile} from '../../models/accout.model';
 import {emailRegExp, nameRegExp} from '../../shared/vars';
 import {PopupServices} from '../../services/popup.services';
+import * as timezone from 'timezones.json';
 
 
 @Component({
@@ -26,14 +27,16 @@ export class SettingsComponent {
     email: false,
     language: false,
     status: false,
-    comments: false
+    comments: false,
+    timezones: false
   };  // enable/disable edit fields
   loadersIcons = {
     firstname: false,
     lastname: false,
     email: false,
     status: false,
-    comments: false
+    comments: false,
+    timezones: false
   };  // enable/disable loaders icons
   validState = {
     firstname: true,
@@ -50,7 +53,8 @@ export class SettingsComponent {
         language_id: 0,
         lastname: '',
         new_comments: 0,
-        status_updates: 0
+        status_updates: 0,
+        timezone: 0
       },
       wallets: {
         address: '',
@@ -60,7 +64,8 @@ export class SettingsComponent {
     }
   };
   languages: LanguagesModel[] = []; // array of available languages from back
-
+  timezones = timezone;
+  loading = true;
   constructor(private _service: SettingsServices,
               private popup: PopupServices) {
     this.getAccount();  // get date about account
@@ -85,7 +90,21 @@ export class SettingsComponent {
     this.save('language', {language_id: this.account.account.profile.language_id});
     this.editStatus.language = false;
   }
-
+  setTimezone(tz) {
+    this.account.account.profile.timezone = tz.offset;
+    this.save('timezones', {timezone: this.account.account.profile.timezone});
+    this.editStatus.timezones = false;
+  }
+  currentTimezone() {
+    const tmz = this.timezones.find(el => {
+      if (el.offset === this.account.account.profile.timezone) {
+        return true;
+      }
+    });
+    if (tmz && tmz.hasOwnProperty('text')) {
+      return tmz.text;
+    }
+  }
   // activate edit status of field
   edit(type: string, field: HTMLInputElement): void {
     this.editStatus[type] = true;
@@ -156,6 +175,10 @@ export class SettingsComponent {
     this.editStatus.language = !this.editStatus.language;
   }
 
+  showTimezones(): void {
+    this.editStatus.timezones = !this.editStatus.timezones;
+  }
+
   // global controller of lang select
   hideLanguages(event) {
     event.target.classList.contains('select_current') || (event.target.id === 'langEdit') || (event.target.id === 'arrow') ? this.editStatus.language = true : this.editStatus.language = false;
@@ -178,6 +201,7 @@ export class SettingsComponent {
     this._service.getAccount().then((res: AccountModel) => {
       this.account = res;
       this.email = this.account.account.email;
+      this.loading = false;
     }).catch(err => {
       console.error(err);
     })

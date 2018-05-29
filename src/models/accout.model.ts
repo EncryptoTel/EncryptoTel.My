@@ -16,6 +16,7 @@ export interface Profile {
   lastname: string;
   new_comments: number;
   status_updates: number;
+  timezone: number;
 }
 
 export interface Wallets {
