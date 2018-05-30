@@ -111,8 +111,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
     validateForm(this.signUpForm);
     if (this.signUpForm.valid && !this.formMessage) {
       this.loading.button = true;
-      this._services.validateWallet(this.signUpForm.get('wallet').value)
-        .then(() => {
+      // this._services.validateWallet(this.signUpForm.get('wallet').value)
+      //   .then(() => {
           this._services.signUp(this.signUpForm.value)
             .then(() => {
               this.loading.button = false;
@@ -125,10 +125,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
               }
               this.loading.button = false
             });
-        }).catch(() => {
-          this._services.setMessage('Invalid wallet address');
-          this.loading.button = false;
-      })
+        // }).catch(() => {
+        //   this._services.setMessage('Invalid wallet address');
+        //   this.loading.button = false;
+      // })
     }
   }
 

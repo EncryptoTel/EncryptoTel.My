@@ -34,11 +34,11 @@
       </div>
     </div>
     <div class="authorization_input_wrap">
-      <input type="text" title="Wallet (Waves 3P)" placeholder="Wallet (Waves 3P)" class="authorization_input" formControlName="wallet">
+      <input type="text" title="Wallet (Waves or Ethereum)" placeholder="Wallet (Waves or Ethereum)" class="authorization_input" formControlName="wallet">
       <div class="authorization_input_error_wrap" *ngIf="hasError('wallet')" [@Fade]>
         <div class="authorization_input_error" *ngIf="hasError('wallet', 'required')">Please enter wallet address</div>
         <div class="authorization_input_error" *ngIf="hasError('wallet', 'pattern')">Please enter correct wallet address</div>
-        <div class="authorization_input_error" *ngIf="hasError('wallet', 'response')">{{signUpForm.controls.wallet.errors.response}}</div>
+        <!--<div class="authorization_input_error" *ngIf="hasError('wallet', 'response')">{{signUpForm.controls.wallet.errors.response}}</div>-->
       </div>
     </div>
     <button-element value="Sign in" [loading]="loading.button" (onClick)="signUp()"></button-element>

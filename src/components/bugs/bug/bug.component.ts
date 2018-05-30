@@ -3,6 +3,7 @@ import {BugsServices} from '../../../services/bugs.services';
 import {ActivatedRoute} from '@angular/router';
 import {BugReview, Comments, File} from '../../../models/bug.model';
 import {FadeAnimation} from '../../../shared/functions';
+import {environment as _env} from "../../../environments/environment";
 
 @Component({
   selector: 'bug-component',
@@ -52,7 +53,7 @@ export class BugComponent {
   showAllComments = false;
   adminComments: Comments[] = [];
   files: File[] = [];
-  root = 'http://investor-back.encry.ru/';
+  root = `${_env.site_url}`;
 
   getBug(): void {
     this._service.getBug({id: this.id}).then((res: BugReview) => {

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   api_url: 'http://investor-front-dev.encry.ru/api',
+  site_url: 'http://investor-front-dev.encry.ru',
   waves_api_url: 'https://nodes.wavesnodes.com',
   waves_api_dev: 'https://testnode1.wavesnodes.com',
   eth_api_url: 'https://api.etherscan.io/api',
