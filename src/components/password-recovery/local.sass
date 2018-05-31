@@ -3,6 +3,7 @@
 .container
   align-items: center
   flex: 1 0 auto
+  height: 100vh
   /deep/ circle, /deep/ rect, /deep/ path
     fill: $accent
   /deep/ .authorization_input:nth-child(n)
@@ -18,4 +19,24 @@
     &:not(.success)
       color: $error
   >button-element
-    width: auto
+    width: 50%
+    margin-top: 0
+.authorization_input
+  margin-bottom: rem(59)
+@media (max-height: 511px)
+  .container
+    .authorization
+      &_icon
+        margin: rem(16) 0 auto
+      &_form, &_link
+        margin: 0 0 rem(8)
+        >button-element
+          align-self: flex-end
+          margin: 0
+      &_input
+        margin-bottom: rem(51)
+        &_wrap
+          margin: 0
+
+      &_copyright
+        margin: auto 0 rem(16)

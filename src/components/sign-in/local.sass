@@ -10,7 +10,7 @@
     border-width: rem(1)
     padding: rem(5) rem(15)
 
-@media (max-height: 576px)
+@media (max-height: 575px)
   .container
     >svg-icon
       margin: rem(32) 0 rem(8)
@@ -21,3 +21,15 @@
       margin: rem(8) 0 auto
     &_copyright
       margin: rem(8) 0 rem(32)
+@media (max-height: 511px)
+  .container
+    .authorization
+      &_icon
+        margin: rem(16) 0 auto
+      &_form, &_input_wrap, &_link
+        margin: 0 0 rem(8)
+        >button-element
+          align-self: flex-end
+          margin: 0
+      &_copyright
+        margin: auto 0 rem(16)

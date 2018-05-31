@@ -1,5 +1,5 @@
 <div class="container">
-  <svg-icon src="../../assets/icons/logo_titled.svg" class="authorization_icon"></svg-icon>
+  <svg-icon class="authorization_icon" src="../../assets/icons/logo_titled.svg"></svg-icon>
   <form class="authorization_form" (submit)="signIn($event)" [formGroup]="signInForm" (keyup)="clearMessage($event)">
     <div class="authorization_input_wrap">
       <input type="text" title="E-mail" placeholder="E-mail" class="authorization_input" formControlName="email">
@@ -20,6 +20,6 @@
     </div>
     <button-element value="Sign in" [loading]="loading" (onClick)="signIn()"></button-element>
   </form>
-  <a routerLink="../password-recovery" class="authorization_link">Forgot your password?</a>
+  <a class="authorization_link" routerLink="../password-recovery">Forgot your password?</a>
   <div class="authorization_copyright">{{copyright}}</div>
 </div>
