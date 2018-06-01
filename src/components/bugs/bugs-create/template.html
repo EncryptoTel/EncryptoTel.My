@@ -33,7 +33,7 @@
           <span *ngFor="let file of uploader_field.files" [@Fade]>{{file.name}}</span>
         </div>
       </ng-template>
-      <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>A comment should contain more than 10 and less than 1024 characters</span>
+      <span class="alert_message" *ngIf="(!newBugForm.controls.description.valid && newBugForm.controls.description.touched)" [@Fade]>A comment should contain more than 9 and less than 1024 characters</span>
     </div>
     <div class="bugs_create_form_controls" *ngIf="!isSendedRequest">
       <div class="bugs_create_form_controls_input_wrap">
