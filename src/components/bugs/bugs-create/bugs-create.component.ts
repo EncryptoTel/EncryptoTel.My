@@ -35,7 +35,7 @@ export class BugsCreateComponent implements OnInit {
   };
   newBugForm: FormGroup = new FormGroup({
     'summary': new FormControl(null, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
-    'description': new FormControl(null, [Validators.required, Validators.minLength(10)])
+    'description': new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(1024)])
   });
 
   priorities: Priority[] = [];
