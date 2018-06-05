@@ -2,7 +2,7 @@
   <svg-icon src="../../assets/icons/logo_titled.svg" class="authorization_icon"></svg-icon>
   <form class="authorization_form" (submit)="signIn($event)" [formGroup]="signInForm" (keyup)="clearMessage($event)">
     <div class="authorization_input_wrap">
-      <input type="text" title="E-mail" placeholder="E-mail" class="authorization_input" formControlName="email">
+      <input type="text" title="E-mail" placeholder="E-mail" class="authorization_input" formControlName="email" name="email">
       <div class="authorization_input_error_wrap" *ngIf="hasError('email')" [@Fade]>
         <div class="authorization_input_error" *ngIf="hasError('email', 'required')">Please enter e-mail</div>
         <div class="authorization_input_error" *ngIf="hasError('email', 'pattern')">Please enter correct e-mail</div>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="authorization_input_wrap">
-      <input type="password" title="Password" placeholder="Password" class="authorization_input" formControlName="password">
+      <input type="password" title="Password" placeholder="Password" class="authorization_input" formControlName="password" name="password">
       <div class="authorization_input_error_wrap" *ngIf="hasError('password')" [@Fade]>
         <div class="authorization_input_error" *ngIf="hasError('password', 'required')">Please enter password</div>
         <div class="authorization_input_error" *ngIf="hasError('password', 'minlength')">Password is too short</div>
